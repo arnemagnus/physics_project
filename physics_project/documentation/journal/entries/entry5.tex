@@ -1,0 +1,77 @@
+\section{Week 42}
+\label{sec:w42}
+
+The Fehlberg 7(8) scheme as implemented in \textcite{hairer1993solving} is erronous,
+as in, there is a coefficient which does not match the original paper by 
+\textcite{fehlberg1974classical}. Here, the Butcher tableau from the original paper
+is reproduced. 
+%\begin{sideways}
+
+\begin{table}[H]
+    \centering
+    \caption{Butcher tableau for the Fehlberg 7(8) adaptive timestep integrator.
+        The first row of $b$-coefficients yield the \nth{7} order solution, 
+    while the second row yields the \nth{8} order interpolant. See~\textcite{fehlberg1974classical}.}
+\label{tab:butcherfehlberg78}
+    \renewcommand{\arraystretch}{2.25}
+    \resizebox{0.9\textwidth}{!}{
+    \begin{tabular}{C|CCCCCCCCCCCCC}
+        \toprule
+        0 \tabularnewline
+        \dfrac{2}{27} & \dfrac{2}{27} \tabularnewline
+        \dfrac{1}{9} & \dfrac{1}{36} & \dfrac{1}{12} \tabularnewline
+        \dfrac{1}{6} & \dfrac{1}{24} & 0 & \dfrac{1}{8} \tabularnewline
+        \dfrac{5}{12} & \dfrac{5}{12} & 0 & -\dfrac{25}{16} & \dfrac{25}{16} \tabularnewline
+        \dfrac{1}{2} & \dfrac{1}{20} & 0 & 0 & \dfrac{1}{4} & \dfrac{1}{5} \tabularnewline
+        \dfrac{5}{6} & -\dfrac{25}{108} & 0 & 0 & \dfrac{125}{108} & -\dfrac{65}{27} & \dfrac{125}{54} \tabularnewline 
+        \dfrac{1}{6} & \dfrac{31}{300} & 0 & 0 & 0 & \dfrac{61}{225} & -\dfrac{2}{9} & \dfrac{13}{900} \tabularnewline
+        \dfrac{2}{3} & 2 & 0 & 0 & -\dfrac{53}{6} & \dfrac{704}{45} & -\dfrac{107}{9} & \dfrac{67}{90} & 3 \tabularnewline
+        \dfrac{1}{3} & -\dfrac{91}{108} & 0 & 0 & \dfrac{23}{108} & -\dfrac{976}{135} & \dfrac{311}{54} & -\dfrac{19}{60} & \dfrac{17}{6} & -\dfrac{1}{12} \tabularnewline
+        1 & \dfrac{2383}{4100} & 0 & 0 & -\dfrac{341}{164} & \dfrac{4496}{1025} & -\dfrac{301}{82} & \dfrac{2133}{4100} & \dfrac{45}{82} & \dfrac{45}{164} & \dfrac{18}{41} \tabularnewline
+        0 & \dfrac{3}{205} & 0 & 0 & 0 & 0 & -\dfrac{6}{41} & -\dfrac{3}{205} & -\dfrac{3}{41} & \dfrac{3}{41} & \dfrac{6}{41} & 0 \tabularnewline
+        1 & -\dfrac{1777}{4100} & 0 & 0 & -\dfrac{341}{164} & \dfrac{4496}{1025} & -\dfrac{289}{82} & \dfrac{2193}{4100} & \dfrac{51}{82} & \dfrac{33}{164} & \dfrac{12}{41} & 0 & 1 \tabularnewline
+        \midrule
+        & \dfrac{41}{840} & 0 & 0 & 0 & 0 & \dfrac{34}{105} & \dfrac{9}{35} & \dfrac{9}{35} & \dfrac{9}{280} & \dfrac{9}{280} & \dfrac{41}{840} & 0 & 0 \tabularnewline
+        & 0 & 0 & 0 & 0 & 0 & \dfrac{34}{105} & \dfrac{9}{35} & \dfrac{9}{35} & \dfrac{9}{280} & \dfrac{9}{280} & 0 & \dfrac{41}{840} & \dfrac{41}{840} \tabularnewline
+        \bottomrule
+\end{tabular}}
+\end{table}
+
+The Dormand-Prince 8(7) method lacks the FSAL property of its 5(4) sibling, 
+which is the price one pays for higher accuracy. The pioneers, Dormand and Prince,
+made rational approximations to the coefficients, accurate to about 20 decimal
+digits, which are reproduced in table \ref{tab:butcherdopri87}, which, for
+readability, is located in an appendix.
+
+\begin{sidewaystable}
+    \centering
+    \caption{Butcher tableau for the Dormand-Prince 8(7) adaptive timestep integrator.
+        The first row of $b$-coefficients yield the \nth{8} order solution, while the
+    second row yields the \nth{7} order interpolant. See \textcite{prince1981highorder}.}
+    \label{tab:butcherdopri87}
+    \renewcommand{\arraystretch}{2.25}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{C|CCCCCCCCCCCCC}
+    \toprule
+    0 \tabularnewline
+    \dfrac{1}{18} & \dfrac{1}{18} \tabularnewline
+    \dfrac{1}{12} & \dfrac{1}{48} & \dfrac{1}{16} \tabularnewline
+    \dfrac{1}{8} & \dfrac{1}{32} & 0 & \dfrac{3}{32} \tabularnewline
+    \dfrac{5}{16} & \dfrac{5}{16} & 0 & \dfrac{-75}{64} & \dfrac{75}{64} \tabularnewline
+    \dfrac{3}{8} & \dfrac{3}{80} & 0 & 0 & \dfrac{3}{16} & \dfrac{3}{20} \tabularnewline
+    \dfrac{59}{400} & \dfrac{29443841}{614563906} & 0 & 0 & \dfrac{77736358}{692538347} & \dfrac{-28693883}{1125000000} & \dfrac{23124283}{1800000000} \tabularnewline
+    \dfrac{93}{200} & \dfrac{16016141}{946692911} & 0 & 0 & \dfrac{61564180}{158732637} & \dfrac{22789713}{633445777} & \dfrac{545815736}{2771057229} & \dfrac{-180193667}{1043307555} \tabularnewline
+    \dfrac{5490023248}{9719169821} & \dfrac{39632708}{573591083} & 0 & 0 & \dfrac{-433636366}{683701615} & \dfrac{-421739975}{2616292301} & \dfrac{100302831}{723423059} & \dfrac{790204164}{839813087} & \dfrac{800635310}{3783071287} \tabularnewline
+    \dfrac{13}{20} & \dfrac{246121993}{1340847787} & 0 & 0 & \dfrac{-37695042795}{15268766246} & \dfrac{-309121744}{1061227803} & \dfrac{-12992083}{490766935} & \dfrac{6005943493}{2108947689} & \dfrac{393006217}{1396673457} & \dfrac{123872331}{1001029789} \tabularnewline
+    \dfrac{1201146811}{1299019798} & \dfrac{-1028468189}{846180014} & 0 & 0 & \dfrac{8478235783}{508512851} & \dfrac{1311729495}{1432422823} & \dfrac{-10304129995}{1701304382} & \dfrac{-48777925059}{3047939560} & \dfrac{15336726248}{1032824649} & \dfrac{-45442868181}{339846796} & \dfrac{3065993473}{5917172653} \tabularnewline
+    1 & \dfrac{185892177}{718116043} & 0 & 0 & \dfrac{-3185094517}{667107341} & \dfrac{-477755414}{1098053517} & \dfrac{-703635378}{230739211} & \dfrac{5731566787}{1027545527} & \dfrac{5232866602}{850066563} & \dfrac{-4093664535}{808688257} & \dfrac{3962137247}{1805957418} & \dfrac{65686358}{487910083} \tabularnewline
+    1 & \dfrac{403863854}{491063109} & 0 & 0 & \dfrac{-5068492393}{434740067} & \dfrac{-411421997}{543043805} & \dfrac{652783627}{914296604} & \dfrac{11173962825}{925320556} & \dfrac{-13158990841}{6184727034} & \dfrac{3936647629}{1978049680} & \dfrac{-160528059}{685178525} & \dfrac{248638103}{1413531060} & 0 \tabularnewline
+    \midrule
+    & \dfrac{1400451}{335480064} & 0 & 0 & 0 & 0 & \dfrac{-59238493}{1068277825} & \dfrac{181606767}{758867731} & \dfrac{56129285}{797845732} & \dfrac{-1041891430}{1371343529} & \dfrac{760417239}{1151165299} & \dfrac{118820643}{751138087} & \dfrac{-528747749}{2220607170} & \dfrac{1}{4}    \tabularnewline 
+    & \dfrac{13451932}{455176623} & 0 & 0 & 0 & 0 & \dfrac{-808719486}{976000145} & \dfrac{1757004468}{5645159321} & \dfrac{656045339}{265891186} & \dfrac{-3867574721}{1518517206} & \dfrac{465885868}{322736535} & \dfrac{53011238}{667516719} & \dfrac{2}{45} & 0\tabularnewline 
+    \bottomrule
+    \end{tabular}}
+\end{sidewaystable}
+
+%\end{sideways}
+

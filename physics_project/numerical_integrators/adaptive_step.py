@@ -115,8 +115,8 @@ where   t:        NumPy array containing the current time level(s)
 #--------------------------------------------------------------------#
 #                      Common default parameters                     #
 #--------------------------------------------------------------------#
-atol_default = 1.e-6.
-rtol_default = 1.e-9.
+atol_default = 1.e-6
+rtol_default = 1.e-9
 
 fac     = 0.8
 maxfac  = 2

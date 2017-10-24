@@ -1,0 +1,191 @@
+\documentclass[a4paper,12pt]{article}
+
+% For å laste inn fonter:
+\usepackage{fontspec}
+% Diverse formatering, deriblant (men ikke begrenset til) URL'er
+\usepackage{xunicode,xltxtra,url,parskip}
+
+\RequirePackage{color,graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+% Bedre A4-formatering:
+\usepackage[big]{layaureo}
+
+% Tykkere linjer i tabeller
+\usepackage[]{booktabs}
+
+% Smartere plassering av floats
+\usepackage[]{float}
+
+% Oppsett av hyperref-pakken
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,
+linkcolor=linkcolour}
+
+\usepackage[backend=biber,style=authoryear,language=british,dashed=false,url=false,doi=false]{biblatex}
+\DeclareNameAlias{sortname}{last-first}
+
+\addbibresource{../references.bib}
+
+%\let\oldbibliography\thebibliography
+%\renewcommand{\thebibliography}[1]{\oldbibliography{#1}
+%\setlength{\itemsep}{2pt}}
+
+% Koden herfra og ned til usepackage tikz sikrer at hele sitatboksen i biblatex-
+% sitater blir del av hyperlenken, snarere enn kunn årstallet:
+\DeclareFieldFormat{citehyperref}{%
+    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+\bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+    \bibhyperref{%
+        #1%
+        \ifbool{cbx:parens}
+        {\bibcloseparen\global\boolfalse{cbx:parens}}
+{}}}
+
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+    \printtext[citehyperref]{%
+        \restorebibmacro{cite}%
+\usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+    \ifboolexpr{
+        ( not test {\iffieldundef{prenote}} and
+        test {\ifnumequal{\value{citecount}}{1}} )
+        or
+        ( not test {\iffieldundef{postnote}} and
+        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+    }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+    \printtext[textcitehyperref]{%
+        \restorebibmacro{textcite}%
+\usebibmacro{textcite}}}
+
+%% Runde sitatparenteser med \citep
+%\usepackage[round]{natbib}
+
+% For å bl.a. kunne loope over filnavn:
+\usepackage{tikz}
+
+% Generic document command parsing
+\usepackage{xparse}
+
+% Generate framed, color-filled boxes around text and eqn.s
+\usepackage{tcolorbox}
+
+% Smart references
+\usepackage{cleveref}
+
+% Bruk endash heller enn "to~" i en cleveref-range (crefrange{})
+\newcommand{\crefrangeconjunction}{--}
+
+% Smart syntakshighlighting for ymse programmeringsspråk.
+% Newfloat muliggjør captions og referanser til kodesnuttene
+\usepackage[newfloat]{minted}
+
+% Smartere captions
+\usepackage[]{caption}
+
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name = Source Code}
+
+% Enkel syntaks for superskript 2nd, 3rd osv: \nth{i}
+\usepackage[super]{nth}
+
+% Tilgang til \newcolumn-kommandoen
+\usepackage[]{array}
+
+\newcolumntype{C}{>$c<$} % Math mode versjon av "c" kolonnetype
+
+% Roter tabeller osv
+\usepackage{rotating}
+
+
+%--------------------------------------------------%
+% Matematiske funksjoner, og egendefinerte makroer %
+% -------------------------------------------------%
+
+% "Go-to"-pakken for matematikk i LaTeX:
+\usepackage{amsmath}
+
+% % Nødvendig pakke for å få greske bokstaver i roman i mathmode
+% \usepackage[libertine]{newtxmath}
+\usepackage[libertine]{newtxmath}
+
+% Enkle makroer for vektorkalkulus og lin.alg.
+\usepackage{physics}
+
+% Matematiske symboler i fete typer
+\usepackage{bm}
+
+% Definer makroer for greske bokstaver i mathmode roman:
+\DeclareRobustCommand{\mathup}[1]{\begingroup\changegreek\mathrm{#1}\endgroup}
+\DeclareRobustCommand{\mathbfup}[1]{\begingroup\changegreekbf\mathbf{#1}\endgroup}
+
+\makeatletter
+\def\changegreek{\@for\next:={%
+        alpha,beta,gamma,delta,epsilon,zeta,eta,theta,kappa,lambda,mu,nu,xi,pi,rho,sigma,%
+    tau,upsilon,phi,chi,psi,omega,varepsilon,vartheta,varpi,varrho,varsigma,varphi}%
+\do{\expandafter\let\csname\next\expandafter\endcsname\csname\next up\endcsname}}
+\def\changegreekbf{\@for\next:={%
+        alpha,beta,gamma,delta,epsilon,zeta,eta,theta,kappa,lambda,mu,nu,xi,pi,rho,sigma,%
+    tau,upsilon,phi,chi,psi,omega,varepsilon,vartheta,varpi,varrho,varsigma,varphi}%
+    \do{\expandafter\def\csname\next\expandafter\endcsname\expandafter{%
+\expandafter\bm\expandafter{\csname\next up\endcsname}}}}
+\makeatother
+
+% Definer vektorer i bold, roman
+\newcommand{\vect}[1]{{\mathbfup{#1}}}
+
+% Definer enhetsvektorer i bold, roman, med hatt
+\newcommand{\uvect}[1]{{\mathbfup{\hat{#1}}}}
+
+
+% Definer tensorer i bold, roman, understreket
+\newcommand{\tens}[1]{{\underline{{\mathbfup{#1}}}}}
+
+%---------------------------BEGIN DOCUMENT---------------------------%
+
+\begin{document}
+
+
+%-------------------------------TITLE--------------------------------%
+
+\par{\centering
+    {\LARGE TFY4510 \textsc{Specialization Project in Physics}
+}\medskip\par}
+
+\par{\centering
+    {\large Journal for Arne Magnus Tveita Løken, fall 2017
+}\bigskip\par}
+
+%----------------------------MAIN CONTENT-----------------------------%
+
+% Organiserer journalføringen i enkeltfiler i underkatalogen
+% 'entries', og laster filene sekvensielt.
+%
+% OBS: Husk å oppdatere antallet inputfiler før kompilering for
+% å få med alle journalføringene:
+
+\foreach \c in {1, ..., 5} {\input{entries/entry\c.tex}}
+
+%------------------------------BACKMATTER-----------------------------%
+\bigskip
+
+%\bibliographystyle{apalike}
+%\bibliography{../bibliography/references.bib}
+
+\begingroup
+\setlength\bibitemsep{5pt}
+\printbibliography
+\endgroup
+\end{document}
+

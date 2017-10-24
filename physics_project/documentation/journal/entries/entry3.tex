@@ -1,0 +1,67 @@
+\section{Week 40}
+
+Several trial runs for integrating trajectories in parallel using adaptive
+timestep integrators suggest that attempting steps with all particles each
+time is generally more efficient in terms of computation time than the 
+alternative of only stepping forwards in time with the trajectories which are 
+yet to reach the end point. Although there is a benefit of approximately 
+$20 \%$ for first and second order accurate adaptive integrators, there is no
+significant difference for third order methods, whereas higher order methods
+require about $30 \%$ \emph{more} computation time when only stepping forwards
+with trajectories which are not at the end point. Alas, I see no real benefit
+to applying masks to the integrated trajectories, taking into account the more
+complex and less comprehensible code it requires.
+
+\begin{table}[H]
+    \centering
+    \caption{Butcher tableau for the Dormand-Prince 5(4) adaptive timestep integrator.
+        The first row of $b$-coefficients yield the \nth{5} order solution, 
+    while the second row yields the \nth{4} order interpolant. See~\textcite{prince1981highorder}.}
+    \label{tab:bucherdopri54}
+    \(\renewcommand{\arraystretch}{2.5}
+    \begin{array}{c|ccccccc}
+        \toprule
+        0 \\
+        \dfrac{1}{5} & \dfrac{1}{5} \\
+        \dfrac{3}{10} & \dfrac{3}{40} & \dfrac{9}{40} \\
+        \dfrac{4}{5} & \dfrac{44}{45} & -\dfrac{56}{15} & \dfrac{32}{9} \\
+        \dfrac{8}{9} & \dfrac{19372}{6561} & -\dfrac{25360}{2187} & \dfrac{64448}{6561} & -\dfrac{212}{769} \\
+        1 & \dfrac{9017}{3168} & -\dfrac{355}{33} & \dfrac{46732}{5247} & \dfrac{49}{176} & -\dfrac{5103}{18656} \\
+        1 & \dfrac{35}{384} & 0 & \dfrac{500}{1113} & \dfrac{125}{192} & -\dfrac{2187}{6784} & \dfrac{11}{84} \\ 
+        \midrule
+        & \dfrac{35}{384} & 0 & \dfrac{500}{1113} & \dfrac{125}{192} & -\dfrac{2187}{6784} & \dfrac{11}{84} \\
+        & \dfrac{5179}{57600} & 0 & \dfrac{7571}{16695} & \dfrac{393}{640} & -\dfrac{92097}{339200} & \dfrac{187}{2100} & \dfrac{1}{40} \\ 
+        \bottomrule
+    \end{array}
+    \)
+\end{table}
+
+
+Second order forward difference approximation of first derivative:
+
+\begin{equation}
+    \label{eq:secondorderforwarddifferencefirstderivative}
+    \dv[]{f(x)}{x} \approx \frac{-f(x + 2h) + 4f(x + h) - 3f(x)}{2h}     
+\end{equation}
+
+Second order backward difference approximation of first derivative:
+
+\begin{equation}
+    \label{eq:secondorderbackwarddifferencefirstderivative}
+    \dv[]{f(x)}{x} \approx \frac{3f(x) - 4f(x - h) + f(x - 2h)}{2h} 
+\end{equation}
+
+Second order forward difference approximation of second derivative:
+
+\begin{equation}
+    \label{eq:secondorderforwarddifferencesecondderivative}
+    \dv[2]{f(x)}{x} \approx \frac{2f(x) - 5f(x+h) + 4f(x + 2h) - f(x + 3h)}{h^{2}} 
+\end{equation}
+
+Second order backward difference approximation of second derivative:
+
+\begin{equation}
+    \label{eq:secondorderbackwarddifferencesecondderivative}
+    \dv[2]{f(x)}{x} \approx \frac{2f(x) - 5f(x-h) + 4f(x-2h) - f(x-3h)}{h^{2}} 
+\end{equation}
+

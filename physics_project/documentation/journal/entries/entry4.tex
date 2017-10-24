@@ -1,0 +1,65 @@
+\section{Week 41}
+
+When using \textsc{NumPy} or \textsc{SciPy} interpolation, e.g.\ by use of
+\textsc{RectBivariateSpline}, the indexing is not what we expect from Python. 
+This is due to how the \textsc{NumPy} meshgrids share indexing pattern with 
+\textsc{Matlab}. In particular, this means that, when generating the 
+interpolation object, the correct call structure is as follows:
+
+\begin{code}
+    \captionof{listing}{The correct way to generate a \textsc{RectBivariateSpline}}
+    \label{code:correctspline1}
+    \begin{minted}{python}
+    
+    from scipy.interpolate import RectBivariateSpline as RBSpline
+    import numpy as np
+
+    # ----------------------------------------------------- #
+    # Function and variables defined somewhere in the above # 
+    # ----------------------------------------------------- #
+
+    x = np.linspace(dx/2, Nx-dx/2, Nx)
+    y = np.linspace(dy/2, Ny-dy/2, Ny)
+
+    z = foo(x, y)
+
+    spline = RBSpline(y, x, z)
+\end{minted}
+\end{code}
+
+rather than
+
+\begin{code}
+    \captionof{listing}{An incorrect way of generating a \textsc{RectBivariateSpline}}
+    \label{code:incorrectspline}
+\begin{minted}{python}
+    spline = RBSpline(x, y, z) # <-- Incorrect
+\end{minted}
+\end{code}
+
+Similarly, the correct call structure when evaluating the interpolated object
+is
+\begin{code}
+    \captionof{listing}{The correct way to evaluate the interpolated object}
+    \label{code:correctsplineevaluation}
+\begin{minted}{python}
+    x2 = np.linspace(x_min, x_max, NI)
+    y2 = np.linspace(y_min, y_max, NJ)
+
+    z2 = spline.ev(y2, x2)
+\end{minted}
+\end{code}
+
+rather than
+
+\begin{code}
+    \captionof{listing}{An incorrect way of evaluating the interpolated object}
+    \label{code:incorrectsplineevaluation}
+\begin{minted}{python}
+    z2 = spline.ev(x2, y2) # <-- Incorrect
+\end{minted}
+\end{code}
+
+
+
+

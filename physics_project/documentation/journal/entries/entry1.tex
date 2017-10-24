@@ -1,0 +1,212 @@
+\section{Weeks 34--36}
+\label{sec:34-36}
+
+\subsection{Preliminaries}
+\label{sec:preliminaries}
+I've spent the first few weeks of the project work studying the
+dynamics, i.e., the transport properties,  of an analytically known
+velocity field. The velocity field is a simplified
+dynamical model of a periodic, two dimensional double gyre system,
+first described by \textcite{shadden2005definition}. It is
+defined on the domain $[0,2]\times[0,1]$, and described mathematically
+by the Lagrange stream function
+
+\begin{equation}
+  \label{eq:analytical_field_stream_function}
+  \psi(\vect{x},t) = A\sin\big(\pi{}f(x,t)\big)\sin(\pi{}y)
+\end{equation}
+
+where 
+
+\begin{subequations}
+  \label{eq:analytical_vel_field_parameter_f}
+  \begin{align}
+    f(x,t) &= a(t)x^{2} + b(t)x \\
+    \label{eq:analytical_velocity_field_parameter_a}
+    a(t) &= \epsilon \sin(\omega{t}) \\
+    \label{eq:analytical_velocity_field_parameter_b}
+    b(t) &= 1 - 2\epsilon \sin(\omega{}t)
+  \end{align}
+\end{subequations}
+
+and the parameters $A$, $\epsilon$ and $\omega$ adjust the properties
+of the system.
+
+The stream function description only applies to incompressible, i.e.,
+divergence-free, two-dimensional flows. Per definition, the velocity
+field relates to the stream function in the following way:
+
+\begin{subequations}
+  \begin{align}
+    \label{eq:general_velocity_field}
+    \vect{V} &= \mqty[u \\ v] \\
+    \label{eq:general_velocity_field_x_component}
+    u &= - \pdv{\psi}{y} \\
+    \label{eq:general_velocity_field_y_component}
+    v &= \pdv{\psi}{x}
+  \end{align}
+\end{subequations}
+
+which, for the stream function given by eqn.
+\eqref{eq:analytical_field_stream_function}, yields
+
+\begin{subequations}
+  \begin{align}
+    u &= - \pi{}A\sin\big(\pi{}f(x,t)\big)\cos(\pi{}y) \\
+    v &= \pi{}A\cos\big(\pi{}f(x,t)\big)\sin(\pi{}y)\pdv{f(x,t)}{x}
+  \end{align}
+\end{subequations}
+
+with $f(x,t)$ is given by eqn. 
+\eqref{eq:analytical_vel_field_parameter_f}.
+
+\subsection{Considerations regarding simulation of
+                    the system dynamics}
+\label{sec:initial_simulation_considerations}
+To begin with, i.e., at time $t=0$, I covered the domain
+$[0,2]\times[0,1]$ with a mesh of equidistant fluid elements,
+approximated as point masses on the grid points. Because the velocity
+field is known analytically, simulating how the fluid elements are
+transported in time amounted to solving a set of independent ordinary
+differential eqn.s (ODEs) in time. A myriad of numerical solution
+techniques for ODE systems exist, which is reflected in my project
+problem theme, namely ``Sensitivity to numerical integration scheme in
+calculation of transport barriers''. I simulated the transport of the
+fluid elements in a set amount of time using a variety of solution
+schemes, with intention to estimate how the precision of the fluid
+elements' trajectories is affected by the choice of numerical scheme.
+
+Put simply, all numerical integration schemes have their strengths
+and weaknesses. Simple schemes involve few computational steps,
+at the cost of precision. Similarly, schemes with a high degree of
+precision are more complex, and typically require a larger number
+of intermediary calculations in order to arrive at a solution.
+Basically, my project work is centered around the tradeoff between
+the precision of numerical solutions of dynamic systems, and the
+time we have to wait for the calculations to finish.
+
+Naturally, devising a way to estimate the degree of precision of the
+numerical solutions produced by the different integration schemes is
+crucial. One glaring hindrance lies in the fact that the fluid
+elements' trajectories can be expressed analytically, but only in
+terms of integrals that can only be evaluated numerically. Thus,
+simply using a solution from a higher order numerical scheme -- using
+a small time step (for fixed step size integrators) or low tolerance
+levels (for adaptive step size integrators) -- as reference strikes
+me as the most practical approach.
+
+\subsection{Numerical integrators implemented so far}
+\label{sec:initial_numerical_integrators}
+So far, I've implemented the four most common single-step explicit
+Runge-Kutta methods. They are summarized in table 
+\ref{tab:initial_explicit_integrators}. 
+
+\begin{table}[h]
+  \centering
+  \caption{The most common explicit Runge-Kutta integrators, and their
+           precision, here indicated by their leading error terms.}
+  \label{tab:initial_explicit_integrators}
+  \begin{tabular}[h]{l|c}
+    \hline
+    (Explicit) integrator & Leading error term \\
+    \hline
+    Euler's method & $\mathcal{O}(\Delta{}t)$ \\
+    Heun's method & $\mathcal{O}(\Delta{}t^{2})$ \\
+    Kutta's method & $\mathcal{O}(\Delta{}t^{3})$ \\
+    RK4 method & $\mathcal{O}(\Delta{}t^{4})$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+
+Høyere ordens numerisk metode må brukes som referanse, ettersom
+posisjonen til enhver partikkel ikke kan uttrykkes analytisk (på lukket
+form). Adaptiv-tidssteg-metoder krever en viss finesse, ettersom hver
+enkelt bane vil trenge sitt eget tidssteg osv.
+
+
+
+
+\subsection{Error estimation, various integrators}
+
+Using the RK4 method with timestep $\Delta{}t=0.001$ as reference, I
+have simulated the fluid flow until $t=5$ with the integration schemes
+named in table \ref{tab:initial_explicit_integrators} for time step
+sizes $\Delta{}t\in\{0.1,0.01,0.001\}$ and computed the error in the
+FTLE field. The errors of each direct solver are presented in
+\crefrange{tab:euler-lyapunov-error-rk4-ref}{tab:RK4-lyapunov-error-rk4-ref}. 
+
+\begin{tcolorbox}
+  Introduce the concept of a (Finite-Time) Lyapunov Exponent field
+  in an introductory chapter.
+
+  Explicitly provide the Runge-Kutta methods, e.g. Euler, Heun, Kutta
+  and RK4, in the theory section. State the leading error term.
+
+  Investigate array slicing and utilization of adaptive timestep
+  integrators as reference solution.
+
+  Compare numerical error of the different integrators with the
+  reference solution -- e.g. logarithmic plot of the error as function
+  of the time step, with reference slopes $\sim{}h^{n}$.
+\end{tcolorbox}
+
+\parencite{dormand1986reconsideration}
+
+\begin{table}[h]
+  \caption{Euler, $t = 5$}
+  \label{tab:euler-lyapunov-error-rk4-ref}
+  \centering
+  \begin{tabular}[h]{l|c|c|c}
+    \hline
+    Euler \textbackslash\hspace{0.5em} $\Delta{t}$& 0.1 & 0.01 & 0.001 \\
+    \hline
+    Avg. abs. err. & $5 \cdot 10^{-3}$ & $4 \cdot 10^{-4} $ & $4 \cdot 10^{-5}$ \\
+    Max. abs. err. & $7 \cdot 10^{-2}$ & $1 \cdot 10^{-2}$ & $1 \cdot 10^{-3} $ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \caption{Heun, $t = 5$}
+  \label{tab:heun-lyapunov-error-rk4-ref}
+  \centering
+  \begin{tabular}[h]{l|c|c|c}
+    \hline
+    Heun \textbackslash\hspace{0.5em} $\Delta{t}$& 0.1 & 0.01 & 0.001 \\
+    \hline
+    Avg. abs. err. & $1 \cdot 10^{-4}$ & $1 \cdot 10^{-6} $ & $1 \cdot 10^{-8}$ \\
+    Max. abs. err. & $5 \cdot 10^{-3}$ & $5 \cdot 10^{-5}$ & $5 \cdot 10^{-7} $ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \caption{Kutta, $t = 5$}
+  \label{tab:kutta-lyapunov-error-rk4-ref}
+  \centering
+  \begin{tabular}[h]{l|c|c|c}
+    \hline
+    Kutta \textbackslash\hspace{0.5em} $\Delta{t}$& 0.1 & 0.01 & 0.001 \\
+    \hline
+    Avg. abs. err. & $4 \cdot 10^{-6}$ & $4 \cdot 10^{-9} $ & $4 \cdot 10^{-12}$ \\
+    Max. abs. err. & $2 \cdot 10^{-4}$ & $2 \cdot 10^{-7}$ & $3 \cdot 10^{-10} $ \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \caption{RK4, $t = 5$}
+  \label{tab:RK4-lyapunov-error-rk4-ref}
+  \centering
+  \begin{tabular}[h]{l|c|c}
+    \hline
+    RK4 \textbackslash\hspace{0.5em} $\Delta{t}$& 0.1 & 0.01 \\
+    \hline
+    Avg. abs. err. & $7 \cdot 10^{-8}$ & $7 \cdot 10^{-12} $ \\
+    Max. abs. err. & $4 \cdot 10^{-6}$ & $4 \cdot 10^{-10}$ \\
+    \hline
+  \end{tabular}
+\end{table}
+
