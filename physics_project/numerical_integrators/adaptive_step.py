@@ -112,13 +112,27 @@ where   t:        NumPy array containing the current time level(s)
 # Written by Arne Magnus T. Løken as part of a specialization
 # project in physics at NTNU, fall 2017.
 
+#--------------------------------------------------------------------#
+#                      Common default parameters                     #
+#--------------------------------------------------------------------#
+atol_default = 1.e-6.
+rtol_default = 1.e-9.
+
+fac     = 0.8
+maxfac  = 2
+
+# numpy contains very useful representations of abs(:) and
+# max(:) functions, among other things:
+import numpy as np
+
 
 #--------------------------------------------------------------------#
 #                  The Bogacki-Shampine 3(2) method                  #
 #--------------------------------------------------------------------#
 
-def rkbs32(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkbs32(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Bogacki-Shampine 3(2) adaptive timestep integrator scheme. If
     the new step is not accepted, the time level and the coordinates
     are not updated, while the time increment is refined.
@@ -163,20 +177,6 @@ def rkbs32(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./2.
@@ -271,8 +271,9 @@ def rkbs32(t, x, h, f, atol = None, rtol = None, **kwargs):
 #--------------------------------------------------------------------#
 
 
-def rkbs54(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """    This function attempts a single time step forwards, using the
+def rkbs54(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Bogacki-Shampine 5(4) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -320,20 +321,6 @@ def rkbs54(t, x, h, f, atol = None, rtol = None, **kwargs):
                       rejected
 
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./6.
@@ -514,8 +501,9 @@ def rkbs54(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Cash-Karp 4(5) method                         #
 #--------------------------------------------------------------------#
 
-def rkck45(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """    This function attempts a single time step forwards, using the
+def rkck45(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Cash-Karp 4(5) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -561,20 +549,6 @@ def rkck45(t, x, h, f, atol = None, rtol = None, **kwargs):
                      rejected
 
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./5.
@@ -687,8 +661,9 @@ def rkck45(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Dormand-Prince 5(4) method                    #
 #--------------------------------------------------------------------#
 
-def rkdp54(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """    This function attempts a single time step forwards, using the
+def rkdp54(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Dormand-Prince 5(4) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -733,20 +708,6 @@ def rkdp54(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
    """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./5.
@@ -872,8 +833,9 @@ def rkdp54(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Dormand-Prince 8(7) method                    #
 #--------------------------------------------------------------------#
 
-def rkdp87(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkdp87(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Dormand-Prince 8(7) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -919,23 +881,9 @@ def rkdp87(t, x, h, f, atol = None, rtol = None, **kwargs):
                       rejected
 
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # The nodes, matrix elements and weights are here truncated at their
-    # twentieth decimal value, exceeding the default Python machin epsilon
+    # twentieth decimal value, exceeding the default Python machine epsilon
     # by about five orders of magnitude. The exact numerical values consist
     # of fractions, where several contain more than 100 digits in both
     # the numerator and the denominator, rendering the code quite unreadable.
@@ -1165,8 +1113,9 @@ def rkdp87(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Fehlberg 1(2) method                          #
 #--------------------------------------------------------------------#
 
-def rkf12(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkf12(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Fehlberg 1(2) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -1212,20 +1161,6 @@ def rkf12(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./2.
@@ -1314,8 +1249,9 @@ def rkf12(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Fehlberg 4(5) method                          #
 #--------------------------------------------------------------------#
 
-def rkf45(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkf45(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Runge-Kutta-Fehlberg 4(5) adaptive timestep integrator scheme. If
     the new step is not accepted, the time level and the coordinates
     are not updated, while the time increment is refined.
@@ -1361,20 +1297,6 @@ def rkf45(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors::
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1./4.
@@ -1488,8 +1410,9 @@ def rkf45(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Fehlberg 7(8) method                          #
 #--------------------------------------------------------------------#
 
-def rkf78(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkf78(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Runge-Kutta-Fehlberg 7(8) adaptive timestep integrator scheme. If
     the new step is not accepted, the time level and the coordinates
     are not updated, while the time increment is refined.
@@ -1535,20 +1458,6 @@ def rkf78(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
     """
-    # NumPy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors::
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2  = 2./27.
@@ -1786,8 +1695,9 @@ def rkf78(t, x, h, f, atol = None, rtol = None, **kwargs):
 #                  The Heun-Euler 2(1) method                        #
 #--------------------------------------------------------------------#
 
-def rkhe21(t, x, h, f, atol = None, rtol = None, **kwargs):
-    """   This function attempts a single time step forwards, using the
+def rkhe21(t, x, h, f, atol=atol_default, rtol = rtol_default, **kwargs):
+    """
+    This function attempts a single time step forwards, using the
     Heun-Euler 2(1) adaptive timestep integrator scheme. If the
     new step is not accepted, the time level and the coordinates are
     not updated, while the time increment is refined.
@@ -1832,20 +1742,6 @@ def rkhe21(t, x, h, f, atol = None, rtol = None, **kwargs):
                       depending on whether the trial step is accepted or
                       rejected
     """
-    # numpy contains very useful representations of abs(:) and
-    # max(:) functions, among other things:
-    import numpy as np
-
-    # We import the predefined default tolerance levels and safety factors:
-    from numerical_integrators._adaptive_timestep_params import atol_default, \
-                                                                rtol_default, \
-                                                                fac, maxfac
-
-    # We explicitly handle the optional arguments:
-    if not atol:
-        atol = atol_default
-    if not rtol:
-        rtol = rtol_default
 
     # Nodes
     c2 = 1.
