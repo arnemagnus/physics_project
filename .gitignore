@@ -21,3 +21,6 @@ _minted*/
 *.bbl
 *.blg
 *.out
+*.lof
+*.lot
+*.toc

@@ -1,9 +1,0 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
-\select@language {english}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{v}{section*.1}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{vi}{section*.2}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Notation}{vii}{section*.3}
