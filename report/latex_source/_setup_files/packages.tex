@@ -61,6 +61,12 @@
 % Wrap text around figure
 \usepackage[]{wrapfig}
 
+% Extend array and tabular environments
+\usepackage[]{array}
+
+% Rotation tools for floats
+\usepackage[]{rotating}
+
 % Format float captions any which way you want.
 % My preference:    No more than 90 % of the overall textwidth
 %                   Slightly smaller fontsize than the text otherwise
@@ -87,11 +93,22 @@ style=authoryear,%
 language=british,%
 dashed=false,%
 url=false,%
-doi=false%
+doi=false,
+giveninits=true,%
+uniquename=init%
 ]{biblatex}
+
+% Refer to all authors by their last name first
+\DeclareNameAlias{author}{last-first}
+
+% Ensure that quoted texts are typeset according to rules of main language
+\usepackage[]{csquotes}
 
 % Clever referrals to objects (figures, tables, etc.)
 \usepackage[]{cleveref}
+
+% Use endash in a cleveref-range
+\newcommand{\crefrangeconjunction}{--}
 
 % Make all referrals hyperlinks (within the document)
 \usepackage[]{hyperref}
@@ -114,4 +131,6 @@ doi=false%
 % tensors, etc.
 \usepackage[]{bm}
 
+% Necessary to write greek letters in upright in math mode, e.g. for vectors
+\usepackage[libertine]{newtxmath}
 

@@ -86,45 +86,45 @@
 
 % Roman numbering for the frontmatter
 \def\frontmatter{%
-\pagenumbering{roman}%
-\setcounter{page}{1}%
-\renewcommand{\thepart}{\Roman{part}}%
-\renewcommand{\thechapter}{\Roman{chapter}}%
-\renewcommand{\thesection}{\Roman{section}}%
-\renewcommand{\thesubsection}{\Roman{subsection}}%
-\renewcommand{\thesubsubsection}{\Roman{subsubsection}}%
+    \pagenumbering{roman}%
+    \setcounter{page}{1}%
+    \renewcommand{\thepart}{\Roman{part}}%
+    \renewcommand{\thechapter}{\Roman{chapter}}%
+    \renewcommand{\thesection}{\Roman{section}}%
+    \renewcommand{\thesubsection}{\Roman{subsection}}%
+    \renewcommand{\thesubsubsection}{\Roman{subsubsection}}%
 }
 
 % Arabic numbering for the mainmatter
 \def\mainmatter{%
-\pagenumbering{arabic}%
-\setcounter{page}{1}%
-\renewcommand{\thepart}{\arabic{part}}%
-\renewcommand{\thechapter}{\arabic{chapter}}%
-\renewcommand{\thesection}{\arabic{section}}%
-\renewcommand{\thesubsection}{\arabic{subsection}}%
-\renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
+    \pagenumbering{arabic}%
+    \setcounter{page}{1}%
+    \renewcommand{\thepart}{\arabic{part}}%
+    \renewcommand{\thechapter}{\arabic{chapter}}%
+    \renewcommand{\thesection}{\arabic{section}}%
+    \renewcommand{\thesubsection}{\arabic{subsection}}%
+    \renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
 }
 
 % Alphabetic "numbering" for the backmatter
 \def\backmatter{%
-\setcounter{part}{0}%
-\setcounter{chapter}{0}%
-\setcounter{section}{0}%
-\setcounter{subsection}{0}%
-\setcounter{subsubsection}{0}%
-\renewcommand{\thepart}{\Alph{part}}%
-\renewcommand{\thechapter}{\Alph{chapter}}%
-\renewcommand{\thesection}{\Alph{section}}%
-\renewcommand{\thesubsection}{\Alph{subsection}}%
-\renewcommand{\thesubsubsection}{\Alph{subsubsection}}%
+    \setcounter{part}{0}%
+    \setcounter{chapter}{0}%
+    \setcounter{section}{0}%
+    \setcounter{subsection}{0}%
+    \setcounter{subsubsection}{0}%
+    \renewcommand{\thepart}{\Alph{part}}%
+    \renewcommand{\thechapter}{\Alph{chapter}}%
+    \renewcommand{\thesection}{\Alph{section}}%
+    \renewcommand{\thesubsection}{\Alph{subsection}}%
+    \renewcommand{\thesubsubsection}{\Alph{subsubsection}}%
 }
 
 % Add spacing between mainmatter (incl. references) and backmatter in ToC
 \let\oldbackmatter\backmatter
 \renewcommand{\backmatter}{%
-\addtocontents{toc}{\protect\vspace{10pt}}%
-\oldbackmatter%
+    \addtocontents{toc}{\protect\vspace{10pt}}%
+    \oldbackmatter%
 }
 
 %
@@ -134,15 +134,92 @@
 % When referring to a section, include the chapter no.
 \makeatletter
 \renewcommand{\p@section}{%
-\thechapter.\arabic{section}%
-\expandafter\@gobble%
+    \thechapter.\arabic{section}%
+    \expandafter\@gobble%
 }
 \makeatother
 
 % When referring th a section, include the chapter and section no.s
 \makeatletter
 \renewcommand{\p@subsection}{%
-\thechapter.\thesection.\arabic{subsection}%
-\expandafter\@gobble%
+    \thechapter.\thesection.\arabic{subsection}%
+    \expandafter\@gobble%
 }
 \makeatother
+
+% Ensure that the entire citation from BibLaTeX becomes part of the
+% hyperref hyperlink, rather than just the year
+\DeclareFieldFormat{citehyperref}{%
+    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+    \bibhyperref{#1}%
+}
+
+\DeclareFieldFormat{textcitehyperref}{%
+    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+    \bibhyperref{%
+        #1%
+        \ifbool{cbx:parens}{%
+            \bibencloseparen\global\boolfalse{cbx:parens}%
+        }
+        {}%
+    }%
+}
+
+\savebibmacro{cite}
+\savebibmacro{tectcite}
+
+\renewbibmacro*{cite}{%
+    \printtext[citehyperref]{%
+        \restorebibmacro{cite}%
+        \usebibmacro{cite}%
+    }%
+}
+
+\renewbibmacro*{textcite}{%
+    \ifboolexpr{%
+        ( not test {\iffieldundef{prenote}} and
+        test {\ifnumequal{\value{citecount}}{1}} )
+        or
+        ( not test {\iffieldundef{postnote}} and
+        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+    }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+    \printtext[textcitehyperref]{%
+        \restorebibmacro{textcite}%
+        \usebibmacro{textcite}%
+    }%
+}
+
+%
+% Definitions for mathematical symbols
+%
+
+% Macros for greek letters in roman style, in math mode
+\DeclareRobustCommand{\mathup}[1]{%
+\begingroup\changegreek\mathrm{#1}\endgroup}
+\DeclareRobustCommand{\mathbfup}[1]{%
+\begingroup\changegreekbf\mathbf{#1}\endgroup}
+
+\makeatletter
+\def\changegreek{\@for\next:={%
+        alpha,beta,gamma,delta,epsilon,zeta,eta,theta,iota,kappa,lambda,mu,nu,%
+        xi,pi,rho,sigma,tau,upsilon,phi,chi,psi,omega,varepsilon,varpi,%
+    varrho,varsigma,varphi}%
+\do{\expandafter\let\csname\next\expandafter\endcsname\csname\next up\endcsname}}
+\def\changegreekbf{\@for\next:={%
+        alpha,beta,gamma,delta,epsilon,zeta,eta,theta,iota,kappa,lambda,mu,nu,%
+        xi,pi,rho,sigma,tau,upsilon,phi,chi,psi,omega,varepsilon,varpi,%
+    varrho,varsigma,varphi}%
+    \do{\expandafter\def\csname\next\expandafter\endcsname\expandafter{%
+\expandafter\bm\expandafter{\csname\next up\endcsname}}}}
+\makeatother
+
+% Define vectors in bold roman font
+\newcommand{\vct}[1]{\ensuremath{\mathbfup{#1}}}
+
+% Define unit vectors in bold roman font, with hats
+\newcommand{\uvct}[1]{\ensuremath{\mathbfup{\hat{#1}}}}
+
+% Define matrices in bold italic font
+\newcommand{\mtrx}[1]{\ensuremath{\bm{#1}}}
