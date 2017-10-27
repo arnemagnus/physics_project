@@ -1,0 +1,53 @@
+% First of all, the abstract
+\chapter*{\begin{center}Abstract\end{center}}
+    \input{frontmatter/abstract}
+    \newpage
+
+% Second, abstract in Norwegian
+\chapter*{\begin{center}Sammendrag\end{center}}
+    \input{frontmatter/sammendrag}
+    \newpage
+
+% Third, preface
+\chapter*{\begin{center}Preface\end{center}}
+    \input{frontmatter/preface}
+    \newpage
+
+% Include chapters [0], sections [1] and subsections [2] in ToC
+\setcounter{tocdepth}{2}
+
+% ToC
+\tableofcontents
+\newpage
+
+% LoF
+% Ghost section necessary in order for the hyperref package to link properly
+\phantomsection
+% Optional: Rename LoF
+%\renewcommand{\listfigurename}{List of Figures}
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\newpage
+
+% LoT
+% Ghost section necessary in order for the hyperref package to link properly
+\phantomsection
+% Optional: Rename LoT
+%\renewcommand{\listtablename}{List of Tables}
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\newpage
+
+% Optional: Notation
+% Ghost section necessary in order for the hyperref package to link properly
+\phantomsection
+\addcontentsline{toc}{chapter}{Notation}
+\chapter*{\begin{center}Notation\end{center}}
+    \input{frontmatter/notation}
+    \newpage
+
+
+% Add spacing after last line of frontmatter in ToC.
+% Comment out if neither a list of figures, a list of tables nor a chapter
+% on notation is included
+\addtocontents{toc}{\protect\vspace{10pt}}

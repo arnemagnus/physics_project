@@ -1,0 +1,114 @@
+% ---------------- %
+% Text-related packages
+% ---------------- %
+
+% Margins
+\usepackage[margin=2.5cm]{geometry}
+
+% Typeset UTF-8 symbols:
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Manage culturally-determined typographical, and other, rules:
+\usepackage[main=english,norsk]{babel}
+
+% In order to load fonts:
+\usepackage{fontspec}
+
+% Include author's affiliation
+\usepackage[]{authblk}
+
+% Typeset relevant quotations or sayings as epigraphs:
+\usepackage[]{epigraph}
+
+% Simple syntax for superscript 1st, 2nd, 3rd etc: \nth{#}
+\usepackage[super]{nth}
+
+% Paragraphs separated by blank lines rather than indentation
+\usepackage[parfill]{parskip}
+
+% Customize title/heading styles
+\usepackage[]{titlesec}
+
+% Control ToC, LoF, LoT etc.
+\usepackage[]{tocloft}
+
+% Verbatim
+\usepackage[]{verbatim}
+
+% Frame any object in the document
+\usepackage[]{framed}
+
+% Break lines in citations which do not fit on a single line
+\usepackage[]{breakcites}
+
+% Insert placeholder text
+\usepackage[]{lipsum}
+
+% Include the possibility of colored text
+\usepackage[]{color}
+
+%
+% Float-related packages
+%
+
+% Interface for floating objects
+\usepackage[]{float}
+
+% Enhanced graphics support
+\usepackage[]{graphicx}
+
+% Wrap text around figure
+\usepackage[]{wrapfig}
+
+% Format float captions any which way you want.
+% My preference:    No more than 90 % of the overall textwidth
+%                   Slightly smaller fontsize than the text otherwise
+%                   Label typeset in bold
+%                   Separate label from caption with colon
+\usepackage[%font={\fontsize{11}{13}\selectfont},%
+width=0.9\textwidth,%
+labelfont=bf,%
+labelsep=colon%
+]{caption}
+
+% Include entire (external) PDF pages in document
+\usepackage[]{pdfpages}
+
+
+
+%
+% Reference-related packages
+%
+
+% Use biblatex for handling refernces
+\usepackage[backend=biber,%
+style=authoryear,%
+language=british,%
+dashed=false,%
+url=false,%
+doi=false%
+]{biblatex}
+
+% Clever referrals to objects (figures, tables, etc.)
+\usepackage[]{cleveref}
+
+% Make all referrals hyperlinks (within the document)
+\usepackage[]{hyperref}
+
+%
+% Mathematical functions
+%
+
+% Necessary for most kinds of mathematical typesetting:
+\usepackage[]{amsmath}
+
+% Package containing useful macros for typsetting vector calculus, linear
+% algebra etc.
+\usepackage[]{physics}
+
+% Typeset mathematical symbols in bold, useful when working with vectors,
+% tensors, etc.
+\usepackage[]{bm}
+
+

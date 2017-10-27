@@ -1,0 +1,42 @@
+\documentclass[a4paper,%
+12pt,%
+onecolumn,%
+twoside,%
+titlepage%
+]{report}
+
+\input{_setup_files/packages.tex}
+
+\addbibresource{bibliography/references.bib}
+\graphicspath{{./figures/}}
+
+\input{_setup_files/functions.tex}
+
+
+\begin{document}
+
+% Title page
+\input{titlepage/titlepage}
+
+% Front matter
+\begin{frontmatter}
+    \input{frontmatter/frontmatter}
+\end{frontmatter}
+
+% Main matter
+\begin{mainmatter}
+    \input{mainmatter/mainmatter}
+\end{mainmatter}
+
+% Bibliography
+\newpage
+\printbibliography
+
+% Back matter
+\clearpage
+\begin{backmatter}
+    \input{backmatter/backmatter}
+\end{backmatter}
+
+\end{document}
+
