@@ -30,7 +30,10 @@ titlepage%
 
 % Bibliography
 \newpage
-\printbibliography
+% Ghost section necessary in order for the hyperref package to link properly
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title=References]
 
 % Back matter
 \clearpage
