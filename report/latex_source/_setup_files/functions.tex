@@ -1,4 +1,21 @@
 %
+% Text format options
+%
+
+% Specify colors
+\definecolor{gray80}{gray}{0.8}
+
+% Spacing
+\setstretch{1.1}
+\setlength{\parskip}{1.4em}
+\setlength{\parindent}{0em}
+
+% Prettier unordered lists
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*(2.2)\end{picture}\ }
+\renewcommand{\labelitemi}{\sbt}
+\renewcommand{\labelitemii}{\sbt}
+
+%
 % Titlesec format options
 %
 
@@ -6,34 +23,77 @@
 % Hierarchy: Usual text < Subsubsection < Subsection < Section < Chapter < Part
 %            12 pt        13 pt           14 pt        15 pt     16 pt     17 pt
 
-\titleformat{\part}
-{\fontsize{17pt}{17pt}\selectfont\bfseries}{\thepart}{1em}{}
+%\newfont{\partFont}{\fontsize{17pt}{17pt}\selectfont\bfseries}
+
+\titleformat
+{\part} % Command
+[block] % Shape
+{\fontsize{17pt}{17pt}\selectfont\bfseries} % Format
+{\thepart} % Label
+{1em} % Sep
+{} % Before-code
+[] % After-code
+
 \titlespacing{\part}{0pt}{3.5ex+1ex-0.35ex}{2.3ex-0.5ex}
 \titleclass{\part}{straight}
 
-
-\titleformat{\chapter}
-{\fontsize{16pt}{16pt}\selectfont\bfseries}{\thechapter}{1em}{}
-\titlespacing{\chapter}{0pt}{3.5ex+1ex-0.35ex}{2.3ex-0.5ex}
+\titleformat
+{\chapter}
+[block]%
+{\fontsize{16pt}{16pt}\selectfont}
+{\MakeUppercase{\chaptertitlename} \thechapter:}%
+{0.5em}
+{\fontsize{16pt}{16pt}\selectfont\itshape}
+[\normalsize\vspace*{.8\baselineskip}\titlerule]
+\titlespacing*{\chapter}{0pt}{2.5ex plus 1ex minus .2ex}{-0.3ex minus -.2ex}
 \titleclass{\chapter}{straight}
 
+\titleformat
+{name=\chapter,numberless}
+[block]
+{\fontsize{16pt}{16pt}\selectfont\filcenter}
+{}
+{0.5em}
+{}
+[\normalsize\vspace*{.8\baselineskip}\titlerule]
 
-\titleformat{\section}
-{\fontsize{15pt}{15pt}\selectfont\bfseries}{\thesection}{1em}{}
-\titlespacing{\section}{0pt}{3.5ex+1ex-0.2ex}{2.3ex-0.2ex}
+\titleformat
+{\section}
+[block]
+{\fontsize{15pt}{15pt}\selectfont}
+{\makebox[0cm][r]{\thechapter.\thesection\hspace{1em}}}
+{1em}
+{\fontsize{15pt}{15pt}\selectfont\scshape\lowercase}
+[]
+
+\titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{-1.3ex minus -.2ex}
 \titleclass{\section}{straight}
 
 
-\titleformat{\subsection}
-{\fontsize{14pt}{14pt}\selectfont\bfseries}{\thesubsection}{1em}{}
-\titlespacing{\subsection}{0pt}{3.5ex+1ex-0.2ex}{2.3ex-0.2ex}
+\titleformat
+{\subsection}
+[block]
+{\fontsize{14pt}{14pt}\selectfont}
+{\thechapter.\thesection.\thesubsection}
+{.6em}
+{\itshape}
+[]
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{-1.3ex minus -.2ex}
 \titleclass{\subsection}{straight}
 
-
-\titleformat{\subsubsection}
-{\fontsize{13pt}{13pt}\selectfont\bfseries}{\thesubsubsection}{1em}{}
-\titlespacing{\subsubsection}{0ex}{1ex}{0ex}
+\titleformat
+{\subsubsection}
+[block]
+{\fontsize{13pt}{13pt}\selectfont\bfseries}
+{}
+{}
+{}
+[]
+\titlespacing{\subsubsection}{0pt}{1ex plus 1ex minus .2ex}{-1.3ex minus -.2ex}
 \titleclass{\subsubsection}{straight}
+
+
+
 
 %
 % Tocloft format options
@@ -41,44 +101,42 @@
 
 % Table of Contents:
 
-% Spacing above the ToC title
-\renewcommand{\cftbeforetoctitleskip}{-2ex}
-% Specify font and -size in ToC title
-\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\fontsize{16pt}{16pt}\bfseries}
-% (Finish) centering the ToC title
-\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
-% Spacing after the ToC title, adjusted so that the following text is lined
-% up with the text content after a new chapter heading positioned at the top
-% of a new page
+\addto\captionsenglish{%
+    \renewcommand{\contentsname}{Table of Contents}%
+}
+
 \renewcommand{\cftaftertoctitleskip}{6ex}
 
+% Chapters:
+\renewcommand{\cftchappresnum}{\bfseries}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchapafterpnum}{\cftparfillskip}
+
+% Sections:
+\renewcommand{\cftsecpresnum}{\scshape}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand{\cftsecafterpnum}{\cftparfillskip}
+
+
+% Subsections:
+\renewcommand{\cftsubsecpresnum}{\scshape}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftsubsecdotsep}}
+\renewcommand{\cftsubsecafterpnum}{\cftparfillskip}
+
 % List of Figures:
-
-% Spacing above the LoF title
-\renewcommand{\cftbeforeloftitleskip}{-2ex}
-% Specify font and -size in LoF title
-\renewcommand{\cftloftitlefont}{\hfill\fontsize{16pt}{16pt}\bfseries}
-% (Finish) centering the LoF title
-\renewcommand{\cftafterloftitle}{\hfill\mbox{}}
-% Spacing after the LoF title, adjusted so that the following text is lined
-% up with the text content after a new chapter heading positioned at the top
-% of a new page
-\renewcommand{\cftafterloftitleskip}{8ex}
-
+\addto\captionsenglish{%
+    \renewcommand{\listfigurename}{List of Figures}%
+}
 
 % List of Tables:
-
-% Spacing above the LoT title
-\renewcommand{\cftbeforelottitleskip}{-2ex}
-% Specify font and -size in LoT title
-\renewcommand{\cftlottitlefont}{\hfill\fontsize{16pt}{16pt}\bfseries}
-% (Finish) centering the LoT title
-\renewcommand{\cftafterlottitle}{\hfill\mbox{}}
-% Spacing after the LoT title, adjusted so that the following text is lined
-% up with the text content after a new chapter heading positioned at the top
-% of a new page
-\renewcommand{\cftafterlottitleskip}{8ex}
-
+\addto\captionsenglish{%
+    \renewcommand{\listtablename}{List of Tables}%
+}
 
 %
 % "Function" definitions for front-, main- and backmatter
@@ -88,11 +146,11 @@
 \def\frontmatter{%
     \pagenumbering{roman}%
     \setcounter{page}{1}%
-    \renewcommand{\thepart}{\Roman{part}}%
-    \renewcommand{\thechapter}{\Roman{chapter}}%
-    \renewcommand{\thesection}{\Roman{section}}%
-    \renewcommand{\thesubsection}{\Roman{subsection}}%
-    \renewcommand{\thesubsubsection}{\Roman{subsubsection}}%
+    \renewcommand{\thepart}{}%
+    \renewcommand{\thechapter}{}%
+    \renewcommand{\thesection}{}%
+    \renewcommand{\thesubsection}{}%
+    \renewcommand{\thesubsubsection}{}%
 }
 
 % Arabic numbering for the mainmatter
@@ -101,8 +159,8 @@
     \setcounter{page}{1}%
     \renewcommand{\thepart}{\arabic{part}}%
     \renewcommand{\thechapter}{\arabic{chapter}}%
-    \renewcommand{\thesection}{\arabic{section}}%
-    \renewcommand{\thesubsection}{\arabic{subsection}}%
+    \renewcommand{\thesection}{\thechapter.\arabic{section}}%
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}%
     \renewcommand{\thesubsubsection}{\arabic{subsubsection}}%
 }
 
@@ -115,9 +173,19 @@
     \setcounter{subsubsection}{0}%
     \renewcommand{\thepart}{\Alph{part}}%
     \renewcommand{\thechapter}{\Alph{chapter}}%
-    \renewcommand{\thesection}{\Alph{section}}%
-    \renewcommand{\thesubsection}{\Alph{subsection}}%
+    \renewcommand{\thesection}{\thechapter.\arabic{section}}%
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}%
     \renewcommand{\thesubsubsection}{\Alph{subsubsection}}%
+    %\renewcommand{\cftchapnumwidth}{8em}
+    \addtocontents{toc}{\def\protect\cftchappresnum{\MakeUppercase{\appendixname{}} }}
+    \addtocontents{toc}{\def\protect\cftchapnumwidth{8em}}
+}
+
+% Add spacing between frontmatter and mainmatter in ToC
+\let\oldfrontmatter\frontmatter
+\renewcommand{\frontmatter}{%
+    \addtocontents{toc}{\protect\vspace{10pt}}%
+    \oldfrontmatter
 }
 
 % Add spacing between mainmatter (incl. references) and backmatter in ToC
@@ -132,20 +200,20 @@
 %
 
 % When referring to a section, include the chapter no.
-\makeatletter
-\renewcommand{\p@section}{%
-    \thechapter.\arabic{section}%
-    \expandafter\@gobble%
-}
-\makeatother
+%\makeatletter
+%\renewcommand{\p@section}{%
+%    \thechapter.\arabic{section}%
+%    \expandafter\@gobble%
+%}
+%\makeatother
 
-% When referring th a section, include the chapter and section no.s
-\makeatletter
-\renewcommand{\p@subsection}{%
-    \thechapter.\thesection.\arabic{subsection}%
-    \expandafter\@gobble%
-}
-\makeatother
+%% When referring to a section, include the chapter and section no.s
+%\makeatletter
+%\renewcommand{\p@subsection}{%
+%    \thechapter.\thesection.\arabic{subsection}%
+%    \expandafter\@gobble%
+%}
+%\makeatother
 
 % Ensure that the entire citation from BibLaTeX becomes part of the
 % hyperref hyperlink, rather than just the year

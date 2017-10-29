@@ -3,17 +3,31 @@
 % ---------------- %
 
 % Margins
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[a4paper,margin=2.5cm]{geometry}
 
 % Typeset UTF-8 symbols:
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
+% Typographical refinement
+\usepackage[activate={true,nocompatibility},% Let microtype do its magic
+%                                           % without trying to keep page breaks
+%                                           % etc.
+final=true,% Activate microtype even when in draft mode
+kerning=true,% Fixes kerning issues
+spacing=true,% Fixes spacing issues
+tracking=true,% Adds letter spacing for small caps
+shrink=30,% Characters are stretched or shrunk in order to improve justification
+stretch=30,% up to 3 %
+factor=0% Controls how much punctuation protrudes past the end of the line
+]{microtype}
+\microtypecontext{spacing=french}
+
+% Text spacing
+\usepackage[]{setspace}
+
 % Manage culturally-determined typographical, and other, rules:
 \usepackage[main=english,norsk]{babel}
-
-% In order to load fonts:
-\usepackage{fontspec}
 
 % Choose Libertine font:
 \usepackage[]{libertine}
@@ -34,7 +48,7 @@
 \usepackage[]{titlesec}
 
 % Control ToC, LoF, LoT etc.
-\usepackage[]{tocloft}
+\usepackage[titles]{tocloft}
 
 % Verbatim
 \usepackage[]{verbatim}
@@ -75,7 +89,7 @@
 %                   Slightly smaller fontsize than the text otherwise
 %                   Label typeset in bold
 %                   Separate label from caption with colon
-\usepackage[%font={\fontsize{11}{13}\selectfont},%
+\usepackage[%format={\fontsize{11}{13}\selectfont},%
 width=0.9\textwidth,%
 labelfont=bf,%
 labelsep=colon%
@@ -84,7 +98,8 @@ labelsep=colon%
 % Include entire (external) PDF pages in document
 \usepackage[]{pdfpages}
 
-
+% Better formatting for tables
+\usepackage[]{booktabs}
 
 %
 % Reference-related packages
@@ -114,7 +129,7 @@ uniquename=init%
 \newcommand{\crefrangeconjunction}{--}
 
 % Make all referrals hyperlinks (within the document)
-\usepackage[]{hyperref}
+\usepackage[hidelinks=true]{hyperref}
 
 % Bookmark organization for the hyperref package
 \usepackage[]{bookmark}
@@ -124,7 +139,7 @@ uniquename=init%
 %
 
 % Necessary for most kinds of mathematical typesetting:
-\usepackage[]{amsmath}
+\usepackage[]{amsmath,amssymb}
 
 % Package containing useful macros for typsetting vector calculus, linear
 % algebra etc.
@@ -137,3 +152,5 @@ uniquename=init%
 % Necessary to write greek letters in upright in math mode, e.g. for vectors
 \usepackage[libertine]{newtxmath}
 
+% Clever typesetting of SI units
+\usepackage[]{siunitx}
