@@ -1,16 +1,6 @@
 \backmatter
 \appendix
 
-% Temporarily switch of chapter no. in ToC, to avoid numbering "Appendices"
-\addtocontents{toc}{\cftpagenumbersoff{chapter}}
-
-% Ghost section necessary in order for the hyperref package to link properly
-\phantomsection
-\addcontentsline{toc}{chapter}{Appendices}
-
-% Switch chapter no. back on in ToC
-\addtocontents{toc}{\cftpagenumberson{chapter}}
-
 % Do not include figures from appendices in the LoF for the main document
 \captionsetup[figure]{%
 list=no,%
