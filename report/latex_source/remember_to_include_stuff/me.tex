@@ -1,0 +1,94 @@
+\chapter{Introduction}
+Only interested in hyperbolic LCSs as they are the only ones relevant for
+transport barriers.
+
+\section{Complex systems --> Need shortcuts}
+
+\section{Intuitively, what is an LCS?}
+
+\section{LCS definition}
+
+\section{Different types of LCSs}
+
+\section{Hyperbolic LCSs}
+--> Connect to application
+
+\chapter{Theory}
+\section{Solving ODE systems}
+---> General ODE systems
+---> Numerical integrators dump
+--> Interpolation necessary for discrete systems
+
+\section{Flowmaps}
+---> Introduce system and limitations
+--> Introduce the concept of a flow map
+
+\section{LCS definition}
+--> Different kinds of LCSs (hyperbolic, elliptic and parabolic, cf. LCS tool)
+--> More mathematical definitions? Ask Th{\"o}r
+
+\section{FTLE as LCS predictor}
+--> Prone to false positives and negatives
+--> Definition somewhat arbitrary (what is a ridge)?
+--> Strogatz' motivation as a simple explanation of why we consider it at all?
+
+\section{Identify hyperbolic LCS from variational theory}
+--> Mathematically involved.
+
+\chapter{Tool!}
+
+\section{Adveksjon}
+--> Si noe om system, glatte vektorfelt/hastighetsfelt
+--> Integrasjonsteknikker
+
+\section{CG tensors}
+--> Auxiliary grid
+--> Extended grids i fire retninger
+--> Beregn CG tensors
+--> Centered differencing, consistently for all main particles
+--> Har med gitterpunkter på utsiden av hoveddomenet for å inkludere
+    diskontinuitet i oppførsel i hastighetsfeltet
+
+\section{Eigenvalues/Eigenvectors}
+--> Auxiliary grid
+--> Laplacian, extended grid layer 2 for centered differencing
+
+\section{Identify AB domain}
+--> Klargjør måten vi tolket Laplacian på
+
+\section{Compute strainlines}
+--> Define G0 along vertical and horizontal lin
+--> Avoid redundant computations of trajectories
+--> Integrate forwards and backwards
+----> (Notice that strainlines "fall out" of AB domain, likely due to num. error)
+--> Special linear interpolation with local direction correction
+--> Higher order spline interpolations are inappropriate because of oriental
+--> discontinuities (in case of vectors) and great variance (in case of evals)
+--> Linear spline interpolation without orientation fix caused random turns
+--> at discontinuities.
+--> Stop criteria
+--> Alpha scaling introduced by Haller gave unpredictable leaps
+-----> After linear interp?
+--> Used just one integrator here, because [...]
+--> Choice of integration step (needs test!)
+--> Note that this step is very sensitive to the flow map details,
+--> components in the strain tensors down to the $10^-15$ level.
+--> LCS results sensitive to continious failure length, needed to increase
+-----> it in order to replicate results from Haller due to different AB domain
+
+\section{Identify intersections}
+--> Which lines and why (maximize intersections with as few lines as possible)
+--> Include all intersetions between a strainline and a vert / horz linear
+
+\section{Identify neighbors}
+--> Neighbor length essential for LCS results
+
+\section{Select LCSs}
+---> Identify LCS as local maxima of $\lambda_{2}$ which are also long enough
+--> Needs at least one neighbor other than itself
+--> \textbf{Cut tail of strainlines which exit AB domain and do not return}
+--> That part is no LCS!
+--> Parts/sections of strainlines may qualify as LCSs
+
+\chapter{Experiments}
+--> What did we try and why?
