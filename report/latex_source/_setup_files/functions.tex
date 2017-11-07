@@ -217,47 +217,97 @@
 
 % Ensure that the entire citation from BibLaTeX becomes part of the
 % hyperref hyperlink, rather than just the year
-\DeclareFieldFormat{citehyperref}{%
-    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-    \bibhyperref{#1}%
-}
+    \DeclareCiteCommand{\cite}
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{cite}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
 
-\DeclareFieldFormat{textcitehyperref}{%
-    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-    \bibhyperref{%
-        #1%
-        \ifbool{cbx:parens}{%
-            \bibencloseparen\global\boolfalse{cbx:parens}%
-        }
+    \DeclareCiteCommand*{\cite}
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+
+    \DeclareCiteCommand{\parencite}[\mkbibparens]
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{cite}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+
+    \DeclareCiteCommand*{\parencite}[\mkbibparens]
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+
+    \DeclareCiteCommand{\footcite}[\mkbibfootnote]
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{ \usebibmacro{cite}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+
+    \DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+    {\usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{cite}}}
+    {\multicitedelim}
+    {\usebibmacro{postnote}}
+
+    \DeclareCiteCommand{\textcite}
+    {\boolfalse{cbx:parens}}
+    {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{textcite}}}
+    {\ifbool{cbx:parens}
+        {\bibcloseparen\global\boolfalse{cbx:parens}}
         {}%
-    }%
-}
+    \multicitedelim}
+%\DeclareFieldFormat{citehyperref}{%
+%    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+%    \bibhyperref{#1}%
+%}
 
-\savebibmacro{cite}
-\savebibmacro{tectcite}
+%\DeclareFieldFormat{textcitehyperref}{%
+%    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+%    \bibhyperref{%
+%        #1%
+%        \ifbool{cbx:parens}{%
+%            \bibencloseparen\global\boolfalse{cbx:parens}%
+%        }
+%        {}%
+%    }%
+%}
 
-\renewbibmacro*{cite}{%
-    \printtext[citehyperref]{%
-        \restorebibmacro{cite}%
-        \usebibmacro{cite}%
-    }%
-}
+%\savebibmacro{cite}
+%\savebibmacro{tectcite}
 
-\renewbibmacro*{textcite}{%
-    \ifboolexpr{%
-        ( not test {\iffieldundef{prenote}} and
-        test {\ifnumequal{\value{citecount}}{1}} )
-        or
-        ( not test {\iffieldundef{postnote}} and
-        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-    }
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-    {}%
-    \printtext[textcitehyperref]{%
-        \restorebibmacro{textcite}%
-        \usebibmacro{textcite}%
-    }%
-}
+%\renewbibmacro*{cite}{%
+%    \printtext[citehyperref]{%
+%        \restorebibmacro{cite}%
+%        \usebibmacro{cite}%
+%    }%
+%}
+%
+%\renewbibmacro*{textcite}{%
+%    \ifboolexpr{%
+%        ( not test {\iffieldundef{prenote}} and
+%        test {\ifnumequal{\value{citecount}}{1}} )
+%        or
+%        ( not test {\iffieldundef{postnote}} and
+%        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+%    }
+%    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+%    {}%
+%    \printtext[textcitehyperref]{%
+%        \restorebibmacro{textcite}%
+%        \usebibmacro{textcite}%
+%    }%
+%}
 
 %
 % Definitions for mathematical symbols
