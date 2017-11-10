@@ -8,6 +8,9 @@ _minted*/
 # Jupyter notebook checkpoints:
 .ipynb_checkpoints/
 
+# Datadump files
+*.npy
+
 # Vim temporary/auxiliary files:
 *.fdb_latexmk
 *.fls
