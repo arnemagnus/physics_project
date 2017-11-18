@@ -30,13 +30,16 @@ alternatively, if at least one of the functions $f_{i}$ in equation
 \eqref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
 arguments.
 
+\subsection{The Runge-Kutta family of numerical methods}
+\label{sub:the_runge_kutta_family_of_numerical_methods}
+
 For nonlinear systems, analytical solutions frequently do not exist. Thus, such
 systems are often analyzed by means of numerical methods. In numerical analysis,
 the Runge-Kutta family of methods are a frequently used collection of implicit
 and explicit iterative methods, used in temporal discretization in order to
-obtain numerical approximations of the \emph{true} solutions. The German
-mathematicians C. Runge and M. W. Kutta developed the first of the family's
-methods at the turn of the twentieth century
+obtain numerical approximations of the \emph{true} solutions of systems like
+\eqref{eq:ivpsystem}. The German mathematicians C. Runge and M. W. Kutta
+developed the first of the family's methods at the turn of the twentieth century
 \parencite[p.134 in the 2008 printing]{hairer1993solving}. The general scheme of
 what is now known as a Runge-Kutta method is as follows: \\
 
@@ -101,7 +104,7 @@ for a general \emph{s}-stage Runge-Kutta method, introduced in definition
                 Runge-Kutta method]{Butcher tableau representation of a general
                     $s$-stage Runge-Kutta method.}
     \label{tab:generalbutcher}
-    \[
+    \[\renewcommand{\arraystretch}{1.25}
         \begin{array}{c|cccc}
             \toprule
             c_{1} & a_{1,1} & a_{1,2} & \ldots & a_{1,s}\\
@@ -115,9 +118,9 @@ for a general \emph{s}-stage Runge-Kutta method, introduced in definition
 \]
 \end{table}
 
-For explicit Runge-Kutta methods, the Runge-Kutta matrix $(a_{i,j})$ is upper
+For explicit Runge-Kutta methods, the Runge-Kutta matrix $(a_{i,j})$ is lower
 triangular. Similarly, for fully implicit Runge-Kutta methods, the Runge-Kutta
-matrix is lower triangular. Unlike explicit methods, implicit methods require
+matrix is upper triangular. Unlike explicit methods, implicit methods require
 the solution of a linear system at every time level, making them more
 computationally demanding than their explicit siblings. The main selling point
 of implicit methods is that they are more numerically stable than explicit
@@ -130,5 +133,69 @@ useless. For \emph{nonstiff} systems, however, implicit methods behave similarly
 to their explicit analogues in terms of numerical accuracy and
 convergence properties.
 
+During the first half of the twentieth century, a substantial amount of research
+was conducted in order to develop numerically robust, high-order, explicit
+Runge-Kutta methods. The idea was that using such methods would mean one could
+resort to larger time increments $h$ without sacrificing precision in the
+computational solution. However, the number of stages $s$ grows quicker than
+linearly as a function of the required order $p$. It has been proven
+that, for $p\geq5$, no explicit Runge-Kutta method of order $p$ with $s=p$
+stages exists \parencite[p.173 in the 2008 printing]{hairer1993solving}. This is
+one of the reasons for the attention shift from the latter half of the 1950s
+and onwards, towards so-called \emph{embedded} Runge-Kutta methods.
 
+The basic idea of embedded Runge-Kutta methods is that they, aside from the
+numerical approximation $x_{n+1}$, yield a second approximation
+$\widehat{x}_{n+1}$. The difference between the two approximations then yields
+an estimate of the local error of the less precise result, which can be used for
+automatic step size control. The trick is to construct two independent, explicit
+Runge-Kutta methods which both use the \emph{same} function evaluations. This
+results in practically obtaining the two solutions for the price of one, in
+terms of computational complexity. The general structure of an embedded,
+explicit Runge-Kutta method is illustrated in table
+\ref{tab:generalembeddedbutcher}.
+
+\begin{table}[htpb]
+    \centering
+    \caption[Butcher tableau representation of embedded, explicit
+    Runge-Kutta methods]{Butcher tableau representation of embedded, explicit
+                    Runge-Kutta methods.}
+    \label{tab:generalembeddedbutcher}
+    \[\renewcommand{\arraystretch}{1.25}
+    \begin{array}{c|ccccc}
+    \toprule
+    0 \\
+    c_{2} & a_{2,1} \\
+    c_{3} & a_{3,1} & a_{3,2} \\
+    \vdots & \vdots & \vdots & \ddots\\
+    c_{s} & a_{s,1} & a_{s,2} & \ldots & a_{s,s-1}\\
+    \hline
+    & b_{1} & b_{2} & \ldots & b_{s-1} & b_{s} \\
+    \hline
+    & \widehat{b}_{1} & \widehat{b}_{2} & \ldots & \widehat{b}_{s-1}& \widehat{b}_{s}\\
+    \bottomrule
+    \end{array}
+\]
+\end{table}
+
+For embedded methods, the coefficients are tuned such that
+
+\begin{subequations}
+    \begin{equation}
+        \label{eq:embeddedsol}
+        x_{n+1} = x_{n} + h\sum\limits_{i=1}^{s}b_{i}k_{i}
+    \end{equation}
+is of order $p$, and
+    \begin{equation}
+        \label{eq:embeddedinterp}
+        \widehat{x}_{n+1} = x_{n} + h\sum\limits_{i=1}^{s}\widehat{b}_{i}k_{i}
+    \end{equation}
+\end{subequations}
+is of order $\widehat{p}$, typically with $\widehat{p} = p \pm 1$. Which of the
+two approximations $x_{n+1}$ or $\widehat{x}_{n+1}$ varies depending on the
+embedded method in question. Continuing the integration with
+the higher order result is commonly referred to as \emph{local extrapolation}.
+The details on how to implement adaptive stepsize control are not immediately
+relevant for the topic of this project, but can be found in
+\textcite[p.167-168 in the 2008 printing]{hairer1993solving}.
 
