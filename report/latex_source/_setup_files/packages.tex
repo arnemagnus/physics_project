@@ -111,7 +111,8 @@ style=authoryear,%
 language=british,%
 dashed=false,%
 url=false,%
-doi=false,
+doi=false,%
+eprint=false,%
 giveninits=true,%
 uniquename=init%
 ]{biblatex}
@@ -134,6 +135,7 @@ uniquename=init%
 % Bookmark organization for the hyperref package
 \usepackage[]{bookmark}
 
+
 %
 % Mathematical functions
 %
@@ -154,3 +156,10 @@ uniquename=init%
 
 % Clever typesetting of SI units
 \usepackage[]{siunitx}
+
+% Clever typesetting of theorems, definitions etc.
+\let\openbox\relax
+\usepackage[]{amsthm}
+\theoremstyle{definition}
+\newtheorem{Def}{Definition}
+
