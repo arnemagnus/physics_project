@@ -1,0 +1,134 @@
+\section{Solving systems of Ordinary Differential Equations}
+\label{sec:solvingsystems}
+
+In physics, like other sciences, modeling a system often equates to solving
+an initial value problem. An initial value problem can be described in terms
+of a differential equation of the form
+
+\begin{equation}
+    \label{eq:ivpsystem}
+    \dot{x}(t) = f\big(t,x(t)\big),\quad{}x(t_{0})=x_{0},
+\end{equation}
+
+where $x$ is an unknown function (scalar or vector) of time $t$. The function
+$f$ is defined on an open subset $\Omega$ of $\mathbb{R}\times\mathbb{R}^{n}$.
+The initial condition $(t_{0},x_{0})$ is a point in the domain of $f$, i.e.,
+$(t_{0},x_{0})\in\Omega$. In higher dimensions (i.e., $n>1$) the differential
+equation~\eqref{eq:ivpsystem} is replaced by a family of equations
+
+\begin{equation}
+\label{eq:ivpsystemhigherdimensions}
+\begin{gathered}
+    \dot{x}_{i}(t) = f_{j}\big(t,x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big),\quad
+    x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n \\
+    \vct{x}(t) = \big(x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big)
+\end{gathered}
+\end{equation}
+
+The system if nonlinear if the function $f$ in equation~\eqref{eq:ivpsystem},
+alternatively, if at least one of the functions $f_{i}$ in equation
+\eqref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
+arguments.
+
+For nonlinear systems, analytical solutions frequently do not exist. Thus, such
+systems are often analyzed by means of numerical methods. In numerical analysis,
+the Runge-Kutta family of methods are a frequently used collection of implicit
+and explicit iterative methods, used in temporal discretization in order to
+obtain numerical approximations of the \emph{true} solutions. The German
+mathematicians C. Runge and M. W. Kutta developed the first of the family's
+methods at the turn of the twentieth century
+\parencite[p.134 in the 2008 printing]{hairer1993solving}. The general scheme of
+what is now known as a Runge-Kutta method is as follows: \\
+
+\begin{Def}
+    \label{def:generalrungekutta}
+    Let $s$ be an integer and $a_{1,1},a_{1,2},\ldots,a_{1,s},a_{2,1},
+    a_{2,2},\ldots,a_{2,s},\ldots,a_{s,1},a_{s,2},\ldots,a_{s,s}$,
+    $b_{1},b_{2},\ldots,b_{s}$ and $c_{1},c_{2},\ldots,c_{s}$ be real
+    coefficients. Let $h$ be the numerical step length used in the
+    temporal discretization. Then, the method
+\begin{equation}
+    \label{eq:generalrungekutta}
+    \begin{aligned}
+        k_{i} &= f\bigg(t_{n}+c_{i}h,x_{n}+
+                h\sum\limits_{j=1}^{s}a_{i,j}k_{j}\bigg),\quad{}i=1,\ldots,s\\
+        x_{n+1} &= x_{n} + h\sum\limits_{i=1}^{s}b_{i}k_{i}
+    \end{aligned}
+\end{equation}
+
+is called an \emph{s-stage Runge-Kutta method} for the system
+\eqref{eq:ivpsystem}.
+\end{Def}
+
+The main reason to include multiple stages $s$ in a Runge-Kutta method, cf.\
+definition~\ref{def:generalrungekutta}, is to improve the numerical accuracy
+of the computed solutions.
+\textcite[p.2 in the 2010 printing]{hairer1993solving} define the \emph{order}
+of a Runge-Kutta method as follows:\\
+
+\begin{Def}
+    \label{def:rungekuttaorder}
+    A Runge-Kutta method \eqref{eq:generalrungekutta} is said to be of
+    \emph{order} $p$ if, for sufficiently smooth systems \eqref{eq:ivpsystem},
+
+    \begin{equation}
+        \label{eq:rungekuttaorder}
+        \norm{x_{n+1}-x(t_{n+1})} \leq Kh^{p+1}
+    \end{equation}
+
+    i.e., if the Taylor series for the exact solution $x(t_{n+1})$ and the
+    numerical solution $x_{n+1}$ coincide up to (and including) the term $h^p$.
+\end{Def}
+
+It is easy to show that if the local error of a Runge-Kutta method is of order
+$p$, cf.\ definition~\ref{def:rungekuttaorder}, the global error, i.e., the
+total accumulated error resulting of applying the algorithm a number of times,
+is expected to scale as $h^{p}$. Showing this is left as an exercise for the
+interested reader.
+
+In definition~\ref{def:generalrungekutta}, the matrix $(a_{i,j})$ is commonly
+called the \emph{Runge-Kutta matrix}, while $b_{i}$ and $c_{i}$ are known as
+the \emph{weights} and \emph{nodes}, respectively.  Since the 1960s, it has
+been customary to represent Runge-Kutta methods~\eqref{eq:generalrungekutta}
+symbolically, by means of mnemonic devices known as Butcher tableaus
+\parencite[p.134 in the 2008 printing]{hairer1993solving}. The Butcher tableau
+for a general \emph{s}-stage Runge-Kutta method, introduced in definition
+\ref{def:generalrungekutta}, is presented in table~\ref{tab:generalbutcher}.
+
+\begin{table}[htpb]
+    \centering
+    \caption[Butcher tableau representation of a general $s$-stage
+                Runge-Kutta method]{Butcher tableau representation of a general
+                    $s$-stage Runge-Kutta method.}
+    \label{tab:generalbutcher}
+    \[
+        \begin{array}{c|cccc}
+            \toprule
+            c_{1} & a_{1,1} & a_{1,2} & \ldots & a_{1,s}\\
+            c_{2} & a_{2,1} & a_{2,2} & \ldots & a_{2,s}\\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            c_{s} & a_{s,1} & a_{s,2} & \ldots & a_{s,s}\\
+            \hline
+            & b_{1} & b_{2} & \ldots & b_{s}\\
+            \bottomrule
+    \end{array}
+\]
+\end{table}
+
+For explicit Runge-Kutta methods, the Runge-Kutta matrix $(a_{i,j})$ is upper
+triangular. Similarly, for fully implicit Runge-Kutta methods, the Runge-Kutta
+matrix is lower triangular. Unlike explicit methods, implicit methods require
+the solution of a linear system at every time level, making them more
+computationally demanding than their explicit siblings. The main selling point
+of implicit methods is that they are more numerically stable than explicit
+methods. This property means that implicit methods are particularly well-suited
+for \emph{stiff} systems, i.e., physical systems with highly disparate time
+scales~\parencite[p.2 in the 2010 printing]{hairer1996solving}. For such systems,
+most explicit methods are highly numerically unstable, unless the numerical step
+size is made exceptionally small, rendering most explicit methods practically
+useless. For \emph{nonstiff} systems, however, implicit methods behave similarly
+to their explicit analogues in terms of numerical accuracy and
+convergence properties.
+
+
+
