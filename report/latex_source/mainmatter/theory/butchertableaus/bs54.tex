@@ -9,8 +9,10 @@ order accurate interpolants. They can be used to estimate the error of the
 numerical approximation, and to dynamically adjust the time step. The fact that
 two independent interpolants are included is a part of the reason for which
 the method nearly behaves like a \nth{6} order method
-\parencite[p.194 in the 2008 printing]{hairer1993solving}. For reference, see
-\textcite{bogacki1996efficient}.}
+\parencite[p.194 in the 2008 printing]{hairer1993solving}. The
+\emph{First Same As Last} property is apparent from the fact that the $b$
+coefficients correspond exactly to the last row of coefficients in the
+Runge-Kutta matrix. For reference, see~\textcite{bogacki1996efficient}.}
     \label{tab:butcherbs54}
     \renewcommand{\arraystretch}{2.5}
     \begin{tabular}{C|CCCCCCCC}

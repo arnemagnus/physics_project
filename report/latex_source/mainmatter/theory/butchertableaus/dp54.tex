@@ -7,7 +7,9 @@
     order accurate solution used to continue the integration. The $\widehat{b}$
     coefficients correspond to a \nth{4} order interpolant, which can be used
     to estimate the error of the numerical approximation, and to dynamically
-    adjust the time step. For reference, see
+    adjust the time step. The \emph{First Same As Last} property is apparent
+    from the fact that the $b$ coefficients correspond exactly to the last row
+    of the Runge-Kutta matrix. For reference, see
     \textcite[p.178 in the 2008 printing]{hairer1993solving}.}
     \label{tab:butcherdopri54}
     \renewcommand{\arraystretch}{2.5}

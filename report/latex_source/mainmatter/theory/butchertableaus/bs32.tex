@@ -6,7 +6,9 @@
 to a \nth{3} order accurate solution used to continue the integration. The
 $\widehat{b}$ coefficients correspond to a \nth{2} order accurate interpolant,
 which can be used to estimate the error of the numerical approximation, and to
-dynamically adjust the time step. For reference, see
+dynamically adjust the time step. The \emph{First Same As Last} property is
+apparent from the fact that the $b$ coefficients correspond exactly to the
+last row of coefficients in the Runge-Kutta matrix. For reference, see
 \textcite{bogacki1989pair}.}
     \label{tab:butcherbs32}
     \renewcommand{\arraystretch}{2.5}
@@ -15,6 +17,7 @@ dynamically adjust the time step. For reference, see
         0 & \\
         \dfrac{1}{2} & \dfrac{1}{2} \\
         \dfrac{3}{4} & 0 & \dfrac{3}{4} \\
+        1 & \dfrac{2}{9} & \dfrac{1}{3} & \dfrac{4}{9} \\
         \hline
         & \dfrac{2}{9} & \dfrac{1}{3} & \dfrac{4}{9} \\
         \hline

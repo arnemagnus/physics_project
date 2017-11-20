@@ -1,4 +1,4 @@
-\section{Solving systems of Ordinary Differential Equations}
+\section{Solving systems of ordinary differential equations}
 \label{sec:solvingsystems}
 
 In physics, like other sciences, modeling a system often equates to solving
@@ -151,9 +151,9 @@ an estimate of the local error of the less precise result, which can be used for
 automatic step size control. The trick is to construct two independent, explicit
 Runge-Kutta methods which both use the \emph{same} function evaluations. This
 results in practically obtaining the two solutions for the price of one, in
-terms of computational complexity. The general structure of an embedded,
-explicit Runge-Kutta method is illustrated in table
-\ref{tab:generalembeddedbutcher}.
+terms of computational complexity. The Butcher tableau of an embedded, general,
+explicit Runge-Kutta method is illustrated in
+\cref{tab:generalembeddedbutcher}.
 
 \begin{table}[htpb]
     \centering
@@ -199,15 +199,97 @@ The details on how to implement adaptive stepsize control are not immediately
 relevant for the topic of this project, but can be found in
 \textcite[pp.167-168 in the 2008 printing]{hairer1993solving}.
 
+\subsection{The Runge-Kutta methods under consideration}
+\label{sub:the_runge_kutta_methods_under_consideration}
+
+Naturally, an abundance of Runge-Kutta methods exist. Many of them are
+fine-tuned for specific constraints, such as problems of varying degrees of
+stiffness. It is neither possible nor meaningful to investigate them all
+in the context of general flow dynamics. For this reason, I consider two classes
+of explicit Runge-Kutta methods, namely singlestep and adaptive stepsize
+methods. From both classes, I include four different general-purpose ODE solvers
+of varying order.
+
+\subsubsection{Singlestep methods}
+\label{ssub:singlestep_methods}
+
+The singlestep methods under consideration are the classical, explicit
+Runge-Kutta methods of orders one through to four, i.e., the \emph{Euler},
+\emph{Heun}, \emph{Kutta} and \emph{classical Runge-Kutta} methods. The
+Euler method is \nth{1} order accurate, and requires a single function
+evaluation of the right hand side of the ordinary differential equation
+\eqref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
+Its Butcher tableau representation can be found in~\cref{tab:butchereuler}.
+It is the simplest explicit method for numerical integration of ordinary
+differential equations. The Euler method is often used as a basis to construct
+more complex methods, such as the Heun method, which is also known as the
+\emph{improved Euler method} or the \emph{explicit trapezoidal rule}. The Heun
+method is \nth{2} order accurate, and requires two function evaluations at each
+time step. Its Butcher tableau representation can be found in
+\cref{tab:butcherrk2}.
+
 \input{mainmatter/theory/butchertableaus/euler.tex}
 
 \input{mainmatter/theory/butchertableaus/rk2.tex}
+
+The Kutta method is \nth{3} order accurate, and requires three function
+evaluations of the right hand side of the ordinary differential equation
+\eqref{eq:ivpsystem} or ~\eqref{eq:ivpsystemhigherdimensions} at each time
+step. Its Butcher tableau representation can be found in \cref{tab:butcherrk3}.
+The classical Runge-Kutta method is \nth{4} order accurate, and perhaps the most
+well-known and frequently used of the four singlestep schemes discussed in this
+project. One reason for its popularity is that it is exceptionally stable
+numerically (i.e., of the aforementioned singlestep methods, the classical
+Runge-Kutta method has the largest numerical stability domain). Another is that,
+as mentioned previously, for $p\geq5$, no explicit Runge-Kutta method of order
+$p$ with $s=p$ stages exist
+\parencite[p.173 in the 2008 printing]{hairer1993solving} -- which means that
+the required number of function evaluations grows at a disproportional rate with
+the required accuracy order. For systems with right hand sides which are
+computationally costly to evaluate, this means that one frequently is able to
+obtain the desired numerical accuracy more effectively e.g.\ by using the
+classical Runge-Kutta method with a finer step length. The Butcher tableau
+representation of the classical Runge-Kutta method can be found in
+\cref{tab:butcherrk4}.
 
 \input{mainmatter/theory/butchertableaus/rk3.tex}
 
 \input{mainmatter/theory/butchertableaus/rk4.tex}
 
+\subsubsection{Adaptive stepsize methods}
+\label{ssub:adaptive_stepsize_methods}
+
+The adaptive stepsize methods under consideration are the Bogacki-Shampine
+3(2) and 5(4) methods, and the Dormand-Prince 5(4) and 8(7) methods. The digit
+outside of the parentheses indicates the order of the solution which is used
+to continue the integration, while the digit within the parentheses indicates
+the order of the interpolant solution. Note that the concept of \emph{order}
+does not translate directly from singlestep methods, as a direct consequence
+of the adaptive time step. Generally, lower order methods are more
+suitable than higher order methods for cases where crude approximations of the
+solution are sufficient. Bogacki and Shampine argue that their methods
+outperform other methods of the same order
+\parencite{bogacki1989pair,bogacki1996efficient}, a notion which, for the 5(4)
+method, is supported by
+\textcite[p.194 in the 2008 printing]{hairer1993solving}.
+
+Butcher tableau representations of the aforementioned adaptive stepsize methods
+can be found in
+\cref{tab:butcherbs32,tab:butcherbs54,tab:butcherdopri54,tab:butcherdopri87},
+the latter of which has been typeset in landscape orientation for the reader's
+convenience. Three of the methods, namely the Bogacki-Shampine 3(2) and 5(4)
+methods, in addition to the Dormand-Prince 5(4) method, possess the so-called
+\emph{First Same As Last} property. This means that the last function evaluation
+of an accepted step is exactly the same as the first function evaluation of the
+next step. This is readily apparent from their Butcher tableaus, where the
+$b$ coefficients correspond exactly with the last row the Runge-Kutta matrix.
+The \emph{First Same As Last} property reduces the computational
+cost of a successive step.
+
 \input{mainmatter/theory/butchertableaus/bs32.tex}
+
+\vfill{}
+
 
 \input{mainmatter/theory/butchertableaus/bs54.tex}
 
