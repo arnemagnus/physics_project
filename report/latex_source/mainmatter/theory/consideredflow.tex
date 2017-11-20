@@ -1,0 +1,91 @@
+\section{The type of flow systems considered}
+\label{sec:typeofflow}
+
+We consider flow in two-dimensional dynamical systems of the form
+
+\begin{equation}
+    \label{eq:odeflowsystem}
+\dot{\vct{x}} = \vct{v}(t,\vct{x}),\quad\vct{x}\in\mathcal{U},\quad{}t\in[t_{0},t_{1}],
+\end{equation}
+
+i.e., systems defined for the finite time interval $[t_{0},t_{1}]$, on an open,
+bounded subset $\mathcal{U}$ of $\mathbb{R}^{2}$. In addition, the velocity
+field $\vct{v}$ is assumed to be smooth in its arguments. Depending on the
+exact nature of the velocity field $\vct{v}$, analytical particle trajectories,
+i.e., analytical solutions of system~\eqref{eq:odeflowsystem}, may or may not be
+computed. The flow particles are assumed to be infinitesimall and massless,
+i.e., non-interacting \emph{tracers} of the overall circulation.
+
+Letting $\vct{x}(t;t_{0},\vct{x}_{0})$ denote the trajectory of a tracer in the
+system defined by~\eqref{eq:odeflowsystem}, the flow map is defined as
+
+\begin{equation}
+    \label{eq:flowmap}
+    \vct{F}_{t_{0}}^{t}(\vct{x}_{0}) = \vct{x}(t;t_{0},\vct{x}_{0}),
+\end{equation}
+
+i.e., the flow map describes the mathematical movement of the tracers from
+one point in time (e.g.\ the initial condition) to another. Generally, the
+flow map is as smooth as the velocity field $\vct{v}$ in system
+\eqref{eq:odeflowsystem} \parencite{farazmand2012computing}. For sufficiently
+smooth velocity fields, the right Cauchy-Green strain tensor field is defined as
+
+\begin{equation}
+    \label{eq:cauchygreen}
+    \mtrx{C}_{t_{0}}^{t}(\vct{x}_{0}) = %
+    {\big(\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0})\big)}^{\mathsf{T}} %
+    \vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0}),
+\end{equation}
+
+where $\vct{\nabla}\vct{F}_{t_{0}}^{t}$ denotes the Jacobian matrix of the flow
+map $\vct{F}_{t_{0}}^{t}$, and the $\mathsf{T}$ refers to matrix
+transposition. Component-wise, the Jacobian matrix of a general vector-valued
+function $\vct{f}$ is defined as
+
+\begin{equation}
+    \label{eq:jacobiancomponent}
+    {(\vct{\nabla}\vct{f})}_{i,j} = \pdv{f_{i}}{x_{j}}
+\end{equation}
+
+which, for our two-dimensional flow, reduces to
+
+\begin{equation}
+    \label{eq:jacobiantotal}
+    \renewcommand{\arraystretch}{2.5}
+    \vct{\nabla}\vct{f} = \begin{pmatrix} %
+        \dfrac{\partial{}f_{1}}{\partial{}x_{1}} %
+                                    & \dfrac{\partial{}f_{1}}{\partial{}x_{2}}\\
+        \dfrac{\partial{}f_{2}}{\partial{}x_{1}} %
+                                    & \dfrac{\partial{}f_{2}}{\partial{}x_{2}}%
+                        \end{pmatrix}.
+\end{equation}
+
+By construction, the Cauchy-Green strain tensor $\mtrx{C}_{t_{0}}^{t}$ is
+symmetric and positive definite. Thus, it has two real, positive eigenvalues
+and orthogonal, real eigenvectors. Its eigenvalues $\lambda_{i}$ and
+corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
+
+\begin{equation}
+    \label{eq:cauchygreencharacteristics}
+    \begin{gathered}
+        \mtrx{C}_{t_{0}}^{t}(\vct{x}_{0})\vct{\xi}_{i}(\vct{x}_{0}) %
+            = \lambda_{i}\vct{\xi}_{i}(\vct{x}_{0}),%
+            \quad\norm{\vct{\xi}_{i}(\vct{x}_{0})}=1,\quad{}i=1,2,\\
+        0<\lambda_{1}(\vct{x}_{0})\leq\lambda_{2}(\vct{x}_{0}),
+    \end{gathered}
+\end{equation}
+
+where, for the sake of notational transparency, the dependence of $\lambda_{i}$
+and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. If the flow is
+incompressible, the eigenvalues satisfy
+
+\begin{equation}
+    \label{eq:cauchygreenincomprlambda}
+    \lambda_{1}(\vct{x}_{0})\lambda_{2}(\vct{x}_{0})=1%
+        \quad\forall\hskip0.5em\vct{x}_{0}\in\mathcal{U}
+\end{equation}
+
+
+where, for our case, incompressibility is equivalent to the velocity field
+$\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$),
+because the tracer particles are massless~\parencite{farazmand2012computing}.
