@@ -81,8 +81,11 @@ factor=0% Controls how much punctuation protrudes past the end of the line
 % Extend array and tabular environments
 \usepackage[]{array}
 
-% Rotation tools for floats
-\usepackage[]{rotating}
+% Define math mode version of centered type column
+\newcolumntype{C}{>$c<$}
+
+% Rotation tools for floats. Default: Clockwise rotation
+\usepackage[figuresright]{rotating}
 
 % Format float captions any which way you want.
 % My preference:    No more than 90 % of the overall textwidth

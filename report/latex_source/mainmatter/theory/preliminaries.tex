@@ -19,7 +19,7 @@ equation~\eqref{eq:ivpsystem} is replaced by a family of equations
 \begin{equation}
 \label{eq:ivpsystemhigherdimensions}
 \begin{gathered}
-    \dot{x}_{i}(t) = f_{j}\big(t,x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big),\quad
+    \dot{x}_{i}(t) = f_{i}\big(t,x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big),\quad
     x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n \\
     \vct{x}(t) = \big(x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big)
 \end{gathered}
@@ -157,9 +157,9 @@ explicit Runge-Kutta method is illustrated in table
 
 \begin{table}[htpb]
     \centering
-    \caption[Butcher tableau representation of embedded, explicit
-    Runge-Kutta methods]{Butcher tableau representation of embedded, explicit
-                    Runge-Kutta methods.}
+    \caption[Butcher tableau representation of general, embedded, explicit
+    Runge-Kutta methods]{Butcher tableau representation of general, embedded,
+        explicit Runge-Kutta methods.}
     \label{tab:generalembeddedbutcher}
     \[\renewcommand{\arraystretch}{1.25}
     \begin{array}{c|ccccc}
@@ -197,5 +197,22 @@ embedded method in question. Continuing the integration with
 the higher order result is commonly referred to as \emph{local extrapolation}.
 The details on how to implement adaptive stepsize control are not immediately
 relevant for the topic of this project, but can be found in
-\textcite[p.167-168 in the 2008 printing]{hairer1993solving}.
+\textcite[pp.167-168 in the 2008 printing]{hairer1993solving}.
+
+\input{mainmatter/theory/butchertableaus/euler.tex}
+
+\input{mainmatter/theory/butchertableaus/rk2.tex}
+
+\input{mainmatter/theory/butchertableaus/rk3.tex}
+
+\input{mainmatter/theory/butchertableaus/rk4.tex}
+
+\input{mainmatter/theory/butchertableaus/bs32.tex}
+
+\input{mainmatter/theory/butchertableaus/bs54.tex}
+
+\input{mainmatter/theory/butchertableaus/dp54.tex}
+
+\input{mainmatter/theory/butchertableaus/dp87.tex}
+
 

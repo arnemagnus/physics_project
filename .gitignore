@@ -27,3 +27,7 @@ _minted*/
 *.lof
 *.lot
 *.toc
+
+
+# Archive files:
+*.tar.gz
