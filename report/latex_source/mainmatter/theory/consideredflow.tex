@@ -33,14 +33,15 @@ smooth velocity fields, the right Cauchy-Green strain tensor field is defined as
 \begin{equation}
     \label{eq:cauchygreen}
     \mtrx{C}_{t_{0}}^{t}(\vct{x}_{0}) = %
-    {\big(\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0})\big)}^{\mathsf{T}} %
-    \vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0}),
+    {\big(\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0})\big)}^{\ast} %
+    \,\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0}),
 \end{equation}
 
 where $\vct{\nabla}\vct{F}_{t_{0}}^{t}$ denotes the Jacobian matrix of the flow
-map $\vct{F}_{t_{0}}^{t}$, and the $\mathsf{T}$ refers to matrix
-transposition. Component-wise, the Jacobian matrix of a general vector-valued
-function $\vct{f}$ is defined as
+map $\vct{F}_{t_{0}}^{t}$, and the asterisk refers to the adjoint operation,
+which, because the Jacobian $\vct{\nabla}\vct{F}_{t_{0}}^{t}$ is real-valued,
+equates to matrix transposition. Component-wise, the Jacobian matrix of a
+general vector-valued function $\vct{f}$ is defined as
 
 \begin{equation}
     \label{eq:jacobiancomponent}
@@ -53,10 +54,10 @@ which, for our two-dimensional flow, reduces to
     \label{eq:jacobiantotal}
     \renewcommand{\arraystretch}{2.5}
     \vct{\nabla}\vct{f} = \begin{pmatrix} %
-        \dfrac{\partial{}f_{1}}{\partial{}x_{1}} %
-                                    & \dfrac{\partial{}f_{1}}{\partial{}x_{2}}\\
-        \dfrac{\partial{}f_{2}}{\partial{}x_{1}} %
-                                    & \dfrac{\partial{}f_{2}}{\partial{}x_{2}}%
+        \dfrac{\partial{}f_{1}}{\partial{}x} %
+                                    & \dfrac{\partial{}f_{1}}{\partial{}y}\\
+        \dfrac{\partial{}f_{2}}{\partial{}x} %
+                                    & \dfrac{\partial{}f_{2}}{\partial{}y}%
                         \end{pmatrix}.
 \end{equation}
 
@@ -76,8 +77,9 @@ corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
 \end{equation}
 
 where, for the sake of notational transparency, the dependence of $\lambda_{i}$
-and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. If the flow is
-incompressible, the eigenvalues satisfy
+and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. As stated
+by \textcite{farazmand2012computing}, for incompressible flow, the eigenvalues
+satisfy
 
 \begin{equation}
     \label{eq:cauchygreenincomprlambda}
@@ -88,4 +90,144 @@ incompressible, the eigenvalues satisfy
 
 where, for our case, incompressibility is equivalent to the velocity field
 $\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$),
-because the tracer particles are massless~\parencite{farazmand2012computing}.
+because the tracer particles are massless.
+
+\section{Definition of LCSs for two-dimensional flows}
+\label{sec:definition_of_lcss_for_two-dimensional_flow}
+Lagrangian coherent structures (henceforth abbreviated to LCSs) can be described
+as time-evolving surfaces which shape coherent trajectory patterns in dynamical
+systems, defined over a finite time interval \parencite{haller2010variational}.
+There are three main types of LCSs, namely \emph{elliptic},
+\emph{hyperbolic} and \emph{parabolic}. Roughly speaking, parabolic structures
+outline cores of jet-like trajectories, elliptic structures describe vortex
+boundaries, whereas hyperbolic structures illustrate overall attractive or
+repelling manifolds. As such, hyperbolic LCSs practically act as organizing
+centers of observable tracer patterns \parencite{onu2015lcstool}. Because
+hyperbolic LCSs provide the most readily applicable insight in terms of
+forecasting flow in e.g.\ oceanic currents, such structures have been the focus
+of this project.
+
+\subsection{Hyperbolic Lagrangian coherent structures}
+\label{sub:hyperbolic_lagrangian_coherent_structures}
+
+The use of LCSs for reliable forecasting requires sufficiency and necessity
+conditions, supported by mathematical theorems. \textcite{haller2010variational}
+derived a variational LCS theory based on the Cauchy-Green strain tensor,
+defined by equation~\eqref{eq:cauchygreen}, from which the aforementioned
+conditions follow. The immediately relevant parts of Haller's theory
+are summarized in
+\cref{def:normalrepellence,def:repellinglcs,def:attractinglcs,def:hyperboliclcs}.\\
+
+\begin{defn}
+    \label{def:normalrepellence}
+    A \emph{normally repelling material line} over the time interval
+    $[t_{0},t_{0}+T]$ is a compact material line segment $\mathcal{M}(t)$
+    which is overall repelling, and on which the normal repulsion rate
+    is greater than the tangential repulsion rate.
+\end{defn}
+
+A \emph{material line} is a smooth curve $\mathcal{M}(t_{0})$ at time $t_{0}$,
+which is advected by the flow map, cf.\ equation~\eqref{eq:flowmap}, into
+the dynamic material line
+$\mathcal{M}(t)=\vct{F}_{t_{0}}^{t}\mathcal{M}(t_{0})$. The required
+\emph{compactness} of the material line segment signifies that, in some sense,
+it must be topologically well-behaved. That the material line is
+\emph{overall repelling} means that nearby trajectories are repelled from,
+rather than attracted to, the material line. Lastly, requiring that the
+\emph{normal repulsion rate} is greater than the
+\emph{tangential repulsion rate} means that nearby trajectories are in fact
+driven away from the material line, rather than being stretched \emph{on}
+it, due to shear stress.
+\\
+\begin{defn}
+    \label{def:repellinglcs}
+    A \emph{repelling LCS} over the time interval $[t_{0},t_{0}+T]$ is a
+    normally repelling material line $\mathcal{M}(t_{0})$ whose normal repulsion
+    admits a pointwise non-degenerate maximum relative to any nearby material
+    line $\widehat{\mathcal{M}}(t_{0})$.\\
+\end{defn}
+\begin{defn}
+    \label{def:attractinglcs}
+    An \emph{attracting LCS}  over the time interval $[t_{0},t_{0}+T]$ is
+    defined as a repelling LCS over the \emph{backward} time interval
+    $[t_{0}+T,t_{0}]$.\\
+\end{defn}
+\begin{defn}
+    \label{def:hyperboliclcs}
+    A \emph{hyperbolic} LCS over the time interval $[t_{0},t_{0}+T]$ is a
+    \emph{repelling} or \emph{attracting} LCS over the same time interval.\\
+\end{defn}
+
+Note that the above definitions associate LCSs with the time interval $I$ over
+which the dynamical system under consideration is known, or, at the very least,
+over which information regarding the behaviour of tracers, is sought. Generally,
+LCSs obtained over a time interval $I$ do not exist over different time
+intervals \parencite{farazmand2012computing}.
+
+For two-dimensional flow, the above definitions can be summarized as a set of
+mathematical existence criteria, based on the Cauchy-Green strain tensor,
+cf.\ equation~\eqref{eq:cauchygreen}
+\parencite{haller2010variational,farazmand2011erratum}. These are given in
+\cref{thm:lcsexistence}:\\
+
+
+\begin{thm}[Sufficient and necessary conditions for LCSs in two-dimensional
+    flows]
+    \label{thm:lcsexistence}
+    Consider a compact material line $\mathcal{M}(t)\subset\mathcal{U}$ evolving
+    over the time interval $[t_{0},t_{0}+T]$. $\mathcal{M}(t)$ is a repelling
+    LCS over $[t_{0},t_{0}+T]$ if and only if all the following hold for all
+    initial conditions $\vct{x}_{0}\in\mathcal{M}(t_{0})$:
+    \begin{subequations}
+        \label{eq:lcsexistence}
+        \begin{align}
+            \label{eq:lcsexistence1}
+            &\lambda_{1}\neq\lambda_{2}>1\\
+            \label{eq:lcsexistence2}
+            &\langle\vct{\xi}_{2}(\vct{x}_{0}),%
+            \mtrx{H}_{\lambda_{2}}(\vct{x}_{0})\vct{\xi}_{2}(\vct{x}_{0})\rangle<0\\
+            \label{eq:lcsexistence3}
+            &\vct{\xi}_{2}(\vct{x}_{0})\perp\mathcal{M}(t_{0})\\
+            \label{eq:lcsexistence4}
+            &\langle\vct{\nabla}\lambda_{2}(\vct{x}_{0}),%
+                \vct{\xi}_{2}(\vct{x}_{0})\rangle=0
+        \end{align}
+    \end{subequations}
+\end{thm}
+
+In \cref{thm:lcsexistence}, $\langle\cdot,\cdot\rangle$ denotes the Euclidean
+inner product, and $\mtrx{H}_{\lambda_{2}}$ denotes the Hessian matrix of the
+set of largest eigenvalues of the Cauchy-Green strain tensor. Component-wise,
+the Hessian matrix of a general, smooth, scalar-valued function $f$ is defined
+as
+
+\begin{equation}
+    \label{eq:hessiancomponent}
+    {(\mtrx{H}_{f})}_{i,j} = \pdv[2]{f}{x_{i}}{x_{j}},
+\end{equation}
+
+which, for our two-dimensional flow, reduces to
+
+\begin{equation}
+    \label{eq:hessiantotal}
+    \renewcommand{\arraystretch}{2.5}
+    \mtrx{H}_{f} = \begin{pmatrix}%
+    \dfrac{\partial{}^{2}f}{\partial{x}^{2}} & %
+                \dfrac{\partial{}^{2}f}{\partial{x}\partial{y}} \\
+                \dfrac{\partial{}^{2}f}{\partial{y}\partial{x}} & %
+                \dfrac{\partial{}^{2}f}{\partial{y}^{2}} \\
+            \end{pmatrix}
+\end{equation}
+
+Condition~\eqref{eq:lcsexistence1} ensures that the normal repulsion rate is
+larger than the tangential stretch due to shear strain along the LCS, cf.
+\cref{def:normalrepellence}. Conditions~\eqref{eq:lcsexistence3} and
+\eqref{eq:lcsexistence4} suffice to ensure that the normal repulsion rate
+attains a local extremum along the LCS, relative to all nearby material lines.
+Lastly, condition~\eqref{eq:lcsexistence2} forces this to be a strict
+local apex.
+
+\section{FTLE fields as predictors for LCSs}
+\label{sec:ftle_fields_as_predictors_for_lcss}
+
+

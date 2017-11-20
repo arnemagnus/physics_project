@@ -43,7 +43,7 @@ developed the first of the family's methods at the turn of the twentieth century
 \parencite[p.134 in the 2008 printing]{hairer1993solving}. The general scheme of
 what is now known as a Runge-Kutta method is as follows: \\
 
-\begin{Def}
+\begin{defn}
     \label{def:generalrungekutta}
     Let $s$ be an integer and $a_{1,1},a_{1,2},\ldots,a_{1,s},a_{2,1},
     a_{2,2},\ldots,a_{2,s},\ldots,a_{s,1},a_{s,2},\ldots,a_{s,s}$,
@@ -61,7 +61,7 @@ what is now known as a Runge-Kutta method is as follows: \\
 
 is called an \emph{s-stage Runge-Kutta method} for the system
 \eqref{eq:ivpsystem}.
-\end{Def}
+\end{defn}
 
 The main reason to include multiple stages $s$ in a Runge-Kutta method, cf.\
 definition~\ref{def:generalrungekutta}, is to improve the numerical accuracy
@@ -69,7 +69,7 @@ of the computed solutions.
 \textcite[p.2 in the 2010 printing]{hairer1993solving} define the \emph{order}
 of a Runge-Kutta method as follows:\\
 
-\begin{Def}
+\begin{defn}
     \label{def:rungekuttaorder}
     A Runge-Kutta method \eqref{eq:generalrungekutta} is said to be of
     \emph{order} $p$ if, for sufficiently smooth systems \eqref{eq:ivpsystem},
@@ -79,9 +79,10 @@ of a Runge-Kutta method as follows:\\
         \norm{x_{n+1}-x(t_{n+1})} \leq Kh^{p+1},
     \end{equation}
 
-    i.e., if the Taylor series for the exact solution $x(t_{n+1})$ and the
-    numerical solution $x_{n+1}$ coincide up to (and including) the term $h^p$.
-\end{Def}
+    where $K$ is a numerical constant, i.e., if the Taylor series for the exact
+    solution $x(t_{n+1})$ and the numerical solution $x_{n+1}$ coincide up to
+    (and including) the term $h^p$.
+\end{defn}
 
 It is easy to show that if the local error of a Runge-Kutta method is of order
 $p$, cf.\ definition~\ref{def:rungekuttaorder}, the global error, i.e., the

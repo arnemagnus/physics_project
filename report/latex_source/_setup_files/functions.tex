@@ -133,11 +133,14 @@
     \renewcommand{\listfigurename}{List of Figures}%
 }
 
+\addtocontents{lof}{\vspace{6ex}}
+
 % List of Tables:
 \addto\captionsenglish{%
     \renewcommand{\listtablename}{List of Tables}%
 }
 
+\addtocontents{lot}{\vspace{6ex}}
 %
 % "Function" definitions for front-, main- and backmatter
 %
@@ -268,47 +271,6 @@
         {}%
     {\multicitedelim}}
     {\usebibmacro{textcite:postnote}}
-%\DeclareFieldFormat{citehyperref}{%
-%    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-%    \bibhyperref{#1}%
-%}
-
-%\DeclareFieldFormat{textcitehyperref}{%
-%    \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-%    \bibhyperref{%
-%        #1%
-%        \ifbool{cbx:parens}{%
-%            \bibencloseparen\global\boolfalse{cbx:parens}%
-%        }
-%        {}%
-%    }%
-%}
-
-%\savebibmacro{cite}
-%\savebibmacro{tectcite}
-
-%\renewbibmacro*{cite}{%
-%    \printtext[citehyperref]{%
-%        \restorebibmacro{cite}%
-%        \usebibmacro{cite}%
-%    }%
-%}
-%
-%\renewbibmacro*{textcite}{%
-%    \ifboolexpr{%
-%        ( not test {\iffieldundef{prenote}} and
-%        test {\ifnumequal{\value{citecount}}{1}} )
-%        or
-%        ( not test {\iffieldundef{postnote}} and
-%        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-%    }
-%    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-%    {}%
-%    \printtext[textcitehyperref]{%
-%        \restorebibmacro{textcite}%
-%        \usebibmacro{textcite}%
-%    }%
-%}
 
 %
 % Definitions for mathematical symbols
