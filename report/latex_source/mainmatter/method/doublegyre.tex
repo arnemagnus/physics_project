@@ -1,0 +1,170 @@
+In order to investigate the dependence of LCS identification by means of
+the variational approach as presented in \cref{sub:hyperbolic_lcss} on
+the choice of numerical integration method, cf.\ \cref{sec:solvingsystems},
+a system which has been studied extensively in the literature, was chosen.
+The system, an unsteady double gyre, has been used frequently as a test case
+for locating LCSs from different indicators
+\parencite{farazmand2012computing,shadden2005definition}. As a result, the
+LCSs the system exhibit are well known.
+
+\section{The double gyre model}
+\label{sec:the_double_gyre_model}
+
+The double gyre model is defined as a pair of counter-rotating gyres, with a
+time-periodic perturbation. The perturbation can be interpreted as a solid, as
+in impenetrable, wall which oscillates periodically, which causes the gyres
+to periodically contract and expand. In terms of the cartesian coordinate vector
+$\vct{x}=(x,y)$, the system can be expressed mathematically as
+
+\begin{equation}
+    \label{eq:doublegyre}
+    \renewcommand{\arraystretch}{2.5}
+    \dot{\vct{x}} =\vct{v}(t,\vct{x})= \pi{}A\begin{pmatrix}%
+        -\sin\big(\pi{}f(t,x)\big)\cos(\pi{}y)\\
+        \cos\big(\pi{}f(t,x)\big)\sin(\pi{}y)\dfrac{\partial{}f(t,x)}{\partial{}x}
+    \end{pmatrix}
+\end{equation}
+
+where
+
+\begin{equation}
+    \label{eq:doublegyrefuns}
+    \begin{gathered}
+        f(t,x) = a(t)x^{2} + b(t)x\\
+        a(t) = \epsilon\sin(\omega{}t)\\
+        b(t) = 1-2\epsilon\sin(\omega{}t)
+    \end{gathered}
+\end{equation}
+
+and the parameters $A$, $\epsilon$ and $\omega$ dictate the nature of the
+flow pattern. As in the literature, the parameter values
+
+\begin{equation}
+    \label{eq:doublegyreparams}
+    \begin{gathered}
+        A = 0.1\\
+        \epsilon=0.1\\
+        \omega=\frac{2\pi}{10}
+    \end{gathered}
+\end{equation}
+
+were used \parencite{farazmand2012computing,shadden2005definition}. Moreover,
+the starting time was $t_{0}=0$, and the integration time was $T=20$, i.e.,
+forcing two periods of motion, cf.
+\eqref{eq:doublegyreparams}.
+
+Note that the velocity field $\vct{v}(t,\vct{x})$ in equation
+\eqref{eq:doublegyre} can be expressed in terms of a scalar stream function:
+
+\begin{equation}
+    \label{eq:doublegyrestreamfun}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{gathered}
+        \psi(t,\vct{x}) = A\sin\big(\pi{}f(t,x)\big)\sin(\pi{}y) \\
+        \vct{v}(t,\vct{x}) = \begin{pmatrix}%
+            -\dfrac{\partial{}\psi}{\partial{}y} \\
+            \dfrac{\partial{}\psi}{\partial{}x}
+        \end{pmatrix}
+    \end{gathered}
+\end{equation}
+
+which means that the velocity field is divergence-free by construction:
+
+\begin{equation}
+    \label{eq:doublegyreincompr}
+    \vct{\nabla}\vdot\vct{v}(t,\vct{x}) = -\pdv[2]{\psi}{x}{y} %
+                                        + \pdv[2]{\psi}{y}{x} = 0
+\end{equation}
+
+where the latter equality follows from Schwartz' theorem of mixed partial
+derivatives, as the stream function is smooth. This means that we expect the
+property given in equation~\eqref{eq:cauchygreenincomprlambda} to hold for the
+double gyre flow.
+
+
+
+\section{Advecting a set of initial conditions}
+\label{sec:advecting_a_set_of_initial_conditions}
+
+The variational model is based upon the advection of non-interacting tracers,
+cf. \cref{sec:typeofflow}, by the velocity field defined in equation
+\eqref{eq:doublegyre}. The system has no known analytical solution for the
+tracer trajectories. Thus, it must be solved numerically, by means of some
+numerical integration method, e.g.\ a Runge-Kutta method, cf.\
+\cref{sub:the_runge_kutta_family_of_numerical_methods}. With the main focus
+of this project being the dependence on LCSs on the chosen integration method,
+the advection was performed using all of the numerical integrators introduced
+in \cref{sub:the_runge_kutta_methods_under_consideration}, making use of
+MPI paralellization in order to accelerate the computations.
+
+\subsection{Generating a set of initial conditions}
+\label{sub:generating_a_set_of_initial_conditions}
+The computational domain $\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$
+was discretized by a set of linearly spaced tracers, with $1000\times500$ grid
+points, effectively creating a nearly uniform grid of approximate spacing
+$\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed on, and within, the
+domain boundaries of $\mathcal{U}$. The grid was extended artificially,
+with an additional two rows or columns appended to all of the domain edges,
+with the same grid spacing as the \emph{main} grid. This was done in order to
+ensure that the dynamics at the domain boundaries were included in the analysis
+to follow. The extended grid thus had a total of $1004\times504$ grid points.
+The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
+
+\begin{figure}[htpb]
+    \centering
+    \resizebox{0.8\linewidth}{!}{\input{figures/initial_grid.pdf_tex}}
+    \caption[Illustration of the set of initial conditions, including
+                artificial extension]{Illustration of the set of initial
+                conditions, including artificial extension on all domain edges.
+                Dark grey blobs signify the main grid, i.e., the tracers
+                which discretize the computational domain
+            $[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. These were linearly
+        spaced in either direction, with twice as many points in the $x$-
+        direction as the $y$-direction, in order to generate an approximately
+        equidistant grid, i.e., $\Delta{x}\simeq\Delta{y}$. Light grey blobs
+        signify the artificially extended grid, i.e., tracers starting
+        originating outside of the computational domain. These were used in
+        order to properly encapsulate the dynamics at the domain boundaries,
+        in the analysis to follow.}
+    \label{fig:initialgrid}
+\end{figure}
+
+\subsection{On the choice of numerical step lengths and tolerance levels}
+\label{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}
+
+For the fixed stepsize integrators, step lengths of $10^{-1}$ through to
+$10^{-5}$ were used. For a step length of $10^{-5}$, the total number of
+integration steps required in order to advect the system from $t_{0}=0$ to
+$t=20$ becomes $10^{6}$. Because the inherent inaccuracy of double precision
+floating-point numbers is of order $10^{-16}$, the total floating point
+error expected to arise when performing the integration for a step length of
+$10^{-5}$ is of order $10^{-10}$. The least accurate of the fixed stepsize
+integrators under consideration, the Euler method, is a \nth{1} order accurate
+globally, meaning that its local error is of \nth{2} order in the time step,
+cf. \cref{def:rungekuttaorder}. Thus, we expect that the local error of the
+Euler method to be of order $10^{-10}$, i.e., the same order of the accumulated
+floating-point errors. Reducing the time step further necessarily leads to
+an increase in the accumulated floating-point errors, meaning that we cannot
+reasonably expect more accurate results for the Euler method --- at the very
+least, a time step of $10^{-5}$ appears to be a point after which there is
+little to be gained in terms of numerical accuracy for the Euler method by
+lowering the time step further. For the other fixed stepsize integrators, which
+are of higher order, we expect this breaking point to occur for a (somewhat)
+larger time step.
+
+While the above logic does not translate directly for the adaptive stepsize
+integrators, empirical tests indicate that for the Bogacki-Shampine integrators,
+as well as the Dormand-Prince 5(4) integrator, the accumulated floating point
+errors caught up to the required tolerance level at some point between the
+levels $10^{-10}$ and $10^{-11}$, while the Dormand-Prince 8(7) integrator held
+its ground until about $10^{-13}$. For this reason, tolerance levels of
+$10^{-1}$ through to $10^{-10}$ were used for the adaptive stepsize integrators.
+
+As previously mentioned, reference solutions must be obtained by means of a
+high order fixed stepsize method with a small step length, alternatively a high
+order adaptive stepsize method with a small tolerance level. In this case, the
+latter approach was chosen, and the solution obtained via the Dormand-Prince
+8(7) integrator with a numerical tolerance of $10^{-12}$ was used as the
+reference.
+
+

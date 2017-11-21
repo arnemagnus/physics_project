@@ -230,4 +230,36 @@ local apex.
 \section{FTLE fields as predictors for LCSs}
 \label{sec:ftle_fields_as_predictors_for_lcss}
 
+Finite-time Lyapunov exponent (hereafter abbreviated to FTLE) fields provide
+a measure of the extent to which particles which start out close to eachother,
+are separated in a given time interval. Mathematically, Lyapunov exponents
+quantify the asymptotic divergence or convergence of trajectories of
+tracers which start out infinitesimally close to each other
+\parencite[INSERT PAGE REFERENCE HERE ASAP]{strogatz2014nonlinear}. The FTLE
+are intrinsically linked to the Cauchy-Green strain tensor, cf.\ equation
+\eqref{eq:cauchygreen}. When a two-dimensional system is evolved from time
+$t_{0}$ to $t_{0}+T$, the FTLE field is defined as
 
+\begin{equation}
+    \label{eq:ftledef}
+    \sigma(\vct{x}_{0}) = \frac{\ln\big(\lambda_{2}(\vct{x}_{0})\big)}{2\abs{T}},
+\end{equation}
+
+where $\lambda_{2}(\vct{x}_{0})$ is the largest eigenvalue of the Cauchy-Green
+strain tensor, cf.\ equation~\eqref{eq:cauchygreencharacteristics}. The
+absolute value of the integration time $T$ is taken because one generally can
+consider the evolution of a system in either temporal direction. As per
+\cref{def:attractinglcs}, attracting LCSs are identified as repelling LCSs
+in backwards time.
+
+\textcite{shadden2005definition} in fact \emph{define} hyperbolic LCSs as ridges
+of the FTLE field. By \emph{ridges}, they mean gradient lines which are
+orthogonal to the direction of minimum curvature.
+\textcite{haller2010variational} showed, by means of explicit examples, that the
+sole use of the FTLE field for LCS detection is prone to both false positives
+and false negatives, even for conceptually simple flows. Furthermore, the FTLE
+field is generally less well-resolved than the LCSs obtained from Haller's
+variational formalism. For these reasons, the FTLE field can generally be used
+as a first-order approximation in terms of where one can reasonably expect LCSs
+to be found, but it does not represent the blueprint for the actual LCSs of a
+system in general.
