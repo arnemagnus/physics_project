@@ -94,8 +94,7 @@ numerical integration method, e.g.\ a Runge-Kutta method, cf.\
 \cref{sub:the_runge_kutta_family_of_numerical_methods}. With the main focus
 of this project being the dependence on LCSs on the chosen integration method,
 the advection was performed using all of the numerical integrators introduced
-in \cref{sub:the_runge_kutta_methods_under_consideration}, making use of
-MPI paralellization in order to accelerate the computations.
+in \cref{sub:the_runge_kutta_methods_under_consideration}.
 
 \subsection{Generating a set of initial conditions}
 \label{sub:generating_a_set_of_initial_conditions}
@@ -110,24 +109,53 @@ ensure that the dynamics at the domain boundaries were included in the analysis
 to follow. The extended grid thus had a total of $1004\times504$ grid points.
 The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
 
-\begin{figure}[htpb]
-    \centering
-    \resizebox{0.8\linewidth}{!}{\input{figures/initial_grid.pdf_tex}}
-    \caption[Illustration of the set of initial conditions, including
-                artificial extension]{Illustration of the set of initial
-                conditions, including artificial extension on all domain edges.
-                Dark grey blobs signify the main grid, i.e., the tracers
-                which discretize the computational domain
-            $[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. These were linearly
-        spaced in either direction, with twice as many points in the $x$-
-        direction as the $y$-direction, in order to generate an approximately
-        equidistant grid, i.e., $\Delta{x}\simeq\Delta{y}$. Light grey blobs
-        signify the artificially extended grid, i.e., tracers starting
-        originating outside of the computational domain. These were used in
-        order to properly encapsulate the dynamics at the domain boundaries,
-        in the analysis to follow.}
-    \label{fig:initialgrid}
-\end{figure}
+\vfill{}
+
+\input{mainmatter/method/figures/initialgridfigure.tex}
+
+In order to increase the resolution of the Cauchy-Green strain tensor,
+it is necessary to increase the accuracy with which one computes the
+Jacobian of the flow map, cf.\ equation \eqref{eq:cauchygreen}. This was done
+by advecting a set of auxiliary tracer points surrounding each main point. To
+each tracer point $\vct{x}_{j}=(x_{j},y_{j})$, neighboring points defined as
+
+\begin{equation}
+    \label{eq:auxgrid}
+    \begin{gathered}
+        \vct{x}_{j}^{r} = (x_{j}+\delta{x},y_{j}),%
+                \quad\vct{x}_{j}^{l} = (x_{j}-\delta{x},y_{j})\\
+                \vct{x}_{j}^{u} = (x_{j},y_{j}+\delta{y}),%
+                \quad\vct{x}_{j}^{l} = (x_{j},y_{j}-\delta{y})\\
+\end{gathered}
+\end{equation}
+
+where $\delta{x}$ and $\delta{y}$ are increments smaller than the grid spacings
+$\Delta{x}\simeq\Delta{y}$, were assigned. Even though this effectively means
+that five times as many particles have to be advected, the resulting accuracy
+in computing the Jacobian by means of the auxiliary tracers is determined
+by the independent variables $\delta{x}$ and $\delta{y}$, theoretically allowing
+for arbitrary precision. The concept of the auxiliary tracers is illustrated in
+figure~\ref{fig:auxiliarygrid}.
+
+\input{mainmatter/method/figures/auxiliarygridfigure.tex}
+
+Because of the limited number of decimal digits which can be represented by
+floating point numbers, however, there is a strict lower limit to which it makes
+sense to lower vaues of the degrees of freedom $\delta{x}$ and $\delta{y}$. In
+particular, the smallest number which can be resolved by double-precision
+floating point numbers is of the order $10^{-16}$. When decreasing the auxiliary
+grid spacing, the increase in precision is quickly offset by the fact that
+one automatically gets allocated a smaller number of decimal digits with
+which one can calculate the discrete approximation of the derivatives involved
+in the Jacobian. This is due to the double gyre velocity field, cf.\
+equation \eqref{eq:doublegyre}, being well-behaved, leading most tracers which
+are close together initially to follow very similar trajectories, often
+ending up with a separation distance comparable to the initial offset. For this
+reason, the auxiliary grid spacing $\delta{x}=\delta{y}=10^{-5}$ was chosen
+--- three orders of magnitude smaller than the original grid spacing, ensuring
+that the derivatives in the Jacobian are far more well-resolved than for the
+main tracers, while also leaving approximately 10 decimal digits for which
+there can be a difference in the final positions of the auxiliary tracers.
 
 \subsection{On the choice of numerical step lengths and tolerance levels}
 \label{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}
@@ -135,14 +163,15 @@ The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
 For the fixed stepsize integrators, step lengths of $10^{-1}$ through to
 $10^{-5}$ were used. For a step length of $10^{-5}$, the total number of
 integration steps required in order to advect the system from $t_{0}=0$ to
-$t=20$ becomes $10^{6}$. Because the inherent inaccuracy of double precision
-floating-point numbers is of order $10^{-16}$, the total floating point
-error expected to arise when performing the integration for a step length of
-$10^{-5}$ is of order $10^{-10}$. The least accurate of the fixed stepsize
-integrators under consideration, the Euler method, is a \nth{1} order accurate
-globally, meaning that its local error is of \nth{2} order in the time step,
-cf. \cref{def:rungekuttaorder}. Thus, we expect that the local error of the
-Euler method to be of order $10^{-10}$, i.e., the same order of the accumulated
+$t=20$ is of order $10^{6}$. Because the inherent accuracy of double precision
+floating-point numbers is of order $10^{-16}$, as mentioned previously, the
+total floating point error expected to arise when performing the integration
+for a step length of $10^{-5}$ is of order $10^{-10}$. The least accurate of
+the fixed stepsize integrators under consideration, the Euler method, is a
+\nth{1} order accurate globally, meaning that its local error is of \nth{2}
+order in the time step, cf.\
+\cref{def:rungekuttaorder}. Thus, we expect that the local error of the Euler
+method to be of order $10^{-10}$, i.e., the same order of the accumulated
 floating-point errors. Reducing the time step further necessarily leads to
 an increase in the accumulated floating-point errors, meaning that we cannot
 reasonably expect more accurate results for the Euler method --- at the very

@@ -50,15 +50,15 @@
   \makeatother%
   \begin{picture}(1,0.6114604)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{aux_grid.pdf}}%
-    \put(0.39390205,0.50300932){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{u}$}}}%
-    \put(0.39390205,0.1645551){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
-    \put(0.39390205,0.38630097){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}$}}}%
-    \put(0.16048538,0.38630097){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
-    \put(0.61564792,0.38630097){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{r}$}}}%
+    \put(0.34721878,0.50300931){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{u}$}}}%
+    \put(0.34721878,0.16455509){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
+    \put(0.34721878,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}$}}}%
+    \put(0.11380208,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
+    \put(0.72068551,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{r}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{aux_grid.pdf}}%
-    \put(0.63339638,0.02157339){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{x}$}}}%
-    \put(0.9426735,0.21755162){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{y}$}}}%
-    \put(0.55753601,0.14986156){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{x}$}}}%
-    \put(0.75010472,0.27357163){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{y}$}}}%
+    \put(0.65090269,0.00523423){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{x}$}}}%
+    \put(0.95434441,0.2082153){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{y}$}}}%
+    \put(0.55753601,0.13352195){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{x}$}}}%
+    \put(0.75594021,0.26190114){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{y}$}}}%
   \end{picture}%
 \endgroup%
