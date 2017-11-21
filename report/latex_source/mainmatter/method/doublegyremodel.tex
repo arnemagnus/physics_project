@@ -1,0 +1,82 @@
+In order to investigate the dependence of LCS identification by means of
+the variational approach as presented in \cref{sub:hyperbolic_lcss} on
+the choice of numerical integration method, cf.\ \cref{sec:solvingsystems},
+a system which has been studied extensively in the literature, was chosen.
+The system, an unsteady double gyre, has been used frequently as a test case
+for locating LCSs from different indicators
+\parencite{farazmand2012computing,shadden2005definition}. As a result, the
+LCSs the system exhibit are well known.
+
+\section{The double gyre model}
+\label{sec:the_double_gyre_model}
+
+The double gyre model is defined as a pair of counter-rotating gyres, with a
+time-periodic perturbation. The perturbation can be interpreted as a solid, as
+in impenetrable, wall which oscillates periodically, which causes the gyres
+to periodically contract and expand. In terms of the cartesian coordinate vector
+$\vct{x}=(x,y)$, the system can be expressed mathematically as
+
+\begin{equation}
+    \label{eq:doublegyre}
+    \renewcommand{\arraystretch}{2.5}
+    \dot{\vct{x}} =\vct{v}(t,\vct{x})= \pi{}A\begin{pmatrix}%
+        -\sin\big(\pi{}f(t,x)\big)\cos(\pi{}y)\\
+        \cos\big(\pi{}f(t,x)\big)\sin(\pi{}y)\dfrac{\partial{}f(t,x)}{\partial{}x}
+    \end{pmatrix}
+\end{equation}
+
+where
+
+\begin{equation}
+    \label{eq:doublegyrefuns}
+    \begin{gathered}
+        f(t,x) = a(t)x^{2} + b(t)x\\
+        a(t) = \epsilon\sin(\omega{}t)\\
+        b(t) = 1-2\epsilon\sin(\omega{}t)
+    \end{gathered}
+\end{equation}
+
+and the parameters $A$, $\epsilon$ and $\omega$ dictate the nature of the
+flow pattern. As in the literature, the parameter values
+
+\begin{equation}
+    \label{eq:doublegyreparams}
+    \begin{gathered}
+        A = 0.1\\
+        \epsilon=0.1\\
+        \omega=\frac{2\pi}{10}
+    \end{gathered}
+\end{equation}
+
+were used \parencite{farazmand2012computing,shadden2005definition}. Moreover,
+the starting time was $t_{0}=0$, and the integration time was $T=20$, i.e.,
+forcing two periods of motion, cf.
+\eqref{eq:doublegyreparams}.
+
+Note that the velocity field $\vct{v}(t,\vct{x})$ in equation
+\eqref{eq:doublegyre} can be expressed in terms of a scalar stream function:
+
+\begin{equation}
+    \label{eq:doublegyrestreamfun}
+    \renewcommand{\arraystretch}{2.5}
+    \begin{gathered}
+        \psi(t,\vct{x}) = A\sin\big(\pi{}f(t,x)\big)\sin(\pi{}y) \\
+        \vct{v}(t,\vct{x}) = \begin{pmatrix}%
+            -\dfrac{\partial{}\psi}{\partial{}y} \\
+            \dfrac{\partial{}\psi}{\partial{}x}
+        \end{pmatrix}
+    \end{gathered}
+\end{equation}
+
+which means that the velocity field is divergence-free by construction:
+
+\begin{equation}
+    \label{eq:doublegyreincompr}
+    \vct{\nabla}\vdot\vct{v}(t,\vct{x}) = -\pdv[2]{\psi}{x}{y} %
+                                        + \pdv[2]{\psi}{y}{x} = 0
+\end{equation}
+
+where the latter equality follows from Schwartz' theorem of mixed partial
+derivatives, as the stream function is smooth. This means that we expect the
+property given in equation~\eqref{eq:cauchygreenincomprlambda} to hold for the
+double gyre flow.
