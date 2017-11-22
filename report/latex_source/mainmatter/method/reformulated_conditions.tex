@@ -1,3 +1,184 @@
 \section{Identifying LCS candidates numerically}
 \label{sec:identifying_lcs_candidates_numerically}
 
+\textcite{farazmand2012computing} found the identification of the
+zeros of the inner product in equation~\eqref{eq:lcsexistence4} of
+\cref{thm:lcsexistence} to be numerically sensitive. For this reason, they
+suggest a reformulated set of conditions which make for more robust numerical
+implementation, as follows:
+
+\begin{subequations}
+    \label{eq:numericalexistence}
+    \begin{align}
+        \label{eq:numericalexistence1}
+        &\lambda_{1}(\vct{x}_{0})\neq\lambda_{2}(\vct{x}_{0})>1\\
+        \label{eq:numericalexistence2}
+        &\big\langle\vct{\xi}_{2}(\vct{x}_{0}),%
+            \mtrx{H}_{\lambda_{2}}(\vct{x}_{0})%
+            \vct{\xi}_{2}(\vct{x}_{0})\big\rangle \leq 0\\
+        \label{eq:numericalexistence3}
+        &\vct{\xi}_{1}(\vct{x}_{0})\parallel\mathcal{M}(t_{0})\\
+        \label{eq:numericalexistence4}
+        &\begin{gathered}
+            \overline{\lambda}_{2},\ \textnormal{the average of}%
+            \ \lambda_{2}\ \textnormal{over a curve}\ \gamma,\ %
+            \textnormal{is maximal on}\ \mathcal{M}(t_{0})\\ %
+            \hspace{-1.3em}\textnormal{among all}\ \textnormal{nearby curves}\ %
+            \gamma\ \textnormal{satisfying}\ \gamma\parallel\vct{\xi}_{1}(\vct{x}_{0})
+        \end{gathered}
+    \end{align}
+\end{subequations}
+
+The relaxation of condition~\eqref{eq:lcsexistence2} in~\cref{thm:lcsexistence}
+from strict inequality to condition~\eqref{eq:numericalexistence2}, which
+also allows equality, means that LCSs are allowed to have finite thickness.
+However, the set of criterions~\eqref{eq:numericalexistence} enforce that
+all LCSs have uniquely defined local orientations. Conditions
+\eqref{eq:lcsexistence3} and~\eqref{eq:numericalexistence3} are equivalent,
+due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
+$\vct{\xi}_{2}(\vct{x}_{0})$, although the form~\eqref{eq:numericalexistence3}
+turns out to be more advantageous for use in computations.
+
+Because of the artificial extension of the main computational grid, cf.\
+\cref{sub:generating_a_set_of_initial_conditions}, the Cauchy-Green strain
+tensor could be calculated for the innermost of the padded rows and columns
+by means of the same centered difference methods as described in
+\cref{sec:calculating_the_cauchy_green_strain_tensor}. Thus, a similar
+centered differencing approach was used in order to approximate the Hessian
+matrices of the set of eigenvalues $\lambda_{2}(\vct{x}_{0})$ for the tracers
+in the entire computational domain.
+
+\subsection{A framework for computing smooth strainlines}
+\label{sub:a_framework_for_computing_smooth_strainlines}
+
+Per condition~\eqref{eq:numericalexistence3}, hyperbolic LCSs are composed
+of material curves tangent to the $\vct{\xi}_{1}(\vct{x}_{0})$ vector field,
+i.e., the eigenvector field associated with the smaller eigenvalue field
+$\lambda_{1}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field
+$\mtrx{C}_{t_{0}}^{t}(\vct{x}_{0})$. The tensor lines tangent to the
+$\vct{\xi}_{1}$-field will be referred to as \emph{strainlines}
+in the following, a term coined by \textcite{farazmand2012computing}. Aside from
+points within $\mathcal{U}$ which exhibit repeated eigenvalues and thus
+oriental discontinuities in both eigenvector fields, strainlines can be computed
+as smooth trajectories of the ordinary differential equation
+
+\begin{equation}
+    \label{eq:strainlinebasicode}
+\vct{r}'=\vct{\xi}_{1}(\vct{r}),\quad\vct{r}\in\mathcal{U},%
+    \quad\norm{\vct{\xi}_{1}(\vct{r})}=1.
+\end{equation}
+
+As pointed out by \textcite{onu2015lcstool}, the orientational discontinuities
+of the $\vct{\xi}_{1}$-field are removable, through careful monitoring and
+local reorientation. This process can be described in terms of three steps.
+First, the nearest neighboring grid points are identified. Then, oriental
+discontinuities inbetween the grid elements are identified by inspecting the
+inner product of the $\vct{\xi}_{1}$ vectors of adjacent grid points. Rotations
+exceeding $90\si{\degree}$ between pairs of neighboring vectors are labelled
+as oriental discontinuities, which are corrected prior to the linear
+interpolation by flipping the corresponding vectors by $180\si{\degree}$.
+In the end, linear interpolation is used within the grid element.
+
+Furthermore, should the $\vct{\xi}_{1}$-vector obtained from the local special-
+purpose linear interpolation outlined above prove to be rotated by more than
+$90\si{\degree}$ relative to the $\vct{\xi}_{1}$-vector from the previous level
+of pseudotime used in the numerical integration of system
+\eqref{eq:strainlinebasicode}, it would be flipped $180\si{\degree}$, by
+the same logic as in the special linear interpolation. The entire process
+of the special-purpose local linear interpolation method is outlined in
+figure \ref{fig:locallinearinterp}.
+
+\input{mainmatter/method/figures/linearspecialinterp.tex}
+
+So, in order to compute globally smooth strainlines, equation
+\eqref{eq:strainlinebasicode} is altered in the following way:
+
+\begin{equation}
+    \label{eq:strainlineode}
+    \vct{r}'(s)=\sgn\Big(\big\langle\vct{f}\big(\vct{r}(s)\big),%
+    \vct{r}'(s-\Delta)\big\rangle\Big)\ \vct{f}\big(\vct{r}'(s)\big),
+\end{equation}
+
+where $\vct{f}$ denotes the special-purpose local linear interpolation of
+the $\vct{\xi}_{1}$ field, as outlined above and in figure
+\ref{fig:locallinearinterp}, $\Delta$ is the numerical step length
+used in the numerical integration, while signum function is defined as
+
+\begin{equation}
+    \label{eq:signumfunction}
+\sgn(x)=\begin{cases}1,&\textnormal{for}\ x>0\\
+        0,&\textnormal{for}\ x=0\\
+        -1,&\textnormal{for}\ x<0\end{cases}
+\end{equation}
+
+\subsection{Extracting hyperbolic LCSs from strainlines}
+\label{sub:extracting_hyperbolic_lcss_from_strainlines}
+
+If a material line $\mathcal{M}(t_{0})$ lies within a strainline, it
+automatically fulfills condition~\eqref{eq:numericalexistence3}.
+The segments of the strainlines on which the remaining conditions
+\eqref{eq:numericalexistence1},~\eqref{eq:numericalexistence2} and
+\eqref{eq:numericalexistence4} are satisfied comprises the set of hyperbolic
+LCSs in the flow over time interval $[t_{0},t_{0}+T]$.
+\textcite{farazmand2012computing} suggest that, in order to identify this
+set of LCSs, one should start by identifying the subdomain
+$\mathcal{U}_{0}\subset\mathcal{U}$ on which the conditions
+\eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2} are satisfied,
+and then integrate the system given by equation~\eqref{eq:strainlineode} from
+initial conditions within $\mathcal{U}_{0}$ to construct strainlines.
+Generally, the integration proceeds until each strainline reaches the domain
+boundaries of $\mathcal{U}$, or reaches a degenerate point of the original
+$\vct{\xi}_{1}$ vector field.
+
+The degenerate points of the $\vct{\xi}_{1}$ vector field is, as the name
+implies, the set of points in $\mathcal{U}$ for which the eigenvalues
+$\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ are equal, leaving
+the strain eigenvector field $\vct{\xi}_{1}$ undiscernible. As a computational
+measure of this degeneracy, the scalar field defined as
+
+\begin{equation}
+    \label{eq:alphafield}
+    \alpha(\vct{x}_{0})=\Big(\dfrac{%
+                        \lambda_{2}(\vct{x}_{0})-\lambda_{1}(\vct{x}_{0})}%
+                    {\lambda_{2}(\vct{x}_{0})+\lambda_{1}(\vct{x}_{0})}\Big)^{2}
+\end{equation}
+
+was used. For points $\vct{x}$ which did not coincide with the grid points
+$\vct{x}_{i,j}$, the values $\lambda_{1}(\vct{x})$ and $\lambda_{2}(\vct{x})$
+were found by means of regular linear interpolation. Wherever the value of
+$\alpha(\vct{x})$ decreased below the predefined threshold of $10^{-6}$, the
+point $\vct{x}$ was flagged as degenerate, thus stopping the strainline
+integration.
+
+Frequently, only a segment of any given strainline will qualify as a hyperbolic
+LCS\@. Hence, the integration of any strainline can be stopped when it reaches
+a point at which one of the conditions~\eqref{eq:numericalexistence1} or
+\eqref{eq:numericalexistence2} fails. Doing so uncritically, however, opens up
+the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
+domain due to numerical noise. In order to avoid such unwanted failures,
+the approach of \textcite{farazmand2012computing} was followed, where
+strainline integration is only stopped if one of the LCS conditions fail
+repeatedly over the pre-set length $l_{f}=0.2$ of the strainline.
+
+Now, having located the strainline pieces which satisfy conditions
+\eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2}, the next
+step is imposing condition~\eqref{eq:numericalexistence4}, i.e., identifying the
+strainline segments that are local maxima of the averaged maximum strain. The
+suggested approach of \textcite{farazmand2012computing} is to define a set
+$\mathcal{L}$ of uniformly spaced horizontal and vertical lines within the
+domain $\mathcal{U}_{0}$, then comparing the values of
+$\overline{\lambda}_{2}(\gamma_{0})$, the average of $\lambda_{2}$ on the curve
+$\gamma_{0}$, at the neighboring intersections of all sufficiently close
+strainline segments along each of the lines in $\mathcal{L}$. Intersections
+between strainlines and the lines in $\mathcal{L}$ are to be found through
+linear interpolation.
+
+\input{mainmatter/method/figures/neighborlcs}
+
+Should a strainline segment prove to be a local maximizer along at least one
+of the lines in $\mathcal{L}$, the strainline segment is labelled as a LCS\@.
+Adjacent intersections who are separated by a distance larger than a preselect
+threshold are excluded from the local maximization process. The process is
+illustrated in figure~\ref{fig:neighborlcs}. What
+\textcite{farazmand2012computing} fail to do, however, is describing an
+objective and robust way of selecting the constituent lines of $\mathcal{L}$.

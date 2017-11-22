@@ -9,7 +9,7 @@ map was approximated by means of centered differences as
     \label{eq:auxjacobian}
     \vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}) \approx%
     \begin{pmatrix}\dfrac{\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{r})%
-        -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{l})}{2\delta{}x}, &
+        -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{l})}{2\delta{}x} &
         \dfrac{\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{u})%
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{l})}{2\delta{}y}
     \end{pmatrix}.
@@ -33,7 +33,7 @@ made by means of applying centered differencing to the main tracers, as
     \label{eq:mainjacobian}
     \widetilde{\vct{\nabla}\vct{F}}\hspace{0ex}_{t_{0}}^{t}(\vct{x}_{i,j}) \approx%
     \begin{pmatrix}\dfrac{\vct{F}_{t_{0}}^{t}(\vct{x}_{i+1,j})%
-        -\vct{F}_{t_{0}}^{t}(\vct{x}_{i-1,j})}{2\Delta{}x}, &
+        -\vct{F}_{t_{0}}^{t}(\vct{x}_{i-1,j})}{2\Delta{}x} &
         \dfrac{\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j+1})%
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j-1})}{2\Delta{}y}
     \end{pmatrix}.

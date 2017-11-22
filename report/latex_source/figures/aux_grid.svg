@@ -176,7 +176,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -460,49 +460,49 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="253.75487"
+       x="258.75488"
        y="268.82462"
        id="text15836"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan15838"
-         x="253.75487"
+         x="258.75488"
          y="268.82462"
          style="font-size:15px">$\mathbf{x}_{i,j}^{u}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text15980"
-       y="413.82462"
-       x="253.75487"
+       y="408.82443"
+       x="258.75488"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:15px"
-         y="413.82462"
-         x="253.75487"
+         y="408.82443"
+         x="258.75488"
          id="tspan15982"
          sodipodi:role="line">$\mathbf{x}_{i,j}^{l}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text15984"
        y="318.82462"
-       x="253.75487"
+       x="258.75488"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:15px"
          y="318.82462"
-         x="253.75487"
+         x="258.75488"
          id="tspan15986"
          sodipodi:role="line">$\mathbf{x}_{i,j}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="153.75487"
+       x="158.7549"
        y="318.82462"
        id="text15988"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan15990"
-         x="153.75487"
+         x="158.7549"
          y="318.82462"
          style="font-size:15px">$\mathbf{x}_{i,j}^{l}$</tspan></text>
     <text
@@ -565,25 +565,25 @@
        sodipodi:linespacing="125%"
        id="text17810"
        y="422.1196"
-       x="336.35861"
+       x="338.85864"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:13.75px"
          y="422.1196"
-         x="336.35861"
+         x="338.85864"
          id="tspan17812"
          sodipodi:role="line">$\delta{x}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="418.85864"
-       y="367.11993"
+       y="365.1199"
        id="text17814"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan17816"
          x="418.85864"
-         y="367.11993"
+         y="365.1199"
          style="font-size:13.75px">$\delta{y}$</tspan></text>
   </g>
 </svg>
