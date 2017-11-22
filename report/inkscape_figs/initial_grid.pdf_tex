@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{389.21662578bp}%
+    \setlength{\unitlength}{384.35340221bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,15 +48,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.62409121)%
+  \begin{picture}(1,0.63198778)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{initial_grid.pdf}}%
-    \put(0.22867452,0.00453134){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x=0$}}}%
-    \put(0.72197312,0.00453134){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x=2$}}}%
-    \put(-0.0025592,0.19792602){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y=0$}}}%
-    \put(-0.0025592,0.4445753){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y=1$}}}%
+    \put(0.21803868,0.00458869){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x=0$}}}%
+    \put(0.71757895,0.00458869){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x=2$}}}%
+    \put(-0.0129987,0.2004304){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y=0$}}}%
+    \put(-0.0129987,0.45020051){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y=1$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{initial_grid.pdf}}%
-    \put(0.4599082,0.02277248){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{}x$}}}%
+    \put(0.4542796,0.01265425){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{}x$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{initial_grid.pdf}}%
-    \put(0.9223756,0.35496349){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{}y$}}}%
+    \put(0.92139335,0.35763618){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{}y$}}}%
   \end{picture}%
 \endgroup%

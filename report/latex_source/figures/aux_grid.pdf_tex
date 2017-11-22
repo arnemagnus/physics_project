@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{342.73468258bp}%
+    \setlength{\unitlength}{338.73466432bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,17 +48,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.6114604)%
+  \begin{picture}(1,0.59506361)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{aux_grid.pdf}}%
-    \put(0.34721878,0.50300931){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{u}$}}}%
-    \put(0.34721878,0.16455509){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
-    \put(0.34721878,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}$}}}%
-    \put(0.11380208,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{l}$}}}%
-    \put(0.72068551,0.38630096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{j}^{r}$}}}%
+    \put(0.37493623,0.48533185){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{u}$}}}%
+    \put(0.37493623,0.15469001){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{l}$}}}%
+    \put(0.37493623,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}$}}}%
+    \put(0.13876321,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{l}$}}}%
+    \put(0.72919581,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{r}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{aux_grid.pdf}}%
-    \put(0.65090269,0.00523423){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{x}$}}}%
-    \put(0.95434441,0.2082153){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{y}$}}}%
-    \put(0.55753601,0.13352195){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{x}$}}}%
-    \put(0.75594021,0.26190114){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{y}$}}}%
+    \put(0.65858895,0.005296){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{x}$}}}%
+    \put(0.95380519,0.1870567){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Delta{y}$}}}%
+    \put(0.56411973,0.12329041){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{x}$}}}%
+    \put(0.75305817,0.25790833){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\delta{y}$}}}%
   \end{picture}%
 \endgroup%

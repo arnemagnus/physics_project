@@ -32,25 +32,26 @@ In order to increase the resolution of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
 Jacobian of the flow map, cf.\ equation \eqref{eq:cauchygreen}. This was done
 by advecting a set of auxiliary tracer points surrounding each main point. To
-each tracer point $\vct{x}_{j}=(x_{j},y_{j})$, neighboring points defined as
+each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring points defined as
 
 \begin{equation}
     \label{eq:auxgrid}
     \begin{gathered}
-        \vct{x}_{j}^{r} = (x_{j}+\delta{x},y_{j}),%
-                \quad\vct{x}_{j}^{l} = (x_{j}-\delta{x},y_{j})\\
-                \vct{x}_{j}^{u} = (x_{j},y_{j}+\delta{y}),%
-                \quad\vct{x}_{j}^{l} = (x_{j},y_{j}-\delta{y})\\
+        \vct{x}_{i,j}^{r} = (x_{i}+\delta{x},y_{j}),%
+                \quad\vct{x}_{i,j}^{l} = (x_{i}-\delta{x},y_{j})\\
+                \vct{x}_{i,j}^{u} = (x_{i},y_{j}+\delta{y}),%
+                \quad\vct{x}_{i,j}^{l} = (x_{i},y_{j}-\delta{y})\\
 \end{gathered}
 \end{equation}
 
-where $\delta{x}$ and $\delta{y}$ are increments smaller than the grid spacings
-$\Delta{x}\simeq\Delta{y}$, were assigned. Even though this effectively means
+were assigned, where $\delta{x}$ and $\delta{y}$ are increments smaller than
+the grid spacings $\Delta{x}\simeq\Delta{y}$. Even though this effectively means
 that five times as many tracers have to be advected, the resulting accuracy in
 computing the Jacobian of the flow map, by means of the auxiliary tracers, is
-determined by the independent variables $\delta{x}$ and $\delta{y}$,
-theoretically allowing for arbitrary precision. The concept of the auxiliary
-tracers is illustrated in figure~\ref{fig:auxiliarygrid}.
+determined by the independent variables $\delta{x}$ and $\delta{y}$. This, in
+principle, allows for much higher precision than what would be obtained by
+simply advecting five times as many \emph{equidistant} tracers. The concept
+of the auxiliary tracers is illustrated in figure~\ref{fig:auxiliarygrid}.
 
 \input{mainmatter/method/figures/auxiliarygridfigure.tex}
 

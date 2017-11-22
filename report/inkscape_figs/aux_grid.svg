@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="120.90918mm"
-   height="73.931175mm"
-   viewBox="0 0 428.41835 261.96086"
+   width="119.49806mm"
+   height="71.108948mm"
+   viewBox="0 0 423.41833 251.96084"
    id="svg15084"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -154,8 +154,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="277.50146"
-     inkscape:cy="89.220483"
+     inkscape:cx="277.50144"
+     inkscape:cy="79.220474"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -176,7 +176,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -184,12 +184,12 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="btm"
-     transform="translate(-99.999999,-222.36218)" />
+     transform="translate(-100.00001,-222.36218)" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-99.999999,-222.36218)">
+     transform="translate(-100.00001,-222.36218)">
     <g
        id="g15681"
        transform="matrix(0,-0.46666667,1,0,-171.94032,345.69553)">
@@ -460,51 +460,51 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="248.75488"
+       x="258.75488"
        y="268.82462"
        id="text15836"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan15838"
-         x="248.75488"
+         x="258.75488"
          y="268.82462"
-         style="font-size:15px">$\mathbf{x}_{j}^{u}$</tspan></text>
+         style="font-size:15px">$\mathbf{x}_{i,j}^{u}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text15980"
-       y="413.82462"
-       x="248.75488"
+       y="408.82443"
+       x="258.75488"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:15px"
-         y="413.82462"
-         x="248.75488"
+         y="408.82443"
+         x="258.75488"
          id="tspan15982"
-         sodipodi:role="line">$\mathbf{x}_{j}^{l}$</tspan></text>
+         sodipodi:role="line">$\mathbf{x}_{i,j}^{l}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text15984"
        y="318.82462"
-       x="248.75488"
+       x="258.75488"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:15px"
          y="318.82462"
-         x="248.75488"
+         x="258.75488"
          id="tspan15986"
-         sodipodi:role="line">$\mathbf{x}_{j}$</tspan></text>
+         sodipodi:role="line">$\mathbf{x}_{i,j}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="148.75488"
+       x="158.7549"
        y="318.82462"
        id="text15988"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan15990"
-         x="148.75488"
+         x="158.7549"
          y="318.82462"
-         style="font-size:15px">$\mathbf{x}_{j}^{l}$</tspan></text>
+         style="font-size:15px">$\mathbf{x}_{i,j}^{l}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -516,7 +516,7 @@
          id="tspan15994"
          x="408.75488"
          y="318.82462"
-         style="font-size:15px">$\mathbf{x}_{j}^{r}$</tspan></text>
+         style="font-size:15px">$\mathbf{x}_{i,j}^{r}$</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.99267393px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#Arrow1Lend)"
        d="m 296.80669,458.58634 176.38687,0"
@@ -541,49 +541,49 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="378.85864"
-       y="482.0806"
+       y="472.0806"
        id="text17754"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan17756"
          x="378.85864"
-         y="482.0806"
+         y="472.0806"
          style="font-size:13.75px">$\Delta{x}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text17770"
        y="395.11978"
-       x="508.85864"
+       x="503.85861"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:13.75px"
          y="395.11978"
-         x="508.85864"
+         x="503.85861"
          id="tspan17772"
          sodipodi:role="line">$\Delta{y}$</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text17810"
-       y="427.11978"
+       y="422.1196"
        x="338.85864"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:13.75px"
-         y="427.11978"
+         y="422.1196"
          x="338.85864"
          id="tspan17812"
          sodipodi:role="line">$\delta{x}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="423.85864"
-       y="372.11978"
+       x="418.85864"
+       y="365.1199"
        id="text17814"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan17816"
-         x="423.85864"
-         y="372.11978"
+         x="418.85864"
+         y="365.1199"
          style="font-size:13.75px">$\delta{y}$</tspan></text>
   </g>
 </svg>
