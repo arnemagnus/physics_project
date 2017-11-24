@@ -20,7 +20,7 @@
 %%   \import{<path to file>}{<filename>.pdf_tex}
 %% Alternatively, one can specify
 %%   \graphicspath{{<path to file>/}}
-%%
+%% 
 %% For more information, please see info/svg-inkscape on CTAN:
 %%   http://tug.ctan.org/tex-archive/info/svg-inkscape
 %%
@@ -50,7 +50,7 @@
   \makeatother%
   \begin{picture}(1,0.47796237)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{neighborlcs.pdf}}%
-    \put(-0.00313568,0.06027477){\color[rgb]{1,0.38824,0.27843}\makebox(0,0)[lb]{\smash{$\gamma_0$}}}%
+    \put(-0.00313568,0.06027477){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\gamma_0$}}}%
     \put(0.04986181,0.4343694){\color[rgb]{0.2745098,0.50980392,0.70588235}\makebox(0,0)[lb]{\smash{$\mathcal{L}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{neighborlcs.pdf}}%
   \end{picture}%

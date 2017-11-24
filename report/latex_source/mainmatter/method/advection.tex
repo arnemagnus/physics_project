@@ -2,14 +2,15 @@
 \label{sec:advecting_a_set_of_initial_conditions}
 
 The variational model is based upon the advection of non-interacting tracers,
-cf. \cref{sec:typeofflow}, by the velocity field defined in equation
-\eqref{eq:doublegyre}. The system has no known analytical solution for the
-tracer trajectories. Thus, it must be solved numerically, by means of some
-numerical integration method, e.g.\ a Runge-Kutta method, cf.\
-\cref{sub:the_runge_kutta_family_of_numerical_methods}. With the main focus
-of this project being the dependence on LCSs on the chosen integration method,
-the advection was performed using all of the numerical integrators introduced
-in \cref{sub:the_runge_kutta_methods_under_consideration}.
+which is described in \cref{sec:typeofflow}, by the velocity field defined in
+equation \eqref{eq:doublegyre}. The system has no known analytical solution for
+the tracer trajectories. Thus, it must be solved numerically, by means of some
+numerical integration method, e.g.\ a Runge-Kutta method, some of which are
+outlined in~\cref{sub:the_runge_kutta_family_of_numerical_methods}. With the
+main focus of this project being the dependence on LCSs on the chosen
+integration method, the advection was performed using all of the numerical
+integrators introduced in
+\cref{sub:the_runge_kutta_methods_under_consideration}.
 
 \subsection{Generating a set of initial conditions}
 \label{sub:generating_a_set_of_initial_conditions}
@@ -24,15 +25,16 @@ ensure that the dynamics at the domain boundaries were included in the analysis
 to follow. The extended grid thus had a total of $1004\times504$ grid points.
 The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
 
-\vfill{}
-
+\vspace{\fill}
 \input{mainmatter/method/figures/initialgridfigure.tex}
+
 
 In order to increase the resolution of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
-Jacobian of the flow map, cf.\ equation \eqref{eq:cauchygreen}. This was done
-by advecting a set of auxiliary tracer points surrounding each main point. To
-each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring points defined as
+Jacobian of the flow map, as can be seen from equation \eqref{eq:cauchygreen}.
+This was done by advecting a set of auxiliary tracer points surrounding each
+main point. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
+points defined as
 
 \begin{equation}
     \label{eq:auxgrid}
@@ -63,15 +65,15 @@ floating-point number is of the order $10^{-16}$. When decreasing the
 auxiliary grid spacing, the increase in precision is quickly offset by the fact
 that one automatically gets allocated a smaller number of decimal digits with
 which one calculate the discrete approximation of the derivatives involved
-in the Jacobian. This is due to the double gyre velocity field, cf.\
-equation~\eqref{eq:doublegyre}, being well-behaved, leading most tracers which
-are initially close to follow very similar trajectories, often ending up
-with a separation distance comparable to the initial offset. For this reason,
-the auxiliary grid spacing $\delta{x}=\delta{y}=10^{-5}$ was chosen ---
-three orders of magnitude smaller than the original grid spacing, ensuring that
-the derivatives in the Jacobian are far more well-resolved than for the main
-tracera, while also leaving approximately $10$ decimal digits for which there
-can be a difference in the final positions of the auxiliary tracers.
+in the Jacobian. This is due to the double gyre velocity field, being
+reasonably well-behaved, leading most tracers which are initially close to
+follow very similar trajectories, often ending up with a separation distance
+comparable to the initial offset. For this reason, the auxiliary grid spacing
+$\delta{x}=\delta{y}=10^{-5}$ was chosen --- three orders of magnitude smaller
+than the original grid spacing, ensuring that the derivatives in the Jacobian
+are far more well-resolved than for the main tracers, while also leaving
+approximately $10$ decimal digits for which there can be a difference in the
+final positions of the auxiliary tracers.
 
 \subsection{On the choice of numerical step lengths and tolerance levels}
 \label{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}
@@ -87,7 +89,7 @@ length of $10^{-5}$ is of order $10^{-10}$.
 
 The least accurate of the fixed stepsize integrators integrators under
 consideration, the Euler method, is \nth{1} order accurate globally, meaning
-that its local error is of \nth{2} order, cf.\
+that its local error is of \nth{2} order, per
 \cref{def:rungekuttaorder}. Thus, we expect that the local error of the Euler
 method, for a step length of $10^{-5}$, is of order $10^{-10}$, i.e., the
 same order as the accumulated floating-point errors. Reducing the time step
@@ -107,10 +109,10 @@ between the levels $10^{-10}$ and $10^{-11}$, while the Dormand-Prince 8(7)
 integrator held its ground until a tolerance level of about $10^{-13}$. For this
 reason, tolerance levels of $10^{-1}$ through to $10^{-10}$ were used for the
 adaptive stepsize integrators. Furthermore, as no analytical solution exists
-for the double gyre system, cf.\ equation~\eqref{eq:doublegyre}, a numerical
-solution was needed as the reference. Following the discussion above, the
-solution obtained via the Dormand-Prince 8(7) integrator with a numerical
-tolerance level of $10^{-12}$ was used as the benchmark.
+for the double gyre system, a numerical solution is needed as the reference.
+Following the discussion above, the solution obtained via the Dormand-Prince
+8(7) integrator with a numerical tolerance level of $10^{-12}$ was used for
+this purpose.
 
 With the addition of the aforementioned auxiliary tracers, the total number
 of tracers which were advected became of order $2.5$ million. In order to
@@ -120,3 +122,4 @@ crucial for this project --- for example, advection using the Euler method
 and a time step of $10^{-5}$ required in excess of $1000$ computational
 walltime hours; an insurmountable feat for most computers, including the
 author's own personal laptop.
+\vspace{\fill}

@@ -77,10 +77,10 @@ corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
 \end{equation}
 
 where, for the sake of notational transparency, the dependence of $\lambda_{i}$
-and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. The geometrical
+and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. The geometric
 interpretation of equation~\eqref{eq:cauchygreencharacteristics} is that
 a fluid element undergoes the most stretching along the $\vct{\xi}_{2}$ axis,
-and the least along the $\vct{\xi}_{1}$ axis. This is illustrated in figure
+and the least along the $\vct{\xi}_{1}$ axis. This concept is shown in figure
 \ref{fig:stretch_and_strain}.
 
 \input{mainmatter/theory/figures/stretch_and_strain.tex}
@@ -88,9 +88,8 @@ and the least along the $\vct{\xi}_{1}$ axis. This is illustrated in figure
 
 
 Because the stretch factors along the $\vct{\xi}_{2}$ and $\vct{\xi}_{1}$ axes
-are given by the square root of the corresponding eigenvalues, cf.\
-equation~\eqref{eq:cauchygreencharacteristics}, for incompressible flow, the
-eigenvalues satisfy
+are given by the square root of the corresponding eigenvalues, for
+incompressible flow, the eigenvalues satisfy
 
 \begin{equation}
     \label{eq:cauchygreenincomprlambda}
@@ -138,7 +137,7 @@ are summarized in
 \end{defn}
 
 A \emph{material line} is a smooth curve $\mathcal{M}(t_{0})$ at time $t_{0}$,
-which is advected by the flow map, cf.\ equation~\eqref{eq:flowmap}, into
+which is advected by the flow map, given by equation~\eqref{eq:flowmap}, into
 the dynamic material line
 $\mathcal{M}(t)=\vct{F}_{t_{0}}^{t}\mathcal{M}(t_{0})$. The required
 \emph{compactness} of the material line segment signifies that, in some sense,
@@ -147,8 +146,8 @@ it must be topologically well-behaved. That the material line is
 rather than attracted to, the material line. Lastly, requiring that the
 \emph{normal repulsion rate} is greater than the
 \emph{tangential repulsion rate} means that nearby trajectories are in fact
-driven away from the material line, rather than being stretched \emph{on}
-it, due to shear stress.
+driven away from the material line, rather than being stretched
+\emph{along with} it, due to shear stress.
 \\
 \begin{defn}
     \label{def:repellinglcs}
@@ -177,7 +176,6 @@ intervals \parencite{farazmand2012computing}.
 
 For two-dimensional flow, the above definitions can be summarized as a set of
 mathematical existence criteria, based on the Cauchy-Green strain tensor,
-cf.\ equation~\eqref{eq:cauchygreen}
 \parencite{haller2010variational,farazmand2011erratum}. These are given in
 \cref{thm:lcsexistence}:\\
 
@@ -231,7 +229,7 @@ which, for our two-dimensional flow, reduces to
 \end{equation}
 
 Condition~\eqref{eq:lcsexistence1} ensures that the normal repulsion rate is
-larger than the tangential stretch due to shear strain along the LCS, cf.
+larger than the tangential stretch due to shear strain along the LCS, as per
 \cref{def:normalrepellence}. Conditions~\eqref{eq:lcsexistence3} and
 \eqref{eq:lcsexistence4} suffice to ensure that the normal repulsion rate
 attains a local extremum along the LCS, relative to all nearby material lines.
@@ -247,9 +245,11 @@ are separated in a given time interval. Mathematically, Lyapunov exponents
 quantify the asymptotic divergence or convergence of trajectories of
 tracers which start out infinitesimally close to each other
 \parencite[pp.328--330]{strogatz2014nonlinear}. The FTLE field
-is intrinsically linked to the Cauchy-Green strain tensor, cf.\ equation
-\eqref{eq:cauchygreen}. When a two-dimensional system is evolved from time
-$t_{0}$ to $t_{0}+T$, the FTLE field is defined as
+is intrinsically linked to the Cauchy-Green strain tensor. When a
+two-dimensional system is evolved from time $t_{0}$ to $t_{0}+T$, the FTLE field
+is defined as
+
+\vspace{\fill}
 
 \begin{equation}
     \label{eq:ftledef}
@@ -257,11 +257,10 @@ $t_{0}$ to $t_{0}+T$, the FTLE field is defined as
 \end{equation}
 
 where $\lambda_{2}(\vct{x}_{0})$ is the largest eigenvalue of the Cauchy-Green
-strain tensor, cf.\ equation~\eqref{eq:cauchygreencharacteristics}. The
-absolute value of the integration time $T$ is taken because one generally can
-consider the evolution of a system in either temporal direction. As per
-\cref{def:attractinglcs}, attracting LCSs are identified as repelling LCSs
-in backwards time.
+strain tensor. The absolute value of the integration time $T$ is taken because
+one generally can consider the evolution of a system in either temporal
+direction. As per \cref{def:attractinglcs}, attracting LCSs are identified as
+repelling LCSs in backwards time.
 
 \textcite{shadden2005definition} in fact \emph{define} hyperbolic LCSs as ridges
 of the FTLE field. By \emph{ridges}, they mean gradient lines which are

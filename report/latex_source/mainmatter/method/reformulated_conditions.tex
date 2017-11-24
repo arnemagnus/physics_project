@@ -6,6 +6,8 @@ zeros of the inner product in equation~\eqref{eq:lcsexistence4} of
 \cref{thm:lcsexistence} to be numerically sensitive. For this reason, they
 suggest a reformulated set of conditions which make for more robust numerical
 implementation, as follows:
+\vspace{\fill}
+
 
 \begin{subequations}
     \label{eq:numericalexistence}
@@ -39,8 +41,8 @@ due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
 $\vct{\xi}_{2}(\vct{x}_{0})$, although the form~\eqref{eq:numericalexistence3}
 turns out to be more advantageous for use in computations.
 
-Because of the artificial extension of the main computational grid, cf.\
-\cref{sub:generating_a_set_of_initial_conditions}, the Cauchy-Green strain
+Because of the artificial extension of the main computational grid, as outlined
+in \cref{sub:generating_a_set_of_initial_conditions}, the Cauchy-Green strain
 tensor could be calculated for the innermost of the padded rows and columns
 by means of the same centered difference methods as described in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}. Thus, a similar
@@ -130,6 +132,20 @@ Generally, the integration proceeds until each strainline reaches the domain
 boundaries of $\mathcal{U}$, or reaches a degenerate point of the original
 $\vct{\xi}_{1}$ vector field.
 
+Using all of the points in the $\mathcal{U}_{0}$ domain would inevitably
+involve computing a lot of strainlines several times over. In order to
+reduce the number of redundant calculations, the set of considered strain
+initial conditions were reduced, with the approach suggested by
+\textcite{farazmand2012computing}. In particular, the set $\mathcal{U}_{0}$
+was reduced to its intersections with four horizontal and four vertical lines.
+The set $\mathcal{U}_{0}$ for the double gyre system, as well as the
+aforementioned intersections, are illustrated in figure~\ref{fig:u0_domain}.
+The reduced set of strain initial conditions consists of 1470 grid points, which
+is two orders of magnitude less than the total number of points in
+$\mathcal{U}_{0}$.
+
+\input{mainmatter/method/figures/u0_domain.tex}
+
 The degenerate points of the $\vct{\xi}_{1}$ vector field is, as the name
 implies, the set of points in $\mathcal{U}$ for which the eigenvalues
 $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ are equal, leaving
@@ -150,6 +166,30 @@ $\alpha(\vct{x})$ decreased below the predefined threshold of $10^{-6}$, the
 point $\vct{x}$ was flagged as degenerate, thus stopping the strainline
 integration.
 
+Because there is no a priori way of knowing that the selected strain initial
+conditions, shown in figure~\ref{fig:u0_domain}, are not in fact located
+somewhere in the middle of a strainline, two strainline segments were computed
+and merged for each initial condition. One moving forwards in pseudotime, and
+one moving  backwards, i.e., using the $180\si{\degree}$ rotated
+$\vct{\xi}_{1}$ vector field in the system given by equation
+\eqref{eq:strainlineode}. This ensured that no strainline was cut prematurely,
+purely as a consequence of the reduced number of strain initial conditions.
+Furthermore, the classical Runge-Kutta method with a pseudotime step length
+$\Delta=10^{-3}$ was used in order to compute all of the strainlines,
+regardless of the integration method used in the advection of the tracers,
+described in \cref{sec:advecting_a_set_of_initial_conditions}.
+This choice was made because this project is centered around the dependence
+of the choice of integration method in the tracer advection. The step length
+was chosen by similar logic as presented in
+\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
+however, there is no way of knowing in advance, how long (in terms of numerical
+integration steps) any given strainline will be. For this reason, it is
+impossible to estimate the accumulated floating-point arithmetic errors in
+advance. Regardless, we expect diminishing returns in terms of numerical
+accuracy by lowering the step length even further, because the accuracy is
+always bounded from below by the inherent accuracy of the double-precision
+floating-point numbers.
+
 Frequently, only a segment of any given strainline will qualify as a hyperbolic
 LCS\@. Hence, the integration of any strainline can be stopped when it reaches
 a point at which one of the conditions~\eqref{eq:numericalexistence1} or
@@ -157,23 +197,16 @@ a point at which one of the conditions~\eqref{eq:numericalexistence1} or
 the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
 domain due to numerical noise. In order to avoid such unwanted failures,
 the approach of \textcite{farazmand2012computing} was followed, where
-strainline integration is only stopped if one of the LCS conditions fail
-repeatedly over the pre-set length $l_{f}=0.2$ of the strainline.
+strainline integration is only stopped if one of the aforementioned LCS
+conditions fail repeatedly over the pre-set length $l_{f}=0.2$ of the
+strainline. Furthermore, the strainlines which were stopped because
+of continious failure of LCS conditions were cut such that their \emph{new}
+endpoints in either direction, as seen from the strain initial condition, were
+the last point on which the \emph{original} strainline satisfied the
+aforementioned conditions.
 
-Using all of the points in the $\mathcal{U}_{0}$ domain would inevitably
-involve computing a lot of strainlines several times over. In order to
-reduce the number of redundant calculations, the set of considered strain
-initial conditions were reduced, with the approach suggested by
-\textcite{farazmand2012computing}. In particular, the set $\mathcal{U}_{0}$
-was reduced to its intersections with four horizontal and four vertical lines.
-The set $\mathcal{U}_{0}$ for the double gyre system, cf.\ equation
-\eqref{eq:doublegyre}, as well as the aforementioned intersections, are
-illustrated in figure~\ref{fig:u0_domain}. The reduced set of strain initial
-conditions consists of 1470 grid points, which is two orders of magnitude
-less than the total number of points in $\mathcal{U}_{0}$.
-
-
-\input{mainmatter/method/figures/u0_domain.tex}
+\subsubsection{Identifying strainlines which are local strain maximizers}
+\label{ssub:identifying_strainlines_which_are_local_strain_maximizers}
 
 
 Now, having located the strainline pieces which satisfy conditions
@@ -195,4 +228,51 @@ by means of linear interpolation. Should a strainline segment prove to be a
 local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
 segment is labelled as a LCS\@. Adjacent intersections who are separated by a
 distance larger than a preselect threshold are excluded from the local
-maximization process, as illustrated in figure~\ref{fig:neighborlcs}.
+maximization process, as indicated in figure~\ref{fig:neighborlcs}. Short LCSs
+are expected to have negligible impact on the overall flow pattern. In order to
+filter out such miniscule structures, any strainline segment which was shorter
+than the pre-set small length $l_{\mathrm{min}}=1$ were discarded as LCS
+candidates, as suggested in \textcite{farazmand2012computing}.
+
+One shortcoming in the work of \textcite{farazmand2012computing}, is that
+they do not provide a general, robust way of selecting the lines in
+$\mathcal{L}$. However, a robust way of identifying strainlines
+which are local strain maximizers seemingly has not yet been unambigously
+determined in the literature. For this reason,
+\citeauthor{farazmand2012computing}'s approach was used, with a set of lines
+determined by studying the domain $\mathcal{U}_{0}$ (as shown in
+figure~\ref{fig:u0_domain}) in relation
+to the $\lambda_{2}(\vct{x}_{0})$ distribution, as well as the FTLE field
+(described in \cref{sec:ftle_fields_as_predictors_for_lcss}), where the latter
+two are shown in figure~\ref{fig:ftle_l2}.
+
+By inspection of figure~\ref{fig:u0_domain}, we expect there to exist
+strainline segments in the upper right part of the computational domain.
+So, if any of the lines in $\mathcal{L}$ pass through this region, we
+must expect to find one or more strainline segments which are labelled as
+LCSs. From figure~\ref{fig:ftle_l2}, one may infer that the local strain in the
+region is relatively small, seeing as there is practically no discernible
+structure there at all in the $\lambda_{2}(\vct{x}_{0})$ distribution, whereas
+the FTLE values there are also very small. From this, it follows that any
+hypothetical LCSs located in this region will have a relatively small impact on
+the overall flow in the system, at least compared with other hypothetical LCSs
+which lie on, or near, the recognizable ridges. The same logic is practically
+applicable on the entirety of the computational domain.
+
+In order to eliminate the weakest among the LCSs, it is thus clear that the
+lines in $\mathcal{L}$ must be selected carefully. Here, we used the approach
+of generating the set $\mathcal{L}$ in order to maximize the number of
+intersections with the computed strainlines, using as few lines as possible.
+Using two vertical and horizontal lines, given by $x=0.15$, $x=0.15$, $y=0.05$
+and $y=0.95$, respectively, proved sufficient in order to accurately reproduce
+the same LCS as found in \textcite{farazmand2012computing}. We can only assume
+that \citeauthor{farazmand2012computing} must have done something similar,
+as they have been unavailable for communication. The aforementioned LCS is
+presented in~\cref{cha:results}, together with the approximations found by means
+of the different integrators mentioned in
+\cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
+mentioned in
+\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
+
+\vspace{\fill}%fill{}
+\input{mainmatter/method/figures/ftle_l2.tex}
