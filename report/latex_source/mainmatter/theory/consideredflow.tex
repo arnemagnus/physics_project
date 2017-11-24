@@ -77,9 +77,20 @@ corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
 \end{equation}
 
 where, for the sake of notational transparency, the dependence of $\lambda_{i}$
-and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. As stated
-by \textcite{farazmand2012computing}, for incompressible flow, the eigenvalues
-satisfy
+and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. The geometrical
+interpretation of equation~\eqref{eq:cauchygreencharacteristics} is that
+a fluid element undergoes the most stretching along the $\vct{\xi}_{2}$ axis,
+and the least along the $\vct{\xi}_{1}$ axis. This is illustrated in figure
+\ref{fig:stretch_and_strain}.
+
+\input{mainmatter/theory/figures/stretch_and_strain.tex}
+
+
+
+Because the stretch factors along the $\vct{\xi}_{2}$ and $\vct{\xi}_{1}$ axes
+are given by the square root of the corresponding eigenvalues, cf.\
+equation~\eqref{eq:cauchygreencharacteristics}, for incompressible flow, the
+eigenvalues satisfy
 
 \begin{equation}
     \label{eq:cauchygreenincomprlambda}
@@ -89,8 +100,8 @@ satisfy
 
 
 where, for our case, incompressibility is equivalent to the velocity field
-$\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$),
-because the tracer particles are massless.
+$\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
+This is due to the tracer particles begin massless, per definiton.
 
 \section{Definition of LCSs for two-dimensional flows}
 \label{sec:definition_of_lcss_for_two-dimensional_flow}
@@ -235,8 +246,8 @@ a measure of the extent to which particles which start out close to eachother,
 are separated in a given time interval. Mathematically, Lyapunov exponents
 quantify the asymptotic divergence or convergence of trajectories of
 tracers which start out infinitesimally close to each other
-\parencite[INSERT PAGE REFERENCE HERE ASAP]{strogatz2014nonlinear}. The FTLE
-are intrinsically linked to the Cauchy-Green strain tensor, cf.\ equation
+\parencite[pp.328--330]{strogatz2014nonlinear}. The FTLE field
+is intrinsically linked to the Cauchy-Green strain tensor, cf.\ equation
 \eqref{eq:cauchygreen}. When a two-dimensional system is evolved from time
 $t_{0}$ to $t_{0}+T$, the FTLE field is defined as
 
