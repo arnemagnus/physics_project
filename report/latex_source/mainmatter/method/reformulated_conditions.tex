@@ -160,6 +160,22 @@ the approach of \textcite{farazmand2012computing} was followed, where
 strainline integration is only stopped if one of the LCS conditions fail
 repeatedly over the pre-set length $l_{f}=0.2$ of the strainline.
 
+Using all of the points in the $\mathcal{U}_{0}$ domain would inevitably
+involve computing a lot of strainlines several times over. In order to
+reduce the number of redundant calculations, the set of considered strain
+initial conditions were reduced, with the approach suggested by
+\textcite{farazmand2012computing}. In particular, the set $\mathcal{U}_{0}$
+was reduced to its intersections with four horizontal and four vertical lines.
+The set $\mathcal{U}_{0}$ for the double gyre system, cf.\ equation
+\eqref{eq:doublegyre}, as well as the aforementioned intersections, are
+illustrated in figure~\ref{fig:u0_domain}. The reduced set of strain initial
+conditions consists of 1470 grid points, which is two orders of magnitude
+less than the total number of points in $\mathcal{U}_{0}$.
+
+
+\input{mainmatter/method/figures/u0_domain.tex}
+
+
 Now, having located the strainline pieces which satisfy conditions
 \eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2}, the next
 step is imposing condition~\eqref{eq:numericalexistence4}, i.e., identifying the
