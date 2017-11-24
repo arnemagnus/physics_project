@@ -169,16 +169,14 @@ $\mathcal{L}$ of uniformly spaced horizontal and vertical lines within the
 domain $\mathcal{U}_{0}$, then comparing the values of
 $\overline{\lambda}_{2}(\gamma_{0})$, the average of $\lambda_{2}$ on the curve
 $\gamma_{0}$, at the neighboring intersections of all sufficiently close
-strainline segments along each of the lines in $\mathcal{L}$. Intersections
-between strainlines and the lines in $\mathcal{L}$ are to be found through
-linear interpolation.
+strainline segments along each of the lines in $\mathcal{L}$. The process is
+illustrated in figure~\ref{fig:neighborlcs}.
 
 \input{mainmatter/method/figures/neighborlcs}
 
-Should a strainline segment prove to be a local maximizer along at least one
-of the lines in $\mathcal{L}$, the strainline segment is labelled as a LCS\@.
-Adjacent intersections who are separated by a distance larger than a preselect
-threshold are excluded from the local maximization process. The process is
-illustrated in figure~\ref{fig:neighborlcs}. What
-\textcite{farazmand2012computing} fail to do, however, is describing an
-objective and robust way of selecting the constituent lines of $\mathcal{L}$.
+Intersections between strainlines and the lines in $\mathcal{L}$ are found
+by means of linear interpolation. Should a strainline segment prove to be a
+local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
+segment is labelled as a LCS\@. Adjacent intersections who are separated by a
+distance larger than a preselect threshold are excluded from the local
+maximization process, as illustrated in figure~\ref{fig:neighborlcs}.
