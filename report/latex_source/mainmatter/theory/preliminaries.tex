@@ -20,13 +20,12 @@ equation~\eqref{eq:ivpsystem} is replaced by a family of equations
 \label{eq:ivpsystemhigherdimensions}
 \begin{gathered}
     \dot{x}_{i}(t) = f_{i}\big(t,x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big),\quad
-    x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n \\
-    \vct{x}(t) = \big(x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big)
+    x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n. \\
 \end{gathered}
 \end{equation}
 
 The system if nonlinear if the function $f$ in equation~\eqref{eq:ivpsystem},
-alternatively, if at least one of the functions $f_{i}$ in equation
+or, if at least one of the functions $f_{i}$ in equation
 \eqref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
 arguments.
 
@@ -35,7 +34,7 @@ arguments.
 
 For nonlinear systems, analytical solutions frequently do not exist. Thus, such
 systems are often analyzed by means of numerical methods. In numerical analysis,
-the Runge-Kutta family of methods are a frequently used collection of implicit
+the Runge-Kutta family of methods are a popular collection of implicit
 and explicit iterative methods, used in temporal discretization in order to
 obtain numerical approximations of the \emph{true} solutions of systems like
 \eqref{eq:ivpsystem}. The German mathematicians C. Runge and M. W. Kutta
@@ -236,12 +235,12 @@ numerically (i.e., of the aforementioned singlestep methods, the classical
 Runge-Kutta method has the largest numerical stability domain). Another is that,
 as mentioned previously, for $p\geq5$, no explicit Runge-Kutta method of order
 $p$ with $s=p$ stages exist
-\parencite[p.173]{hairer1993solving} -- which means that
+\parencite[p.173]{hairer1993solving} -- in other words,
 the required number of function evaluations grows at a disproportional rate with
 the required accuracy order. For systems with right hand sides which are
 computationally costly to evaluate, this means that one frequently is able to
-obtain the desired numerical accuracy more effectively e.g.\ by using the
-classical Runge-Kutta method with a finer step length. The Butcher tableau
+obtain the desired numerical accuracy more effectively by using, for instance,
+the classical Runge-Kutta method with a finer step length. The Butcher tableau
 representation of the classical Runge-Kutta method can be found in
 \cref{tab:butcherrk4}.
 

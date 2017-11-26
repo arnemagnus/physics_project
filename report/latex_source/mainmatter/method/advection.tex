@@ -17,7 +17,7 @@ integrators introduced in
 The computational domain $\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$
 was discretized by a set of linearly spaced tracers, with $1000\times500$ grid
 points, effectively creating a nearly uniform grid of approximate spacing
-$\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed on, and within, the
+$\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed on and within the
 domain boundaries of $\mathcal{U}$. The grid was extended artificially,
 with an additional two rows or columns appended to all of the domain edges,
 with the same grid spacing as the \emph{main} grid. This was done in order to
@@ -88,12 +88,12 @@ total floating point error expected to arise when integrating with a step
 length of $10^{-5}$ is of order $10^{-10}$.
 
 The least accurate of the fixed stepsize integrators integrators under
-consideration, the Euler method, is \nth{1} order accurate globally, meaning
-that its local error is of \nth{2} order, per
-\cref{def:rungekuttaorder}. Thus, we expect that the local error of the Euler
-method, for a step length of $10^{-5}$, is of order $10^{-10}$, i.e., the
-same order as the accumulated floating-point errors. Reducing the time step
-further necessarily leads to an increase in the accumulated floating-point
+consideration, the Euler method, is presented in \cref{tab:butchereuler}. It is
+\nth{1} order accurate globally, meaning that its local error is of \nth{2}
+order, per \cref{def:rungekuttaorder}. Thus, we expect that the local error of
+the Euler method, for a step length of $10^{-5}$, is of order $10^{-10}$, that
+is, the same order as the accumulated floating-point errors. Reducing the time
+step further necessarily leads to an increase in the accumulated floating-point
 errors, meaning that we cannot reasonably expect to resolve the positions
 from one step to the next more accurately, for the Euler method. At the very
 least, a time step of $10^{-5}$ appears to represent a point after which
@@ -133,10 +133,10 @@ by \textcite[pp.167--168]{hairer1993solving} was followed
 closely. A starting step size of $h=0.1$ was used throughout. For the first
 solution step, the embedded integration method, as described in
 \cref{sub:the_runge_kutta_family_of_numerical_methods} yields the two
-approximations $x_{1}$ and $\widehat{x}_{1}$, yielding the difference
-$x_{1}-\widehat{x}_{1}$ as an estimate of the error of the less precise result.
-The idea is to enforce the error of the numerical solution to satisfy
-componentwise:
+approximations $x_{1}$ and $\widehat{x}_{1}$, from which the difference
+$x_{1}-\widehat{x}_{1}$ can be used as an estimate of the error of the less
+precise result. The idea is to enforce the error of the numerical solution to
+satisfy componentwise:
 
 \begin{equation}
     \label{eq:embeddederror}
