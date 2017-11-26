@@ -29,5 +29,7 @@ _minted*/
 *.toc
 
 
+pres_phys_nov/
+
 # Archive files:
 *.tar.gz

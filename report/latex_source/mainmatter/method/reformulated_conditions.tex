@@ -34,8 +34,8 @@ implementation, as follows:
 The relaxation of condition~\eqref{eq:lcsexistence2} in~\cref{thm:lcsexistence}
 from strict inequality to condition~\eqref{eq:numericalexistence2}, which
 also allows equality, means that LCSs are allowed to have finite thickness.
-However, the set of criterions~\eqref{eq:numericalexistence} enforce that
-all LCSs have uniquely defined local orientations. Conditions
+However, the set of criteria given in equation ~\eqref{eq:numericalexistence}
+enforce that all LCSs have uniquely defined local orientations. Conditions
 \eqref{eq:lcsexistence3} and~\eqref{eq:numericalexistence3} are equivalent,
 due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
 $\vct{\xi}_{2}(\vct{x}_{0})$, although the form~\eqref{eq:numericalexistence3}
@@ -81,10 +81,10 @@ as oriental discontinuities, which are corrected prior to the linear
 interpolation by flipping the corresponding vectors by $180\si{\degree}$.
 In the end, linear interpolation is used within the grid element.
 
-Furthermore, should the $\vct{\xi}_{1}$-vector obtained from the local special-
-purpose linear interpolation outlined above prove to be rotated by more than
-$90\si{\degree}$ relative to the $\vct{\xi}_{1}$-vector from the previous level
-of pseudotime used in the numerical integration of system
+Furthermore, should the $\vct{\xi}_{1}$-vector obtained from the local
+special-purpose linear interpolation outlined above prove to be rotated by more
+than $90\si{\degree}$ relative to the $\vct{\xi}_{1}$-vector from the previous
+level of pseudotime used in the numerical integration of system
 \eqref{eq:strainlinebasicode}, it would be flipped $180\si{\degree}$, by
 the same logic as in the special linear interpolation. The entire process
 of the special-purpose local linear interpolation method is outlined in
@@ -200,7 +200,7 @@ the approach of \textcite{farazmand2012computing} was followed, where
 strainline integration is only stopped if one of the aforementioned LCS
 conditions fail repeatedly over the pre-set length $l_{f}=0.2$ of the
 strainline. Furthermore, the strainlines which were stopped because
-of continious failure of LCS conditions were cut such that their \emph{new}
+of continuous failure of LCS conditions were cut such that their \emph{new}
 endpoints in either direction, as seen from the strain initial condition, were
 the last point on which the \emph{original} strainline satisfied the
 aforementioned conditions.
@@ -227,12 +227,13 @@ Intersections between strainlines and the lines in $\mathcal{L}$ are found
 by means of linear interpolation. Should a strainline segment prove to be a
 local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
 segment is labelled as a LCS\@. Adjacent intersections who are separated by a
-distance larger than a preselect threshold are excluded from the local
-maximization process, as indicated in figure~\ref{fig:neighborlcs}. Short LCSs
-are expected to have negligible impact on the overall flow pattern. In order to
-filter out such miniscule structures, any strainline segment which was shorter
-than the pre-set small length $l_{\mathrm{min}}=1$ were discarded as LCS
-candidates, as suggested in \textcite{farazmand2012computing}.
+distance larger than the preselect threshold $l_{\mathrm{n}}=0.2$ are excluded
+from the local maximization process, as indicated in figure
+\ref{fig:neighborlcs}. Short LCSs are expected to have negligible impact on the
+overall flow pattern. In order to filter out such miniscule structures, any
+strainline segment which was shorter than the pre-set small length
+$l_{\mathrm{min}}=1$ were discarded as LCS candidates, as suggested in
+\textcite{farazmand2012computing}.
 
 One shortcoming in the work of \textcite{farazmand2012computing}, is that
 they do not provide a general, robust way of selecting the lines in
@@ -263,16 +264,16 @@ In order to eliminate the weakest among the LCSs, it is thus clear that the
 lines in $\mathcal{L}$ must be selected carefully. Here, we used the approach
 of generating the set $\mathcal{L}$ in order to maximize the number of
 intersections with the computed strainlines, using as few lines as possible.
-Using two vertical and horizontal lines, given by $x=0.15$, $x=0.15$, $y=0.05$
-and $y=0.95$, respectively, proved sufficient in order to accurately reproduce
-the same LCS as found in \textcite{farazmand2012computing}. We can only assume
-that \citeauthor{farazmand2012computing} must have done something similar,
-as they have been unavailable for communication. The aforementioned LCS is
-presented in~\cref{cha:results}, together with the approximations found by means
-of the different integrators mentioned in
+Using two vertical and two horizontal lines, given by $x=0.15$, $x=1.05$,
+$y=0.05$ and $y=0.95$, respectively, proved sufficient in order to accurately
+reproduce the same LCS as found by \textcite{farazmand2012computing}. We can
+only assume that \citeauthor{farazmand2012computing} must have done something
+similar, as they have been unavailable for communication. The aforementioned LCS
+is presented in~\cref{cha:results}, together with the approximations found by
+means of the different integrators mentioned in
 \cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
 mentioned in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
 
-%\vspace{\fill}%fill{}
 \input{mainmatter/method/figures/ftle_l2.tex}
+
