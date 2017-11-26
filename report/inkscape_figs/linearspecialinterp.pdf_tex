@@ -50,8 +50,9 @@
   \makeatother%
   \begin{picture}(1,0.45944649)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{linearspecialinterp.pdf}}%
-    \put(0.43746795,0.20859722){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(b)}}}}%
-    \put(0.06640695,0.00685442){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(a)}}}}%
-    \put(0.88618588,0.05088475){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(c)}}}}%
+    \put(0.44587391,0.20299321){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(b)}}}}%
+    \put(0.04959507,0.00685442){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(a)}}}}%
+    \put(0.88618589,0.05088475){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{(c)}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{linearspecialinterp.pdf}}%
   \end{picture}%
 \endgroup%
