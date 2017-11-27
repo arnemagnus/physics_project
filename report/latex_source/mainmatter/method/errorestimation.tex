@@ -1,0 +1,73 @@
+\newpage
+\section{Estimation of errors}
+\label{sec:estimation_of_errors}
+
+Aside from the qualitiative visual comparison between the obtained LCSs and
+the reference LCS, a set of numerical errors was also computed, with a view to
+use them in order to explain any visual discrepancies. To this end, the error
+in the flow map, given by equation~\eqref{eq:flowmap}, was computed as the
+root mean square deviation (hereafter abbreviated as RMSD) with regards to the
+reference, as follows:
+
+\begin{equation}
+    \label{eq:rmsdflowmap}
+    \rmsd_{\textnormal{flow map}} = \sqrt{\frac{1}{N}%
+    \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
+\big(\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})-\vct{F}_{t_{0}}^{t}{(\vct{x}_{0})}\big)^{2}},
+\end{equation}
+
+where the summation is over all of the tracers in the computational domain
+$\mathcal{U}_{0}$, $N$ is the total number of tracers, and
+$\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})$ is the flow map approximated by
+the numerical integrator in question. The RMSD in both sets of
+eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green
+strain tensor field, as given by equation
+\eqref{eq:cauchygreencharacteristics} was also computed completely
+analogously.
+
+The best way of estimating the error in the computed eigen\emph{vectors} of the
+Cauchy-Green Strain tensor field is by means of their orientation, because
+the eigenvectors themselves are normalized to unit length. Since
+the iteration of strainlines was performed in both directions of pseudotime,
+as described in \cref{sub:a_framework_for_computing_smooth_strainlines},
+a $180\si{\degree}$ shift in direction would not influence the LCS calculation
+in any way. Thus, the eigenvector directions were computed as azimuthal angles
+in the interval $[0\si{\degree},180\si{\degree})$. The RMSD for the direction of
+the eigenvector fields was then calculated as follows:
+
+\begin{equation}
+    \label{eq:rmsddirection}
+    \begin{gathered}
+        \vct{\xi}(\vct{x}_{0}) = \begin{pmatrix}\xi_{x}(\vct{x}_{0}),&%
+            \xi_{y}(\vct{x}_{0})
+        \end{pmatrix},\quad\phi(\vct{x}_{0}) = \arctan{\bigg(\frac{\xi_{y}(\vct{x}_{0})}{\xi_{x}(\vct{x}_{0})}\bigg)},\\
+        \rmsd_{\textnormal{eigenvector direction}} = \sqrt{\frac{1}{N}%
+    \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
+{\big(\widehat{\phi}{(\vct{x}_{0})}-\phi{(\vct{x}_{0})}\big)}^{2}},
+    \end{gathered}
+\end{equation}
+
+where, once again, the summation is over all of the tracers in the computational
+domain $\mathcal{U}_{0}$, $N$ is the total number of tracers, while
+$\widehat{\phi}(\vct{x}_{0})$ denotes the azimuthal angle of the eigenvector
+located at $\vct{x}_{0}$, found by means of the numerical integrator in
+question.
+
+Lastly, in order to obtain a quantitative measure of the compliance between
+the obtained LCSs and the reference LCS, the root mean square of the distance
+separating each point on the LCS curve with the nearest point on the reference
+LCS curve, was used:
+
+\begin{equation}
+    \label{eq:rmsdlcs}
+    \rmsd_{\textnormal{LCS}} = \sqrt{%
+        \frac{1}{\widetilde{N}}\sum\limits_{\vct{\widehat{x}}\,\in\,\widehat{\gamma}}%
+\min\limits_{\vct{x}\,\in\,\gamma}{\norm{\vct{\widehat{x}}_{0}-\vct{x}}}^{2}},
+\end{equation}
+
+where $\widehat{\gamma}$ is the LCS curve, found by means of the numerical
+integrator in question, and $\gamma$ is the reference LCS curve. The idea
+is that LCS curves need not necessarily start from, or end at, the same points
+in space. For this reason, the most robust way of estimating the error
+of a given LCS curve simply becomes the summation of the smallest distances
+separating each point on the curve from the reference.

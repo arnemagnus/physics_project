@@ -6,8 +6,6 @@ zeros of the inner product in equation~\eqref{eq:lcsexistence4} of
 \cref{thm:lcsexistence} to be numerically sensitive. Therefore, they
 suggest a reformulated set of conditions which make for more robust numerical
 implementation, as follows:
-\vspace{\fill}
-
 
 \begin{subequations}
     \label{eq:numericalexistence}
@@ -104,7 +102,7 @@ So, in order to compute globally smooth strainlines, equation
 where $\vct{f}$ denotes the special-purpose local linear interpolation of
 the $\vct{\xi}_{1}$ field, as outlined above and in figure
 \ref{fig:locallinearinterp}, $\Delta$ is the numerical step length
-used in the numerical integration, while signum function is defined as
+used in the numerical integration, while the signum function is defined as
 
 \begin{equation}
     \label{eq:signumfunction}
@@ -154,9 +152,9 @@ measure of this degeneracy, the scalar field defined as
 
 \begin{equation}
     \label{eq:alphafield}
-    \alpha(\vct{x}_{0})=\Big(\dfrac{%
+    \alpha(\vct{x}_{0})=\bigg(\dfrac{%
                         \lambda_{2}(\vct{x}_{0})-\lambda_{1}(\vct{x}_{0})}%
-                    {\lambda_{2}(\vct{x}_{0})+\lambda_{1}(\vct{x}_{0})}\Big)^{2}
+                    {\lambda_{2}(\vct{x}_{0})+\lambda_{1}(\vct{x}_{0})}\bigg)^{2}
 \end{equation}
 
 was used. For points $\vct{x}$ which did not coincide with the grid points
@@ -268,12 +266,22 @@ Using two vertical and two horizontal lines, given by $x=0.15$, $x=1.05$,
 $y=0.05$ and $y=0.95$, respectively, proved sufficient in order to accurately
 reproduce the same LCS as found by \textcite{farazmand2012computing}. We can
 only assume that \citeauthor{farazmand2012computing} must have done something
-similar, as they have been unavailable for communication. The aforementioned LCS
-is presented in~\cref{cha:results}, together with the approximations found by
-means of the different integrators mentioned in
-\cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
-mentioned in
-\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
+similar, as they have been unavailable for communication.
+
 
 \input{mainmatter/method/figures/ftle_l2.tex}
+
+The reference LCS, that is, the LCS obtained with the reference numerical
+integrator, as mentioned in
+\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}, is
+presented in figure~\ref{fig:referencelcs}. It agrees
+visually with the LCS found in the literature, for example by
+\textcite{farazmand2012computing}. This curve was used to benchmark how the
+different numerical integrators, mentioned in
+\cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
+mentioned in
+\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels},
+performed.
+
+\input{mainmatter/method/figures/referencelcs.tex}
 

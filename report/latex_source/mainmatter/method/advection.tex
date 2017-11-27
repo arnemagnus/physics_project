@@ -123,8 +123,6 @@ and a time step of $10^{-5}$ required in excess of $1000$ computational
 walltime hours; an insurmountable feat for most computers, including the
 author's own personal laptop.
 
-\vspace{\fill}
-
 \subsection{On the implementation of embedded Runge-Kutta methods}
 \label{sub:on_the_implementation_of_embedded_runge_kutta_methods}
 
@@ -152,7 +150,7 @@ As a measure of the numerical error,
 \begin{equation}
     \label{eq:embeddednumericalerror}
     \errem = \sqrt{\frac{1}{n}\sum\limits_{i=1}^{n}%
-    \Big(\frac{x_{1,i}-\widehat{x}_{1,i}}{\scem_{i}}\Big)^{2}}
+    {\bigg(\frac{x_{1,i}-\widehat{x}_{1,i}}{\scem_{i}}\bigg)}^{2}}
 \end{equation}
 
 is used. Then, $\errem$ is compared to $1$ in order to find an optimal step
