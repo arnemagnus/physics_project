@@ -17,11 +17,13 @@ reference, as follows:
 \end{equation}
 
 where the summation is over all of the tracers in the computational domain
-$\mathcal{U}_{0}$, $N$ is the total number of tracers, and
-$\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})$ is the flow map approximated by
-the numerical integrator in question. The RMSD in both sets of
-eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green
-strain tensor field, as given by equation
+$\mathcal{U}$, including the tracers which constitute the artificially extended
+domain \emph{and} the auxiliary tracers, as outlined in
+\cref{sub:generating_a_set_of_initial_conditions}. $N$ is the total number of
+tracers, and $\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})$ is the flow map
+approximated by the numerical integrator in question. The RMSD in both sets of
+eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ of
+the Cauchy-Green strain tensor field, as given by equation
 \eqref{eq:cauchygreencharacteristics} was also computed completely
 analogously.
 
@@ -41,17 +43,19 @@ the eigenvector fields was then calculated as follows:
         \vct{\xi}(\vct{x}_{0}) = \begin{pmatrix}\xi_{x}(\vct{x}_{0}),&%
             \xi_{y}(\vct{x}_{0})
         \end{pmatrix},\quad\phi(\vct{x}_{0}) = \arctan{\bigg(\frac{\xi_{y}(\vct{x}_{0})}{\xi_{x}(\vct{x}_{0})}\bigg)},\\
-        \rmsd_{\textnormal{eigenvector direction}} = \sqrt{\frac{1}{N}%
+        \rmsd_{\textnormal{eigenvector direction}} = \sqrt{\frac{1}{N_{0}}%
     \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
 {\big(\widehat{\phi}{(\vct{x}_{0})}-\phi{(\vct{x}_{0})}\big)}^{2}},
     \end{gathered}
 \end{equation}
 
-where, once again, the summation is over all of the tracers in the computational
-domain $\mathcal{U}_{0}$, $N$ is the total number of tracers, while
-$\widehat{\phi}(\vct{x}_{0})$ denotes the azimuthal angle of the eigenvector
-located at $\vct{x}_{0}$, found by means of the numerical integrator in
-question.
+where, the summation is over all of the tracers in the computational
+domain $\mathcal{U}_{0}$ and $N_{0}$ is the total number of tracers within
+the aforementioned domain, that is, the total number of tracers for which
+the Hessians of the largest eigenvalue were computed, as per equation
+\eqref{eq:numericalexistence}. $\widehat{\phi}(\vct{x}_{0})$ denotes the
+azimuthal angle of the eigenvector located at $\vct{x}_{0}$, found by means of
+the numerical integrator in question.
 
 Lastly, in order to obtain a quantitative measure of the compliance between
 the obtained LCSs and the reference LCS, the root mean square of the distance
@@ -65,7 +69,10 @@ LCS curve, was used:
 \min\limits_{\vct{x}\,\in\,\gamma}{\norm{\vct{\widehat{x}}_{0}-\vct{x}}}^{2}},
 \end{equation}
 
-where $\widehat{\gamma}$ is the LCS curve, found by means of the numerical
+where the term $\rmsd$ is used somewhat loosely, in order to conform with the
+notation used for the other measures of error introduced in this section.
+$\widetilde{N}$ is the number of points which constitute
+$\widehat{\gamma}$, the LCS curve found by means of the numerical
 integrator in question, and $\gamma$ is the reference LCS curve. The idea
 is that LCS curves need not necessarily start from, or end at, the same points
 in space. For this reason, the most robust way of estimating the error

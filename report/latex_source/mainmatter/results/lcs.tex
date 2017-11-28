@@ -1,0 +1,75 @@
+\section{The LCS curves obtained using the different schemes}
+\label{sec:the_lcs_curves_obtained_using_the_different_schemes}
+
+Here, the repelling LCS curves found by means of the variety of
+numerical integration schemes under consideration, are presented. All of the
+LCS curves obtained for a given integrator, for all numerical time step lengths
+or tolerance levels are included in one figure, where the reference LCS, shown
+in figure~\ref{fig:referencelcs}, is also included in order to facilitate
+visual comparison. The idea is that any LCS curve that deviates from the
+reference, will reveal itself by not conforming perfectly. The LCS curves
+resulting from the singlestep methods are presented in
+\cref{fig:lcs_euler,fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4}, whereas the ones
+found by virtue of the embedded, that is, adaptive stepsize, methods, are
+shown in~\cref{fig:lcs_rkbs32,fig:lcs_rkbs54,fig:lcs_rkdp54,fig:lcs_rkdp87}.
+
+\subsection{The singlestep methods}
+\label{sub:the_singlestep_methods}
+
+
+
+\input{mainmatter/results/figures/lcs_figures/euler.tex}
+\input{mainmatter/results/figures/lcs_figures/rk2.tex}
+\input{mainmatter/results/figures/lcs_figures/rk3.tex}
+\input{mainmatter/results/figures/lcs_figures/rk4.tex}
+
+The LCS curves obtained from the Euler scheme using relatively large step
+lengths are the most obviously incorrect ones, in comparison to the reference.
+There appears to be very little separating the performance of the other
+singlestep methods. Interestingly, the Heun scheme appears to yield more
+accurate results than the Kutta scheme for all the considered step lengths.
+This is somewhat unexpected, because, as mentioned in
+\cref{sub:the_runge_kutta_methods_under_consideration}, the Heun scheme is
+\nth{2} order accurate in the time step, whereas the Kutta scheme is \nth{3}
+order accurate. On a less surprising note, seeing as it is \nth{4} order
+accurate, the classical Runge-Kutta scheme produces very accurate curves for
+all step lengths.
+
+\subsection{The adaptive stepsize methods}
+\label{sub:the_adaptive_stepsize_methods}
+
+Note that, although numerical tolerance levels of $10^{-1}$ through to
+$10^{-10}$ were investigated, the figures presented here do not show LCS curves
+for $\textnormal{tol}=10^{-1}$. This is due to the fact that, for all
+embedded methods, none of the resulting domains $\mathcal{U}_{0}$ bore
+a great amount of resemblance to the reference. This resulted in very disparate
+behaviour of strainlines, to the extent that the resulting strain systems were
+too dissimilar to the reference to warrant any meaningful comparisons. The
+erroneous $\mathcal{U}_{0}$ domains are shown in figure~\ref{fig:u0_dom_errs}.
+
+Notably, all of the embedded integration methods result in LCSs which are
+dissimilar from the reference for the tolerance level $\textnormal{tol}=10^{-2}$,
+where only the curve obtained by the Dormand-Prince 8(7) scheme is anything
+alike the reference. More curiously, the Bogacki-Shampine 3(2) method appears
+to outperform its theoretically more accurate sibling, even for relatively
+large tolerance levels. This is visible in the
+vicinity of the `U' shape near $y=0.4$ in~\cref{fig:lcs_rkbs32,fig:lcs_rkbs54},
+for instance. Furthermore, the Dormand-Prince 5(4) method appears to yield more
+accurate LCS curves in general, than the Bogacki-Shampine 5(4) method. This
+is somewhat surprising, given that the latter scheme is supposedly more accurate
+than other methods of similar order, as mentioned in
+\cref{sub:the_runge_kutta_methods_under_consideration}. Lastly, the
+Dormand-Prince 8(7) method appears to produce very accurate results for all
+tolerance levels smaller than $10^{-2}$, and, as previously mentioned, gives
+the most correct LCS curve for the tolerance level $10^{-2}$
+--- which is to be expected, as it is the highest order method among the ones
+considered, after all.
+\input{mainmatter/results/figures/domain_figures/all_erroneous_domains.tex}
+
+\input{mainmatter/results/figures/lcs_figures/bs32.tex}
+\input{mainmatter/results/figures/lcs_figures/bs54.tex}
+\input{mainmatter/results/figures/lcs_figures/dp54.tex}
+
+\input{mainmatter/results/figures/lcs_figures/dp87.tex}
+
+

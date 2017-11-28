@@ -1,0 +1,36 @@
+\section{Measures of error}
+\label{sec:measures_of_error}
+
+Here, the measures of error introduced in~\cref{sec:estimation_of_errors} for
+the different numerical integration schemes considered, is presented. For
+each different type of error, two figures are included. One in which the error
+of the singlestep methods is shown as a function of the integration step length,
+and one in which the error of \emph{all} the integration methods is shown
+as a function of the number of times right hand side of the ordinary
+differential equation system, that is, the velocity field given by equation
+\eqref{eq:doublegyre}, was evaluated for each step length or tolerance level.
+The reason for which only the singlestep errors are included in the first set of
+figures, is that they are the only methods where the error is expected to scale
+as a power law in $h$, per \cref{def:rungekuttaorder}. This is naturally not the
+case for the adaptive stepsize methods, where the step length varies.
+
+More pertinent information can be found in the second set of figures, where
+a well-suited integration method is characterized by generating small
+errors at a small cost in terms of the required number of function calls,
+in this case, the number of times the velocity field had to be evaluated.
+Unlike the singlestep integrators, the advection of each tracer by means
+of an adaptive stepsize method in principle a different number of integration
+steps, and thus function evaluations. Thus, the presented number of function
+evaluations is the \emph{average} across all of the advected tracers, including
+the number of evaluations associated with unaccepted trial integration steps.
+The number of function evaluations for each of the considered Runge-Kutta
+methods can be found as the number of rows in the Runge-Kutta matrices
+of
+\cref{tab:butchereuler,tab:butcherrk2,tab:butcherrk3,tab:butcherrk4,%
+tab:butcherbs32,tab:butcherbs54,tab:butcherdopri54,tab:butcherdopri87}.
+
+\input{mainmatter/results/lcs_errors.tex}
+
+\input{mainmatter/results/flowmap_errors.tex}
+
+\input{mainmatter/results/eigen_errors.tex}

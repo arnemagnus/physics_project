@@ -391,7 +391,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -477,7 +477,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -491,7 +491,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -759,7 +759,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -1087,7 +1087,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -1276,7 +1276,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -1320,7 +1320,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
@@ -1414,7 +1414,7 @@
 \pgfusepath{clip}%
 \pgfsetrectcap%
 \pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
+\pgfsetlinewidth{1.003750pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.388235,0.278431}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
