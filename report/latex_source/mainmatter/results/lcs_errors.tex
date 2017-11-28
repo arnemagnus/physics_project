@@ -1,10 +1,6 @@
 \subsection{Computed deviations in the LCS curves}
 \label{sub:computed_deviations_in_the_lcs_curves}
 
-\input{mainmatter/results/figures/error_figures/lcs_error_fixed_steplength.tex}
-
-\input{mainmatter/results/figures/error_figures/lcs_error_both.tex}
-
 Figure~\ref{fig:lcs_err_fixed} indicates that the $\rmsd$ of the LCS curves,
 as defined in equation~\eqref{eq:rmsdlcs}, does not follow the expected power
 laws of the numerical errors for the various singlestep integrators. The error
@@ -17,6 +13,10 @@ at a higher level than the rest of the integrators implies that the Euler
 method will never result in LCS curves with similar degrees of accuracy
 as for the other schemes.
 
+\input{mainmatter/results/figures/error_figures/lcs_error_fixed_steplength.tex}
+
+\input{mainmatter/results/figures/error_figures/lcs_error_both.tex}
+
 Interestingly, a similar pattern is apparent in figure
 \ref{fig:lcs_err_both}, in that, the $\rmsd$ of the higher-order methods
 decreases steadily, until a certain point where it suddenly jumps to the same
@@ -25,8 +25,12 @@ explanation is that when the number of function evaluations reaches some
 threshold, the accumulated floating-point arithmetic errors gain a larger
 influence than the inherent precision of the integrators. By similar logic, the
 sudden drop in $\rmsd$ for the high order singlestep methods with numerical
-step length $h=10^{-5}$, apparent in both
-\cref{fig:lcs_err_fixed,fig:lcs_err_both}, seems to be an artifact of the random
-nature of the accumulated floating-point errors, moreso than a sudden
-re-manifestation of the inherent integrator accuracy.
-
+step length $h=10^{-5}$, apparent in
+\cref{fig:lcs_err_fixed,fig:lcs_err_both}, is most likely an artifact of the random
+nature of the accumulated floating-point errors.
+%moreso than a sudden re-manifestation of the inherent integrator accuracy.
+Finally, figure
+\ref{fig:lcs_err_both} suggests that the high order
+adaptive stepsize methods Bogacki-Shampine 5(4) and
+Dormand-Prince 8(7) provide the most efficient means of obtaining
+accurate LCS curves for the considered double gyre system.
