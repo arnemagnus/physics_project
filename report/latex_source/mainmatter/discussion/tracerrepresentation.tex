@@ -1,0 +1,32 @@
+\section{Concerning the numerical representation of tracers}
+\label{sec:concerning_the_numerical_representation_of_tracers}
+
+One way of increasing the numerical accuracy in the flow map, would be
+to use higher precision floating-point numbers to represent the tracer
+coordinates. The main drawback of making such a change, is that this
+neccessitates an increase in memory usage, which has the practical consequence
+that less tracers can be advected at once. The immediately obvious workarounds
+are to either use a high performance scientific computer, or to perform several
+advections of smaller sets of tracers, calculating a piecewise representation
+of the overall flow map. However, should this prove impossible, using higher
+precision floating-point numbers leads to a more granular representation of the
+flow map. Such an approach is perhaps most sensible for systems with velocity
+fields that are well-behaved, or even largely spatially invariant. However,
+in such cases, calculating LCSs have little practical relevance, seeing as
+the overall behaviour of the flow system could be estimated purely by
+advecting a smaller set of tracers, or even by simple inspection.
+
+Rather than generating and advecting a fixed, large amount of tracer particles,
+another possible approach would be to use a set of fewer `base' tracers, and
+making use of an \emph{adaptive multigrid method}. A practical implementation
+could involve the dynamic introduction of increasingly finer grids in regions
+where the local velocities would have the largest Euclidean norm, for instance.
+Such grids, however, would have to move \emph{with} the flow, as the
+benefit over simply increasing the initial tracer density would diminish
+otherwise. The main reason why this was not implemented for this project,
+aside from it not being used in the literature, is that it in all likelyhood
+leads to inconsistencies when applying finite differences. That is, unless some
+sort of interpolation scheme was applied to the flow map. Seeing as this
+project is centered around integration methods, this idea was scrapped.
+Regardless, this technique seems promising --- at least on paper, which
+warrants further investigation.

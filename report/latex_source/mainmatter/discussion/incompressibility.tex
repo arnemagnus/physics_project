@@ -1,0 +1,47 @@
+\section{On the incompressibility of the velocity field}
+\label{sec:on_the_incompressibility_of_the_velocity_field}
+
+As explained in~\cref{sec:the_double_gyre_model}, the double gyre velocity field
+is incompressible per construction. Thus, per equation
+\eqref{eq:cauchygreenincomprlambda}, the product of the strain eigenvalues
+should equal one. Regardless of the integration method used, however, this
+property was lost after approximately five units of time. This is not
+particularly surprising, because this property only really holds for
+infinitesimal fluid elements. Seeing as there is no assurance that neighboring
+tracers will remain nearby under the flow map, the finite difference
+approximation to the local stretch and strain could practically be rendered
+invalid. This issue is expected to be most prominent in regions of high local
+repulsion, which are precisely where accuracy is most imperative.
+
+Thus, one should not really expect this property to hold numerically, especially
+for an indefinite time. However, sample tests indicate that the
+incompressibility property was preserved for longer when using a denser
+grid of tracers. In fact, the strain eigenvalue product was found to be unity
+beyond 20 units of time, that is, the integration time used in this project,
+for an initial grid spacing of $10^{-12}$. However, due to the inherent
+inaccuracy of double-precision floating-point numbers, this would leave very
+few significant digits with which one could perform finite differencing, as
+mentioned in
+\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
+In the end, the grid spacing $\Delta{x}\simeq\Delta{y}\simeq0.02$ was chosen,
+because it was the resolution at which repelling LCS curves for the double
+gyre system have previously been described in the literature, cf.
+\textcite{farazmand2012computing}.
+
+For further analysis, grid spacings of approximate order $10^{-7}$--$10^{-8}$
+could be considered, when working with double-precision floating-point numbers.
+This would probably result in the incompressibility property being preserved
+for longer, while also leaving up to 7 or 8 significant digits for finite
+differencing. An entirely different approach, as suggested by
+\textcite{onu2015lcstool}, is to simply \emph{define} the smaller strain
+eigenvalue as  the reciprocal of the larger one, that is,
+$\lambda_{1}\equiv\lambda_{2}^{-1}$. This was not done here, because the
+flow incompressibility has no obvious practical consequences for LCSs.
+In addition, subject to the accuracy of the numerical integration scheme,
+no tracer which starts out within the computational domain
+$[0\hspace{1ex}2]\times[0\hspace{1ex}1]$ ever leave it, due to the normal
+component of the velocity field being zero along the domain edges. This
+follows from the definition of the associated velocity field, given in
+equation~\eqref{eq:doublegyre}.
+
+

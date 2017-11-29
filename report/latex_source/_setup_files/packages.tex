@@ -21,7 +21,7 @@ shrink=30,% Characters are stretched or shrunk in order to improve justification
 stretch=30,% up to 3 %
 factor=0% Controls how much punctuation protrudes past the end of the line
 ]{microtype}
-\microtypecontext{spacing=french}
+%\microtypecontext{spacing=french} % <-- No spacing found for Linux Libertine
 
 % Text spacing
 \usepackage[]{setspace}
@@ -64,6 +64,9 @@ factor=0% Controls how much punctuation protrudes past the end of the line
 
 % Include the possibility of colored text
 \usepackage[]{color}
+
+% Include the possibility to strikethrough text
+\usepackage[normalem]{ulem}
 
 %
 % Float-related packages
@@ -180,3 +183,5 @@ uniquename=init%
 \crefname{defn}{definition}{definitions}
 
 \crefname{figure}{figure}{figures}
+
+

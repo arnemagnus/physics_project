@@ -1,0 +1,68 @@
+\section{General remarks}
+\label{sec:general_remarks}
+
+First off, the computed LCS used as the reference, shown in figure
+\ref{fig:referencelcs}, is made up of \emph{seven} different strainline segments.
+The LCS presented in the article by \textcite{farazmand2012computing} is claimed
+to consist of a \emph{single} strainline segment. Comparing the two curves
+visually, however, indicates that the resulting LCSs are similar. Likewise, the
+domain $\mathcal{U}_{0}$, shown in figure~\ref{fig:u0_domain}, strongly
+resembles the one found by \citeauthor{farazmand2012computing}. Nevertheless,
+the total number of points in the domain computed here is approximately two
+percent larger than what \citeauthor{farazmand2012computing} found. These
+discrepancies could originate from different conventions in terms of generating
+the grid of tracers. Notably, \citeauthor{farazmand2012computing} fail to
+provide a description of their approach.
+
+Overall, the use of a variational framework for computing LCSs appears to
+produce robust and consistent LCS curves for all of the numerical integration
+schemes considered here, subject to usage of a sufficiently small numerical
+step length or tolerance level. This indicates that calculations of this kind
+are not particularly sensitive to integration method. Note that the
+$\mathcal{U}_{0}$ domains obtained by means of the adaptive stepsize methods
+for $\textnormal{tol}=10^{-1}$, shown in figure~\ref{fig:u0_dom_errs}, differ
+greatly to the \emph{correct} domain, which correlates well with the computed
+$\rmsd$ of the flow maps, shown in figure~\ref{fig:flowmap_err_both}. In
+particular, the error for the aforementioned tolerance level is of order $1$,
+which is comparable to the extent of the numerical domain, that is,
+$[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. Naturally, this leads to a drastically
+different system.
+
+The above observation implies that the most crucial part of the computation is
+advecting the tracers accurately. As mentioned in
+\cref{sub:computed_deviations_in_the_strain_eigenvalues_and_vectors}, the error
+in the computed strain eigenvalues scales like the error in the computed flow
+map. This is to be expected, as the eigenvalues are found by applying finite
+differences to the \emph{main} tracers. The eigenvalues are essential in terms
+of identifying LCSs, as can be seen in the numerical reformulation of the
+LCS existence theorem, which is given in equation~\eqref{eq:numericalexistence}.
+The strain eigendirections are important too, of course --- however, the
+error in the computed strain eigendirections is consistently negligible.
+This is most likely due to them being computed based on the denser
+\emph{auxiliary} set of tracers, which per construction results in more accurate
+finite differences.
+
+The double gyre model considered in this project is clearly not representative
+of a generic system, in terms of exact numerical step lengths or tolerance
+levels which are sufficient in order to obtain correct LCSs with a certain
+degree of confidence. It does, however, indicate that these quantities should
+be chosen based on the considered system. For a fixed timestep integration
+scheme, any single integration time step should not be so large that \emph{too}
+much detail in the local and instantaneous velocity profile is glossed over.
+Similar logic applies when adaptive stepsize methods are used, although it
+may be more difficult to enforce, depending on how the step length
+update is implemented. One possibility in terms of choosing the time step, is to
+find a characteristic velocity for the system, and choose the time step small
+enough so that a tracer moving with the characteristic velocity never skips over
+a grid cell entirely, when moving from one time level to the next.
+
+When computing transport based on discrete data sets, such as snapshots of the
+instantaneous velocity profiles in oceanic currents, spatial and temporal
+interpolation becomes necessary. Together with the inherent precision of the
+measurement data, the choice of interpolation scheme(s) set a lower bound
+in terms of the accucacy with which tracers can be advected. For such cases,
+the interaction between the integration and interpolation schemes could
+be critical --- both in terms of computation time and memory requirements,
+aside from the numerical precision. Independently of the scales at which
+well-resolved LCS information is sought in this kind of system, the
+aforementioned effects warrant further investigation.
