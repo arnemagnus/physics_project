@@ -59,7 +59,7 @@ $\mtrx{C}_{t_{0}}^{t}(\vct{x}_{0})$. The tensor lines tangent to the
 $\vct{\xi}_{1}$-field will be referred to as \emph{strainlines}
 in the following, a term coined by \textcite{farazmand2012computing}. Aside from
 points within $\mathcal{U}$ which exhibit repeated eigenvalues and thus
-oriental discontinuities in both eigenvector fields, strainlines can be computed
+orientational discontinuities in both eigenvector fields, strainlines can be computed
 as smooth trajectories of the ordinary differential equation
 
 \begin{equation}
@@ -71,11 +71,11 @@ as smooth trajectories of the ordinary differential equation
 As pointed out by \textcite{onu2015lcstool}, the orientational discontinuities
 of the $\vct{\xi}_{1}$-field are removable, through careful monitoring and
 local reorientation. This process can be described in terms of three steps.
-First, the nearest neighboring grid points are identified. Then, oriental
+First, the nearest neighboring grid points are identified. Then, orientational
 discontinuities inbetween the grid elements are identified by inspecting the
 inner product of the $\vct{\xi}_{1}$ vectors of adjacent grid points. Rotations
 exceeding $90\si{\degree}$ between pairs of neighboring vectors are labelled
-as oriental discontinuities, which are corrected prior to the linear
+as orientational discontinuities, which are corrected prior to the linear
 interpolation by flipping the corresponding vectors by $180\si{\degree}$.
 In the end, linear interpolation is used within the grid element.
 
@@ -147,7 +147,7 @@ $\mathcal{U}_{0}$.
 The degenerate points of the $\vct{\xi}_{1}$ vector field is, as the name
 implies, the set of points in $\mathcal{U}$ for which the eigenvalues
 $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ are equal, leaving
-the strain eigenvector field $\vct{\xi}_{1}$ undiscernible. As a computational
+the strain eigenvector field $\vct{\xi}_{1}$ indiscernible. As a computational
 measure of this degeneracy, the scalar field defined as
 
 \begin{equation}
@@ -196,8 +196,8 @@ the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
 domain due to numerical noise. In order to avoid such unwanted failures,
 the approach of \textcite{farazmand2012computing} was followed, where
 strainline integration is only stopped if one of the aforementioned LCS
-conditions fail repeatedly over the pre-set length $l_{f}=0.2$ of the
-strainline. Furthermore, the strainlines which were stopped because
+conditions fail repeatedly over the pre-set length $l_{\textnormal{f}}=0.2$ of
+the strainline. Furthermore, the strainlines which were stopped because
 of continuous failure of LCS conditions were cut such that their \emph{new}
 endpoints in either direction, as seen from the strain initial condition, were
 the last point on which the \emph{original} strainline satisfied the
@@ -225,7 +225,7 @@ Intersections between strainlines and the lines in $\mathcal{L}$ are found
 by means of linear interpolation. Should a strainline segment prove to be a
 local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
 segment is labelled as a LCS\@. Adjacent intersections who are separated by a
-distance larger than the preselect threshold $l_{\mathrm{n}}=0.2$ are excluded
+distance larger than the preselect threshold $l_{\mathrm{nb}}=0.2$ are excluded
 from the local maximization process, as indicated in figure
 \ref{fig:neighborlcs}. Short LCSs are expected to have negligible impact on the
 overall flow pattern. In order to filter out such miniscule structures, any

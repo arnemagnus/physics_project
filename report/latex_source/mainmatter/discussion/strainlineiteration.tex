@@ -1,14 +1,50 @@
-\section{About the computation of strainlines}
-\label{sec:about_the_computation_of_strainlines}
+\section{Regarding the computation of strainlines}
+\label{sec:regarding_the_computation_of_strainlines}
+As outlined in~\cref{sub:a_framework_for_computing_smooth_strainlines}, a
+special sort of rectifying linear interpolation routine was implemented in
+order to eliminate local orientational discontinuities in the $\vct{\xi}_{1}$
+strain eigenvector field. The logical next step would be to consider a larger
+local subset of grid points, for instance, the $3\times3$ or $4\times4$ square
+of the 9 or 16 nearest neighbors, respectively, systematically reorientating the
+eigenvectors if necessary, and then using a higher order interpolation scheme
+in order to approximate the local strain eigenvector. This sort of
+generalization could make the strainline computation process more robust ---
+although the linear approximation approach proved sufficient for the
+velocity field considered here, which may not be the case for more complex or
+volatile flow systems.
 
-\subsection{The special linear interpolation of strain eigendirections}
-\label{sub:the_special_linear_interpolation_of_strain_eigendirections}
+The classical Runge-Kutta method, with a numerical step length
+$\Delta=10^{-3}$, was used for all computations of strainlines, regardless
+of which integration scheme had been used for the advection of tracers,
+as mentioned in~\cref{sub:extracting_hyperbolic_lcss_from_strainlines}. This
+was a conscientious choice, based on the idea of using the available information
+in the flow maps with the same degree of precision for all integrator
+configurations. If, however, the entire process of numerical integration,
+including both the advection of tracers and the calculation of strainlines,
+were to be performed with the same integrator configuration, comparisons
+between the resulting LCSs could have been misleading, as in, the strain
+information present in the flow maps would necessarily not have been utilized
+to the full extent. For instance, the LCSs curves obtained by means of the Euler
+method, shown in figure~\ref{fig:lcs_euler}, could have exhibited even
+more false positives and negatives if the same method was used in order to
+obtain strainlines as well, due to the inherent inaccuracy of the Euler scheme.
 
-\subsection{The use of a single numerical integrator}
-\label{sub:the_use_of_a_single_numerical_integrator}
+An alternative approach to the numerical integration of strainlines, would be
+to make use of a high order adaptive steplength method. This could, in
+principle, reduce the required computational time, in addition to reducing
+the impact of floating-point arithmetic error. However, in order to encapsulate
+the local strain dynamics accurately, the embedded automatic step size control
+should probably be more elaborate than the implementation outlined in
+\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}. In particular,
+it would be advisable to incorporate the local strainline curvature somehow,
+in order to minimize deviations from the \emph{true} trajectories. Furthermore,
+the use of a higher order strainline might prove a fruitless exercise, unless
+a higher order strain eigendirection routine, as discussed above, was
+implemented in tandem. As for the transport of tracers based on discrete
+velocity data, mentioned in~\cref{sec:general_remarks}, the interaction
+between strain eigendirection interpolation method, and strainline integration
+method, seems like an interesting research topic for potential future endeavors.
 
-\subsection{The identification process of local strain maximizing strainlines}
-\label{sub:the_identification_process_of_local_strain_maximizing_strainlines}
 
 
 

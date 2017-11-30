@@ -1,0 +1,54 @@
+\section{The identification of strain maximizing strainlines}
+\label{sec:the_identification_of_strain_maximizing_strainlines}
+
+As mentioned in~\cref{sub:extracting_hyperbolic_lcss_from_strainlines},
+the lines in the set $\mathcal{L}$, used in order to find strainline segments
+satisfying the numerical LCS existence condition given by equation
+\eqref{eq:numericalexistence4} had to be selected with great care in order
+to accurately reproduce the LCS curve found in the literature. Although
+the LCS identification with the particular set of horizontal and vertical lines
+proved robust across all integration methods, the fact that only certain sets
+$\mathcal{L}$ do the job, is a damning indicament that the procedure as such
+is not particularly robust. Although not investigated here, an alternative
+approach could be to identify all strainlines which follow very similar
+trajectories, either manually or by means of some numerical clustering
+algorithm, then extracting the most strongly repellent strainline segments
+of each bunch as LCSs for the system.
+
+The strainline tail end cutting procedure which was employed, and
+briefly brought up in
+\cref{sub:extracting_hyperbolic_lcss_from_strainlines}, is most certainly
+debatable. The reason it was considered in the first place, is that the specific
+wording used by~\textcite{farazmand2012computing} on the subject of comparing
+strainlines is somewhat ambiguous, in that they also describe that part of
+the process as comparison of \emph{curve segments}. Moreover, they also state
+that a \emph{part} of a strainline may qualify as an LCS. In addition,
+cutting the tail ends of strainlines which are stopped due to continious
+failures of one or more of the LCS conditions of equation
+\eqref{eq:numericalexistence} could also, quite logically, be extended so that
+parts of the remaining strainline curve which, for example due to numerical
+noise, do not satisfy all of the aforementioned conditions, are excluded from
+the ensuing LCS identification. That is, those parts would not be considered
+when computing the $\overline{\lambda}_{2}$, the averaged $\lambda_{2}$ of
+the strainline segment, on the strainline as a whole, nor
+the strainline length. Effectively, this could result in a strainline being
+chopped into several shorter segments, which could further result in
+disjointed LCSs. As mentioned previously, the tail end cutting proved necessary
+in order to reproduce the LCS curve found by \textcite{farazmand2012computing},
+meaning that this concept can, and most likely should, be investigated further.
+
+Lastly, the rationale of filtering out LCS candidate curves which are shorter
+than the preselect length $l_{\textnormal{f}}=1$, described in
+\cref{sub:extracting_hyperbolic_lcss_from_strainlines} and inspired by
+\textcite{farazmand2012computing}, was that excessively short LCSs are
+expected to have a negligible impact on the overall flow in the system.
+However, \citeauthor{farazmand2012computing} do not provide a justification
+for why they chose that particular filtering length. Another way to perform this
+sifting, would be to consider $\overline{\lambda}_{2}$ together with the length
+of the strainline segment. This could be done in such a way that, when selecting
+an LCS candidate from two strainlines, if one is somewhat longer but has a
+slightly smaller $\overline{\lambda}_{2}$, that is, is slightly less repelling
+than, the other, then the longer strainline is selected. This sort of routine
+should naturally be based upon sound mathematical logic. In short, there is a
+lot of room for research in terms of how to enforce the LCS condition given
+by equation~\eqref{eq:numericalexistence4}.

@@ -1,75 +1,75 @@
 \begin{framed}
     \begin{itemize}
-        \item \sout{Approach does produce a consistent LCS picture for all numerical integrators considered, provided sensible
-            integration steps or tolerance levels are chosen. This indicates that the calculation of this type
-        of transport barrier is not particularly sensitive to the integration method.}
-    \item \sout{Most crucial part: Compute advection correctly. The error of the computed strain eigenvalues scales
-                like the advection error, while the error in the strain eigendirections is negligible for all time
-                steps. The computed LCSs seem to exhibit sensitive dependence on the calculation of the eigenvalues,
-            which is not particularly surprising, considering the LCS conditions of eq. 3.13 }
-                \begin{itemize}
-                    \item \sout{The precision of the strain eigendirections is likely a direct consequence of the
-                        auxiliary tracers in their computation.}
-                \end{itemize}
-            \item \sout{The number of points in the $\mathcal{U}$ domain is different to the one obtained by
-                Haller et  al, by approximately $3\%$. This, however, is likely related to how the
-            grid of tracers was set up. In their paper, Farazmand and Haller do not provide details.}
-        \item \sout{Notably, the reference LCS as shown in figure (.) consists of seven different strainline
-                segments, unlike the structure found by Haller et al., which is claimed to be a single
-            coherent strainline.}
-
-        \item \sout{The time lenghts or tolerance levels should be chosen based on the system under consideration.
-            In particular, an individual time step should not be so large that too much detail in the local,
-        instantaneous velocity field is glossed over.}
-    \item \sout{Possible approach in order to refine the computations: Use fewer `base' tracers, and an \emph{adaptive multigrid method}. Main con: May lead to inconsistent centered differencing when approaching
-        the Jacobian etc. of the flow map}
-        \item \sout{Regarding the completely different domains obtained via the embedded methods for the highest tolerance level:
-            Check if this corresponds th the error in the flow map larger than some threshold. If (likely) so, this is
-        further evidence that one should exhert great effort in computing the flow map correctly.}
-    \item \sout{In terms of application to discrete velocity data sets, where both spatial and temporal interpolation
-                    may be necessary, the interaction between interpolation and integration scheme is likely to
-                    have a great overall impact. In particular, the underlying interpolation scheme sets a lower accuracy
-                    bound for the entire advection process, practically enforcing restrictions on the numerical step
-                    lengths or tolerance levels which can be considered sensible. This is also based on the considered
-                velocity field.}
-            \item \sout{Regarding the incompressibility of the velocity field}
-                    \begin{itemize}
-                        \item \sout{Incompressibility property is conserved until approximately $t=5$ units. Generally can't expect
-                            this property to hold numerically over time.}
-                        \item \sout{There is no assurance that neighboring tracers will remain nearby after the advection,
-                                leaving the finite difference approximation of the local strain and stretch invalid. This
-                                issue is expected to be most prominent in regions of high repulsion, which are precisely
-                            where accuracy is imperative.}
-                    \end{itemize}
-        \item Parameter choices
-            \begin{itemize}
-                \item Numerical step lengths and tolerance levels
-                \item The use of RK4 for all strainline iterations
-                    \begin{itemize}
-                        \item Alternative: Use a high order adaptive step method, paying close attention to the strainline curvature
-                    \end{itemize}
-                \item \sout{Represent tracer positions by means of higher precision floating-point numbers}
-                        \begin{itemize}
-                            \item \sout{Yields more accurate finite difference approximations}
-                            \item \sout{Requires more memory, i.e., less tracers can be advected, leading to
-                                        a more granular flow map representation. Perhaps most relevant for
-                                        well-behaved velocity fields, for which the LCS approach is not really
-                                        practically relevant --- why not simply advect a few particles and see where they
-                                    end up?}
-                        \end{itemize}
-            \end{itemize}
-        \item The identification process of local strain maximizing strainlines
-            \begin{itemize}
-                \item The cutting of strainline tails
-                \item Lines in $\mathcal{L}$ $\rightarrow$ not necessarily a robust approach for general flows
-                \item Alternative: Clustering algorithm
-                \item Approach where both the strainline lengths and avg $\lambda_{2}$ are taken into consideration,
-                    i.e., selecting a longer line with slighly smaller avg $\lambda_{2}$ over a shorter line with larger.
-            \end{itemize}
-        \item The special linear interpolation used for the eigenvectors
-            \begin{itemize}
-                \item Possible alternative: Higher order interpolation
-            \end{itemize}
+%        \item \sout{Approach does produce a consistent LCS picture for all numerical integrators considered, provided sensible
+%            integration steps or tolerance levels are chosen. This indicates that the calculation of this type
+%        of transport barrier is not particularly sensitive to the integration method.}
+%    \item \sout{Most crucial part: Compute advection correctly. The error of the computed strain eigenvalues scales
+%                like the advection error, while the error in the strain eigendirections is negligible for all time
+%                steps. The computed LCSs seem to exhibit sensitive dependence on the calculation of the eigenvalues,
+%            which is not particularly surprising, considering the LCS conditions of eq. 3.13 }
+%                \begin{itemize}
+%                    \item \sout{The precision of the strain eigendirections is likely a direct consequence of the
+%                        auxiliary tracers in their computation.}
+%                \end{itemize}
+%            \item \sout{The number of points in the $\mathcal{U}$ domain is different to the one obtained by
+%                Haller et  al, by approximately $3\%$. This, however, is likely related to how the
+%            grid of tracers was set up. In their paper, Farazmand and Haller do not provide details.}
+%        \item \sout{Notably, the reference LCS as shown in figure (.) consists of seven different strainline
+%                segments, unlike the structure found by Haller et al., which is claimed to be a single
+%            coherent strainline.}
+%
+%        \item \sout{The time lenghts or tolerance levels should be chosen based on the system under consideration.
+%            In particular, an individual time step should not be so large that too much detail in the local,
+%        instantaneous velocity field is glossed over.}
+%    \item \sout{Possible approach in order to refine the computations: Use fewer `base' tracers, and an \emph{adaptive multigrid method}. Main con: May lead to inconsistent centered differencing when approaching
+%        the Jacobian etc. of the flow map}
+%        \item \sout{Regarding the completely different domains obtained via the embedded methods for the highest tolerance level:
+%            Check if this corresponds th the error in the flow map larger than some threshold. If (likely) so, this is
+%        further evidence that one should exhert great effort in computing the flow map correctly.}
+%    \item \sout{In terms of application to discrete velocity data sets, where both spatial and temporal interpolation
+%                    may be necessary, the interaction between interpolation and integration scheme is likely to
+%                    have a great overall impact. In particular, the underlying interpolation scheme sets a lower accuracy
+%                    bound for the entire advection process, practically enforcing restrictions on the numerical step
+%                    lengths or tolerance levels which can be considered sensible. This is also based on the considered
+%                velocity field.}
+%            \item \sout{Regarding the incompressibility of the velocity field}
+%                    \begin{itemize}
+%                        \item \sout{Incompressibility property is conserved until approximately $t=5$ units. Generally can't expect
+%                            this property to hold numerically over time.}
+%                        \item \sout{There is no assurance that neighboring tracers will remain nearby after the advection,
+%                                leaving the finite difference approximation of the local strain and stretch invalid. This
+%                                issue is expected to be most prominent in regions of high repulsion, which are precisely
+%                            where accuracy is imperative.}
+%                    \end{itemize}
+%                \item \sout{Parameter choices}
+%            \begin{itemize}
+%                \item \sout{Numerical step lengths and tolerance levels}
+%                \item \sout{The use of RK4 for all strainline iterations}
+%                    \begin{itemize}
+%                        \item \sout{Alternative: Use a high order adaptive step method, paying close attention to the strainline curvature}
+%                    \end{itemize}
+%                \item \sout{Represent tracer positions by means of higher precision floating-point numbers}
+%                        \begin{itemize}
+%                            \item \sout{Yields more accurate finite difference approximations}
+%                            \item \sout{Requires more memory, i.e., less tracers can be advected, leading to
+%                                        a more granular flow map representation. Perhaps most relevant for
+%                                        well-behaved velocity fields, for which the LCS approach is not really
+%                                        practically relevant --- why not simply advect a few particles and see where they
+%                                    end up?}
+%                        \end{itemize}
+%            \end{itemize}
+%        \item \sout{The identification process of local strain maximizing strainlines}
+%            \begin{itemize}
+%                \item \sout{The cutting of strainline tails}
+%                \item \sout{Lines in $\mathcal{L}$ $\rightarrow$ not necessarily a robust approach for general flows}
+%                \item \sout{Alternative: Clustering algorithm}
+%                \item \sout{Approach where both the strainline lengths and avg $\lambda_{2}$ are taken into consideration,
+%                    i.e., selecting a longer line with slighly smaller avg $\lambda_{2}$ over a shorter line with larger.}
+%            \end{itemize}
+%        \item \sout{The special linear interpolation used for the eigenvectors}
+%            \begin{itemize}
+%                \item \sout{Possible alternative: Higher order interpolation}
+%            \end{itemize}
             \item Chose mean error, rather than max, because:
                 \begin{itemize}
                     \item In terms of flow map: Error should be limited from above, by the domain extent, as the normal component
