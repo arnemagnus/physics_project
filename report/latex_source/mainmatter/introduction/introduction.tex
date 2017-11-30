@@ -1,26 +1,92 @@
-\begin{framed}
-    \begin{itemize}
-        \item Lagrangian coherent structure: A structure that can separate dynamically
-            distinct invariant regions. Invariant retions: All trajectories starting
-            out within it, remains within the region, although the region itself
-            may move and deform with time.
-            \item Lagrangian coherent structure: Landscapes in multidimensional
-                landscapes, shaping the flow patterns in dynamical systems.
-                \item Motivation: Complex systems, i.e., many-particle nonlinear
-                    systems: Need computational shortcuts
-                    \item LCS: Principally robust structures which enable us
-                        to make predictions regarding the future states of
-                        a flow system.
-                        \item Examples of real-world application:
-                            \begin{itemize}
-                                \item Population growth
-\item Predicting the advection of particles by means of oceanic currents or wind
-    \begin{itemize}
-        \item Recent examples: The volcanic eruptions at Eyafjällajökul, and
-            at Bali (2017)
-    \end{itemize}
-                                    \item Predicting where the remnants of an oil spill will end up --> Where to focus
-                                        the rescue operation in the short and medium term
-                            \end{itemize}
-    \end{itemize}
-\end{framed}
+When analyzing complex dynamical systems, such as nonlinear many-body problems,
+the conventional approach to predicting future states by means of simulating
+the trajectories of point particles is frequently insufficient. This is due
+to the resulting predictions being very sensitive to small changes in time
+and initial positions. One way of addressing the delicate dependence on initial
+conditions is to run several different models for the same underlying physical
+systems. This invariably results in larger, more well-resolved distributions
+of the transported particles, at the cost of ignoring key, inherent, organizing
+structures in the system.
+
+Recently, the concept of Lagrangian coherent structures saw the light of day,
+emerging from the intersection between nonlinear dynamics, that is, the
+underlying mathematical principles of chaos theory, and fluid dynamics. These
+provide a new framework for understanding transport phenomena in concept
+fluid flow systems. Lagrangian coherent structures can be described as
+time-evolving `landscapes' in a multidimensional space, which dictate flow
+patterns in dynamical systems. In particular, such structures define the
+interfaces of dynamically distinct, invariant regions. An invariant region is
+characterized as a domain where all particle trajectories that originate within
+the region, remain in it, although the region itself can move and deform with
+time. So, simply put; Lagrangian coherent structures enable us to make
+predictions regarding the future states of flow systems.
+
+There are two possible ways of describing fluid flow. The Eulerian approach
+is to consider the properties of a flow field at each fixed point in time and
+space. An example is the concept of velocity fields, which produce the
+local and instantaneous velocities of all fluid elements within the domain
+under consideration. The Lagrangian point of view, on the other hand, concerns
+the developing velocity of each individual particle along their paths, as they
+are transported by the flow. Unlike the Eulerian perspective, the Lagrangian
+mindset is objective, as in frame-invariant. That is, properties of Lagrangian
+fields are unchanged by time-dependent translations and rotations of the
+reference frame. For unsteady flow systems, which are more common than
+steady flow systems in nature, there exists no self-evident preferred frame
+of reference. This means that any transport-dictating dynamic structures
+should hold for \emph{any} choice of reference frame. Furthermore, this is
+the main rationale for which \emph{Lagrangian}, rather
+than \emph{Eulerian}, coherent structures have been pursued.
+
+Although the framework for detecting Lagrangian coherent structures is
+mathematically valid for any number of dimensions, the focus of this project
+work has been two-dimensional flow systems. Many natural processes fall
+within this category, perhaps most notably the transport of debris and
+contaminations, such as radioactive particles or the remnants of an oil
+spill, by means of oceanic surface currents. Being able to successfully predict
+where such particles will be taken by the flow enables us to isolate and
+extract them before they are able to reach the coastline, thus preventing
+potential humanitarian and natural calamities.
+
+\newpage
+
+At the heart of detecting Lagrangian coherent structures lies the advection
+of fluid elements by means of a velocity field, which describes the system
+under consideration. This rings true both for test cases, where the velocity
+profile is known analytically, and for real-life systems, typically described
+by means of discrete samples of the instantaneous velocity field. For this
+project work, the topic of interest is how the detection of Lagrangian coherent
+structures depends on the choice of numerical integration method used in order
+to compute the aforementioned particle transport. In particular, four singlestep
+methods and four embedded, adaptive step length methods, each with different
+properties, were used in order to advect a collection of fluid elements
+by means of an analytically known, two-dimensional, unsteady velocity field.
+
+
+
+
+%\begin{framed}
+%    \begin{itemize}
+%        \item \sout{Lagrangian coherent structure: A structure that can separate dynamically
+%            distinct invariant regions. Invariant retions: All trajectories starting
+%            out within it, remains within the region, although the region itself
+%        may move and deform with time.}
+%    \item \sout{Lagrangian coherent structure: Landscapes in multidimensional
+%        landscapes, shaping the flow patterns in dynamical systems.}
+%    \item \sout{Motivation: Complex systems, i.e., many-particle nonlinear
+%        systems: Need computational shortcuts}
+%    \item \sout{LCS: Principally robust structures which enable us
+%                        to make predictions regarding the future states of
+%                    a flow system.}
+%                \item \sout{Examples of real-world application:}
+%                            \begin{itemize}
+%                                \item \sout{Population growth}
+%                                \item \sout{Predicting the advection of particles by means of oceanic currents or wind}
+%    \begin{itemize}
+%        \item \sout{Recent examples: The volcanic eruptions at Eyafjällajökul, and
+%            at Bali (2017)}
+%    \end{itemize}
+%\item \sout{Predicting where the remnants of an oil spill will end up --> Where to focus
+%    the rescue operation in the short and medium term}
+%                            \end{itemize}
+%    \end{itemize}
+%\end{framed}
