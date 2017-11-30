@@ -46,6 +46,12 @@ a great amount of resemblance to the reference. This resulted in very disparate
 behaviour of strainlines, to the extent that the resulting strain systems were
 too dissimilar to the reference to warrant any meaningful comparisons. The
 erroneous $\mathcal{U}_{0}$ domains are shown in figure~\ref{fig:u0_dom_errs}.
+In fact, most likely because of the large density of points in these domains,
+keeping track of the neighbors for each individual strainline and its
+intersections with the lines in $\mathcal{L}$ turned out to be an unconquerable
+task. It is known that storing the necessary data requires in excess of 28 GB
+of memory, at which point even the NTNU supercomputer, Vilje, proved
+insufficient.
 
 Notably, all of the embedded integration methods result in LCSs which are
 dissimilar from the reference for the tolerance level $\textnormal{tol}=10^{-2}$,

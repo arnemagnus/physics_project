@@ -70,24 +70,54 @@ RMSD of the eigenvalues. $\widehat{\phi}(\vct{x}_{0})$ denotes the
 azimuthal angle of the eigenvector located at $\vct{x}_{0}$, found by means of
 the numerical integrator in question.
 
-Lastly, in order to obtain a quantitative measure of the compliance between
-the obtained LCSs and the reference LCS, the root mean square of the distance
-separating each point on the LCS curve with the nearest point on the reference
-LCS curve, was used:
+Regarding the error in the computed LCS curves, false positives and false
+negatives should be treated separately, as they would influence the overall
+flow patterns in the system in different ways. Because numerical noise
+could result in LCS curve segments being erroneously identified as either,
+a lower numerical threshold $l_{\textnormal{noise}}=0.01$, that is,
+ten times the numerical integration step used in order to compute the
+constituent strainlines, was used. Any point on a LCS curve which was farther
+away from all points on the reference LCS than $l_{\textnormal{noise}}$ was
+identified as a false positive. Likewise, any point on the reference LCS curve
+which was farther away from all points on the LCS curve under consideration
+than $l_{\textnormal{noise}}$ was flagged as a false negative. In order to
+estimate the accumulated offset of the false LCS segments, the midpoint
+rule was used;
+
+\begin{equation}
+    \label{eq:midpointfalselcs}
+    \textnormal{Offset}_{\textnormal{false LCSs}} = %
+    \sum\limits_{\substack{\vct{x}\,\in\,\gamma\\\vct{x}\,\notin\,\widehat{\gamma}}}%
+\min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}%
+\norm{\vct{x}-\widehat{\vct{x}}}\cdot\Delta,
+\end{equation}
+
+where the sum is over all points with a greater offset than the aforementioned
+$l_{\textnormal{noise}}$, and $\Delta=0.001$ is the numerical integration step
+length used in order to compute strainlines. Concerning false positives,
+$\widehat{\gamma}$ denotes the reference LCS curve, and $\gamma$ the
+approximation under consideration. For false negatives, the roles are reversed.
+
+Lastly, in order to obtain a quantitative measure of the offset in the
+LCS curve segments which comply with the reference LCS (that is, to the
+numerical threshold $l_{\textnormal{noise}}$), the root mean square
+of the distance separating each point on the LCS curve with the nearest point
+on the reference, was calculated:
 
 \begin{equation}
     \label{eq:rmsdlcs}
     \rmsd_{\textnormal{LCS}} = \sqrt{%
-        \frac{1}{\breve{N}}\sum\limits_{\vct{\widehat{x}}\,\in\,\widehat{\gamma}}%
-\min\limits_{\vct{x}\,\in\,\gamma}{\norm{\vct{\widehat{x}}_{0}-\vct{x}}}^{2}},
+        \frac{1}{\breve{N}}\sum\limits_{\vct{x}\,\in\,\gamma}%
+    \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}{\norm{\vct{x}-\widehat{\vct{x}}}}^{2}},
 \end{equation}
 
-where the term $\rmsd$ is used somewhat loosely, in order to conform with the
+where the term $\rmsd$ is used somewhat loosely, in order to conform with
 notation used for the other measures of error introduced in this section.
 $\breve{N}$ is the number of points which constitute
 $\widehat{\gamma}$, the LCS curve found by means of the numerical
-integrator in question, and $\gamma$ is the reference LCS curve. The idea
+integrator in question, which are within the distance $l_{\textnormal{noise}}$
+of any point on $\gamma$, the reference LCS curve. The idea
 is that LCS curves need not necessarily start from, or end at, the same points
-in space. For this reason, the most robust way of estimating the error
-of a given LCS curve simply becomes the summation of the smallest distances
+in space. For this reason, a robust way of estimating the error
+of a given LCS curve is the summation of the smallest distances
 separating each point on the curve from the reference.

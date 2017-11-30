@@ -1,36 +1,76 @@
 \subsection{Computed deviations in the LCS curves}
 \label{sub:computed_deviations_in_the_lcs_curves}
 
-Figure~\ref{fig:lcs_err_fixed} indicates that the $\rmsd$ of the LCS curves,
-as defined in equation~\eqref{eq:rmsdlcs}, does not follow the expected power
-laws of the numerical errors for the various singlestep integrators. The error
-quickly flattens for all integrators except the Euler scheme, which agrees well
-with the LCS curves presented in~\cref{fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4},
+Figures~\ref{fig:lcs_err_fp_fp} and~\ref{fig:lcs_err_fn_fn} indicate that
+the offset of false positives and negatives, as defined in equation
+\eqref{eq:midpointfalselcs}, is a decreasing function of the number of
+function evaluations for all integration schemes. Moreover, the issue of false
+positives and negatives vanishes entirely for sufficiently many funcion
+evaluations, that is, sufficiently small numerical step lengths or tolerance
+levels. This conforms well with the visual representations of the various
+approximations of the LCS curve, as shown in
+\cref{sec:the_lcs_curves_obtained_using_the_different_schemes}, aside from
+providing an indication that that the LCS present in the double gyre system is
+robust.
+
+Note that the offset of false positives and negatives has not been plotted as a function
+of numerical time step, for the singlestep methods. As can be seen from figures
+\ref{fig:lcs_err_fp_fp} and~\ref{fig:lcs_err_fn_fn}, only the Euler method
+results in false positives or negatives for more than one of the considered
+integration step lengths, meaning that there are simply too few data points
+to identify correlations with the expected expected power laws of the numerical
+errors as a function of the time step, cf.~\cref{def:rungekuttaorder}.
+Furthermore, offsets for the adaptive stepsize methods are not included for the
+tolerance level $10^{-1}$, because the LCS identification proved to be an
+insurmountable task for those cases, as described in
+\cref{sub:lcs_curves_stemming_from_adaptive_stepsize_methods}. However,
+based on the associated $\mathcal{U}_{0}$ domains, shown in figure
+\ref{fig:u0_dom_errs}, one may infer an overwhelming probability of a large
+number of false positives and negatives to be present, seeing as the underlying
+strain systems are quite clearly different to the reference, shown in
+figure~\ref{fig:u0_domain}.
+
+
+\input{mainmatter/results/figures/error_figures/lcs_false_positives.tex}
+\input{mainmatter/results/figures/error_figures/lcs_false_negatives.tex}
+\clearpage
+
+
+Figures~\ref{fig:lcs_rmsd_fp_nn_fixed} and~\ref{fig:lcs_rmsd_fn_nn_fixed} indicate
+that the $\rmsd$ of the LCS curves, as defined in equation~\eqref{eq:rmsdlcs},
+does not follow the expected power laws of the numerical errors for the various
+singlestep integrators. Moreover, the two measures of the $\rmsd$ show the
+same quantitative behaviour, which is to be expected. The error quickly flattens
+for all integrators except the Euler scheme, which agrees well with the LCS
+curves presented in~\cref{fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4},
 where there are no visible discrepancies with regards to the reference LCS curve
-for step lengths smaller than $10^{-2}$. Moreover, the fact that the $\rmsd$
+for step lengths smaller than $10^{-2}$. In addition, the fact that the $\rmsd$
 of the curves obtained by means of the Euler method appears to have flattened
 at a higher level than the rest of the integrators implies that the Euler
 method will never result in LCS curves with similar degrees of accuracy
 as for the other schemes.
 
-\input{mainmatter/results/figures/error_figures/lcs_error_fixed_steplength.tex}
+\input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_fixed_steplength.tex}
 
-\input{mainmatter/results/figures/error_figures/lcs_error_both.tex}
+\input{mainmatter/results/figures/error_figures/lcs_fn_nn_error_fixed_steplength.tex}
 
-Interestingly, a similar pattern is apparent in figure
-\ref{fig:lcs_err_both}, in that, the $\rmsd$ of the higher-order methods
-decreases steadily, until a certain point where it suddenly jumps to the same
-steady level as the (high order) singlestep methods. The most reasonable
-explanation is that when the number of function evaluations reaches some
-threshold, the accumulated floating-point arithmetic errors gain a larger
-influence than the inherent precision of the integrators. By similar logic, the
-sudden drop in $\rmsd$ for the high order singlestep methods with numerical
-step length $h=10^{-5}$, apparent in
-\cref{fig:lcs_err_fixed,fig:lcs_err_both}, is most likely an artifact of the random
-nature of the accumulated floating-point errors.
+\input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_both.tex}
+
+\input{mainmatter/results/figures/error_figures/lcs_fn_nn_error_both.tex}
+
+Interestingly, a similar pattern is apparent from figures
+\ref{fig:lcs_rmsd_fp_nn_both} and~\ref{fig:lcs_rmsd_fn_nn_both}, in that, the
+$\rmsd$ of the higher-order methods decreases steadily, until a certain point
+where it suddenly jumps to the same steady level as the (high order) singlestep
+methods. The most reasonable explanation is that when the number of function
+evaluations reaches some threshold, the accumulated floating-point arithmetic
+errors gain a larger influence than the inherent precision of the integrators.
+By similar logic, the sudden drop in $\rmsd$ for the high order singlestep
+methods with numerical step length $h=10^{-5}$, as can be seen in
+\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed}, is most likely an
+artifact of the random nature of the accumulated floating-point errors.
 %moreso than a sudden re-manifestation of the inherent integrator accuracy.
-Finally, figure
-\ref{fig:lcs_err_both} suggests that the high order
-adaptive stepsize methods Bogacki-Shampine 5(4) and
-Dormand-Prince 8(7) provide the most efficient means of obtaining
+Finally, \cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} suggests that
+the high order adaptive stepsize methods, namely the Bogacki-Shampine 5(4) and
+Dormand-Prince 8(7) schemes, provide the most efficient means of obtaining
 accurate LCS curves for the considered double gyre system.
