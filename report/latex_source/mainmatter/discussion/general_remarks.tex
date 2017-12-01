@@ -42,8 +42,29 @@ This is most likely due to them being computed based on the denser
 \emph{auxiliary} set of tracers, which per construction results in more accurate
 finite differences.
 
-The double gyre model considered in this project is clearly not representative
-of a generic system, in terms of exact numerical step lengths or tolerance
+However, for the considered system, there appears to be a lower threshold
+in terms of the required advection accuracy, beneath which the computed LCS
+curves do not become more precise. This effect is apparent
+from inspection of
+\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
+fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}, where the error of strainline
+components identified as LCS constituents flattens abruptly. Notably, this
+occurs for larger numerical step lengths or tolerance levels, respectively,
+than the corresponding inflection points for the error in the flow maps.
+For the double gyre system considered here, it appears that this advection
+accuracy threshold is of the order $10^{-6}$--$10^{-7}$, which follows from
+comparing~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
+fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} to
+\cref{fig:flowmap_err_fixed,fig:flowmap_err_both}. The same threshold may
+or may not suffice for other, more volatile flow systems. Investigating
+this further for a wider range of systems could result in valuable insight.
+Should such a threshold be valid in general, which, admittedly, there is
+no apparent reason why should be the case, it would naturally be of great
+significance when investigating generic transport systems by means of a
+similar variational LCS approach.
+
+The double gyre model considered in this project is obviously not representative
+of generic systems, in terms of exact numerical step lengths or tolerance
 levels which are sufficient in order to obtain correct LCSs with a certain
 degree of confidence. It does, however, indicate that these quantities should
 be chosen based on the considered system. For a fixed timestep integration
