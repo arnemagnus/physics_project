@@ -55,8 +55,13 @@ For the double gyre system considered here, it appears that this advection
 accuracy threshold is of the order $10^{-6}$--$10^{-7}$, which follows from
 comparing~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
 fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} to
-\cref{fig:flowmap_err_fixed,fig:flowmap_err_both}. The same threshold may
-or may not suffice for other, more volatile flow systems. Investigating
+\cref{fig:flowmap_err_fixed,fig:flowmap_err_both}. However, because the
+sort of flattening does not appear to occur for the strain eigenvalues,
+as shown in~\cref{fig:lmbd2_err_fixed,fig:lmbd2_err_both}, one may infer
+that this threshold is only valid for the LCS curves found by means of the
+procedure described in~\cref{sec:identifying_lcs_candidates_numerically}, which
+appear quite robust. The same flow map accuracy threshold probably does not
+suffice for other, more volatile flow systems. Investigating
 this further for a wider range of systems could result in valuable insight.
 Should such a threshold be valid in general, which, admittedly, there is
 no apparent reason why should be the case, it would naturally be of great
