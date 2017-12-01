@@ -1,0 +1,42 @@
+Lagrange-koherente strukturer (heretter forkortet til LKSer) kan beskrives som
+"landskap" i flerdimensjonale rom, som utøver stor innflytelse på
+strømningsmønstre i dynamiske system. Denne typen strukturer kan benyttes til
+å på forenklet vis kunne forutsi fremtidige tilstander i komplekse system, som
+for eksempel ikkelineære mangepartikkelsystem, over et gitt tidsintervall,
+sammenlignet med å utføre simuleringer med et økende antall partikler ---
+hvilket er den tradisjonelle tilnærmingen. Fra deres underliggende
+variasjonsteori, kjennetegnes hyperbolske LKSer som de lokalt sterkest
+frastøtende eller tiltrekkende materialoverflatene i systemet, som utgjør
+skjelettet av observable følgepartiklers baner.
+
+Dette prosjektet omhandler hvordan den numeriske identifikasjonen av LKSer
+avhenger av den numeriske integrasjonsmetoden som blir benyttet til å beregne
+dem. Spesifikt ble åtte Runge-Kutta-teknikker undersøkt, hvorav fire
+tradisjonelle enkeltstegsmetoder, og fire sammensatte,
+dynamisk steglengde-metoder. En numerisk løsning funnet via en høyere
+ordens sammensatt metode med svært liten numerisk toleranse -- to
+størrelsesordener mindre enn det minste toleransenivået som ble benyttet for
+øvrig -- ble brukt som sammenligningsgrunnlag for de ulike metodenes ytelse.
+LKSer ble beregnet og sammenlignet med utgangspunkt i et analytisk kjent
+hastighetsfelt, hvis LKSer har blitt dokumentert i litteraturen.
+
+Det viser seg at LKSene i eksempelsystemet er nokså robuste, numerisk sett,
+i alle fall for de benyttede parameterverdiene. Av den grunn var det ingen
+av de numeriske integrasjonsmetodene som sto frem som den absolutt mest
+velegnede. Likevel, basert på de de beregnede feilene i flytdiagrammene,
+tilrådes bruk av høyere ordens numeriske integratorer for generiske
+strømningssystem, fordi de uten unntak resulterer i mer effektive beregninger,
+som er mindre utsatt for numeriske avrundingsfeil. Videre foreligger ingen
+åpenbar grunn til å forvente at LKSene for et generelt strømningssystem er like
+robuste som de viste seg å være for modellsystemet undersøkt her.
+
+Merk at den numeriske implementasjonen av en av eksistensbetingelsene for
+LKSer, som stammer fra deres variasjonsteori, til dags dato ikke har blitt
+fullstendig beskrevet i litteraturen. Dette er en direkte konsekvens
+av at LKSer fortsatt er å regne som et forholdsvis nytt fysisk fenomen.
+Tilnærmingsmetoden som ble benyttet som del av dette prosjektet, er basert
+på nøye vurderinger av det underliggende systemets egenskaper, hvilket
+ikke nødvendigvis er en praktisk hensiktsmessig fremgangsmåte for generiske
+system, avhengig av de involverte skalaene. Med andre ord er det for øyeblikket
+stort rom for forskning innenfor denne grenen av fysikk.
+

@@ -1,0 +1,47 @@
+Lagrangian coherent structures (henceforth abbreviated as LCSs) can be described
+as `landscapes' within a multidimensional space, which exert a major influence
+upon the flow patterns in dynamical systems. Such structures provide a
+simplified means of predicting the future states of complex systems, such as
+nonlinear manybody problems, over a time interval of interest, compared to the
+conventional approach of performing simulations for an increasing number of
+particles. From their variational theory, hyperbolic LCSs are identified as
+locally most repelling or attractive material surfaces, which form the skeleton
+of observable tracer patterns.
+
+This project is centered around the dependence of the numerical identification
+of such LCSs upon which numerical integration scheme was used in calculating
+them. In particular, four traditional singlestep and four embedded, adaptive
+stepsize Runge-Kutta methods were investigated.
+A numerical solution obtained by means of a high order embedded method with
+a very small numerical tolerance --- two orders of magnitude smaller than the
+smallest tolerance level utilized otherwise --- was utilized as the basis
+for comparing the performance of the different methods. LCSs were computed and
+compared for an analytical velocity field, for which reference LCSs are
+documented in the literature.
+
+It turns out that the LCSs for the system under consideration are quite robust
+numerically, at least for the chosen parameter values. Thus, none of the
+numerical integration schemes stand out as the absolutely best-suited. However,
+based upon the errors of the computed flow maps, high order integration
+methods are generally advisable for generic flow systems, as they invariably
+yield more efficient calculations, which are less susceptible to numerical
+round-off error. Moreover, there is no apparent reason to expect the LCSs of
+a generic flow system to be as robust as they did for the system considered
+for this project work.
+
+Note that the numerical implementation of one of the LCS existence conditions
+which arise from their variational theory has not yet received a complete
+description in the literature. This is a consequence of the concept of LCSs
+still being in its infancy, concerning physical principles. The approach
+considered in this project is based on careful inspection of properties of the
+underlying system, which may or may not be applicable to generic systems,
+depending on their scale. In other words, there is currently a lot of room for
+research within the field.
+
+%Generally, the time step or tolerance level involved in the numerical
+%integration scheme should be made based on physical considerations of the
+%system for which LCSs are sought. In particular, when analyzing discrete
+%systems, for which \emp{interpolation} is necessary in general, the
+%\emph{interaction} between the chosen integration and interpolation schemes
+%could have severe ramifications regarding the accuracy of the computed LCSs.
+%This effect was not investigated
