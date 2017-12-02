@@ -34,14 +34,40 @@ random variable. Because of the large numbers of individual data samples,
 the $\rmsd$ can be considered a measure of the standard deviation of the
 distribution of errors as a whole.
 
-The reason for which the offset of falsely positively or negatively identified
-LCS curves was calculated as the
+While one could argue that using \emph{relative} errors with regards to
+the strain eigenvalues would be more applicable, the fact that several
+$\lambda_{1}$ values were close to zero would result in the errors being
+misleadingly large. As a consequencem the relative errors in the
+$\lambda_{1}$ and $\lambda_{2}$ fields would scale differently, which would,
+again, be deceptive. In addition, because the azimuthal angles of the strain
+eigenvectors are calculated relative to what is really an arbitrary axis,
+as far as the overall flow patterns are concerned, the \emph{absolute} errors
+regarding the strain eigendirections is the only sensible measure. So, besides
+the issues arising for small $\lambda_{1}$ values, the use of $\rmsd$ for
+the eigenvalues was made for reasons of consistency.
 
-\begin{framed}
-    Handwaving wrt selecting the curve segments which `most closely resemble'
-    the reference LCS. Need a method which avoids these kinds of subjective
-    evaluations.
-\end{framed}
+Lastly, regarding the estimation of the offset of false positive and false
+negative LCS curve segments, there certainly exists other relevant measures.
+An important aspect of any such principle, however, is the elimination of
+subjective assessment, for instance, one should not have to identify
+what LCS curve segment a false positive most closely resembles by means of
+inspection. Furthermore, the offset of false positives and negatives is not
+an independent error measure --- it depends intrinsically on the errors
+in the strain eigenvalue and eigenvector fields. As such, an interesting
+approach could be to consider the entire set of computed strainlines, employing
+some means of identifying the curve segments which resemble the reference
+LCS curves the most, and examining the reason for which any false negatives
+are eliminated, or why any false positives are included, in the final picture.
+This sort of approach could provide useful insight into the nature of LCSs, but
+was ultimately not pursued in this project, as it simply fell outside the
+overall scope of this project, that is, the dependence of LCSs on the
+underlying numerical integration scheme.
 
-Regarding the estimation of the offset of falsely positively or negatively
-identified LCS curves, there exists other measures of error.
+%\begin{framed}
+%    Handwaving wrt selecting the curve segments which `most closely resemble'
+%    the reference LCS. Need a method which avoids these kinds of subjective
+%    evaluations.
+%\end{framed}
+
+%Regarding the estimation of the offset of falsely positively or negatively
+%identified LCS curves, there exists other measures of error.
