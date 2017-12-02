@@ -2,12 +2,10 @@
 \label{sec:typeofflow}
 
 We consider flow in two-dimensional dynamical systems of the form
-
 \begin{equation}
     \label{eq:odeflowsystem}
 \dot{\vct{x}} = \vct{v}(t,\vct{x}),\quad\vct{x}\in\mathcal{U},\quad{}t\in[t_{0},t_{1}],
 \end{equation}
-
 i.e., systems defined for the finite time interval $[t_{0},t_{1}]$, on an open,
 bounded subset $\mathcal{U}$ of $\mathbb{R}^{2}$. In addition, the velocity
 field $\vct{v}$ is assumed to be smooth in its arguments. Depending on the
@@ -18,38 +16,31 @@ massless, i.e., non-interacting \emph{tracers} of the overall circulation.
 
 Letting $\vct{x}(t;t_{0},\vct{x}_{0})$ denote the trajectory of a tracer in the
 system defined by~\eqref{eq:odeflowsystem}, the flow map is defined as
-
 \begin{equation}
     \label{eq:flowmap}
     \vct{F}_{t_{0}}^{t}(\vct{x}_{0}) = \vct{x}(t;t_{0},\vct{x}_{0}),
 \end{equation}
-
 i.e., the flow map describes the mathematical movement of the tracers from
 one point in time (e.g.\ the initial condition) to another. Generally, the
 flow map is as smooth as the velocity field $\vct{v}$ in system
 \eqref{eq:odeflowsystem} \parencite{farazmand2012computing}. For sufficiently
 smooth velocity fields, the right Cauchy-Green strain tensor field is defined as
-
 \begin{equation}
     \label{eq:cauchygreen}
     \mtrx{C}_{t_{0}}^{t}(\vct{x}_{0}) = %
     {\big(\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0})\big)}^{\ast} %
     \,\vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{0}),
 \end{equation}
-
 where $\vct{\nabla}\vct{F}_{t_{0}}^{t}$ denotes the Jacobian matrix of the flow
 map $\vct{F}_{t_{0}}^{t}$, and the asterisk refers to the adjoint operation,
 which, because the Jacobian $\vct{\nabla}\vct{F}_{t_{0}}^{t}$ is real-valued,
 equates to matrix transposition. Component-wise, the Jacobian matrix of a
 general vector-valued function $\vct{f}$ is defined as
-
 \begin{equation}
     \label{eq:jacobiancomponent}
     {(\vct{\nabla}\vct{f})}_{i,j} = \pdv{f_{i}}{x_{j}}
 \end{equation}
-
 which, for our two-dimensional flow, reduces to
-
 \begin{equation}
     \label{eq:jacobiantotal}
     \renewcommand{\arraystretch}{2.5}
@@ -65,7 +56,6 @@ By construction, the Cauchy-Green strain tensor $\mtrx{C}_{t_{0}}^{t}$ is
 symmetric and positive definite. Thus, it has two real, positive eigenvalues
 and orthogonal, real eigenvectors. Its eigenvalues $\lambda_{i}$ and
 corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
-
 \begin{equation}
     \label{eq:cauchygreencharacteristics}
     \begin{gathered}
@@ -75,7 +65,6 @@ corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
         0<\lambda_{1}(\vct{x}_{0})\leq\lambda_{2}(\vct{x}_{0}),
     \end{gathered}
 \end{equation}
-
 where, for the sake of notational transparency, the dependence of $\lambda_{i}$
 and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. The geometric
 interpretation of equation~\eqref{eq:cauchygreencharacteristics} is that
@@ -88,14 +77,11 @@ and the least along the $\vct{\xi}_{1}$ axis. This concept is shown in figure
 Because the stretch factors along the $\vct{\xi}_{1}$ and $\vct{\xi}_{2}$ axes
 are given by the square root of the corresponding eigenvalues, for
 incompressible flow, the eigenvalues satisfy
-
 \begin{equation}
     \label{eq:cauchygreenincomprlambda}
     \lambda_{1}(\vct{x}_{0})\lambda_{2}(\vct{x}_{0})=1%
         \quad\forall\hskip0.5em\vct{x}_{0}\in\mathcal{U}
 \end{equation}
-
-
 where, for our case, incompressibility is equivalent to the velocity field
 $\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
 This is due to the tracer particles being massless, per definiton.
@@ -114,6 +100,8 @@ centers of observable tracer patterns \parencite{onu2015lcstool}. Because
 hyperbolic LCSs provide the most readily applicable insight in terms of
 forecasting flow in e.g.\ oceanic currents, such structures have been the focus
 of this project.
+
+\clearpage
 
 \subsection{Hyperbolic LCSs}
 \label{sub:hyperbolic_lcss}
@@ -163,7 +151,7 @@ driven away from the material line, rather than being stretched
 \begin{defn}
     \label{def:hyperboliclcs}
     A \emph{hyperbolic} LCS over the time interval $[t_{0},t_{0}+T]$ is a
-    \emph{repelling} or \emph{attracting} LCS over the same time interval.\\
+    \emph{repelling} or \emph{attracting} LCS over the same time interval.
 \end{defn}
 
 Note that the above definitions associate LCSs with the time interval $I$ over
@@ -175,8 +163,9 @@ intervals \parencite{farazmand2012computing}.
 For two-dimensional flow, the above definitions can be summarized as a set of
 mathematical existence criteria, based on the Cauchy-Green strain tensor,
 \parencite{haller2010variational,farazmand2011erratum}. These are given in
-\cref{thm:lcsexistence}:\\
+\cref{thm:lcsexistence}:
 
+\clearpage
 
 \begin{thm}[Sufficient and necessary conditions for LCSs in two-dimensional
     flows]
@@ -201,20 +190,16 @@ mathematical existence criteria, based on the Cauchy-Green strain tensor,
         \end{align}
     \end{subequations}
 \end{thm}
-
 In \cref{thm:lcsexistence}, $\langle\cdot,\cdot\rangle$ denotes the Euclidean
 inner product, and $\mtrx{H}_{\lambda_{2}}$ denotes the Hessian matrix of the
 set of largest eigenvalues of the Cauchy-Green strain tensor. Component-wise,
 the Hessian matrix of a general, smooth, scalar-valued function $f$ is defined
 as
-
 \begin{equation}
     \label{eq:hessiancomponent}
     {(\mtrx{H}_{f})}_{i,j} = \pdv[2]{f}{x_{i}}{x_{j}},
 \end{equation}
-
 which, for our two-dimensional flow, reduces to
-
 \begin{equation}
     \label{eq:hessiantotal}
     \renewcommand{\arraystretch}{2.5}
@@ -225,7 +210,6 @@ which, for our two-dimensional flow, reduces to
                 \dfrac{\partial{}^{2}f}{\partial{y}^{2}} \\
             \end{pmatrix}
 \end{equation}
-
 Condition~\eqref{eq:lcsexistence1} ensures that the normal repulsion rate is
 larger than the tangential stretch due to shear strain along the LCS, as per
 \cref{def:normalrepellence}. Conditions~\eqref{eq:lcsexistence3} and
@@ -246,14 +230,11 @@ tracers which start out infinitesimally close to each other
 is intrinsically linked to the Cauchy-Green strain tensor. When a
 two-dimensional system is evolved from time $t_{0}$ to $t_{0}+T$, the FTLE field
 is defined as
-
-\vspace{\fill}
-
 \begin{equation}
     \label{eq:ftledef}
     \sigma(\vct{x}_{0}) = \frac{\ln\big(\lambda_{2}(\vct{x}_{0})\big)}{2\abs{T}},
 \end{equation}
-
+\clearpage
 where $\lambda_{2}(\vct{x}_{0})$ is the largest eigenvalue of the Cauchy-Green
 strain tensor. The absolute value of the integration time $T$ is taken because
 one generally can consider the evolution of a system in either temporal

@@ -4,7 +4,6 @@
 Making use of the auxiliary tracer points, as outlined in
 \cref{sub:generating_a_set_of_initial_conditions}, the Jacobian of the flow
 map was approximated by means of centered differences as
-
 \begin{equation}
     \label{eq:auxjacobian}
     \vct{\nabla}\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}) \approx%
@@ -14,7 +13,6 @@ map was approximated by means of centered differences as
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{l})}{2\delta{}y}
     \end{pmatrix}.
 \end{equation}
-
 The Cauchy-Green strain tensor was then calculated as per equation
 \eqref{eq:cauchygreen}. \textcite{farazmand2012computing} bring up the point
 that using only the auxiliary tracers in the calculation of the eigenvalues and
@@ -28,7 +26,6 @@ sides of repelling LCSs.
 
 For this reason, an approximation of the Jacobian of the flow map was also
 made by means of applying centered differencing to the main tracers, as
-
 \begin{equation}
     \label{eq:mainjacobian}
     \widetilde{\vct{\nabla}\vct{F}}\hspace{0ex}_{t_{0}}^{t}(\vct{x}_{i,j}) \approx%
@@ -38,7 +35,6 @@ made by means of applying centered differencing to the main tracers, as
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j-1})}{2\Delta{}y}
     \end{pmatrix}.
 \end{equation}
-
 The artificial grid extension, as outlined in
 \cref{sub:generating_a_set_of_initial_conditions}, allowed for a consistent
 centered differencing approximation for all the main tracers, including the
@@ -46,6 +42,7 @@ first set of extended rows and columns, where the latter play an important
 role in the analysis to follow --- more on that in
 \cref{sec:identifying_lcs_candidates_numerically}. The numerical approximation
 of the eigen\emph{values} of the Cauchy-Green strain tensor were thus calculated
-by means of the main tracers, equation~\eqref{eq:mainjacobian}, while
+by means of the main tracers, using equation~\eqref{eq:mainjacobian}, while
 the approximation of the corresponding eigen\emph{vectors} were calculated by
-means of the auxiliary tracers, equation~\eqref{eq:auxjacobian}.
+means of the auxiliary tracers, that is, equation~\eqref{eq:auxjacobian}.
+\clearpage

@@ -8,14 +8,12 @@ use them in order to explain any visual discrepancies. To this end, the error
 in the flow map, given by equation~\eqref{eq:flowmap}, was computed as the
 root mean square deviation (hereafter abbreviated as RMSD) with regards to the
 reference, as follows:
-
 \begin{equation}
     \label{eq:rmsdflowmap}
     \rmsd_{\textnormal{flow map}} = \sqrt{\frac{1}{\widetilde{N}}%
         \sum\limits_{\vct{x}_{0}\,\in\,\widetilde{\mathcal{U}}}%
 \big(\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})-\vct{F}_{t_{0}}^{t}{(\vct{x}_{0})}\big)^{2}},
 \end{equation}
-
 where the summation is over all of the tracers in the computational domain
 $\widetilde{\mathcal{U}}$, including the tracers which constitute the artificially extended
 domain \emph{and} the auxiliary tracers, as outlined in
@@ -28,14 +26,12 @@ The RMSD in both sets of eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and
 $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field, as given
 by equation \eqref{eq:cauchygreencharacteristics} was also computed completely
 analogously:
-
 \begin{equation}
     \label{eq:rmsdlmbd}
     \rmsd_{\textnormal{eigenvalue}} = \sqrt{\frac{1}{N}%
     \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
 \big(\widehat{\lambda}(\vct{x}_{0})-\lambda(\vct{x}_{0})\big)^{2}},
 \end{equation}
-
 where the summation is over all tracers within the computational domain
 $\mathcal{U}$, for which the Hessians of the largest eigenvalue were computed,
 as per equation~\eqref{eq:numericalexistence}. $N$ is the corresponding
@@ -52,7 +48,6 @@ a $180\si{\degree}$ shift in direction would not influence the LCS calculation
 in any way. Thus, the eigenvector directions were computed as azimuthal angles
 in the interval $[0\si{\degree},180\si{\degree})$. The RMSD for the direction of
 the eigenvector fields was then calculated as follows:
-
 \begin{equation}
     \label{eq:rmsddirection}
     \begin{gathered}
@@ -64,11 +59,11 @@ the eigenvector fields was then calculated as follows:
 {\big(\widehat{\phi}{(\vct{x}_{0})}-\phi{(\vct{x}_{0})}\big)}^{2}},
     \end{gathered}
 \end{equation}
-
 where the conventions for $\mathcal{U}$ and $N$ are the same as for the
 RMSD of the eigenvalues. $\widehat{\phi}(\vct{x}_{0})$ denotes the
 azimuthal angle of the eigenvector located at $\vct{x}_{0}$, found by means of
 the numerical integrator in question.
+\clearpage
 
 Regarding the error in the computed LCS curves, false positives and false
 negatives should be treated separately, as they would influence the overall
@@ -83,7 +78,6 @@ which was farther away from all points on the LCS curve under consideration
 than $l_{\textnormal{noise}}$ was flagged as a false negative. In order to
 estimate the accumulated offset of the false LCS segments, the midpoint
 rule was used;
-
 \begin{equation}
     \label{eq:midpointfalselcs}
     \textnormal{Offset}_{\textnormal{false LCSs}} = %
@@ -91,7 +85,6 @@ rule was used;
 \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}%
 \norm{\vct{x}-\widehat{\vct{x}}}\cdot\Delta,
 \end{equation}
-
 where the sum is over all points with a greater offset than the aforementioned
 $l_{\textnormal{noise}}$, and $\Delta=10^{-3}$ is the numerical integration step
 length used in order to compute strainlines. Concerning false positives,
@@ -103,14 +96,12 @@ LCS curve segments which comply with the reference LCS (that is, to the
 numerical threshold $l_{\textnormal{noise}}$), the root mean square
 of the distance separating each point on the LCS curve with the nearest point
 on the reference, was calculated:
-
 \begin{equation}
     \label{eq:rmsdlcs}
     \rmsd_{\textnormal{LCS}} = \sqrt{%
         \frac{1}{\breve{N}}\sum\limits_{\vct{x}\,\in\,\gamma}%
     \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}{\norm{\vct{x}-\widehat{\vct{x}}}}^{2}},
 \end{equation}
-
 where the term $\rmsd$ is used somewhat loosely, in order to conform with
 notation used for the other measures of error introduced in this section.
 $\breve{N}$ is the number of points which constitute

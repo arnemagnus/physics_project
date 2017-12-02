@@ -24,10 +24,8 @@ with the same grid spacing as the \emph{main} grid. This was done in order to
 ensure that the dynamics at the domain boundaries were included in the analysis
 to follow. The extended grid thus had a total of $1004\times504$ grid points.
 The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
-
-\vspace{\fill}
+\clearpage
 \input{mainmatter/method/figures/initialgridfigure.tex}
-
 
 In order to increase the resolution of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
@@ -135,29 +133,24 @@ approximations $x_{1}$ and $\widehat{x}_{1}$, from which the difference
 $x_{1}-\widehat{x}_{1}$ can be used as an estimate of the error of the less
 precise result. The idea is to enforce the error of the numerical solution to
 satisfy componentwise:
-
 \begin{equation}
     \label{eq:embeddederror}
     \abs{x_{1,i}-\widehat{x}_{1,i}} \leq \scem_{i},\quad{}%
     \scem_{i}=\atol_{i}+\max\big(\abs{x_{0,i}},\abs{x_{1,i}}\big)\cdot{}\rtol_{i}
 \end{equation}
-
 where $\atol_{i}$ and $\rtol_{i}$ are the desired numerical tolerances, prescribed
 by the user. For this project, $\atol_{i}$ was always set equal to $\rtol_{i}$.
 
 As a measure of the numerical error,
-
 \begin{equation}
     \label{eq:embeddednumericalerror}
     \errem = \sqrt{\frac{1}{n}\sum\limits_{i=1}^{n}%
     {\bigg(\frac{x_{1,i}-\widehat{x}_{1,i}}{\scem_{i}}\bigg)}^{2}}
 \end{equation}
-
 is used. Then, $\errem$ is compared to $1$ in order to find an optimal step
 size. From~\cref{def:rungekuttaorder}, it follows that $\errem\approx{}Kh^{q+1}$,
 where $q=\min(p,\widehat{p}\,)$. With $1\approx{}Kh_{\mathrm{opt}}^{q+1}$,
 one finds the optimal step size
-
 \begin{equation}
     \label{eq:embeddedoptimalstepsize}
     h_{\mathrm{opt}}=h\cdot\Big(\frac{1}{\errem}\Big)^{\frac{1}{q+1}}.
@@ -170,8 +163,6 @@ question. Continuing the integration with the higher order result is commonly
 referred to as \emph{local extrapolation}. If $\errem>1$, the solution step is
 rejected, the time level remains unaltered, and the step length is decreased.
 The  procedure for updating the step length can be summarized as follows:
-
-
 \begin{equation}
     \label{eq:embeddedstepsizeadjustment}
 h_{\mathrm{new}}=\begin{cases}%
@@ -180,8 +171,6 @@ h_{\mathrm{new}}=\begin{cases}%
 \facem\cdot{}h_{\mathrm{opt}},&\textnormal{if the solution step is rejected}%
 \end{cases}
 \end{equation}
-
 where $\facem$ and $\facem_{\mathrm{max}}$ are numerical safety factors,
 intended to prevent increasing the step size \emph{too} much. For this project,
 $\facem=0.8$ and $\facem_{\mathrm{max}}=2.0$ were used throughout.
-

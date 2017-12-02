@@ -6,7 +6,6 @@ zeros of the inner product in equation~\eqref{eq:lcsexistence4} of
 \cref{thm:lcsexistence} to be numerically sensitive. Therefore, they
 suggest a reformulated set of conditions which make for more robust numerical
 implementation, as follows:
-
 \begin{subequations}
     \label{eq:numericalexistence}
     \begin{align}
@@ -28,7 +27,6 @@ implementation, as follows:
         \end{gathered}
     \end{align}
 \end{subequations}
-
 The relaxation of condition~\eqref{eq:lcsexistence2} in~\cref{thm:lcsexistence}
 from strict inequality to condition~\eqref{eq:numericalexistence2}, which
 also allows equality, means that LCSs are allowed to have finite thickness.
@@ -61,13 +59,11 @@ in the following, a term coined by \textcite{farazmand2012computing}. Aside from
 points within $\mathcal{U}$ which exhibit repeated eigenvalues and thus
 orientational discontinuities in both eigenvector fields, strainlines can be computed
 as smooth trajectories of the ordinary differential equation
-
 \begin{equation}
     \label{eq:strainlinebasicode}
 \vct{r}'=\vct{\xi}_{1}(\vct{r}),\quad\vct{r}\in\mathcal{U},%
     \quad\norm{\vct{\xi}_{1}(\vct{r})}=1.
 \end{equation}
-
 As pointed out by \textcite{onu2015lcstool}, the orientational discontinuities
 of the $\vct{\xi}_{1}$-field are removable, through careful monitoring and
 local reorientation. This process can be described in terms of three steps.
@@ -92,25 +88,21 @@ figure \ref{fig:locallinearinterp}.
 
 So, in order to compute globally smooth strainlines, equation
 \eqref{eq:strainlinebasicode} is altered in the following way:
-
 \begin{equation}
     \label{eq:strainlineode}
     \vct{r}'(s)=\sgn\Big(\big\langle\vct{f}\big(\vct{r}(s)\big),%
     \vct{r}'(s-\Delta)\big\rangle\Big)\ \vct{f}\big(\vct{r}'(s)\big),
 \end{equation}
-
 where $\vct{f}$ denotes the special-purpose local linear interpolation of
 the $\vct{\xi}_{1}$ field, as outlined above and in figure
 \ref{fig:locallinearinterp}, $\Delta$ is the numerical step length
 used in the numerical integration, while the signum function is defined as
-
 \begin{equation}
     \label{eq:signumfunction}
 \sgn(x)=\begin{cases}1,&\textnormal{for}\ x>0\\
         0,&\textnormal{for}\ x=0\\
         -1,&\textnormal{for}\ x<0\end{cases}
 \end{equation}
-
 \subsection{Extracting hyperbolic LCSs from strainlines}
 \label{sub:extracting_hyperbolic_lcss_from_strainlines}
 
@@ -143,20 +135,18 @@ is two orders of magnitude less than the total number of points in
 $\mathcal{U}_{0}$.
 
 \input{mainmatter/method/figures/u0_domain.tex}
-
+\clearpage
 The degenerate points of the $\vct{\xi}_{1}$ vector field is, as the name
 implies, the set of points in $\mathcal{U}$ for which the eigenvalues
 $\lambda_{1}(\vct{x}_{0})$ and $\lambda_{2}(\vct{x}_{0})$ are equal, leaving
 the strain eigenvector field $\vct{\xi}_{1}$ indiscernible. As a computational
 measure of this degeneracy, the scalar field defined as
-
 \begin{equation}
     \label{eq:alphafield}
     \alpha(\vct{x}_{0})=\bigg(\dfrac{%
                         \lambda_{2}(\vct{x}_{0})-\lambda_{1}(\vct{x}_{0})}%
                     {\lambda_{2}(\vct{x}_{0})+\lambda_{1}(\vct{x}_{0})}\bigg)^{2}
 \end{equation}
-
 was used. For points $\vct{x}$ which did not coincide with the grid points
 $\vct{x}_{i,j}$, the values $\lambda_{1}(\vct{x})$ and $\lambda_{2}(\vct{x})$
 were found by means of regular linear interpolation. Wherever the value of
@@ -202,7 +192,7 @@ of continuous failure of LCS conditions were cut such that their \emph{new}
 endpoints in either direction, as seen from the strain initial condition, were
 the last point on which the \emph{original} strainline satisfied the
 aforementioned conditions.
-
+\clearpage
 \subsubsection{Identifying strainlines which are local strain maximizers}
 \label{ssub:identifying_strainlines_which_are_local_strain_maximizers}
 

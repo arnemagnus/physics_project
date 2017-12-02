@@ -68,9 +68,10 @@ errors gain a larger influence than the inherent precision of the integrators.
 By similar logic, the sudden drop in $\rmsd$ for the high order singlestep
 methods with numerical step length $h=10^{-5}$, as can be seen in
 \cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed}, is most likely an
-artifact of the random nature of the accumulated floating-point errors.
-%moreso than a sudden re-manifestation of the inherent integrator accuracy.
+artifact of the random nature of the accumulated floating-point errors,
+moreso than a sudden `re-manifestation' of the inherent integrator accuracy.
 Finally, \cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} suggests that
 the high order adaptive stepsize methods, namely the Bogacki-Shampine 5(4) and
 Dormand-Prince 8(7) schemes, provide the most efficient means of obtaining
 accurate LCS curves for the considered double gyre system.
+\clearpage

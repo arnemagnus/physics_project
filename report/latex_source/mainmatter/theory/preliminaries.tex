@@ -57,10 +57,10 @@ what is now known as a Runge-Kutta method is as follows: \\
         x_{n+1} &= x_{n} + h\sum\limits_{i=1}^{s}b_{i}k_{i}
     \end{aligned}
 \end{equation}
-
 is called an \emph{s-stage Runge-Kutta method} for the system
 \eqref{eq:ivpsystem}.
 \end{defn}
+
 
 The main reason to include multiple stages $s$ in a Runge-Kutta method,
 is to improve the numerical accuracy of the computed solutions.
@@ -71,12 +71,10 @@ of a Runge-Kutta method as follows:\\
     \label{def:rungekuttaorder}
     A Runge-Kutta method \eqref{eq:generalrungekutta} is said to be of
     \emph{order} $p$ if, for sufficiently smooth systems \eqref{eq:ivpsystem},
-
     \begin{equation}
         \label{eq:rungekuttaorder}
         \norm{x_{n+1}-x(t_{n+1})} \leq Kh^{p+1},
     \end{equation}
-
     where $K$ is a numerical constant, i.e., if the Taylor series for the exact
     solution $x(t_{n+1})$ and the numerical solution $x_{n+1}$ coincide up to
     (and including) the term $h^p$.
@@ -131,6 +129,8 @@ useless. For \emph{nonstiff} systems, however, implicit methods behave similarly
 to their explicit analogues in terms of numerical accuracy and
 convergence properties.
 
+\clearpage
+
 During the first half of the twentieth century, a substantial amount of research
 was conducted in order to develop numerically robust, high-order, explicit
 Runge-Kutta methods. The idea was that using such methods would mean one could
@@ -177,7 +177,6 @@ explicit Runge-Kutta method is illustrated in
 \end{table}
 
 For embedded methods, the coefficients are tuned such that
-
 \begin{subequations}
     \begin{equation}
         \label{eq:embeddedsol}
@@ -190,6 +189,8 @@ is of order $p$, and
     \end{equation}
 \end{subequations}
 is of order $\widehat{p}$, typically with $\widehat{p} = p \pm 1$.
+
+\clearpage
 
 \subsection{The Runge-Kutta methods under consideration}
 \label{sub:the_runge_kutta_methods_under_consideration}
