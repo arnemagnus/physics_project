@@ -3,13 +3,13 @@
     \caption[Butcher tableau representation of the Bogacki-Shampine 5(4)
     embedded Runge-Kutta method]{Butcher tableau representation of the Bogacki-
     Shampine 5(4) embedded Runge-Kutta method. The $b$ coefficients correspond
-to a \nth{5} order accurate solution used to continue the integration. The
-two rows of $\widehat{b}$ coefficients correspond to two independent \nth{4}
-order accurate interpolants. They can be used to estimate the error of the
-numerical approximation, and to dynamically adjust the time step. The fact that
-two independent interpolants are included is a part of the reason for which
-the method nearly behaves like a \nth{6} order method
-\parencite[p.194 in the 2008 printing]{hairer1993solving}. The
+to a \nth{5}-order accurate solution used to continue the integration. The
+two rows of $\widehat{b}$ coefficients correspond to two independent
+\nth{4}-order accurate interpolants. They can be used to estimate the error of
+the numerical approximation, and to dynamically adjust the time step. The fact
+that two independent interpolants are included is a part of the reason for which
+the method nearly behaves like a \nth{6}-order method
+\parencite[p.194]{hairer1993solving}. The
 \emph{First Same As Last} property is apparent from the fact that the $b$
 coefficients correspond exactly to the last row of coefficients in the
 Runge-Kutta matrix. For reference, see~\textcite{bogacki1996efficient}.}

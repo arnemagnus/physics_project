@@ -150,7 +150,7 @@ measure of this degeneracy, the scalar field defined as
 was used. For points $\vct{x}$ which did not coincide with the grid points
 $\vct{x}_{i,j}$, the values $\lambda_{1}(\vct{x})$ and $\lambda_{2}(\vct{x})$
 were found by means of regular linear interpolation. Wherever the value of
-$\alpha(\vct{x})$ decreased below the predefined threshold of $10^{-6}$, the
+$\alpha(\vct{x})$ decreased below a predefined threshold of $10^{-6}$, the
 point $\vct{x}$ was flagged as degenerate, thus stopping the strainline
 integration.
 
@@ -186,12 +186,16 @@ the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
 domain due to numerical noise. In order to avoid such unwanted failures,
 the approach of \textcite{farazmand2012computing} was followed, where
 strainline integration is only stopped if one of the aforementioned LCS
-conditions fail repeatedly over the pre-set length $l_{\textnormal{f}}=0.2$ of
+conditions fail repeatedly over a pre-set length $l_{\textnormal{f}}=0.2$ of
 the strainline. Furthermore, the strainlines which were stopped because
 of continuous failure of LCS conditions were cut such that their \emph{new}
 endpoints in either direction, as seen from the strain initial condition, were
 the last point on which the \emph{original} strainline satisfied the
-aforementioned conditions.
+aforementioned conditions. This concept is illustrated in
+\cref{fig:tailcutting}.
+
+\input{mainmatter/method/figures/tailcutting.tex}
+
 \clearpage
 \subsubsection{Identifying strainlines which are local strain maximizers}
 \label{ssub:identifying_strainlines_which_are_local_strain_maximizers}
@@ -215,11 +219,11 @@ Intersections between strainlines and the lines in $\mathcal{L}$ are found
 by means of linear interpolation. Should a strainline segment prove to be a
 local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
 segment is labelled as a LCS\@. Adjacent intersections who are separated by a
-distance larger than the preselect threshold $l_{\mathrm{nb}}=0.2$ are excluded
+distance larger than a preselect threshold $l_{\mathrm{nb}}=0.2$ are excluded
 from the local maximization process, as indicated in figure
 \ref{fig:neighborlcs}. Short LCSs are expected to have negligible impact on the
 overall flow pattern. In order to filter out such miniscule structures, any
-strainline segment which was shorter than the pre-set small length
+strainline segment which was shorter than a pre-set small length
 $l_{\mathrm{min}}=1$ were discarded as LCS candidates, as suggested in
 \textcite{farazmand2012computing}.
 

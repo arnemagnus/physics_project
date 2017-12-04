@@ -206,7 +206,7 @@ of varying order.
 The singlestep methods under consideration are the classical, explicit
 Runge-Kutta methods of orders one through to four, i.e., the \emph{Euler},
 \emph{Heun}, \emph{Kutta} and \emph{classical Runge-Kutta} methods. The
-Euler method is \nth{1} order accurate, and requires a single function
+Euler method is \nth{1}-order accurate, and requires a single function
 evaluation of the right hand side of the ordinary differential equation
 \eqref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
 Its Butcher tableau representation can be found in~\cref{tab:butchereuler}.
@@ -214,7 +214,7 @@ It is the simplest explicit method for numerical integration of ordinary
 differential equations. The Euler method is often used as a basis to construct
 more complex methods, such as the Heun method, which is also known as the
 \emph{improved Euler method} or the \emph{explicit trapezoidal rule}. The Heun
-method is \nth{2} order accurate, and requires two function evaluations at each
+method is \nth{2}-order accurate, and requires two function evaluations at each
 time step. Its Butcher tableau representation can be found in
 \cref{tab:butcherrk2}.
 
@@ -222,11 +222,11 @@ time step. Its Butcher tableau representation can be found in
 
 \input{mainmatter/theory/butchertableaus/rk2.tex}
 
-The Kutta method is \nth{3} order accurate, and requires three function
+The Kutta method is \nth{3}-order accurate, and requires three function
 evaluations of the right hand side of the ordinary differential equation
 \eqref{eq:ivpsystem} or ~\eqref{eq:ivpsystemhigherdimensions} at each time
 step. Its Butcher tableau representation can be found in \cref{tab:butcherrk3}.
-The classical Runge-Kutta method is \nth{4} order accurate, and perhaps the most
+The classical Runge-Kutta method is \nth{4}-order accurate, and perhaps the most
 well-known and frequently used of the four singlestep schemes discussed in this
 project. One reason for its popularity is that it is exceptionally stable
 numerically (i.e., of the aforementioned singlestep methods, the classical

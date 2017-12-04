@@ -83,7 +83,7 @@ rule was used;
     \textnormal{Offset}_{\textnormal{false LCSs}} = %
     \sum\limits_{\substack{\vct{x}\,\in\,\gamma\\\vct{x}\,\notin\,\widehat{\gamma}}}%
 \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}%
-\norm{\vct{x}-\widehat{\vct{x}}}\cdot\Delta,
+\norm{\widehat{\vct{x}}-\vct{x}}\cdot\Delta,
 \end{equation}
 where the sum is over all points with a greater offset than the aforementioned
 $l_{\textnormal{noise}}$, and $\Delta=10^{-3}$ is the numerical integration step
@@ -100,7 +100,7 @@ on the reference, was calculated:
     \label{eq:rmsdlcs}
     \rmsd_{\textnormal{LCS}} = \sqrt{%
         \frac{1}{\breve{N}}\sum\limits_{\vct{x}\,\in\,\gamma}%
-    \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}{\norm{\vct{x}-\widehat{\vct{x}}}}^{2}},
+    \min\limits_{\widehat{\vct{x}}\,\in\,\widehat{\gamma}}{\norm{\widehat{\vct{x}}-\vct{x}}}^{2}},
 \end{equation}
 where the term $\rmsd$ is used somewhat loosely, in order to conform with
 notation used for the other measures of error introduced in this section.
