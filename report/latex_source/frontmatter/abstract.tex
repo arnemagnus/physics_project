@@ -10,14 +10,17 @@ of observable tracer patterns.
 
 This project is centered around the dependence of the numerical identification
 of such LCSs upon which numerical integration scheme was used in calculating
-them. In particular, four traditional singlestep and four embedded, adaptive
+them. LCSs were computed and compared for an analytical double gyre velocity
+field, for which reference LCSs are documented in the literature. In particular,
+four traditional singlestep and four embedded, adaptive
 stepsize Runge-Kutta methods were investigated.
 A numerical solution obtained by means of a high order embedded method with
 a very small numerical tolerance --- two orders of magnitude smaller than the
 smallest tolerance level utilized otherwise --- was utilized as the basis
-for comparing the performance of the different methods. LCSs were computed and
-compared for an analytical velocity field, for which reference LCSs are
-documented in the literature.
+for comparing the performance of the different methods.
+%LCSs were computed and
+%compared for an analytical velocity field, for which reference LCSs are
+%documented in the literature.
 
 It turns out that the LCSs for the system under consideration are quite robust
 numerically, at least for the chosen parameter values. Thus, none of the
@@ -26,7 +29,7 @@ based upon the errors of the computed flow maps, high order integration
 methods are generally advisable for generic flow systems, as they invariably
 yield more efficient calculations, which are less susceptible to numerical
 round-off error. Moreover, there is no apparent reason to expect the LCSs of
-a generic flow system to be as robust as they did for the system considered
+a generic flow system to be as robust as they were for the system considered
 for this project work.
 
 Note that the numerical implementation of one of the LCS existence conditions
