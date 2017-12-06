@@ -19,13 +19,18 @@ that using only the auxiliary tracers in the calculation of the eigenvalues and
 -vectors of the Cauchy-Green strain tensor is not sufficient for measuring the
 amount of local repulsion or attraction of the material lines. Their
 justification is that the set of auxiliary tracers around a main tracer
-$\vct{x}_{i,j}$ tends to stay on the same side of a LCS due to the small
+$\vct{x}_{i,j}$ tends to stay on the same side of an LCS due to the small
 initial separations $\delta{}x$ and $\delta{}y$, resulting in the auxiliary
 tracers undergoing less stretching than the main tracers which lay on opposite
-sides of repelling LCSs.
+sides of repelling LCSs. Thus, the magnitudes of eigen\emph{values} stemming
+from finite differencing applied to the auxiliary tracers are generally
+underestimated. On the other hand, the eigen\emph{vectors} are computed
+more accurately than they would be by use of the main tracers alone.
 
-For this reason, an approximation of the Jacobian of the flow map was also
-made by means of applying centered differencing to the main tracers, as
+Because of the tendency of finite differencing applied to the auxiliary tracers
+to underestimate the magnitudes of the eigenvalues, an approximation of the
+Jacobian of the flow map was also made by means of applying centered
+differencing to the main tracers, as
 \begin{equation}
     \label{eq:mainjacobian}
     \widetilde{\vct{\nabla}\vct{F}}\hspace{0ex}_{t_{0}}^{t}(\vct{x}_{i,j}) \approx%
@@ -35,7 +40,7 @@ made by means of applying centered differencing to the main tracers, as
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j-1})}{2\Delta{}y}
     \end{pmatrix}.
 \end{equation}
-The artificial grid extension, as outlined in
+The extended grid, as outlined in
 \cref{sub:generating_a_set_of_initial_conditions}, allowed for a consistent
 centered differencing approximation for all the main tracers, including the
 first set of extended rows and columns, where the latter play an important

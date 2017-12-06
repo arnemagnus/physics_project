@@ -11,10 +11,10 @@ LCSs the system exhibit are well documented.
 \label{sec:the_double_gyre_model}
 
 The double gyre model consists of a pair of counter-rotating vortices, with a
-time-periodic perturbation. The perturbation can be interpreted as a solid, as
-in impenetrable, wall which oscillates periodically, causing the vortices
-to contract and expand peridically. In terms of the Cartesian coordinate vector
-$\vct{x}=(x,y)$, the system can be expressed mathematically as
+time-periodic perturbation. The perturbation can be interpreted as a wall which
+oscillates periodically, causing the vortices to contract and expand. In terms
+of the Cartesian coordinate vector $\vct{x}=(x,y)$, the system can be expressed
+mathematically as
 \begin{equation}
     \label{eq:doublegyre}
     \renewcommand{\arraystretch}{2.5}
@@ -33,7 +33,11 @@ where
     \end{gathered}
 \end{equation}
 and the parameters $A$, $\epsilon$ and $\omega$ dictate the nature of the
-flow pattern. As in the literature, the parameter values
+flow pattern. The domain of interest, that is,
+$\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$, is characterized by
+the orthogonal component of the velocity field being zero at its boundaries.
+Thus, any trajectory which starts out within $\mathcal{U}$, remains there.
+The parameter values
 \begin{equation}
     \label{eq:doublegyreparams}
     \begin{gathered}
@@ -42,14 +46,20 @@ flow pattern. As in the literature, the parameter values
         \omega=\frac{2\pi}{10}
     \end{gathered}
 \end{equation}
-were used \parencite{farazmand2012computing,shadden2005definition}. Moreover,
-the starting time was $t_{0}=0$, and the integration time was $T=20$, i.e.,
-forcing two periods of motion, per
-\eqref{eq:doublegyreparams}.
+were used, as has been common in literature, in particular in
+the articles by \textcite{farazmand2012computing} and
+\textcite{shadden2005definition}. There are other articles in which different
+parameter values are used, such as the one by \textcite{onu2015lcstool}.
+The starting time $t_{0}=0$ and the integration time $T=20$ forces
+the velocity field to undergo two periods of motion, as
+$\omega=2\pi/10$, per equation~\eqref{eq:doublegyreparams}.
+%forcing two periods of motion, per
+%\eqref{eq:doublegyreparams}.
 
+\clearpage
 Note that the velocity field $\vct{v}(t,\vct{x})$ in equation
 \eqref{eq:doublegyre} can be expressed in terms of a scalar stream function:
-\clearpage
+%\clearpage
 \begin{equation}
     \label{eq:doublegyrestreamfun}
     \renewcommand{\arraystretch}{2.5}
@@ -61,16 +71,16 @@ Note that the velocity field $\vct{v}(t,\vct{x})$ in equation
         \end{pmatrix}
     \end{gathered}
 \end{equation}
-
 which means that the velocity field is divergence-free by construction:
-
 \begin{equation}
     \label{eq:doublegyreincompr}
     \vct{\nabla}\vdot\vct{v}(t,\vct{x}) = -\pdv[2]{\psi}{x}{y} %
                                         + \pdv[2]{\psi}{y}{x} = 0,
 \end{equation}
-
-where the latter equality follows from Schwartz' theorem of mixed partial
-derivatives, as the stream function is smooth. This means that we expect the
-property given in equation~\eqref{eq:cauchygreenincomprlambda} to hold for the
-double gyre flow.
+where the latter equality follows from the smoothness of the stream function.
+In particular, since it is `infinitely' continiosly differentiable, partial
+differentiation of \emph{any} order of the stream function is commutative
+\parencite[p.689]{adams2010calculus}. Moreover, this means that we expect the
+property given in equation~\eqref{eq:cauchygreenincomprlambda}, that is,
+the product of the eigenvalues of the Cauchy-Green strain tensor to be unity,
+to hold for the double gyre flow.

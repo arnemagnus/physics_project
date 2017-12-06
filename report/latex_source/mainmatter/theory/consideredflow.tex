@@ -21,9 +21,9 @@ system defined by~\eqref{eq:odeflowsystem}, the flow map is defined as
     \vct{F}_{t_{0}}^{t}(\vct{x}_{0}) = \vct{x}(t;t_{0},\vct{x}_{0}),
 \end{equation}
 i.e., the flow map describes the mathematical movement of the tracers from
-one point in time (e.g.\ the initial condition) to another. Generally, the
-flow map is as smooth as the velocity field $\vct{v}$ in system
-\eqref{eq:odeflowsystem} \parencite{farazmand2012computing}. For sufficiently
+one point in time to another. Generally, the flow map is as smooth as the
+velocity field $\vct{v}$ in system \eqref{eq:odeflowsystem}
+\parencite{farazmand2012computing}. For sufficiently
 smooth velocity fields, the right Cauchy-Green strain tensor field is defined as
 \begin{equation}
     \label{eq:cauchygreen}
@@ -38,7 +38,8 @@ equates to matrix transposition. Component-wise, the Jacobian matrix of a
 general vector-valued function $\vct{f}$ is defined as
 \begin{equation}
     \label{eq:jacobiancomponent}
-    {(\vct{\nabla}\vct{f})}_{i,j} = \pdv{f_{i}}{x_{j}}
+    {(\vct{\nabla}\vct{f})}_{i,j} = \pdv{f_{i}}{x_{j}},\quad%
+\vct{f}=\vct{f}(\vct{x})=\begin{pmatrix}f_{1}(\vct{x}),f_{2}(\vct{x}),\ldots\end{pmatrix},
 \end{equation}
 which, for our two-dimensional flow, reduces to
 \begin{equation}
@@ -84,9 +85,10 @@ incompressible flow, the eigenvalues satisfy
 \end{equation}
 where, for our case, incompressibility is equivalent to the velocity field
 $\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
-This is due to the tracer particles being massless, per definiton.
+%This is due to the tracer particles being massless, per definiton.
 
-\section{Definition of Lagrangian Coherent Structures for two-dimensional flows}
+\section[Definition of Lagrangian Coherent Structures for two-dimensional flows ]
+{Definition of Lagrangian coherent structures for\\\phantom{2.3 }two-dimensional flows}
 \label{sec:definition_of_lcss_for_two-dimensional_flow}
 Lagrangian coherent structures (henceforth abbreviated to LCSs) can be described
 as time-evolving surfaces which shape coherent trajectory patterns in dynamical
@@ -106,13 +108,14 @@ of this project.
 \subsection{Hyperbolic LCSs}
 \label{sub:hyperbolic_lcss}
 
-The use of LCSs for reliable forecasting requires sufficiency and necessity
+The identifacion of LCSs for reliable forecasting requires sufficiency and necessity
 conditions, supported by mathematical theorems. \textcite{haller2010variational}
 derived a variational LCS theory based on the Cauchy-Green strain tensor,
 defined by equation~\eqref{eq:cauchygreen}, from which the aforementioned
 conditions follow. The immediately relevant parts of Haller's theory
-are summarized in
-\cref{def:normalrepellence,def:repellinglcs,def:attractinglcs,def:hyperboliclcs}.\\
+are quoted in
+\cref{def:normalrepellence,def:repellinglcs,def:attractinglcs,def:hyperboliclcs}
+\parencite{haller2010variational}.\\
 
 \begin{defn}
     \label{def:normalrepellence}
@@ -133,7 +136,7 @@ rather than attracted to, the material line. Lastly, requiring that the
 \emph{normal repulsion rate} is greater than the
 \emph{tangential repulsion rate} means that nearby trajectories are in fact
 driven away from the material line, rather than being stretched
-\emph{along with} it, due to shear stress.
+\emph{along with} it due to shear stress.
 \\
 \begin{defn}
     \label{def:repellinglcs}
@@ -238,8 +241,9 @@ is defined as
 where $\lambda_{2}(\vct{x}_{0})$ is the largest eigenvalue of the Cauchy-Green
 strain tensor. The absolute value of the integration time $T$ is taken because
 one generally can consider the evolution of a system in either temporal
-direction. As per \cref{def:attractinglcs}, attracting LCSs are identified as
-repelling LCSs in backwards time.
+direction. Analogously to \cref{def:attractinglcs}, the attraction of nearby
+trajectories can be estimated by FTLEs found by means of integration backwards
+in time.
 
 \textcite{shadden2005definition} in fact \emph{define} hyperbolic LCSs as ridges
 of the FTLE field. By \emph{ridges}, they mean gradient lines which are
@@ -249,6 +253,6 @@ sole use of the FTLE field for LCS detection is prone to both false positives
 and false negatives, even for conceptually simple flows. Furthermore, the FTLE
 field is generally less well-resolved than the LCSs obtained from Haller's
 variational formalism. For these reasons, the FTLE field can generally be used
-as a first-order approximation in terms of where one can reasonably expect LCSs
+as a first approximation in terms of where one can reasonably expect LCSs
 to be found, but it does not represent the blueprint for the actual LCSs of a
 system in general.

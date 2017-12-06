@@ -6,7 +6,7 @@ Aside from the qualitiative visual comparison between the obtained LCSs and
 the reference LCS, a set of numerical errors was also computed, with a view to
 use them in order to explain any visual discrepancies. To this end, the error
 in the flow map, given by equation~\eqref{eq:flowmap}, was computed as the
-root mean square deviation (hereafter abbreviated as RMSD) with regards to the
+root mean square deviation (hereafter abbreviated to RMSD) with regards to the
 reference, as follows:
 \begin{equation}
     \label{eq:rmsdflowmap}
@@ -32,21 +32,17 @@ analogously:
     \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
 \big(\widehat{\lambda}(\vct{x}_{0})-\lambda(\vct{x}_{0})\big)^{2}},
 \end{equation}
-where the summation is over all tracers within the computational domain
-$\mathcal{U}$, for which the Hessians of the largest eigenvalue were computed,
-as per equation~\eqref{eq:numericalexistence}. $N$ is the corresponding
-number of tracers. $\widehat{\lambda}(\vct{x}_{0})$ is the approximation
-of the true eigenvalue $\lambda(\vct{x}_{0})$ located at $\vct{x}_{0}$, obtained
-by means of the numerical integrator in question.
+where the summation is over all main tracers in the principal grid, that is,
+all tracers which originate from within (or on the borders of) within the
+computational domain $\mathcal{U}$. $N$ is the corresponding number of tracers.
+$\widehat{\lambda}(\vct{x}_{0})$ is the approximation of the true eigenvalue
+$\lambda(\vct{x}_{0})$ located at $\vct{x}_{0}$, obtained by means of the
+numerical integrator in question.
 
 The best way of estimating the error in the computed eigen\emph{vectors} of the
 Cauchy-Green Strain tensor field is by means of their orientation, because
-the eigenvectors themselves are normalized to unit length. Since
-the iteration of strainlines was performed in both directions of pseudotime,
-as described in \cref{sub:a_framework_for_computing_smooth_strainlines},
-a $180\si{\degree}$ shift in direction would not influence the LCS calculation
-in any way. Thus, the eigenvector directions were computed as azimuthal angles
-in the interval $[0\si{\degree},180\si{\degree})$. The RMSD for the direction of
+the eigenvectors are normalized to unit length. Thus, the eigenvector directions
+were computed as azimuthal angles. The RMSD for the direction of
 the eigenvector fields was then calculated as follows:
 \begin{equation}
     \label{eq:rmsddirection}
@@ -60,24 +56,30 @@ the eigenvector fields was then calculated as follows:
     \end{gathered}
 \end{equation}
 where the conventions for $\mathcal{U}$ and $N$ are the same as for the
-RMSD of the eigenvalues. $\widehat{\phi}(\vct{x}_{0})$ denotes the
-azimuthal angle of the eigenvector located at $\vct{x}_{0}$, found by means of
+RMSD of the eigenvalues, given in equation~\eqref{eq:rmsdlmbd}.
+$\widehat{\phi}(\vct{x}_{0})$ denotes the azimuthal angle of the eigenvector
+located at $\vct{x}_{0}$, found by means of
 the numerical integrator in question.
-\clearpage
+%\clearpage
 
-Regarding the error in the computed LCS curves, false positives and false
-negatives should be treated separately, as they would influence the overall
-flow patterns in the system in different ways. Because numerical noise
-could result in LCS curve segments being erroneously identified as either,
-a lower numerical threshold $l_{\textnormal{noise}}=0.01$, that is,
-ten times the numerical integration step used in order to compute the
-constituent strainlines, was used. Any point on a LCS curve which was farther
-away from all points on the reference LCS than $l_{\textnormal{noise}}$ was
-identified as a false positive. Likewise, any point on the reference LCS curve
-which was farther away from all points on the LCS curve under consideration
-than $l_{\textnormal{noise}}$ was flagged as a false negative. In order to
-estimate the accumulated offset of the false LCS segments, the midpoint
-rule was used;
+Regarding the error in the computed LCS curves, false positives, that is,
+any parts which of the computed LCS curves which are not present in
+the reference curve, and false negatives, i.e., any parts of the reference curve
+which is not present in the computed LCS curves, should be treated separately.
+This is because as they would influence the predictions of overall flow patterns
+in the system in different ways. Numerical noise could result in LCS curve
+segments being erroneously identified as either a false positive or a false
+negative. In order to reduce this sort of error, a lower numerical threshold
+$l_{\textnormal{noise}}=0.01$, that is, ten times the numerical integration
+step $\Delta=10^{-3}$ used in order to compute the constituent strainlines, was
+used in identifying false positives and negatives; any point on an LCS curve
+which was farther away from all points on the reference LCS than
+$l_{\textnormal{noise}}$ was identified as a false positive.
+Similarly, any point on the reference LCS curve which was farther away from all
+points on the LCS curve under consideration than $l_{\textnormal{noise}}$ was
+flagged as a false negative. In order to estimate the offset of the false LCS
+segments, the area between these segments and the reference LCS curve
+was approximated by the midpoint rule for numerical integration;
 \begin{equation}
     \label{eq:midpointfalselcs}
     \textnormal{Offset}_{\textnormal{false LCSs}} = %
@@ -86,16 +88,21 @@ rule was used;
 \norm{\widehat{\vct{x}}-\vct{x}}\cdot\Delta,
 \end{equation}
 where the sum is over all points with a greater offset than the aforementioned
-$l_{\textnormal{noise}}$, and $\Delta=10^{-3}$ is the numerical integration step
-length used in order to compute strainlines. Concerning false positives,
-$\widehat{\gamma}$ denotes the reference LCS curve, and $\gamma$ the
-approximation under consideration. For false negatives, the roles are reversed.
+$l_{\textnormal{noise}}$. $\Delta$, the previously mentioned
+numerical integration step length used in order to compute strainlines, equals
+the distance separating consequent points in the parametrization of the LCS
+curves, due to the eigenvectors $\vct{\xi}_{1}$ being normalized to
+unit length. The calculation of this offset is illustrated in figure
+\ref{fig:fp_fn_principle}. Concerning false positives, $\widehat{\gamma}$
+denotes the reference LCS curve, and $\gamma$ the approximation under
+consideration. For false negatives, the roles are reversed.
+
+\input{mainmatter/method/figures/fp_fn_offset.tex}
 
 Lastly, in order to obtain a quantitative measure of the offset in the
 LCS curve segments which comply with the reference LCS (that is, to the
-numerical threshold $l_{\textnormal{noise}}$), the root mean square
-of the distance separating each point on the LCS curve with the nearest point
-on the reference, was calculated:
+numerical threshold $l_{\textnormal{noise}}$), the RMS distance separating each
+point on the LCS curve with the nearest point on the reference, was calculated:
 \begin{equation}
     \label{eq:rmsdlcs}
     \rmsd_{\textnormal{LCS}} = \sqrt{%
@@ -108,7 +115,7 @@ $\breve{N}$ is the number of points which constitute
 $\widehat{\gamma}$, the LCS curve found by means of the numerical
 integrator in question, which are within the distance $l_{\textnormal{noise}}$
 of any point on $\gamma$, the reference LCS curve. The idea
-is that LCS curves need not necessarily start from, or end at, the same points
-in space. For this reason, a robust way of estimating the error
+is that LCS curves need not necessarily start from nor end at the same points
+in space. Thus, a robust way of estimating the error
 of a given LCS curve is the summation of the smallest distances
-separating each point on the curve from the reference.
+separating each point on it from the reference.

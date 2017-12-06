@@ -1,0 +1,19 @@
+\begin{figure}[htpb]
+    \centering
+    \def\svgwidth{0.8\linewidth}
+    \input{figures/falsepositives.pdf_tex}
+    \caption[Illustration of how the offset of false LCS segments was computed]%
+    {Illustration of how the offset of false LCS segments was computed.
+        An LCS segment, denoted by $\widetilde{\gamma}_{0}$ in the figure, is
+        compared with the reference LCS, labelled $\gamma_{0}$. Each part of
+        $\widetilde{\gamma}_{0}$, which is farther away from all points on $\gamma_{0}$
+        than a pre-set length $l_{\textnormal{noise}}=0.01$ is flagged as a
+        false positive. The area $\mathcal{A}$ between $\gamma_{0}$ and the
+        curve segments identified as false positives, is estimated by means of the
+        midpoint rule. In the case of false negatives, $\mathcal{A}$ denotes the
+        minimal area between the curves $\gamma_{0}$ and $\widetilde{\gamma}_{0}$,
+        for each part of the reference LCS which is not present in the
+    approximation.}
+    \label{fig:fp_fn_principle}
+\end{figure}
+

@@ -1,43 +1,13 @@
-\section[Solving systems of ordinary differential equations]%
-{Solving systems of ordinary differential eq\hspace{0em}uations}
-\label{sec:solvingsystems}
-
-In physics, like other sciences, modeling a system often equates to solving
-an initial value problem. An initial value problem can be described in terms
-of a differential equation of the form
-\begin{equation}
-    \label{eq:ivpsystem}
-    \dot{x}(t) = f\big(t,x(t)\big),\quad{}x(t_{0})=x_{0},
-\end{equation}
-where $x$ is an unknown function (scalar or vector) of time $t$. The function
-$f$ is defined on an open subset $\Omega$ of $\mathbb{R}\times\mathbb{R}^{n}$.
-The initial condition $(t_{0},x_{0})$ is a point in the domain of $f$, i.e.,
-$(t_{0},x_{0})\in\Omega$. In higher dimensions (i.e., $n>1$) the differential
-equation~\eqref{eq:ivpsystem} is replaced by a family of equations
-\begin{equation}
-\label{eq:ivpsystemhigherdimensions}
-\begin{gathered}
-    \dot{x}_{i}(t) = f_{i}\big(t,x_{1}(t),x_{2}(t),\ldots,x_{n}(t)\big),\quad
-    x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n. \\
-\end{gathered}
-\end{equation}
-The system if nonlinear if the function $f$ in equation~\eqref{eq:ivpsystem},
-or, if at least one of the functions $f_{i}$ in equation
-\eqref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
-arguments.
-
-\subsection{The Runge-Kutta family of numerical methods}
+\subsection{The Runge-Kutta family of numerical ODE solvers}
 \label{sub:the_runge_kutta_family_of_numerical_methods}
 
-For nonlinear systems, analytical solutions frequently do not exist. Thus, such
-systems are often analyzed by means of numerical methods. In numerical analysis,
-the Runge-Kutta family of methods are a popular collection of implicit
-and explicit iterative methods, used in temporal discretization in order to
-obtain numerical approximations of the \emph{true} solutions of systems like
-\eqref{eq:ivpsystem}. The German mathematicians C. Runge and M. W. Kutta
-developed the first of the family's methods at the turn of the twentieth century
-\parencite[p.134]{hairer1993solving}. The general scheme of
-what is now known as a Runge-Kutta method is as follows: \\
+In numerical analysis, the Runge-Kutta family of methods is a popular
+collection of implicit and explicit iterative methods, used in temporal
+discretization in order to obtain numerical approximations of the \emph{true}
+solutions of systems like \eqref{eq:ivpsystem}. The German mathematicians C.
+Runge and M. W. Kutta developed the first of the family's methods at the turn
+of the twentieth century \parencite[p.134]{hairer1993solving}. The general
+scheme of what is now known as a Runge-Kutta method is as follows: \\
 
 \begin{defn}
     \label{def:generalrungekutta}
@@ -58,30 +28,61 @@ is called an \emph{s-stage Runge-Kutta method} for the system
 \eqref{eq:ivpsystem}.
 \end{defn}
 
-
-The main reason to include multiple stages $s$ in a Runge-Kutta method,
+The main reason to include multiple stages in a Runge-Kutta method,
 is to improve the numerical accuracy of the computed solutions.
-\textcite[p.134]{hairer1993solving} define the \emph{order}
-of a Runge-Kutta method as follows:\\
+The \emph{order} of a Runge-Kutta method can be defined as follows:\\
 
 \begin{defn}
     \label{def:rungekuttaorder}
-    A Runge-Kutta method \eqref{eq:generalrungekutta} is said to be of
-    \emph{order} $p$ if, for sufficiently smooth systems \eqref{eq:ivpsystem},
+    A Runge-Kutta method, given by equation~\eqref{eq:generalrungekutta} is
+    said to be of \emph{order} $p$ if, for sufficiently smooth systems
+    \eqref{eq:ivpsystem}, the local error $e_{n}$ scales as $h^{p+1}$, that is:
     \begin{equation}
         \label{eq:rungekuttaorder}
-        \norm{x_{n+1}-x(t_{n+1})} \leq Kh^{p+1},
+        e_{n}=\norm{x_{n}-u_{n-1}(t_{n})} \leq Kh^{p+1},
     \end{equation}
-    where $K$ is a numerical constant, i.e., if the Taylor series for the exact
-    solution $x(t_{n+1})$ and the numerical solution $x_{n+1}$ coincide up to
-    (and including) the term $h^p$.
+    where $u_{n-1}(t)$ is the exact solution of the ODE in system
+    \eqref{eq:ivpsystem}, subject to the initial condition
+    $u_{n-1}(t_{n-1})=x_{n-1}$, and $K$ is a numerical constant. This is true,
+    if the Taylor series for the exact solution $u_{n-1}(t_{n})$ and the
+    numerical solution $x_{n}$ coincide up to (and including) the term $h^p$.
 \end{defn}
 
-It is easy to show that if the local error of a Runge-Kutta method is of order
-$p+1$, the global error, i.e., the total accumulated error resulting of
-applying the algorithm a number of times, is expected to scale as $h^{p}$.
-Showing this is left as an exercise for the interested reader.
+The \emph{global} error
+\begin{equation}
+    \label{eq:rungekuttaglobalorderdef}
+    E_{n} = x_{n}-x(t_{n}),
+\end{equation}
+where $x(t)$ is the exact solution of system~\eqref{eq:ivpsystem}, accumulated
+by $n$ repeated applications of the numerical method, can be estimated by
+\begin{equation}
+    \label{eq:rungekuttaglobalorderapprox}
+    \abs{E_{n}} \leq C\sum\limits_{l=1}^{n}\abs{e_{l}},
+\end{equation}
+where $C$ is a numerical constant, depending on both the right hand side of
+the ODE in system~\eqref{eq:ivpsystem} and the difference $t_{n}-t_{0}$.
+Making use of~\cref{def:rungekuttaorder}, the global error can be estimated
+by
+\begin{gather}
+    \label{eq:rungekuttaglobalorderestimate}
+    \begin{aligned}
+        \abs{E_{n}}&\leq C\sum\limits_{l=1}^{n}\abs{e_{l}} %
+        \leq C\sum\limits_{l=1}^{n}\abs{K_{l}}\hspace{0.5ex}h^{p+1} \\
+        &\leq C\hspace{0.5ex}\max\limits_{l}\big\{\abs{K_{l}}\big\}\hspace{0.5ex}n\hspace{0.5ex}h^{p+1}%
+        \leq C\hspace{0.5ex}\max\limits_{l}\big\{\abs{K_{l}}\big\}\hspace{0.5ex}\frac{t_{n}-t_{0}}{h}\hspace{0.5ex}h^{p+1}\\
+        &\leq \widetilde{K}h^{p}
+    \end{aligned}
+\end{gather}
+where $\widetilde{K}$ is a numerical constant. Equation
+\eqref{eq:rungekuttaglobalorderestimate} demonstrates that, for a $p$-th
+order Runge-Kutta method, the global error can be expected to scale
+as $h^{p}$.
 
+%It is easy to show that if the local error of a Runge-Kutta method is of order
+%$p+1$, the global error, i.e., the total accumulated error resulting of
+%applying the algorithm a number of times, is expected to scale as $h^{p}$.
+%Showing this is left as an exercise for the interested reader.
+%
 In definition~\ref{def:generalrungekutta}, the matrix $(a_{i,j})$ is commonly
 called the \emph{Runge-Kutta matrix}, while $b_{i}$ and $c_{i}$ are known as
 the \emph{weights} and \emph{nodes}, respectively.  Since the 1960s, it has
@@ -90,6 +91,8 @@ symbolically, by means of mnemonic devices known as Butcher tableaus
 \parencite[p.134]{hairer1993solving}. The Butcher tableau
 for a general \emph{s}-stage Runge-Kutta method, introduced in definition
 \ref{def:generalrungekutta}, is presented in table~\ref{tab:generalbutcher}.
+
+\clearpage
 
 \begin{table}[htpb]
     \centering
@@ -113,20 +116,22 @@ for a general \emph{s}-stage Runge-Kutta method, introduced in definition
 
 For explicit Runge-Kutta methods, the Runge-Kutta matrix $(a_{i,j})$ is lower
 triangular. Similarly, for fully implicit Runge-Kutta methods, the Runge-Kutta
-matrix is upper triangular. Unlike explicit methods, implicit methods require
-the solution of a linear system at every time level, making them more
-computationally demanding than their explicit siblings. The main selling point
-of implicit methods is that they are more numerically stable than explicit
-methods. This property means that implicit methods are particularly well-suited
-for \emph{stiff} systems, i.e., physical systems with highly disparate time
-scales~\parencite[p.2]{hairer1996solving}. For such systems,
-most explicit methods are highly numerically unstable, unless the numerical step
-size is made exceptionally small, rendering most explicit methods practically
-useless. For \emph{nonstiff} systems, however, implicit methods behave similarly
-to their explicit analogues in terms of numerical accuracy and
-convergence properties.
-
-\clearpage
+matrix is upper triangular. The difference between explicit and implicit
+methods is outlined in equation~\eqref{eq:exim}.
+%Unlike explicit methods, implicit methods require
+%the solution of a linear system at every time level, making them more
+%computationally demanding than their explicit siblings. The main selling point
+%of implicit methods is that they are more numerically stable than explicit
+%methods. This property means that implicit methods are particularly well-suited
+%for \emph{stiff} systems, i.e., physical systems with highly disparate time
+%scales~\parencite[p.2]{hairer1996solving}. For such systems,
+%most explicit methods are highly numerically unstable, unless the numerical step
+%size is made exceptionally small, rendering most explicit methods practically
+%useless. For \emph{nonstiff} systems, however, implicit methods behave similarly
+%to their explicit analogues in terms of numerical accuracy and
+%convergence properties.
+%
+%\clearpage
 
 During the first half of the twentieth century, a substantial amount of research
 was conducted in order to develop numerically robust, high-order, explicit
@@ -143,12 +148,12 @@ The basic idea of embedded Runge-Kutta methods is that they, aside from the
 numerical approximation $x_{n+1}$, yield a second approximation
 $\widehat{x}_{n+1}$. The difference between the two approximations then yields
 an estimate of the local error of the less precise result, which can be used for
-automatic step size control. The trick is to construct two independent, explicit
-Runge-Kutta methods which both use the \emph{same} function evaluations. This
-results in practically obtaining the two solutions for the price of one, in
-terms of computational complexity. The Butcher tableau of an embedded, general,
-explicit Runge-Kutta method is illustrated in
-\cref{tab:generalembeddedbutcher}.
+automatic step size control~\parencite[pp.167--168]{hairer1993solving}. The
+trick is to construct two independent, explicit Runge-Kutta methods which both
+use the \emph{same} function evaluations. This results in practically obtaining
+the two solutions for the price of one, in terms of computational complexity.
+The Butcher tableau of an embedded, general, explicit Runge-Kutta method is
+illustrated in~\cref{tab:generalembeddedbutcher}.
 
 \begin{table}[htpb]
     \centering
@@ -185,19 +190,22 @@ is of order $p$, and
         \widehat{x}_{n+1} = x_{n} + h\sum\limits_{i=1}^{s}\widehat{b}_{i}k_{i}
     \end{equation}
 \end{subequations}
-is of order $\widehat{p}$, typically with $\widehat{p} = p \pm 1$.
+is of order $\widehat{p}$, typically with $\widehat{p} = p \pm 1$. Which
+of the solutions are used to continue the numerical integration, depends on
+the integration scheme in question. In the following, the solution which is
+\emph{not} used to continue the integration, will be referred to as the
+\emph{interpolant} solution.
 
-\clearpage
-
+%\clearpage
 \subsection{The Runge-Kutta methods under consideration}
 \label{sub:the_runge_kutta_methods_under_consideration}
 
 Naturally, an abundance of Runge-Kutta methods exist. Many of them are
 fine-tuned for specific constraints, such as problems of varying degrees of
 stiffness. It is neither possible nor meaningful to investigate them all
-in the context of general flow dynamics. For this reason, I consider two classes
+in the context of general flow dynamics. For this reason, we consider two classes
 of explicit Runge-Kutta methods, namely singlestep and adaptive stepsize
-methods. From both classes, I include four different general-purpose ODE solvers
+methods. From both classes, we include four different general-purpose ODE solvers
 of varying order.
 
 \subsubsection{Singlestep methods}
@@ -219,7 +227,7 @@ time step. Its Butcher tableau representation can be found in
 \cref{tab:butcherrk2}.
 
 \input{mainmatter/theory/butchertableaus/euler.tex}
-
+\clearpage
 \input{mainmatter/theory/butchertableaus/rk2.tex}
 
 The Kutta method is \nth{3}-order accurate, and requires three function
@@ -243,7 +251,7 @@ representation of the classical Runge-Kutta method can be found in
 \cref{tab:butcherrk4}.
 
 \input{mainmatter/theory/butchertableaus/rk3.tex}
-
+\clearpage
 \input{mainmatter/theory/butchertableaus/rk4.tex}
 
 \subsubsection{Adaptive stepsize methods}
@@ -272,18 +280,22 @@ methods, in addition to the Dormand-Prince 5(4) method, possess the so-called
 \emph{First Same As Last} property. This means that the last function evaluation
 of an accepted step is exactly the same as the first function evaluation of the
 next step. This is readily apparent from their Butcher tableaus, where the
-$b$ coefficients correspond exactly with the last row the Runge-Kutta matrix.
+$b$ coefficients correspond exactly with the last row of the Runge-Kutta matrix.
 The \emph{First Same As Last} property reduces the computational
-cost of a successive step.
-
+cost of a successive step. Moreover, the Bogacki-Shampine 5(4) yields \emph{two}
+interpolant solutions. The details on how these were used, will be presented
+in~\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}.
+\clearpage
 \input{mainmatter/theory/butchertableaus/bs32.tex}
 
-\vspace{\fill}
-
+\clearpage
 \input{mainmatter/theory/butchertableaus/bs54.tex}
 
+\clearpage
 \input{mainmatter/theory/butchertableaus/dp54.tex}
 
+\clearpage
 \input{mainmatter/theory/butchertableaus/dp87.tex}
 
+\clearpage
 

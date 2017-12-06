@@ -3,11 +3,11 @@
 
 The variational model is based upon the advection of non-interacting tracers,
 which is described in \cref{sec:typeofflow}, by the velocity field defined in
-equation \eqref{eq:doublegyre}. The system has no known analytical solution for
-the tracer trajectories. Thus, it must be solved numerically, by means of some
-numerical integration method, e.g.\ a Runge-Kutta method, some of which are
-outlined in~\cref{sub:the_runge_kutta_family_of_numerical_methods}. With the
-main focus of this project being the dependence on LCSs on the chosen
+equation \eqref{eq:doublegyre}. To our knowledge, the system has no analytical
+solution for the tracer trajectories. Thus, it must be solved numerically, by
+means of some numerical integration method, e.g.\ a Runge-Kutta method, some of
+which are outlined in~\cref{sub:the_runge_kutta_family_of_numerical_methods}.
+With the main focus of this project being the dependence on LCSs on the chosen
 integration method, the advection was performed using all of the numerical
 integrators introduced in
 \cref{sub:the_runge_kutta_methods_under_consideration}.
@@ -15,25 +15,27 @@ integrators introduced in
 \subsection{Generating a set of initial conditions}
 \label{sub:generating_a_set_of_initial_conditions}
 The computational domain $\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$
-was discretized by a set of linearly spaced tracers, with $1000\times500$ grid
-points, effectively creating a nearly uniform grid of approximate spacing
-$\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed on and within the
-domain boundaries of $\mathcal{U}$. The grid was extended artificially,
-with an additional two rows or columns appended to all of the domain edges,
-with the same grid spacing as the \emph{main} grid. This was done in order to
-ensure that the dynamics at the domain boundaries were included in the analysis
-to follow. The extended grid thus had a total of $1004\times504$ grid points.
-The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
+was discretized by a set of equidistant \emph{principal} tracers, with
+$1000\times500$  grid points, effectively creating a nearly uniform grid of
+approximate spacing $\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed
+on and within the domain boundaries of $\mathcal{U}$. The grid was extended
+artificially, with an additional two rows or columns appended to all of the
+domain edges, with the same grid spacing as the \emph{principal} grid. This was
+done in order  to ensure that the dynamics at the domain boundaries were
+included in the analysis to follow. The velocity field outside of
+$\mathcal{U}$ was also defined by equation~\eqref{eq:doublegyre}. The
+\emph{extended} grid thus had a total of $1004\times504$ grid points.
+The construction of the grids is illustrated in figure~\ref{fig:initialgrid}.
 \clearpage
 \input{mainmatter/method/figures/initialgridfigure.tex}
 
-In order to increase the resolution of the Cauchy-Green strain tensor,
+In order to increase the precision of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
 Jacobian of the flow map, as can be seen from equation \eqref{eq:cauchygreen}.
 This was done by advecting a set of auxiliary tracer points surrounding each
-main point. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
+\emph{main} tracer, that is, tracers originating at the principal or extended
+grid points. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
 points defined as
-
 \begin{equation}
     \label{eq:auxgrid}
     \begin{gathered}
@@ -43,7 +45,6 @@ points defined as
                 \quad\vct{x}_{i,j}^{l} = (x_{i},y_{j}-\delta{y})\\
 \end{gathered}
 \end{equation}
-
 were assigned, where $\delta{x}$ and $\delta{y}$ are increments smaller than
 the grid spacings $\Delta{x}\simeq\Delta{y}$. Even though this effectively means
 that five times as many tracers have to be advected, the resulting accuracy in
@@ -58,68 +59,124 @@ of the auxiliary tracers is illustrated in figure~\ref{fig:auxiliarygrid}.
 Because of the limited number of decimal digits which can be accuractely
 represented by floating-point numbers, however, there is a strict lower limit
 to which it makes sense to lower the values of $\delta{x}$ and $\delta{y}$. In
-particular, the smallest number which can be resolved as a double-precision
-floating-point number is of the order $10^{-16}$. When decreasing the
-auxiliary grid spacing, the increase in precision is quickly offset by the fact
-that one automatically gets allocated a smaller number of decimal digits with
-which one calculate the discrete approximation of the derivatives involved
-in the Jacobian. This is due to the double gyre velocity field, being
-reasonably well-behaved, leading most tracers which are initially close to
-follow very similar trajectories, often ending up with a separation distance
-comparable to the initial offset. For this reason, the auxiliary grid spacing
-$\delta{x}=\delta{y}=10^{-5}$ was chosen --- three orders of magnitude smaller
-than the original grid spacing, ensuring that the derivatives in the Jacobian
-are far more well-resolved than for the main tracers, while also leaving
-approximately $10$ decimal digits for which there can be a difference in the
-final positions of the auxiliary tracers.
+particular, because spatial extent of the computational domain is of order $1$,
+so too will all of the tracer coordinates be. Thus, the so-called machine
+epsilon of double-precision floating-point numbers --- which, somewhat
+simplified, can be described as the smallest positive number $\varepsilon$ for
+which $1+\varepsilon$ is not rounded down to $1$ --- is the dominant source
+of floating-point errors with regards to the flow map, moreso than the inherent
+precision, that is, the smallest positive number which can be
+\emph{represented} as a double-precision floating-point number. Per the
+IEEE standard for floating-point arithmetic, the double-precision machine
+epsilon is of order $10^{-16}$, whereas the smallest possible, positive number
+which can be represented in double precision is of order $10^{-308}$
+\parencite{ieee2008standard}.
 
+So, because of the scale of the numerical domain, we cannot reasonably expect
+to accurately represent the flow maps beyond 15 decimal digits. In order to
+approximate the Jacobian of the flow map, finite differencing was applied,
+which will be described in greater detail in
+\cref{sec:calculating_the_cauchy_green_strain_tensor}. Note, however, that
+taking the finite difference between the endpoint coordinates of neighboring
+tracers is generally expected to yield small decimal numbers, because the
+velocity field, given in equation~\eqref{eq:doublegyre}, is reasonably
+well-behaved. Say, for instance, that the difference is of order $10^{-10}$.
+Because, as previously mentioned, we can only really expect to accurately
+resolve the flow map to the \nth{15} decimal digit, this leaves only 5
+significant digits. With the parameter choices specified in
+\eqref{eq:doublegyreparams}, the velocity field leads most tracers which
+are intially close to follow very similar trajectories, often ending up
+with a separation distance comparable to the initial offset. For this reason,
+the auxiliary grid spacing $\delta{x}=\delta{y}=10^{-5}$ was chosen --- three
+orders of magnitude than the original spacing ---, ensuring that the derivatives
+in the Jacobian are far more well-resolved than for the main tracers alone,
+while also leaving upwards to 10 significant decimal digits for which the
+difference in the final positions of the auxiliary tracers can be resolved.
+
+%In particular, the smallest number which can be resolved as a double-precision
+%floating-point number is of the order $10^{-16}$. When decreasing the
+%auxiliary grid spacing, the increase in precision is quickly offset by the fact
+%that one automatically gets allocated a smaller number of decimal digits with
+%which one calculate the discrete approximation of the derivatives involved
+%in the Jacobian. This is due to the double gyre velocity field, being
+%reasonably well-behaved, leading most tracers which are initially close to
+%follow very similar trajectories, often ending up with a separation distance
+%comparable to the initial offset. For this reason, the auxiliary grid spacing
+%$\delta{x}=\delta{y}=10^{-5}$ was chosen --- three orders of magnitude smaller
+%than the original grid spacing, ensuring that the derivatives in the Jacobian
+%are far more well-resolved than for the main tracers, while also leaving
+%approximately $10$ decimal digits for which there can be a difference in the
+%final positions of the auxiliary tracers.
+%
 \subsection{On the choice of numerical step lengths and tolerance levels}
 \label{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}
 
 For the fixed stepsize integrators, step lengths of $10^{-1}$ through to
 $10^{-5}$ were used. The reason even smaller step lengths were not considered
-is the following: For a step length of $10^{-5}$, the total number of
-integration steps required in order to take the system from $t=0$ to $t=20$
-is of order $10^{6}$. As previously mentioned, the inherent accuracy of
-double-precision floating point numbers is of order $10^{-16}$. Thus, the
-total floating point error expected to arise when integrating with a step
-length of $10^{-5}$ is of order $10^{-10}$.
+is that the accumulated numerical round-off errors, mentioned in
+\cref{sub:generating_a_set_of_initial_conditions}, for the advection
+of tracers by means of the highest order methods, that is, Kutta's method and
+the classical Runge-Kutta method (cf.\ \cref{tab:butcherrk3,tab:butcherrk4}),
+became large enough to counteract the inherent accuracies of the methods,
+for the transitions $h=10^{-4}\rightarrow{}h=10^{-5}$ and
+$h=10^{-3}\rightarrow{}h=10^{-4}$, respectively. Further details will be
+presented in \cref{cha:results}. We expect a similar development for both
+the Euler and Heun methods (cf.\ \cref{tab:butchereuler,tab:butcherrk2},
+albeit for even smaller time steps, due to these methods being less accurate
+to begin with. Furthermore, rather than using e.g.\ the Euler method with
+an even smaller time step, one would in practice simply use a higher-order
+method, in order to obtain similar or better accuracy even for larger
+time steps.
 
-The least accurate of the fixed stepsize integrators integrators under
-consideration, the Euler method, is presented in \cref{tab:butchereuler}. It is
-\nth{1} order accurate globally, meaning that its local error is of \nth{2}
-order, per \cref{def:rungekuttaorder}. Thus, we expect that the local error of
-the Euler method, for a step length of $10^{-5}$, is of order $10^{-10}$, that
-is, the same order as the accumulated floating-point errors. Reducing the time
-step further necessarily leads to an increase in the accumulated floating-point
-errors, meaning that we cannot reasonably expect to resolve the positions
-from one step to the next more accurately, for the Euler method. At the very
-least, a time step of $10^{-5}$ appears to represent a point after which
-there is little to be gained in terms of increased numerical accuracy for the
-Euler method. For the other fixed stepsize integrators, which are of higher
-order, we expect this breaking point to occur for a somewhat larger time step.
-
-While the above logic does not translate directly for the adaptive stepsize
-integrators, empirical tests indicate that for both of the Bogacki-Shampine
-integrators, as well as for the Dormand-Prince 5(4) integrator, the accumulated
-floating-point errors caught up to the required tolerance level at some point
-between the levels $10^{-10}$ and $10^{-11}$, while the Dormand-Prince 8(7)
-integrator held its ground until a tolerance level of about $10^{-13}$. For this
-reason, tolerance levels of $10^{-1}$ through to $10^{-10}$ were used for the
-adaptive stepsize integrators. Furthermore, as no analytical solution exists
-for the double gyre system, a numerical solution is needed as the reference.
-Following the discussion above, the solution obtained via the Dormand-Prince
-8(7) integrator with a numerical tolerance level of $10^{-12}$ was used for
-this purpose.
+%the following: For a step length of $10^{-5}$, the total number of
+%integration steps required in order to take the system from $t=0$ to $t=20$
+%is of order $10^{6}$. As previously mentioned, the inherent accuracy of
+%double-precision floating point numbers is of order $10^{-16}$. Thus, the
+%total floating point error expected to arise when integrating with a step
+%length of $10^{-5}$ is of order $10^{-10}$.
+%
+%The least accurate of the fixed stepsize integrators integrators under
+%consideration, the Euler method, is presented in \cref{tab:butchereuler}. It is
+%\nth{1} order accurate globally, meaning that its local error is of \nth{2}
+%order, per \cref{def:rungekuttaorder}. Thus, we expect that the local error of
+%the Euler method, for a step length of $10^{-5}$, is of order $10^{-10}$, that
+%is, the same order as the accumulated floating-point errors. Reducing the time
+%step further necessarily leads to an increase in the accumulated floating-point
+%errors, meaning that we cannot reasonably expect to resolve the positions
+%from one step to the next more accurately, for the Euler method. At the very
+%least, a time step of $10^{-5}$ appears to represent a point after which
+%there is little to be gained in terms of increased numerical accuracy for the
+%Euler method. For the other fixed stepsize integrators, which are of higher
+%order, we expect this breaking point to occur for a somewhat larger time step.
+%
+The concept of \emph{order} does not translate directly from the
+singlestep integrators to the adaptive stepsize methods, by virtue of the
+dynamic step length. However, empirical tests indicate that for both of the
+Bogacki-Shampine integrators, as well as for the Dormand-Prince 5(4) integrator,
+the accumulated floating-point errors caught up to the required tolerance level
+at some point between the levels $10^{-10}$ and $10^{-11}$, while the
+Dormand-Prince 8(7) integrator held its ground until a tolerance level of about
+$10^{-13}$. For this reason, tolerance levels of $10^{-1}$ through to $10^{-10}$
+were used for the adaptive stepsize integrators. Furthermore, as to our
+knowledge, no analytical solution exists for the double gyre system, a numerical
+solution is needed as the reference. Following the discussion above, the
+solution obtained via the Dormand-Prince 8(7) integrator with a numerical
+tolerance level of $10^{-12}$ was used for this purpose.
 
 With the addition of the aforementioned auxiliary tracers, the total number
 of tracers which were advected became of order $2.5$ million. In order to
 accelerate the computational process, the advection was parallellized by means
-of MPI and ran on NTNU's supercomputer, Vilje. The associated speedup was
-crucial for this project --- for example, advection using the Euler method
-and a time step of $10^{-5}$ required in excess of $1000$ computational
-walltime hours; an insurmountable feat for most computers, including the
-author's own personal laptop.
+of MPI and run on NTNU's supercomputer, Vilje. The choice of MPI over
+alternative multiprocessing tools was mainly motivated because it facilitated
+access to multiple nodes within the Vilje cluster. Because the tracers are
+independent, the parallelization consisted of distributing an approximately
+even amount of tracers across all nodes, whereupon each node advected its
+allocated tracers. In the end, all of the tracer end positions was collected
+by the designated main process (that is, $\textnormal{rank}=0$). The
+associated speedup was crucial for this project --- for example, advection using
+the Euler method and a time step of $10^{-5}$ required in excess of $1000$
+CPU hours; an insurmountable feat for most computers, including the author's own
+personal laptop.
 
 \subsection{On the implementation of embedded Runge-Kutta methods}
 \label{sub:on_the_implementation_of_embedded_runge_kutta_methods}
@@ -138,8 +195,9 @@ satisfy componentwise:
     \abs{x_{1,i}-\widehat{x}_{1,i}} \leq \scem_{i},\quad{}%
     \scem_{i}=\atol_{i}+\max\big(\abs{x_{0,i}},\abs{x_{1,i}}\big)\cdot{}\rtol_{i}
 \end{equation}
-where $\atol_{i}$ and $\rtol_{i}$ are the desired numerical tolerances, prescribed
-by the user. For this project, $\atol_{i}$ was always set equal to $\rtol_{i}$.
+where $\atol_{i}$ and $\rtol_{i}$ are the desired absolute and relative
+numerical tolerances, prescribed by the user. For this project, $\atol_{i}$ was
+always set equal to $\rtol_{i}$.
 
 As a measure of the numerical error,
 \begin{equation}
@@ -156,13 +214,14 @@ one finds the optimal step size
     h_{\mathrm{opt}}=h\cdot\Big(\frac{1}{\errem}\Big)^{\frac{1}{q+1}}.
 \end{equation}
 
-If $\errem\leq1$, the solution step is accepted, the time level is increased by
-$h$, and the step length is increased. Which of the two approximations $x_{n+1}$
-or $\widehat{x}_{n+1}$ are used to continue the integration varies depending on the embedded method in
-question. Continuing the integration with the higher order result is commonly
-referred to as \emph{local extrapolation}. If $\errem>1$, the solution step is
-rejected, the time level remains unaltered, and the step length is decreased.
-The  procedure for updating the step length can be summarized as follows:
+If $\errem\leq1$, the solution step is accepted, the time variable is increased
+by $h$, and the step length is increased. Which of the two approximations
+$x_{n+1}$ or $\widehat{x}_{n+1}$ are used to continue the integration varies
+depending on the embedded method in question. Continuing the integration with
+the higher order result is commonly referred to as \emph{local extrapolation}.
+If $\errem>1$, the solution step is rejected, the time variable remains
+unaltered, and the step length is decreased before another attempted step. The
+procedure for updating the step length can be summarized as follows:
 \begin{equation}
     \label{eq:embeddedstepsizeadjustment}
 h_{\mathrm{new}}=\begin{cases}%
@@ -174,3 +233,20 @@ h_{\mathrm{new}}=\begin{cases}%
 where $\facem$ and $\facem_{\mathrm{max}}$ are numerical safety factors,
 intended to prevent increasing the step size \emph{too} much. For this project,
 $\facem=0.8$ and $\facem_{\mathrm{max}}=2.0$ were used throughout.
+
+All of the embedded methods considered here, are tuned in order to minimize
+the error of the higher order result; accordingly, local extrapolation was
+used throughout. Regarding the Bogacki-Shampine 5(4) method, which yields
+\emph{two} independent \nth{4}-order interpolant solutions, the procedure was
+slightly altered. First, the error of the \nth{5}-order solution with regards to
+the interpolant corresponding to the first row of $\widehat{b}$-coefficients in
+\cref{tab:butcherbs54} was computed. If this error was larger than unity,
+the attempted step was rejected, and the same error was used in order to
+update the time step, per equations~\eqref{eq:embeddedoptimalstepsize} and
+\eqref{eq:embeddedstepsizeadjustment}. In the opposite case, a new error
+estimate of the \nth{5}-order solution was computed relative to the
+interpolant corresponding to the second row of $\widehat{b}$-coefficients in
+\cref{tab:butcherbs54}. If this was larger than unity, the attempted step
+was rejected, whereas the step was accepted if the error was smaller than or
+equal to unity. In either case, this \emph{second} error estimate was used
+in order to update the time step.

@@ -46,18 +46,19 @@ a great amount of resemblance to the reference. This resulted in very disparate
 behaviour of strainlines, to the extent that the resulting strain systems were
 too dissimilar to the reference to warrant any meaningful comparisons. The
 erroneous $\mathcal{U}_{0}$ domains are shown in figure~\ref{fig:u0_dom_errs}.
-In fact, most likely because of the large density of points in these domains,
-keeping track of the neighbors for each individual strainline and its
-intersections with the lines in $\mathcal{L}$ turned out to be an unconquerable
-task. It is known that storing the necessary data requires in excess of 28 GB
-of memory, at which point even the NTNU supercomputer, Vilje, proved
-insufficient.
+%In fact, most likely because of the large density of points in these domains,
+%keeping track of the neighbors for each individual strainline and its
+%intersections with the lines in $\mathcal{L}$ turned out to be an unconquerable
+%task. It is known that storing the necessary data requires in excess of 28 GB
+%of memory, at which point even the NTNU supercomputer, Vilje, proved
+%insufficient.
 
 Notably, all of the embedded integration methods result in LCSs which are
 dissimilar from the reference for the tolerance level $\textnormal{tol}=10^{-2}$,
 where only the curve obtained by the Dormand-Prince 8(7) scheme is anything
 alike the reference. More curiously, the Bogacki-Shampine 3(2) method appears
-to outperform its theoretically more accurate sibling, even for relatively
+to outperform its theoretically more accurate sibling --- the
+Bogacki-Shampine 5(4) method ---, even for relatively
 large tolerance levels. This is visible in the
 vicinity of the `U' shape near $y=0.4$ in~\cref{fig:lcs_rkbs32,fig:lcs_rkbs54},
 for instance. Furthermore, the Dormand-Prince 5(4) method appears to yield more
