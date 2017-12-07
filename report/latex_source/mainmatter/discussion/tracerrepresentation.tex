@@ -3,17 +3,21 @@
 
 One way of increasing the numerical accuracy in the flow map, would be
 to use higher precision floating-point numbers to represent the tracer
-coordinates. The main drawback of making such a change, is that this
-neccessitates an increase in memory usage, which has the practical consequence
-that less tracers can be advected at once. The immediately obvious workarounds
-are to either use a high performance scientific computer, or to perform several
+coordinates. The main drawback of making such a change, and using e.g.
+quadruple-precision floating-point numbers, is that these are, to this date,
+not fully implemented in conventional hardware --- even that of the NTNU's
+supercomputer, Vilje. Accordingly, quadruple-precision floating-point
+arithmetic is several orders of magnitude slower than that of double-precision
+floating-point numbers. Coupled with the increase in required memory
+(quadruple-precision numbers are stored using twice as many bits as
+double-precision numbers), one would generally be forced to perform several
 advections of smaller sets of tracers, calculating a piecewise representation
 of the overall flow map. However, should this prove impossible, using higher
-precision floating-point numbers leads to a more granular representation of the
-flow map. Such an approach is perhaps most sensible for systems with velocity
-fields that are well-behaved, or even largely spatially invariant. However,
-in such cases, calculating LCSs have little practical relevance, seeing as
-the overall behaviour of the flow system could be estimated purely by
+precision floating-point numbers would lead to a more granular representation
+of the flow map. Such an approach is perhaps most sensible for systems with
+velocity fields that are well-behaved, or even largely spatially invariant.
+Then again, in such cases, calculating LCSs have little practical relevance,
+seeing as the overall behaviour of the flow system could be estimated purely by
 advecting a smaller set of tracers, or even by simple inspection.
 
 Rather than generating and advecting a fixed, large amount of tracer particles,
@@ -28,7 +32,7 @@ aside from it not being used in the literature, is that it in all likelyhood
 leads to inconsistencies when applying finite differences. That is, unless some
 sort of interpolation scheme was applied to the flow map. Seeing as this
 project is centered around integration methods, this idea was scrapped.
-Regardless, this technique seems promising --- at least on paper, which
+Regardless, this technique seems promising --- at least on paper --- which
 warrants further investigation.
-
-\vspace{\fill}
+%
+%\vspace{\fill}

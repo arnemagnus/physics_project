@@ -2,7 +2,7 @@
 \label{sec:identifying_lcs_candidates_numerically}
 
 \textcite{farazmand2012computing} found the identification of the
-zeros of the inner product in equation~\eqref{eq:lcsexistence4} of
+zeros of the inner product in~\cref{eq:lcsexistence4} of
 \cref{thm:lcsexistence} to be numerically sensitive. Therefore, they
 suggest a reformulated set of conditions which make for a more robust numerical
 implementation, as follows:
@@ -104,8 +104,8 @@ outlined in figure~\ref{fig:locallinearinterp}.
 
 \input{mainmatter/method/figures/linearspecialinterp.tex}
 
-So, in order to compute globally smooth strainlines, equation
-\eqref{eq:strainlinebasicode} is altered in the following way:
+So, in order to compute globally smooth strainlines,
+\cref{eq:strainlinebasicode} is altered in the following way:
 \begin{equation}
     \label{eq:strainlineode}
     \vct{r}'(s)= \vct{f}\big(\vct{r}(s)\big),
@@ -179,16 +179,16 @@ Generally, one expects the selected strain initial conditions, shown in figure
 For this reason, two strainline segments were computed
 and merged for each initial condition; one moving forwards in pseudotime, and
 one moving backwards, i.e., using the $180\si{\degree}$ rotated
-$\vct{\xi}_{1}$ vector field in the system given by equation
-\eqref{eq:strainlineode}. This ensured that no strainline was cut prematurely,
-purely as a consequence of the reduced number of strain initial conditions.
-Furthermore, the classical Runge-Kutta method with a pseudotime step length
-$\Delta=10^{-3}$ was used in order to compute all of the strainlines,
-regardless of the integration method used in the advection of the tracers,
-described in \cref{sec:advecting_a_set_of_initial_conditions}.
-This choice was made because this project is centered around the dependence
-of the choice of integration method in the tracer advection. The step length
-was chosen by similar logic as presented in
+$\vct{\xi}_{1}$ vector field in the system given by \cref{eq:strainlineode}.
+This ensured that no strainline was cut prematurely, purely as a consequence of
+the reduced number of strain initial conditions. Furthermore, the classical
+Runge-Kutta method with a pseudotime step length $\Delta=10^{-3}$ was used in
+order to compute all of the strainlines, regardless of the integration method
+used in the advection of the tracers, described in
+\cref{sec:advecting_a_set_of_initial_conditions}. This choice was made because
+this project is centered around the dependence of the choice of integration
+method in the tracer advection. The step length was chosen by similar logic as
+presented in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
 however, there is no way of knowing in advance, how long (in terms of numerical
 integration steps) any given strainline will be. For this reason, it is
@@ -225,8 +225,8 @@ Now, having located the strainline pieces which satisfy conditions
 step is imposing condition~\eqref{eq:numericalexistence4}, i.e., identifying the
 strainline segments that are local maxima of the averaged maximum strain. In
 the following, we let $\{\gamma_{j}\}$ denote the set of parametized strainline
-curves, computed as solutions of the strain ODE system given in equation
-\eqref{eq:strainlineode}. The suggested approach of
+curves, computed as solutions of the strain ODE system given in
+\cref{eq:strainlineode}. The suggested approach of
 \textcite{farazmand2012computing} is to define a set $\mathcal{L}$ of uniformly
 spaced horizontal and vertical lines within the domain $\mathcal{U}_{0}$, then
 comparing the values of $\overline{\lambda}_{2}(\gamma_{0})$, the average of

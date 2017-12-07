@@ -3,7 +3,7 @@
 
 The variational model is based upon the advection of non-interacting tracers,
 which is described in \cref{sec:typeofflow}, by the velocity field defined in
-equation \eqref{eq:doublegyre}. To our knowledge, the system has no analytical
+\cref{eq:doublegyre}. To our knowledge, the system has no analytical
 solution for the tracer trajectories. Thus, it must be solved numerically, by
 means of some numerical integration method, e.g.\ a Runge-Kutta method, a
 family of numerical ODE methods which is outlined in
@@ -23,7 +23,7 @@ artificially, with an additional two rows or columns appended to all of the
 domain edges, with the same grid spacing as the \emph{principal} grid. This was
 done in order  to ensure that the dynamics at the domain boundaries were
 included in the analysis to follow. The velocity field outside of
-$\mathcal{U}$ was also defined by equation~\eqref{eq:doublegyre}. The
+$\mathcal{U}$ was also defined by~\cref{eq:doublegyre}. The
 \emph{extended} grid thus had a total of $1004\times504$ grid points.
 The construction of the grids is illustrated in figure~\ref{fig:initialgrid}.
 \clearpage
@@ -31,7 +31,7 @@ The construction of the grids is illustrated in figure~\ref{fig:initialgrid}.
 
 In order to increase the precision of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
-Jacobian of the flow map, as can be seen from equation \eqref{eq:cauchygreen}.
+Jacobian of the flow map, as can be seen from~\cref{eq:cauchygreen}.
 This was done by advecting a set of auxiliary tracer points surrounding each
 \emph{main} tracer, that is, tracers originating at the principal or extended
 grid points. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
@@ -79,12 +79,12 @@ which will be described in greater detail in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}. Note, however, that
 taking the finite difference between the endpoint coordinates of neighboring
 tracers is generally expected to yield small decimal numbers, because the
-velocity field, given in equation~\eqref{eq:doublegyre}, is reasonably
+velocity field, given in~\cref{eq:doublegyre}, is reasonably
 well-behaved. Say, for instance, that the difference is of order $10^{-10}$.
 Because, as previously mentioned, we can only really expect to accurately
 resolve the flow map to the \nth{15} decimal digit, this leaves only 5
 significant digits. With the parameter choices specified in
-\eqref{eq:doublegyreparams}, the velocity field leads most tracers which
+\cref{eq:doublegyreparams}, the velocity field leads most tracers which
 are intially close to follow very similar trajectories, often ending up
 with a separation distance comparable to the initial offset. For this reason,
 the auxiliary grid spacing $\delta{x}=\delta{y}=10^{-5}$ was chosen --- three
@@ -92,7 +92,7 @@ orders of magnitude than the original spacing ---, ensuring that the derivatives
 in the Jacobian are far more well-resolved than for the main tracers alone,
 while also leaving upwards to 10 significant decimal digits for which the
 difference in the final positions of the auxiliary tracers can be resolved.
-
+\clearpage
 %In particular, the smallest number which can be resolved as a double-precision
 %floating-point number is of the order $10^{-16}$. When decreasing the
 %auxiliary grid spacing, the increase in precision is quickly offset by the fact
@@ -176,7 +176,7 @@ associated speedup was crucial for this project --- for example, advection using
 the Euler method and a time step of $10^{-5}$ required in excess of $1000$
 CPU hours; an insurmountable feat for most computers, including the author's own
 personal laptop.
-
+\clearpage
 \subsection{On the implementation of embedded Runge-Kutta methods}
 \label{sub:on_the_implementation_of_embedded_runge_kutta_methods}
 
@@ -241,11 +241,11 @@ slightly altered. First, the error of the \nth{5}-order solution with regards to
 the interpolant corresponding to the first row of $\widehat{b}$-coefficients in
 \cref{tab:butcherbs54} was computed. If this error was larger than unity,
 the attempted step was rejected, and the same error was used in order to
-update the time step, per equations~\eqref{eq:embeddedoptimalstepsize} and
-\eqref{eq:embeddedstepsizeadjustment}. In the opposite case, a new error
-estimate of the \nth{5}-order solution was computed relative to the
-interpolant corresponding to the second row of $\widehat{b}$-coefficients in
-\cref{tab:butcherbs54}. If this was larger than unity, the attempted step
-was rejected, whereas the step was accepted if the error was smaller than or
-equal to unity. In either case, this \emph{second} error estimate was used
-in order to update the time step.
+update the time step, per
+\cref{eq:embeddedoptimalstepsize,eq:embeddedstepsizeadjustment}. In the
+opposite case, a new error estimate of the \nth{5}-order solution was computed
+relative to the interpolant corresponding to the second row of
+$\widehat{b}$-coefficients in \cref{tab:butcherbs54}. If this was larger than
+unity, the attempted step was rejected, whereas the step was accepted if the
+error was smaller than or equal to unity. In either case, this \emph{second}
+error estimate was used in order to update the time step.

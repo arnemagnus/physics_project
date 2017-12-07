@@ -36,7 +36,7 @@ in the computed strain eigenvalues scales like the error in the computed flow
 map. This is to be expected, as the eigenvalues are essentially found by
 applying finite differences to the flow map. The eigenvalues are crucial in
 terms of identifying LCSs, as can be seen in the numerical reformulation of the
-LCS existence theorem, which is given in equation~\eqref{eq:numericalexistence}.
+LCS existence theorem, which is given in~\cref{eq:numericalexistence}.
 The strain eigendirections are important too, of course --- however, the
 error in the computed strain eigendirections is consistently negligible.
 This is most likely due to them being computed based on the denser
@@ -89,8 +89,9 @@ Similar logic applies when adaptive stepsize methods are used, although it
 may be more difficult to enforce, depending on how the step length
 update is implemented. One possibility in terms of choosing the time step, is to
 find a characteristic velocity for the system, and choose the time step small
-enough so that a tracer moving with the characteristic velocity never skips over
-a grid cell entirely, when moving from one time level to the next.
+enough so that a tracer moving with the characteristic velocity never traverses
+a distance greater than the grid spacing, when moving from one time level to
+the next.
 
 When computing transport based on discrete data sets, such as snapshots of the
 instantaneous velocity fields in oceanic currents, spatial and temporal

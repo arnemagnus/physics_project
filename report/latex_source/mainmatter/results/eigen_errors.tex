@@ -9,13 +9,13 @@ identical. As it turns out, the $\rmsd$ of $\lambda_{1}$ scales similarly to
 that of $\lambda_{2}$, both as a function of numerical step length (for the
 singlestep methods) and the number of function evaluations. Additionally, the
 numerical reformulation of the existence theorem for hyperbolic LCSs, given in
-equation~\eqref{eq:numericalexistence}, exhibits a more sensitive dependence to
+\cref{eq:numericalexistence}, exhibits a more sensitive dependence to
 $\lambda_{2}$ than $\lambda_{1}$. This is explicitly observable from
 conditions~\eqref{eq:numericalexistence2} and~\eqref{eq:numericalexistence4},
 and favors $\lambda_{2}$ as the most crucial eigenvalue.
 
 Figure~\ref{fig:lmbd2_err_fixed} indicates that the $\rmsd$ of $\lambda_{2}$,
-as defined in equation~\eqref{eq:rmsdlmbd}, follows the anticipated power law
+as defined in~\cref{eq:rmsdlmbd}, follows the anticipated power law
 of the numerical errors for the various singlestep integrators. Interestingly,
 the $\rmsd$ dependence on the numerical steplength is completely analogous to
 that of the $\rmsd$ of the flow maps, as presented in
@@ -35,7 +35,7 @@ finite differencing applied to the flow map, as described in
 \newpage
 
 Figure~\ref{fig:xi2_err_fixed} reveals that the $\rmsd$ of the eigenvector
-direction, as defined in equation~\eqref{eq:rmsddirection}, is negligible for
+direction, as defined in~\cref{eq:rmsddirection}, is negligible for
 all numerical step lengths. In fact, the numerical errors are comparable
 to, or even smaller than, the machine epsilon of double-precision floating-point
 numbers, which, as mentioned in

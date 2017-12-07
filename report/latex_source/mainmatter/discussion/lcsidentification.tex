@@ -3,29 +3,31 @@
 
 As mentioned in~\cref{sub:extracting_hyperbolic_lcss_from_strainlines},
 the lines in the set $\mathcal{L}$, used in order to find strainline segments
-satisfying the numerical LCS existence condition given by equation
-\eqref{eq:numericalexistence4} had to be selected with great care in order
-to accurately reproduce the LCS curve found in the literature. Although
-the LCS identification with the particular set of horizontal and vertical lines
-proved robust across all integration methods, the fact that only certain sets
-$\mathcal{L}$ do the job, is a damning indicament that the procedure as such
-is not particularly robust. Although not investigated here, an alternative
-approach could be to identify all strainlines which follow very similar
-trajectories, either manually or by means of some numerical clustering
-algorithm, then extracting the most strongly repellent strainline segments
-of each bunch as LCSs for the system.
+satisfying the numerical LCS existence condition given in
+\cref{eq:numericalexistence4} --- regarding the identification of strainlines
+which serve as local maxima for $\overline{\lambda}_{2}$ --- had to be selected
+with great care in order to accurately reproduce the LCS curve found in the
+literature. Although the LCS identification with the particular set of
+horizontal and vertical lines proved robust across all integration methods, the
+fact that only certain sets $\mathcal{L}$ do the job, is a damning indicament
+that the procedure as such is not particularly robust. Although not investigated
+here, an alternative approach could be to identify all strainlines which follow
+very similar trajectories, either manually or by means of some numerical
+clustering algorithm, then extracting the most strongly repellent strainline
+segments of each bunch as LCSs for the system.
 
-The strainline tail end cutting procedure which was employed, and
-briefly brought up in
-\cref{sub:extracting_hyperbolic_lcss_from_strainlines}, is most certainly
-debatable. The reason it was considered in the first place, is that the specific
-wording used by~\textcite{farazmand2012computing} on the subject of comparing
-strainlines is somewhat ambiguous, in that they also describe that part of
-the process as comparison of \emph{curve segments}. Moreover, they also state
-that a \emph{part} of a strainline may qualify as an LCS. In addition,
-cutting the tail ends of strainlines which are stopped due to continious
-failures of one or more of the LCS conditions of equation
-\eqref{eq:numericalexistence} could also, quite logically, be extended so that
+The strainline tail end cutting procedure which was employed, briefly brought
+up in
+\cref{sub:extracting_hyperbolic_lcss_from_strainlines} and illustrated in
+\cref{fig:lcs_tailcut}, is most certainly debatable. The reason it was
+considered in the first place, is that the specific wording used by
+\textcite{farazmand2012computing} on the subject of comparing strainlines is
+somewhat ambiguous, in that they also describe that part of the process as
+comparison of \emph{curve segments}. Moreover, they also state that a
+\emph{part} of a strainline may qualify as an LCS. In addition, cutting the
+tail ends of strainlines which are stopped due to continious failures of one
+or more of the LCS conditions given in
+\cref{eq:numericalexistence} could also, quite logically, be extended so that
 parts of the remaining strainline curve which, for example due to numerical
 noise, do not satisfy all of the aforementioned conditions, are excluded from
 the ensuing LCS identification. That is, those parts would not be considered
@@ -51,7 +53,9 @@ slightly smaller $\overline{\lambda}_{2}$, that is, is slightly less repelling
 than, the other, then the longer strainline is selected. This sort of routine
 should naturally be based upon sound mathematical logic. In short, there is a
 lot of room for research in terms of how to enforce the LCS condition given
-by equation~\eqref{eq:numericalexistence4}.
+by~\cref{eq:numericalexistence4}. The conditions given by
+\cref{eq:numericalexistence1,eq:numericalexistence2,eq:numericalexistence3}
+are quite unambigious, in comparison.
 
-\vspace{\fill}
-\clearpage
+%\vspace{\fill}
+%\clearpage

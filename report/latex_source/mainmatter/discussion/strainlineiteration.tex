@@ -17,7 +17,7 @@ The classical Runge-Kutta method, with a numerical step length
 $\Delta=10^{-3}$, was used for all computations of strainlines, regardless
 of which integration scheme had been used for the advection of tracers,
 as mentioned in~\cref{sub:extracting_hyperbolic_lcss_from_strainlines}. This
-was a conscientious choice, based on the idea of using the available information
+was a conscious choice, based on the idea of using the available information
 in the flow maps with the same degree of precision for all integrator
 configurations. If, however, the entire process of numerical integration,
 including both the advection of tracers and the calculation of strainlines,
@@ -39,16 +39,12 @@ should probably be more elaborate than the implementation outlined in
 it would be advisable to incorporate the local strainline curvature somehow,
 in order to minimize deviations from the \emph{true} trajectories. Furthermore,
 the use of a higher order strainline might prove a fruitless exercise, unless
-a higher order strain eigendirection routine, as discussed above, was
+a higher order strain interpolation eigenvector routine, as mentioned above, was
 implemented in tandem. As for the transport of tracers based on discrete
 velocity data, mentioned in~\cref{sec:general_remarks}, the interaction
-between strain eigendirection interpolation method, and strainline integration
+between strain eigenvector interpolation method, and strainline integration
 method, seems like an interesting research topic for potential future endeavors.
 
-
-\vspace{\fill}
-\clearpage
-
-
-
-
+%
+%\vspace{\fill}
+%\clearpage
