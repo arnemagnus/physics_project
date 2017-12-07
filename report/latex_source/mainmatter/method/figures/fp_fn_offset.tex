@@ -5,15 +5,24 @@
     \caption[Illustration of how the offset of false LCS segments was computed]%
     {Illustration of how the offset of false LCS segments was computed.
         An LCS segment, denoted by $\widetilde{\gamma}_{0}$ in the figure, is
-        compared with the reference LCS, labelled $\gamma_{0}$. Each part of
-        $\widetilde{\gamma}_{0}$, which is farther away from all points on $\gamma_{0}$
-        than a pre-set length $l_{\textnormal{noise}}=0.01$ is flagged as a
-        false positive. The area $\mathcal{A}$ between $\gamma_{0}$ and the
-        curve segments identified as false positives, is estimated by means of the
-        midpoint rule. In the case of false negatives, $\mathcal{A}$ denotes the
-        minimal area between the curves $\gamma_{0}$ and $\widetilde{\gamma}_{0}$,
-        for each part of the reference LCS which is not present in the
-    approximation.}
+        compared with the reference LCS, labelled $\gamma_{0}$. Each part
+        the approximated LCS curve, which is farther away from all points on
+        the reference LCS than a pre-set length $l_{\textnormal{noise}}=0.01$
+        is flagged as a false positive. The area $\mathcal{A}$ between
+        the reference LCS and the curve segments identified as false positives,
+        is estimated by means of the midpoint rule; that is, for each point on
+        a false positive segment of the approximated LCS, the smallest
+        distance separating it and the reference LCS is weighted with $\Delta$,
+        the step length used in the numerical integration of strainlines.
+        Because the $\vct{\xi}_{1}$-field is normalized to unit length,
+        $\Delta$ equals the distance between consecutive points in the
+        parametrizations of both the approximated and the reference LCS curves,
+        per equation~\eqref{eq:strainlineode}. In the case of false negatives,
+        $\mathcal{A}$ denotes the minimal area between the reference LCS curve
+        and the approximaated LCS curve, for each part of the reference LCS
+        which is not present in the approximation; that is, each point on the
+        reference LCS curve which is farther away from all points on the
+        approximate curve than $l_{\textnormal{noise}}$.}
     \label{fig:fp_fn_principle}
 \end{figure}
 

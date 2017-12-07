@@ -5,11 +5,11 @@ The variational model is based upon the advection of non-interacting tracers,
 which is described in \cref{sec:typeofflow}, by the velocity field defined in
 equation \eqref{eq:doublegyre}. To our knowledge, the system has no analytical
 solution for the tracer trajectories. Thus, it must be solved numerically, by
-means of some numerical integration method, e.g.\ a Runge-Kutta method, some of
-which are outlined in~\cref{sub:the_runge_kutta_family_of_numerical_methods}.
-With the main focus of this project being the dependence on LCSs on the chosen
-integration method, the advection was performed using all of the numerical
-integrators introduced in
+means of some numerical integration method, e.g.\ a Runge-Kutta method, a
+family of numerical ODE methods which is outlined in
+\cref{sub:the_runge_kutta_family_of_numerical_methods}. With the main focus of
+this project being the dependence on LCSs on the chosen integration method, the
+advection was performed using all of the numerical integrators introduced in
 \cref{sub:the_runge_kutta_methods_under_consideration}.
 
 \subsection{Generating a set of initial conditions}
@@ -118,15 +118,14 @@ is that the accumulated numerical round-off errors, mentioned in
 of tracers by means of the highest order methods, that is, Kutta's method and
 the classical Runge-Kutta method (cf.\ \cref{tab:butcherrk3,tab:butcherrk4}),
 became large enough to counteract the inherent accuracies of the methods,
-for the transitions $h=10^{-4}\rightarrow{}h=10^{-5}$ and
-$h=10^{-3}\rightarrow{}h=10^{-4}$, respectively. Further details will be
-presented in \cref{cha:results}. We expect a similar development for both
-the Euler and Heun methods (cf.\ \cref{tab:butchereuler,tab:butcherrk2},
-albeit for even smaller time steps, due to these methods being less accurate
-to begin with. Furthermore, rather than using e.g.\ the Euler method with
-an even smaller time step, one would in practice simply use a higher-order
-method, in order to obtain similar or better accuracy even for larger
-time steps.
+for time steps smaller than $10^{-4}$ and $10^{-3}$, respectively. Further
+details will be presented in \cref{cha:results}. We expect a similar development
+for both the Euler and Heun methods (cf.\
+\cref{tab:butchereuler,tab:butcherrk2}), albeit for even smaller time steps,
+due to these methods being less accurate to begin with. Furthermore, rather
+than using e.g.\ the Euler method with an even smaller time step, one would in
+practice simply use a higher-order method, in order to obtain similar or better
+accuracy even for larger time steps.
 
 %the following: For a step length of $10^{-5}$, the total number of
 %integration steps required in order to take the system from $t=0$ to $t=20$
@@ -234,7 +233,7 @@ where $\facem$ and $\facem_{\mathrm{max}}$ are numerical safety factors,
 intended to prevent increasing the step size \emph{too} much. For this project,
 $\facem=0.8$ and $\facem_{\mathrm{max}}=2.0$ were used throughout.
 
-All of the embedded methods considered here, are tuned in order to minimize
+All of the embedded methods considered here are tuned in order to minimize
 the error of the higher order result; accordingly, local extrapolation was
 used throughout. Regarding the Bogacki-Shampine 5(4) method, which yields
 \emph{two} independent \nth{4}-order interpolant solutions, the procedure was

@@ -2,7 +2,7 @@
 \label{sec:measures_of_error}
 
 Here, the measures of error introduced in~\cref{sec:estimation_of_errors} for
-the different numerical integration schemes considered, is presented. For
+the different numerical integration schemes considered, are presented. For
 each different type of error, two figures are included. One in which the error
 of the singlestep methods is shown as a function of the integration step length,
 and one in which the error of \emph{all} the integration methods is shown
@@ -19,18 +19,15 @@ a well-suited integration method is characterized by generating small
 errors at a small cost in terms of the required number of function calls,
 in this case, the number of times the velocity field had to be evaluated.
 Unlike the singlestep integrators, the advection of each tracer by means
-of an adaptive stepsize method in principle a different number of integration
-steps, and thus function evaluations. Thus, the presented number of function
-evaluations is the \emph{average} across all of the advected tracers, including
-the number of evaluations associated with unaccepted trial integration steps.
-The number of function evaluations for each of the considered Runge-Kutta
-methods can be found as the number of rows in the Runge-Kutta matrices
-of
+of an adaptive stepsize method in principle requires a different number of
+integration steps, and thus function evaluations. Thus, the presented number of
+function evaluations is the \emph{average} across all of the advected tracers,
+including the number of evaluations associated with rejected trial integration
+steps. The number of function evaluations for each step of the considered
+Runge-Kutta methods can be found as the number of rows in the Runge-Kutta
+matrices of
 \cref{tab:butchereuler,tab:butcherrk2,tab:butcherrk3,tab:butcherrk4,%
 tab:butcherbs32,tab:butcherbs54,tab:butcherdopri54,tab:butcherdopri87}.
-
-\input{mainmatter/results/lcs_errors.tex}
-
 \input{mainmatter/results/flowmap_errors.tex}
-
 \input{mainmatter/results/eigen_errors.tex}
+\input{mainmatter/results/lcs_errors.tex}

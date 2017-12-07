@@ -1,7 +1,5 @@
 \subsection{Computed deviations in the flow maps}
 \label{sub:computed_deviations_in_the_flow_maps}
-
-
 Figure~\ref{fig:flowmap_err_fixed} indicates that the $\rmsd$ of the flow maps,
 as defined in equation~\eqref{eq:rmsdflowmap} follow the expected power laws
 of the numerical errors for the various singlestep integrators. This is
@@ -11,28 +9,33 @@ boundedness from below by the counteracting accumulated floating-point
 arithmetic error, as hypothesized in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
 This effect is most prominent in the error curves of the Kutta and
-classical Runge-Kutta schemes, which inflect upwards for sufficiently small
-step lengths. Based on this evidence, the chosen step lengths appear to be
-appropriate. Although neither the $\rmsd$ of the Euler scheme nor that of the
-Heun scheme appears to have reached their respective inflection points, the
-trends nevertheless indicate that there would not be much to gain in terms
-of accuracy before the accumulated flating-point errors outweigh the inherent
-precisions of the two schemes.
+classical Runge-Kutta schemes, which in fact \emph{decrease} as a function
+of the step length until $h=10^{-4}$ and $h=10^{-3}$, respectively. Based on
+this evidence, the chosen step lengths appear to be appropriate.
+%Although neither the $\rmsd$ of the Euler scheme nor that of the Heun scheme ever
+%decreases as the step length increases, the trends nevertheless indicate that
+%there would not be much to gain in terms of accuracy before the accumulated
+%flating-point errors outweigh the inherent precisions of the two schemes.
 
 Figure~\ref{fig:flowmap_err_both} indicates that a peak in numerical accuracy
 did not materialize for the adaptive stepsize methods, for the considered
 numerical tolerance levels. The figure also reveals that the Bogacki-Shampine
-3(2) scheme is the `cheapest' in terms of the required number of function
-evaluations  when only a very crude approximation is needed, that is, using a
-very high numerical tolerance level. Furthermore, the its higher order sibling
-is able to keep up with the Dormand-Prince 8(7) method regarding efficiency,
-until a mean of approximately $600$ function evaluations. This complies with the
-notion that the Bogacki-Shampine 5(4) method is highly optimized and practically
-behaves as an even higher order order method, as mentioned in
+3(2) scheme is `cheap' when only a very crude approximation of the flow map is
+needed; in particular, the aforementioned scheme requires less function
+evaluations than even the Dormand-Prince 8(7) method for $\rmsd$s upwards of
+$10^{-1}$. However, for smaller $\rmsd$ values, the Bogacki-Shampine 3(2)
+scheme falls inbetween the Heun and Kutta schemes, which is to be expected,
+seeing as the latter methods are of \nth{2} and \nth{3} order, respectively.
+Notably, the Bogacki-Shampine 5(4) scheme is able to keep up with the
+Dormand-Prince 8(7) method regarding efficiency, until approximately $600$
+function evaluations. This complies with the notion that the Bogacki-Shampine
+5(4) method practically behaves as an even higher order method, as mentioned in
 \cref{sub:the_runge_kutta_methods_under_consideration}.
-Interestingly, there does not seem to be a direct correspondence between the
-$\rmsd$ of the flow maps, and that of the computed LCS curves, presented in
-\cref{sub:computed_deviations_in_the_lcs_curves}.
+There does not seem to be a direct correspondence between the
+$\rmsd$ of the flow maps, and that of the computed LCS curves, which will be
+presented in~\cref{sub:computed_deviations_in_the_lcs_curves} --- which seems
+reasonable, given that a lot of computations separate the flow maps from the
+resulting LCS curves, as outlined in~\cref{cha:method}.
 
 \input{mainmatter/results/figures/error_figures/flowmap_error_fixed_steplength.tex}
 

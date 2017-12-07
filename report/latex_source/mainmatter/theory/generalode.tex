@@ -14,7 +14,7 @@ $f$ is defined on an open subset $\Omega$ of $\mathbb{R}\times\mathbb{R}^{n}$,
 where $n$ is the number of dimensions, that is, the number of components
 of $x$. The initial condition $(t_{0},x_{0})$ is a point in the domain of $f$, i.e.,
 $(t_{0},x_{0})\in\Omega$. In higher dimensions (that is, $n>1$) the
-differential equation~\eqref{eq:ivpsystem} generally extends to a coupled
+differential \cref{eq:ivpsystem} generally extends to a coupled
 family of ODEs
 \begin{equation}
 \label{eq:ivpsystemhigherdimensions}
@@ -23,9 +23,9 @@ family of ODEs
     x_{i}(t_{0})=x_{i,0},\quad{}i=1,\ldots,n. \\
 \end{gathered}
 \end{equation}
-The system is nonlinear if the function $f$ in equation~\eqref{eq:ivpsystem},
-or, if at least one of the functions $f_{i}$ in equation
-\eqref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
+The system is nonlinear if the function $f$ in~\cref{eq:ivpsystem},
+or, if at least one of the functions $f_{i}$ in
+\cref{eq:ivpsystemhigherdimensions}, is nonlinear in one or more of its
 arguments. For the sake of notational simplicity, the discussion to follow
 in the rest of this chapter is based on the one-dimensional case, that is,
 system~\eqref{eq:ivpsystem}, for $n=1$. However, all of the considerations also
@@ -88,6 +88,6 @@ an approximation of the true solution of the system~\eqref{eq:ivpsystem}
 \end{equation}
 where $x(t)$ is the exact solution. The accuracy of the approximation, however,
 depends on both the numerical integration method and the time step length $h$
-used for the temporal discretization, given in equation~\eqref{eq:discretetime}.
+used for the temporal discretization, given in~\cref{eq:discretetime}.
 For nonlinear systems, analytical solution frequently do not exist. Thus,
 such systems are often analyzed by means of numerical methods.

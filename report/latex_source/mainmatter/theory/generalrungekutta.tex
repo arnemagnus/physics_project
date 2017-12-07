@@ -34,7 +34,7 @@ The \emph{order} of a Runge-Kutta method can be defined as follows:\\
 
 \begin{defn}
     \label{def:rungekuttaorder}
-    A Runge-Kutta method, given by equation~\eqref{eq:generalrungekutta} is
+    A Runge-Kutta method, given by~\cref{eq:generalrungekutta} is
     said to be of \emph{order} $p$ if, for sufficiently smooth systems
     \eqref{eq:ivpsystem}, the local error $e_{n}$ scales as $h^{p+1}$, that is:
     \begin{equation}
@@ -73,8 +73,8 @@ by
         &\leq \widetilde{K}h^{p}
     \end{aligned}
 \end{gather}
-where $\widetilde{K}$ is a numerical constant. Equation
-\eqref{eq:rungekuttaglobalorderestimate} demonstrates that, for a $p$-th
+where $\widetilde{K}$ is a numerical constant.
+\Cref{eq:rungekuttaglobalorderestimate} demonstrates that, for a $p$-th
 order Runge-Kutta method, the global error can be expected to scale
 as $h^{p}$.
 
@@ -86,9 +86,9 @@ as $h^{p}$.
 In definition~\ref{def:generalrungekutta}, the matrix $(a_{i,j})$ is commonly
 called the \emph{Runge-Kutta matrix}, while $b_{i}$ and $c_{i}$ are known as
 the \emph{weights} and \emph{nodes}, respectively.  Since the 1960s, it has
-been customary to represent Runge-Kutta methods~\eqref{eq:generalrungekutta}
-symbolically, by means of mnemonic devices known as Butcher tableaus
-\parencite[p.134]{hairer1993solving}. The Butcher tableau
+been customary to represent Runge-Kutta methods, given by
+\cref{eq:generalrungekutta}, symbolically, by means of mnemonic devices known
+as Butcher tableaus \parencite[p.134]{hairer1993solving}. The Butcher tableau
 for a general \emph{s}-stage Runge-Kutta method, introduced in definition
 \ref{def:generalrungekutta}, is presented in table~\ref{tab:generalbutcher}.
 
@@ -117,7 +117,7 @@ for a general \emph{s}-stage Runge-Kutta method, introduced in definition
 For explicit Runge-Kutta methods, the Runge-Kutta matrix $(a_{i,j})$ is lower
 triangular. Similarly, for fully implicit Runge-Kutta methods, the Runge-Kutta
 matrix is upper triangular. The difference between explicit and implicit
-methods is outlined in equation~\eqref{eq:exim}.
+methods is outlined in~\cref{eq:exim}.
 %Unlike explicit methods, implicit methods require
 %the solution of a linear system at every time level, making them more
 %computationally demanding than their explicit siblings. The main selling point
@@ -215,8 +215,8 @@ The singlestep methods under consideration are the classical, explicit
 Runge-Kutta methods of orders one through to four, i.e., the \emph{Euler},
 \emph{Heun}, \emph{Kutta} and \emph{classical Runge-Kutta} methods. The
 Euler method is \nth{1}-order accurate, and requires a single function
-evaluation of the right hand side of the ordinary differential equation
-\eqref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
+evaluation of the right hand side of the ordinary differential
+\cref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
 Its Butcher tableau representation can be found in~\cref{tab:butchereuler}.
 It is the simplest explicit method for numerical integration of ordinary
 differential equations. The Euler method is often used as a basis to construct
@@ -231,13 +231,13 @@ time step. Its Butcher tableau representation can be found in
 \input{mainmatter/theory/butchertableaus/rk2.tex}
 
 The Kutta method is \nth{3}-order accurate, and requires three function
-evaluations of the right hand side of the ordinary differential equation
-\eqref{eq:ivpsystem} or ~\eqref{eq:ivpsystemhigherdimensions} at each time
+evaluations of the right hand side of the ordinary differential
+\cref{eq:ivpsystem} or ~\eqref{eq:ivpsystemhigherdimensions} at each time
 step. Its Butcher tableau representation can be found in \cref{tab:butcherrk3}.
 The classical Runge-Kutta method is \nth{4}-order accurate, and perhaps the most
 well-known and frequently used of the four singlestep schemes discussed in this
 project. One reason for its popularity is that it is exceptionally stable
-numerically (i.e., of the aforementioned singlestep methods, the classical
+numerically (of the aforementioned singlestep methods, the classical
 Runge-Kutta method has the largest numerical stability domain). Another is that,
 as mentioned previously, for $p\geq5$, no explicit Runge-Kutta method of order
 $p$ with $s=p$ stages exist

@@ -116,6 +116,30 @@ labelsep=colon%
 % Better formatting for tables
 \usepackage[]{booktabs}
 
+
+%
+% Mathematical functions
+%
+
+% Necessary for most kinds of mathematical typesetting:
+\usepackage[]{amsmath,amssymb}
+
+% Package containing useful macros for typsetting vector calculus, linear
+% algebra etc.
+\usepackage[]{physics}
+
+% Typeset mathematical symbols in bold, useful when working with vectors,
+% tensors, etc.
+\usepackage[]{bm}
+
+% Necessary to write greek letters in upright in math mode, e.g. for vectors
+\usepackage[libertine]{newtxmath}
+
+% Clever typesetting of SI units
+\usepackage[]{siunitx}
+
+
+
 %
 % Reference-related packages
 %
@@ -150,28 +174,6 @@ uniquename=init%
 % Use endash in a cleveref-range
 \newcommand{\crefrangeconjunction}{--}
 
-
-%
-% Mathematical functions
-%
-
-% Necessary for most kinds of mathematical typesetting:
-\usepackage[]{amsmath,amssymb}
-
-% Package containing useful macros for typsetting vector calculus, linear
-% algebra etc.
-\usepackage[]{physics}
-
-% Typeset mathematical symbols in bold, useful when working with vectors,
-% tensors, etc.
-\usepackage[]{bm}
-
-% Necessary to write greek letters in upright in math mode, e.g. for vectors
-\usepackage[libertine]{newtxmath}
-
-% Clever typesetting of SI units
-\usepackage[]{siunitx}
-
 % Clever typesetting of theorems, definitions etc.
 \let\openbox\relax
 \usepackage[]{amsthm}
@@ -183,5 +185,4 @@ uniquename=init%
 \crefname{defn}{definition}{definitions}
 
 \crefname{figure}{figure}{figures}
-
-
+\crefname{equation}{equation}{equations}

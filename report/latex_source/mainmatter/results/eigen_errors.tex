@@ -15,16 +15,16 @@ conditions~\eqref{eq:numericalexistence2} and~\eqref{eq:numericalexistence4},
 and favors $\lambda_{2}$ as the most crucial eigenvalue.
 
 Figure~\ref{fig:lmbd2_err_fixed} indicates that the $\rmsd$ of $\lambda_{2}$,
-as defined in equation~\eqref{eq:rmsdlmbd}, follow the anticipated power law
+as defined in equation~\eqref{eq:rmsdlmbd}, follows the anticipated power law
 of the numerical errors for the various singlestep integrators. Interestingly,
 the $\rmsd$ dependence on the numerical steplength is completely analogous to
 that of the $\rmsd$ of the flow maps, as presented in
 \cref{sub:computed_deviations_in_the_flow_maps}. Furthermore, inspection of
 figure~\ref{fig:lmbd2_err_both} reveals that the $\rmsd$ of the $\lambda_{2}$
 scales similarly to the $\rmsd$ of the flow maps for all of the integration
-schemes, differing only by a numerical prefactor. This does make sense
-intuitively, seeing as the Cauchy-Green strain eigenvalues are computed by
-means of the \emph{main} tracers, as described in
+schemes, differing only by a numerical prefactor. This makes sense, seeing as
+the calculation of the Cauchy-Green strain tensor field is based upon
+finite differencing applied to the flow map, as described in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}.
 
 \input{mainmatter/results/figures/error_figures/lmbd2_error_fixed_steplength.tex}
@@ -37,31 +37,40 @@ means of the \emph{main} tracers, as described in
 Figure~\ref{fig:xi2_err_fixed} reveals that the $\rmsd$ of the eigenvector
 direction, as defined in equation~\eqref{eq:rmsddirection}, is negligible for
 all numerical step lengths. In fact, the numerical errors are comparable
-to, or even smaller than, the inherent double-precision floating-point number
-accuracy, which is of order $10^{-16}$. For this reason, the agreement with
-the anticipated power laws should not be taken as any kind of conclusive
-evidence. Figure~\ref{fig:xi2_err_both}, shows that this is in fact the case for
-the adaptive stepsize methods too, aside from the tolerance level
-$\textnormal{tol}=10^{-1}$, which corresponds to the fewest function evaluations
-for each scheme. As has already been established in figure
-\ref{fig:u0_dom_errs}, for that tolerance level, none of the integrators yield
-$\mathcal{U}_{0}$ domains with reasonable degrees of resemblance to the
-reference, which is shown in figure~\ref{fig:u0_domain}.
+to, or even smaller than, the machine epsilon of double-precision floating-point
+numbers, which, as mentioned in
+\cref{sub:generating_a_set_of_initial_conditions}, is of order $10^{-16}$
+\parencite{ieee2008standard}. For this reason, the agreement with
+the anticipated scalings with the stepsize should not necessarily be taken
+as conclusive evidence of general behaviour. Figure~\ref{fig:xi2_err_both},
+shows that this is in fact the case for the adaptive stepsize methods too,
+aside from the tolerance level $\textnormal{tol}=10^{-1}$, which corresponds to
+the fewest function evaluations for each scheme. As has already been
+established in figure \ref{fig:u0_dom_errs}, for that tolerance level, none of
+the integrators yield $\mathcal{U}_{0}$ domains with reasonable degrees of
+resemblance to the reference, which is shown in figure~\ref{fig:u0_domain}.
 
-Aside from this tolerance level, though, the error in eigenvector direction
-is comparable to, or smaller than, the floating-point accuracy. Thus, we may
-conclude that the eigenvector directions are computed correctly for just about
-any tolerance level and numerical time step length. This can be understood as a
-consequence of the use of the auxiliary tracers in order to compute the strain
-eigenvectors, as described in
-\cref{sec:calculating_the_cauchy_green_strain_tensor}, which, by construction,
-is more accurate than using the main tracers. Moreover, these results imply that
-the error in the resulting LCS curves are driven just about entirely by
-the error in the computed eigenvalues.
+Aside from the least accurate tolerance level for the embedded integrators,
+though, the error in eigenvector direction is comparable to, or smaller than,
+double-precision machine epsilon. Thus, we may conclude that the eigenvector
+directions are computed correctly for just about any tolerance level and
+numerical time step length. This can be understood as a consequence of the use
+of the auxiliary tracers in order to compute the strain eigenvectors, as
+described in~\cref{sec:calculating_the_cauchy_green_strain_tensor}, which, by
+construction, is more accurate than using the main tracers. Moreover, these
+results imply that the error in the resulting LCS curves are strongly driven by
+the error in the computed eigenvalues. The sharp turns in the computed LCS
+curves for the tolerance level $10^{-2}$, which are particularly visible
+in~\cref{fig:lcs_rkbs54,fig:lcs_rkdp54}, are likely a consequence of the
+corresponding $\mathcal{U}_{0}$ domains extending to regions in which
+there are very strong local orientational discontinuities in the
+$\vct{\xi}_{1}$-field, for which the special-purpose linear interpolation
+introduced in~\cref{sub:a_framework_for_computing_smooth_strainlines} is
+evidently insufficient.
 
 \input{mainmatter/results/figures/error_figures/xi2_error_fixed_steplength.tex}
 
 
 \input{mainmatter/results/figures/error_figures/xi2_error_both.tex}
 
-\clearpage
+%\clearpage

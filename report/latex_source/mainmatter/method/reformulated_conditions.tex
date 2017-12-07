@@ -85,7 +85,7 @@ of the $\vct{\xi}_{1}$-field are removable, through careful monitoring and
 local reorientation. This process is illustrated in figure
 \ref{fig:locallinearinterp}, and can be described in terms of three steps.
 First, the four nearest neighboring grid points to $\vct{r}$ are identified.
-Then, orientational discontinuities inbetween the grid elements are identified
+Then, orientational discontinuities inbetween the grid elements are found
 by inspecting the inner product of the $\vct{\xi}_{1}$ vectors of adjacent grid
 points. Rotations exceeding $90\si{\degree}$ between pairs of neighboring
 vectors are labelled as orientational discontinuities, which are corrected
@@ -99,7 +99,7 @@ than $90\si{\degree}$ relative to the $\vct{\xi}_{1}$-vector from the previous
 level of pseudotime used in the numerical integration of system
 \eqref{eq:strainlinebasicode}, it would be flipped $180\si{\degree}$,
 to facilitate smooth trajectories through oriental discontinuities.
-The entire process of the special-purpose local linear interpolation method is
+The entire process of this special-purpose local linear interpolation method is
 outlined in figure~\ref{fig:locallinearinterp}.
 
 \input{mainmatter/method/figures/linearspecialinterp.tex}
@@ -295,7 +295,7 @@ and agrees visually with the LCS found in the literature, for example by
 \textcite{farazmand2012computing}. Note, however, that
 \citeauthor{farazmand2012computing} claim that their LCS consists of a single
 strainline segment. This will be elaborated upon in
-\cref{cha:discussion}. The curve shown in figure~\ref{referencelcs} was used to
+\cref{cha:discussion}. The curve shown in figure~\ref{fig:referencelcs} was used to
 benchmark how the different numerical integrators, mentioned in
 \cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
 mentioned in

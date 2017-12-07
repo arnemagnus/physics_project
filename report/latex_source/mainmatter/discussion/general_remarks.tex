@@ -23,8 +23,9 @@ $\mathcal{U}_{0}$ domains obtained by means of the adaptive stepsize methods
 for $\textnormal{tol}=10^{-1}$, shown in figure~\ref{fig:u0_dom_errs}, differ
 greatly to the \emph{correct} domain, which correlates well with the computed
 $\rmsd$ of the flow maps, shown in figure~\ref{fig:flowmap_err_both}. In
-particular, the error for the aforementioned tolerance level is of order $1$,
-which is comparable to the extent of the numerical domain, that is,
+particular, the error in the flow map for the aforementioned tolerance level is
+of order $1$ for all of the embedded methods. This error is comparable to the
+extent of the numerical domain, that is,
 $[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. Naturally, this leads to a drastically
 different system.
 
@@ -32,9 +33,9 @@ The above observation implies that the most crucial part of the computation is
 advecting the tracers accurately. As mentioned in
 \cref{sub:computed_deviations_in_the_strain_eigenvalues_and_vectors}, the error
 in the computed strain eigenvalues scales like the error in the computed flow
-map. This is to be expected, as the eigenvalues are found by applying finite
-differences to the \emph{main} tracers. The eigenvalues are essential in terms
-of identifying LCSs, as can be seen in the numerical reformulation of the
+map. This is to be expected, as the eigenvalues are essentially found by
+applying finite differences to the flow map. The eigenvalues are crucial in
+terms of identifying LCSs, as can be seen in the numerical reformulation of the
 LCS existence theorem, which is given in equation~\eqref{eq:numericalexistence}.
 The strain eigendirections are important too, of course --- however, the
 error in the computed strain eigendirections is consistently negligible.
@@ -42,7 +43,7 @@ This is most likely due to them being computed based on the denser
 \emph{auxiliary} set of tracers, which per construction results in more accurate
 finite differences.
 
-However, for the considered system, there appears to be a lower threshold
+For the considered double gyre system, there appears to be a lower threshold
 in terms of the required advection accuracy, beneath which the computed LCS
 curves do not become more precise. This effect is apparent
 from inspection of
@@ -50,16 +51,25 @@ from inspection of
 fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}, where the error of strainline
 components identified as LCS constituents flattens abruptly. Notably, this
 occurs for larger numerical step lengths or tolerance levels, respectively,
-than the corresponding inflection points for the error in the flow maps.
+than the corresponding turning points for the error in the flow maps.
 For the double gyre system considered here, it appears that this advection
 accuracy threshold is of the order $10^{-6}$--$10^{-7}$, which follows from
 comparing~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
 fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} to
-\cref{fig:flowmap_err_fixed,fig:flowmap_err_both}. However, because the
-sort of flattening does not appear to occur for the strain eigenvalues,
-as shown in~\cref{fig:lmbd2_err_fixed,fig:lmbd2_err_both}, one may infer
-that this threshold is only valid for the LCS curves found by means of the
-procedure described in~\cref{sec:identifying_lcs_candidates_numerically}, which
+\cref{fig:flowmap_err_fixed,fig:flowmap_err_both}. In particular, for flow maps
+with $\rmsd$ of $10^{-7}$ or lower, the $\rmsd$ of the LCS curves appears to
+not decrease further as the flow map precision increases.
+
+However, because a similar flattening of the $\rmsd$ for the strain eigenvalues
+and eigenvectors is not apparent in
+\cref{fig:lmbd2_err_fixed,fig:lmbd2_err_both,fig:xi2_err_fixed,fig:xi2_err_both},
+one may infer that this threshold is likely only valid for the LCS curves
+of this particular velocity field --- that is, the system given by
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}, for which LCSs are
+found by means of the procedure described in
+\cref{sec:advecting_a_set_of_initial_conditions,%
+    sec:calculating_the_cauchy_green_strain_tensor,%
+sec:identifying_lcs_candidates_numerically} --- which
 appear quite robust. The same flow map accuracy threshold probably does not
 suffice for other, more volatile flow systems. Investigating
 this further for a wider range of systems could result in valuable insight.
@@ -72,9 +82,9 @@ The double gyre model considered in this project is obviously not representative
 of generic systems, in terms of exact numerical step lengths or tolerance
 levels which are sufficient in order to obtain correct LCSs with a certain
 degree of confidence. It does, however, indicate that these quantities should
-be chosen based on the considered system. For a fixed timestep integration
+be chosen based on the considered system. For a fixed stepsize integration
 scheme, any single integration time step should not be so large that \emph{too}
-much detail in the local and instantaneous velocity profile is glossed over.
+much detail in the local and instantaneous velocity field is glossed over.
 Similar logic applies when adaptive stepsize methods are used, although it
 may be more difficult to enforce, depending on how the step length
 update is implemented. One possibility in terms of choosing the time step, is to
@@ -83,9 +93,9 @@ enough so that a tracer moving with the characteristic velocity never skips over
 a grid cell entirely, when moving from one time level to the next.
 
 When computing transport based on discrete data sets, such as snapshots of the
-instantaneous velocity profiles in oceanic currents, spatial and temporal
+instantaneous velocity fields in oceanic currents, spatial and temporal
 interpolation becomes necessary. Together with the inherent precision of the
-measurement data, the choice of interpolation scheme(s) set a lower bound
+model data, the choice of interpolation scheme(s) sets a lower bound
 in terms of the accucacy with which tracers can be advected. For such cases,
 the interaction between the integration and interpolation schemes could
 be critical --- both in terms of computation time and memory requirements,
