@@ -179,22 +179,22 @@ degenerate, thus stopping the strainline integration.
 
 Generally, one expects the selected strain initial conditions, shown in figure
 \ref{fig:u0_domain}, to be located somewhere in the middle of a strainline.
-For this reason, two strainline segments were computed
+Hence, two strainline segments were computed
 and merged for each initial condition; one moving forwards in pseudotime, and
 one moving backwards, i.e., using the $180\si{\degree}$ rotated
 $\vct{\xi}_{1}$ vector field in the system given by \cref{eq:strainlineode}.
-This ensured that no strainline was cut prematurely, purely as a consequence of
-the reduced number of strain initial conditions. Furthermore, the classical
-Runge-Kutta method with a pseudotime step length $\Delta=10^{-3}$ was used in
-order to compute all of the strainlines, regardless of the integration method
+This ensured that no strainline was ended prematurely, purely as a consequence
+of the reduced number of strain initial conditions. Furthermore, the classical
+Runge-Kutta method with an integration step length $\Delta=10^{-3}$ was used in
+order to compute all of the strainlines, regardless of the integration scheme
 used in the advection of the tracers, described in
 \cref{sec:advecting_a_set_of_initial_conditions}. The classical Runge-Kutta
 method was applied universally for consistency, and chosen for its simplicity
 and relative accuracy. Moreover, this project is centered around the dependence
 of the choice of integration method in the tracer advection. The step length was
-chosen to be an order of magnitude smaller than the main grid spacing, in
-order to ensure that the micro-scale strain behaviour would be accurately
-represented in the resulting strainlines, while maintaining reasonable
+made an order of magnitude smaller than the main grid spacing, to ensure that
+the micro-scale strain behaviour would be encapsulated
+in the resulting strainlines, while maintaining reasonable
 computation times.
 %presented in
 %\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
