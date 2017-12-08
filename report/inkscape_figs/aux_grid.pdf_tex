@@ -51,7 +51,7 @@
   \begin{picture}(1,0.59506361)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{aux_grid.pdf}}%
     \put(0.37493623,0.48533185){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{u}$}}}%
-    \put(0.37493623,0.15469001){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{l}$}}}%
+    \put(0.37493623,0.15469001){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{d}$}}}%
     \put(0.37493623,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}$}}}%
     \put(0.13876321,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{l}$}}}%
     \put(0.72919581,0.36724533){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathbf{x}_{i,j}^{r}$}}}%

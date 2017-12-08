@@ -11,7 +11,7 @@ bounded subset $\mathcal{U}$ of $\mathbb{R}^{2}$. In addition, the velocity
 field $\vct{v}$ is assumed to be smooth in its arguments. Depending on the
 exact nature of the velocity field $\vct{v}$, analytical particle trajectories,
 that is, analytical solutions of system~\eqref{eq:odeflowsystem}, may or may
-not be computed. The flow particles are assumed to be infinitesimal and
+not exist. The flow particles are assumed to be infinitesimal and
 massless, i.e., non-interacting \emph{tracers} of the overall circulation.
 
 Letting $\vct{x}(t;t_{0},\vct{x}_{0})$ denote the trajectory of a tracer in the
@@ -83,8 +83,9 @@ incompressible flow, the eigenvalues satisfy
     \lambda_{1}(\vct{x}_{0})\lambda_{2}(\vct{x}_{0})=1%
         \quad\forall\hskip0.5em\vct{x}_{0}\in\mathcal{U}
 \end{equation}
-where, for our case, incompressibility is equivalent to the velocity field
-$\vct{v}$ being divergence-free (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
+where, for the case of advection of tracers, incompressibility is equivalent to
+the velocity field $\vct{v}$ being divergence-free
+(i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
 %This is due to the tracer particles being massless, per definiton.
 
 \section[Definition of Lagrangian Coherent Structures for two-dimensional flows ]
@@ -250,9 +251,9 @@ of the FTLE field. By \emph{ridges}, they mean gradient lines which are
 orthogonal to the direction of minimum curvature.
 \textcite{haller2010variational} showed, by means of explicit examples, that the
 sole use of the FTLE field for LCS detection is prone to both false positives
-and false negatives, even for conceptually simple flows. Furthermore, the FTLE
-field is generally less well-resolved than the LCSs obtained from Haller's
-variational formalism. For these reasons, the FTLE field can generally be used
-as a first approximation in terms of where one can reasonably expect LCSs
-to be found, but it does not represent the blueprint for the actual LCSs of a
-system in general.
+and false negatives, even for conceptually simple flows. Furthermore, the
+ridges of the FTLE field are generally less well-resolved than the LCSs obtained
+from Haller's variational formalism. For these reasons, the FTLE field can
+generally be used as a first approximation in terms of where one can reasonably
+expect LCSs to be found, but it does not represent the blueprint for the actual
+LCSs of a system in general.

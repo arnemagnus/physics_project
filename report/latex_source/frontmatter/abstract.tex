@@ -1,4 +1,4 @@
-A generic flow system can be described as a system whose state depends on
+A generic flow system can be described as a structure whose state depends on
 flowing streams of energy, material or information. Traditional examples of
 such systems are the steady transport of properties such as pressure,
 temperature or matter in fluids, and the transport of charge in electrical
@@ -9,18 +9,21 @@ by humans, can be obtained by regarding them as flow systems.
 Lagrangian coherent structures (henceforth abbreviated to LCSs) can be described
 as `landscapes' within a multidimensional space, which exert a major influence
 upon the flow patterns in dynamical systems. Such structures provide a
-simplified means of predicting the future states of complex systems, like
-nonlinear manybody problems, over a time interval of interest, compared to the
-conventional approach of increasing the spatial and temporal resolution of the
-model(s) involved in numerical simulations. From their variational theory,
-hyperbolic LCSs are identified as locally most repelling or attractive material
-surfaces. Somewhat simplified, such surfaces can be considered as a
-generalization of trajectories created by the underlying transport phenomenon.
-Hyperbolic LCSs form the skeleton of observable flow patterns.
+simplified means of predicting the future states of complex systems, which
+exhibit sensitive dependence to initial conditions, over a time interval of
+interest, compared to the conventional approach of increasing the spatial and
+temporal resolution of the model(s) involved in numerical simulations. From
+their variational theory, hyperbolic LCSs are identified as locally most
+repelling or attractive material surfaces. Somewhat simplified, such surfaces
+can be considered as generalized trajectories, created by the underlying
+transport phenomenon. Hyperbolic LCSs form the skeleton of observable flow
+patterns.
 
 This project is centered around the dependence of the numerical identification
-of such LCSs upon which numerical integration scheme was used in calculating
-them. LCSs were computed and compared for an analytical double gyre velocity
+of such LCSs upon which numerical integration scheme was used in order to
+simulate the underlying transport phenomenon.
+%them.
+LCSs were computed and compared for an analytical double gyre velocity
 field, for which reference LCSs are documented in the literature. In particular,
 four traditional singlestep and four embedded, adaptive stepsize Runge-Kutta
 methods were investigated. A numerical solution obtained by means of a high
@@ -44,9 +47,11 @@ for this project work.
 
 Note that the numerical implementation of one of the LCS existence conditions
 which arise from their variational theory has not yet (to the author's
-knowledge) received a complete description in the literature. This is a
-consequence of the study of LCSs being in it relative infancy, as a branch of
-physics. The approach considered in this project is based on careful inspection
+knowledge) received a complete description in the literature.
+%This is a
+%consequence of the study of LCSs being in it relative infancy, as a branch of
+%physics.
+The approach considered in this project is based on careful inspection
 of properties of the underlying system, which may or may not be applicable to
 generic systems, depending on their scale. In other words, there is currently a
 lot of room for research within the field.

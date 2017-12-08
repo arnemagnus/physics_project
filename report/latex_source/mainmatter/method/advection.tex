@@ -14,7 +14,7 @@ advection was performed using all of the numerical integrators introduced in
 
 \subsection{Generating a set of initial conditions}
 \label{sub:generating_a_set_of_initial_conditions}
-The computational domain $\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$
+The computational domain $\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$
 was discretized by a set of equidistant \emph{principal} tracers, with
 $1000\times500$  grid points, effectively creating a nearly uniform grid of
 approximate spacing $\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed
@@ -31,7 +31,8 @@ The construction of the grids is illustrated in figure~\ref{fig:initialgrid}.
 
 In order to increase the precision of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
-Jacobian of the flow map, as can be seen from~\cref{eq:cauchygreen}.
+Jacobian of the flow map, as their accuracies are intrinsically linked;
+which follows from~\cref{eq:cauchygreen}.
 This was done by advecting a set of auxiliary tracer points surrounding each
 \emph{main} tracer, that is, tracers originating at the principal or extended
 grid points. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
@@ -42,7 +43,7 @@ points defined as
         \vct{x}_{i,j}^{r} = (x_{i}+\delta{x},y_{j}),%
                 \quad\vct{x}_{i,j}^{l} = (x_{i}-\delta{x},y_{j})\\
                 \vct{x}_{i,j}^{u} = (x_{i},y_{j}+\delta{y}),%
-                \quad\vct{x}_{i,j}^{l} = (x_{i},y_{j}-\delta{y})\\
+                \quad\vct{x}_{i,j}^{d} = (x_{i},y_{j}-\delta{y})\\
 \end{gathered}
 \end{equation}
 were assigned, where $\delta{x}$ and $\delta{y}$ are increments smaller than
@@ -122,11 +123,12 @@ for time steps smaller than $10^{-4}$ and $10^{-3}$, respectively. Further
 details will be presented in \cref{cha:results}. We expect a similar development
 for both the Euler and Heun methods (cf.\
 \cref{tab:butchereuler,tab:butcherrk2}), albeit for even smaller time steps,
-due to these methods being less accurate to begin with. Furthermore, rather
-than using e.g.\ the Euler method with an even smaller time step, one would in
-practice simply use a higher-order method, in order to obtain similar or better
-accuracy even for larger time steps.
-
+due to these methods being of lower order accuracy.
+%Furthermore, rather
+%than using e.g.\ the Euler method with an even smaller time step, one would in
+%practice simply use a higher-order method, in order to obtain similar or better
+%accuracy even for larger time steps.
+%
 %the following: For a step length of $10^{-5}$, the total number of
 %integration steps required in order to take the system from $t=0$ to $t=20$
 %is of order $10^{6}$. As previously mentioned, the inherent accuracy of
@@ -148,9 +150,13 @@ accuracy even for larger time steps.
 %Euler method. For the other fixed stepsize integrators, which are of higher
 %order, we expect this breaking point to occur for a somewhat larger time step.
 %
-The concept of \emph{order} does not translate directly from the
-singlestep integrators to the adaptive stepsize methods, by virtue of the
-dynamic step length. However, empirical tests indicate that for both of the
+As previously mentioned, the concept of \emph{order} does not translate
+directly from the singlestep integrators to the adaptive stepsize methods, by
+virtue of the dynamical step length. The step length adjustment procedure
+considered here, which will be outlined in detail in
+\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}, involves
+the use of numerical tolerances regarding the difference between the interpolant
+and locally extrapolated solutions. Empirical tests indicate that for both of the
 Bogacki-Shampine integrators, as well as for the Dormand-Prince 5(4) integrator,
 the accumulated floating-point errors caught up to the required tolerance level
 at some point between the levels $10^{-10}$ and $10^{-11}$, while the

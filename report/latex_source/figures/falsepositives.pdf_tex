@@ -20,7 +20,7 @@
 %%   \import{<path to file>}{<filename>.pdf_tex}
 %% Alternatively, one can specify
 %%   \graphicspath{{<path to file>/}}
-%% 
+%%
 %% For more information, please see info/svg-inkscape on CTAN:
 %%   http://tug.ctan.org/tex-archive/info/svg-inkscape
 %%
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{290.02552423bp}%
+    \setlength{\unitlength}{237.44545524bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,13 +48,14 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.21707184)%
+  \begin{picture}(1,0.28346099)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{falsepositives.pdf}}%
-    \put(0.6360201,0.15448675){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathcal{A}$}}}%
+    \put(0.96415795,0.12935219){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{\textnormal{noise}}$}}}%
+    \put(0.96415795,0.19672591){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{\textnormal{noise}}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{falsepositives.pdf}}%
-    \put(0.39315263,0.15023731){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{\textnormal{noise}}$}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{falsepositives.pdf}}%
-    \put(0.05319777,0.13496353){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\gamma_{0}$}}}%
-    \put(0.13890399,0.03053921){\color[rgb]{0.30196,0.30196,0.30196}\makebox(0,0)[lb]{\smash{$\widetilde{\gamma}_{0}$}}}%
+    \put(0.5641729,0.08876886){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\mathcal{A}$}}}%
+    \put(0.15576475,0.0155957){\color[rgb]{0.4,0.4,0.4}\makebox(0,0)[lb]{\smash{$\widehat{\gamma}_{0}$}}}%
+    \put(0.31953838,0.24095096){\color[rgb]{0.6,0.6,0.6}\makebox(0,0)[lb]{\smash{$\widetilde{\gamma}_{0}$}}}%
+    \put(-0.00079161,0.08706709){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\gamma$}}}%
   \end{picture}%
 \endgroup%

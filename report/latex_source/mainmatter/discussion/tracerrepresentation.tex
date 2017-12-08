@@ -5,15 +5,15 @@ One way of increasing the numerical accuracy in the flow map, would be
 to use higher precision floating-point numbers to represent the tracer
 coordinates. The main drawback of making such a change, and using e.g.
 quadruple-precision floating-point numbers, is that these are, to this date,
-not fully implemented in conventional hardware --- even that of the NTNU's
+not fully implemented in conventional hardware --- even that of the NTNU
 supercomputer, Vilje. Accordingly, quadruple-precision floating-point
 arithmetic is several orders of magnitude slower than that of double-precision
 floating-point numbers. Coupled with the increase in required memory
 (quadruple-precision numbers are stored using twice as many bits as
-double-precision numbers), one would generally be forced to perform several
+double-precision numbers), one could be forced to perform several
 advections of smaller sets of tracers, calculating a piecewise representation
 of the overall flow map. However, should this prove impossible, using higher
-precision floating-point numbers would lead to a more granular representation
+precision floating-point numbers would lead to a coarser representation
 of the flow map. Such an approach is perhaps most sensible for systems with
 velocity fields that are well-behaved, or even largely spatially invariant.
 Then again, in such cases, calculating LCSs have little practical relevance,
@@ -23,15 +23,15 @@ advecting a smaller set of tracers, or even by simple inspection.
 Rather than generating and advecting a fixed, large amount of tracer particles,
 another possible approach would be to use a set of fewer `base' tracers, and
 making use of an \emph{adaptive multigrid method}. A practical implementation
-could involve the dynamic introduction of increasingly finer grids in regions
-where the local velocities would have the largest Euclidean norm, for instance.
-Such grids, however, would have to move \emph{with} the flow, as the
+could, for instance, involve the dynamic introduction of increasingly finer
+grids in regions where the local velocities would have the largest Euclidean
+norm. Such grids, however, would have to move \emph{with} the flow, as the
 benefit over simply increasing the initial tracer density would diminish
 otherwise. The main reason why this was not implemented for this project,
 aside from it not being used in the literature, is that it in all likelyhood
 leads to inconsistencies when applying finite differences. That is, unless some
 sort of interpolation scheme was applied to the flow map. Seeing as this
-project is centered around integration methods, this idea was scrapped.
+project is centered around integration methods, this idea was discarded.
 Regardless, this technique seems promising --- at least on paper --- which
 warrants further investigation.
 %

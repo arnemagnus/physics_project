@@ -24,25 +24,25 @@ the numerical integrator in question.
 
 The RMSD in both sets of eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and
 $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field, as given
-by~\cref{eq:cauchygreencharacteristics} was also computed completely
-analogously:
+by~\cref{eq:cauchygreencharacteristics} was also computed analogously:
 \begin{equation}
     \label{eq:rmsdlmbd}
     \rmsd_{\textnormal{eigenvalue}} = \sqrt{\frac{1}{N}%
-    \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}}%
+        \sum\limits_{\vct{x}_{0}\,\in\,\mathcal{U}^{\prime}}%
 \big(\widehat{\lambda}(\vct{x}_{0})-\lambda(\vct{x}_{0})\big)^{2}},
 \end{equation}
-where the summation is over all main tracers in the principal grid, that is,
-all main tracers which originate from within (or the borders of) the
-computational domain $\mathcal{U}$. $N$ is the total number of main tracers
-in the principal grid. $\widehat{\lambda}(\vct{x}_{0})$ is the approximation of
+where the summation is over all main tracers located in (or at the boundary
+of) the domain $\mathcal{U}^{\prime}$, the borders of which are governed by the
+first set of rows and columns in the extended grid. $N$ is the
+corresponding total number of main tracers in $\mathcal{U}^{\prime}$, while
+$\widehat{\lambda}(\vct{x}_{0})$ is the approximation of
 the true eigenvalues $\lambda(\vct{x}_{0})$ located at $\vct{x}_{0}$, obtained
 by means of the numerical integrator in question.
 
-The best way of estimating the error in the computed eigen\emph{vectors} of the
-Cauchy-Green Strain tensor field is by means of their orientation, because
-the eigenvectors are normalized to unit length. Thus, the eigenvector directions
-were computed as azimuthal angles. The RMSD for the direction of
+Because the eigenvectors of the Cauchy-Green strain tensor field are normalized
+to unit length, a reasonable way of estimating the error in the computed
+eigen\emph{vectors} is by considering their orientation. Thus, the eigenvector
+directions were computed as azimuthal angles. The RMSD for the direction of
 the eigenvector fields was then calculated as follows:
 \begin{equation}
     \label{eq:rmsddirection}
@@ -79,9 +79,11 @@ Similarly, any point on the reference LCS curve which was farther away from all
 points on the LCS curve under consideration than $l_{\textnormal{noise}}$ was
 flagged as a false negative.
 
-In order to estimate the offset of the false LCS
-segments, the area between these segments and the reference LCS curve
-was approximated by the midpoint rule for numerical integration;
+Let $\widehat{\gamma}$ represent the parametrization of the computed LCS approximation
+under consideration, and $\gamma$ the parametrization of the
+reference LCS. In order to estimate the offset of the false LCS segments, the
+area between these segments and the reference LCS curve was approximated by the
+midpoint rule for numerical integration;
 \begin{equation}
     \label{eq:midpointfalselcs}
     \textnormal{Offset}_{\textnormal{false LCSs}} = %
@@ -90,17 +92,16 @@ was approximated by the midpoint rule for numerical integration;
 \norm{\widehat{\vct{x}}-\vct{x}}\cdot\Delta,
 \end{equation}
 where the sum is over all points with a greater offset than the aforementioned
-$l_{\textnormal{noise}}$. Per~\cref{eq:strainlineode}, $\Delta$, the
-previously mentioned numerical integration step length used in order to compute
-strainlines, equals the distance separating consequent points in the
-parametrization of the LCS curves, due to the eigenvectors $\vct{\xi}_{1}$ being
-normalized to unit length. The calculation of this offset is illustrated in
-figure~\ref{fig:fp_fn_principle}. Concerning false positives, $\widehat{\gamma}$
-denotes the reference LCS curve, and $\gamma$ the approximation under
-consideration. For false negatives, the roles are reversed.
+$l_{\textnormal{noise}}$. Regarding false negatives, the roles of
+$\gamma$ and $\widehat{\gamma}$ are reversed. Per~\cref{eq:strainlineode},
+$\Delta$, the previously mentioned numerical integration step length used in
+order to compute strainlines, equals the distance separating consecutive
+points in the parametrization of the LCS curves. This is due to the eigenvectors
+$\vct{\xi}_{1}$ being normalized to unit length. The calculation of this offset
+is illustrated in figure~\ref{fig:fp_fn_principle}.
 
 \input{mainmatter/method/figures/fp_fn_offset.tex}
-\clearpage
+%\clearpage
 Lastly, in order to obtain a quantitative measure of the offset in the
 LCS curve segments which comply with the reference LCS (that is, to the
 numerical threshold $l_{\textnormal{noise}}$), the RMS distance separating each

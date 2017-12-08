@@ -1,4 +1,4 @@
-Et generisk strømningssystem kan beskrives som et system hvis tilstand
+Et generisk strømningssystem kan beskrives som en struktur hvis tilstand
 avhenger av flyt av energi-, material- eller informasjonsstrømmer. Tradisjonelle
 eksempler på slike systemer er transport av trykk, temperatur og masse i
 stasjonære fluidstrømninger, og ladningstransport som forårsakes av elektriske
@@ -19,8 +19,10 @@ banene det underliggende transportfenomenet skaper. Hyperbolske LKSer utgjør
 skjelettet av observable strømningsmønstre.
 
 Dette prosjektet omhandler hvordan den numeriske identifikasjonen av LKSer
-avhenger av den numeriske integrasjonsmetoden som blir benyttet til å beregne
-dem. LKSer ble beregnet og sammenlignet ut fra analytisk
+avhenger av den numeriske integrasjonsmetoden som ble benyttet til å simulere
+det underliggende transportfenomenet.
+%beregne dem.
+LKSer ble beregnet og sammenlignet ut fra et analytisk
 kjent hastighetsfelt, hvis LKSer er gjort kjent i litteraturen. Spesifikt
 ble åtte Runge-Kutta-metoder undersøkt, hvorav fire tradisjonelle
 enkeltstegsmetoder, og fire sammensatte, dynamisk steglengde-metoder. En
@@ -42,9 +44,11 @@ robuste som de viste seg å være for modellsystemet undersøkt her.
 
 Merk at den numeriske implementasjonen av en av eksistensbetingelsene for
 LKSer, som stammer fra deres variasjonsteori, til dags dato (så vidt
-undertegnede vet) ikke har blitt entydig beskrevet i litteraturen. Dette er
-et eksempel på hvordan studiet av LKSer fortsatt er å regne som en
-forholdsvis ny gren av fysikken. Tilnærmingsmetoden som ble benyttet i
+undertegnede vet) ikke har blitt fullstendig beskrevet i litteraturen.
+%Dette er
+%et eksempel på hvordan studiet av LKSer fortsatt er å regne som en
+%forholdsvis ny gren av fysikken.
+Tilnærmingsmetoden som ble benyttet i
 dette prosjektet, er basert på nøye vurderinger av det underliggende systemets
 egenskaper, hvilket ikke nødvendigvis er en praktisk hensiktsmessig
 fremgangsmåte for generiske system, avhengig av de involverte skalaene. Med

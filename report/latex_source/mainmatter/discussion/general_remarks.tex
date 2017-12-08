@@ -1,7 +1,7 @@
 \section{General remarks}
 \label{sec:general_remarks}
 
-First off, the computed LCS used as the reference, shown in figure
+First off, the computed reference LCS, shown in figure
 \ref{fig:referencelcs}, is made up of \emph{seven} different strainline segments.
 The LCS presented in the article by \textcite{farazmand2012computing} is claimed
 to consist of a \emph{single} strainline segment. Comparing the two curves
@@ -21,13 +21,13 @@ step length or tolerance level. This indicates that calculations of this kind
 are not particularly sensitive to integration method. Note that the
 $\mathcal{U}_{0}$ domains obtained by means of the adaptive stepsize methods
 for $\textnormal{tol}=10^{-1}$, shown in figure~\ref{fig:u0_dom_errs}, differ
-greatly to the \emph{correct} domain, which correlates well with the computed
+greatly from the \emph{correct} domain, which correlates well with the computed
 $\rmsd$ of the flow maps, shown in figure~\ref{fig:flowmap_err_both}. In
 particular, the error in the flow map for the aforementioned tolerance level is
 of order $1$ for all of the embedded methods. This error is comparable to the
 extent of the numerical domain, that is,
-$[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. Naturally, this leads to a drastically
-different system.
+$[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. Naturally, this leads to a
+drastically different system.
 
 The above observation implies that the most crucial part of the computation is
 advecting the tracers accurately. As mentioned in
@@ -37,9 +37,8 @@ map. This is to be expected, as the eigenvalues are essentially found by
 applying finite differences to the flow map. The eigenvalues are crucial in
 terms of identifying LCSs, as can be seen in the numerical reformulation of the
 LCS existence theorem, which is given in~\cref{eq:numericalexistence}.
-The strain eigendirections are important too, of course --- however, the
-error in the computed strain eigendirections is consistently negligible.
-This is most likely due to them being computed based on the denser
+The error in the computed strain eigendirections, however, is consistently
+negligible. This is most likely due to them being computed based on the denser
 \emph{auxiliary} set of tracers, which per construction results in more accurate
 finite differences.
 
@@ -65,22 +64,24 @@ and eigenvectors is not apparent in
 \cref{fig:lmbd2_err_fixed,fig:lmbd2_err_both,fig:xi2_err_fixed,fig:xi2_err_both},
 one may infer that this threshold is likely only valid for the LCS curves
 of this particular velocity field --- that is, the system given by
-\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}, for which LCSs are
-found by means of the procedure described in
-\cref{sec:advecting_a_set_of_initial_conditions,%
-    sec:calculating_the_cauchy_green_strain_tensor,%
-sec:identifying_lcs_candidates_numerically} --- which
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}%
+%, for which LCSs are
+%found by means of the procedure described in
+%\cref{sec:advecting_a_set_of_initial_conditions,%
+%    sec:calculating_the_cauchy_green_strain_tensor,%
+%sec:identifying_lcs_candidates_numerically}
+--- which
 appear quite robust. The same flow map accuracy threshold probably does not
 suffice for other, more volatile flow systems. Investigating
 this further for a wider range of systems could result in valuable insight.
-Should such a threshold be valid in general, which, admittedly, there is
-no apparent reason why should be the case, it would naturally be of great
+Should such a threshold be valid in general, it would naturally be of great
 significance when investigating generic transport systems by means of a
-similar variational LCS approach.
+similar variational LCS approach. Admittedly, there is no apparent reason why
+this should be the case.
 
 The double gyre model considered in this project is obviously not representative
-of generic systems, in terms of exact numerical step lengths or tolerance
-levels which are sufficient in order to obtain correct LCSs with a certain
+of generic systems, in terms of the exact numerical step lengths or tolerance
+levels necessary in order to obtain correct LCSs with a certain
 degree of confidence. It does, however, indicate that these quantities should
 be chosen based on the considered system. For a fixed stepsize integration
 scheme, any single integration time step should not be so large that \emph{too}

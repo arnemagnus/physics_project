@@ -5,24 +5,28 @@ Figures~\ref{fig:lcs_err_fp_fp} and~\ref{fig:lcs_err_fn_fn} indicate that
 the integrated offset of false positives and negatives, as defined in
 \cref{eq:midpointfalselcs}, is a decreasing function of the number of
 function evaluations for all integration schemes. Moreover, the issue of false
-positives and negatives vanishes entirely for sufficiently many funcion
+positives and negatives vanishes entirely for sufficiently many function
 evaluations, that is, sufficiently small numerical step lengths or tolerance
 levels. This conforms well with the visual representations of the various
 approximations of the LCS curve, as shown in
-\cref{sec:the_lcs_curves_obtained_using_the_different_schemes}, in addition
-to providing an indication that the LCS present in the double gyre system is
-robust.
+\cref{sec:the_lcs_curves_obtained_using_the_different_schemes}.
+%, in addition
+%to providing an indication that the LCS present in the double gyre system is
+%robust, as long as all integration steps are sufficiently small in order to
+%resolve the micro-scale behaviour .
 
-Note that the offset of false positives and negatives has not been plotted as a function
-of numerical time step, for the singlestep methods. As can be seen from figures
-\ref{fig:lcs_err_fp_fp} and~\ref{fig:lcs_err_fn_fn}, only the Euler method
-results in false positives or negatives for more than one of the considered
-integration step lengths, meaning that there are simply too few data points
-to identify correlations with the expected expected power laws of the numerical
-errors as a function of the time step, cf.~\cref{def:rungekuttaorder}.
+Note that the offset of false positives and negatives has not been plotted as a
+function of numerical time step for the singlestep methods. As can be seen from
+\cref{fig:lcs_err_fp_fp,fig:lcs_err_fn_fn}, only the Euler method results in
+false positives or negatives for more than one of the considered integration
+step lengths, meaning that there are simply too few data points to identify
+correlations between these numerical errors and the time step, cf.\
+\cref{def:rungekuttaorder}. Moreover, there is no clear reason why these offsets
+should scale similarly as, for instance, the errors in the computed flow maps
+(see~\cref{sub:computed_deviations_in_the_flow_maps}).
 Furthermore, offsets for the adaptive stepsize methods are not included for the
-tolerance level $10^{-1}$, because the LCS identification proved to be an
-insurmountable task for those cases, as described in
+tolerance levels $10^{-1}$, because the LCS identification proved to be
+exceedingly demanding in terms of computations for those cases, as described in
 \cref{sub:lcs_curves_stemming_from_adaptive_stepsize_methods}. However,
 based on the associated $\mathcal{U}_{0}$ domains, shown in figure
 \ref{fig:u0_dom_errs}, one may infer an overwhelming probability of a large
@@ -65,9 +69,9 @@ with the number of function evaluations until a certain point, after which
 the error suddently jumps to the same steady level as the (high order)
 singlestep methods. Like the sudden drop in the error for the singlestep
 methods with a large number of function evaluations (i.e., for sufficiently
-small time steps), there is no obvious reason why this jump occurs, as a similar
-trend is not found in the $\rmsd$s of the flow map, eigenvalues nor eigenvectors,
-as shown in
+small time steps), there is no obvious reason why this jump occurs. Neither
+does a similar trend manifest itself in the $\rmsd$s of the flow map,
+eigenvalues nor eigenvectors, as shown in
 \cref{fig:flowmap_err_both,fig:lmbd2_err_both,fig:xi2_err_both}. Finally,
 \cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} suggest that the
 Bogacki-Shampine 5(4) and Dormand-Prince 8(7) schemes provide the overall most

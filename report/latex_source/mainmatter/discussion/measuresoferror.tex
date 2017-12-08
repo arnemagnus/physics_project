@@ -1,18 +1,17 @@
 \section{About the measures of error}
 \label{sec:about_the_measures_of_error}
 
-For all the measures of error introduced in~\cref{sec:estimation_of_errors},
+RMS averaging was utilized for all the measures of error introduced in~\cref{sec:estimation_of_errors},
 except the one concerning false positives and negatives with regards to
-LCS identification, RMS averaging was utilized. Regarding the flow maps,
-this choice was made based on the fact that it encapsulates the effect of
-outliers, that is, any tracers for which the advection error becomes
-relatively large. These are expected to have the most severe impact on the
-ensuing LCS identification procedure. As shown in
+LCS identification. Regarding the flow maps, this choice was made based on the
+fact that it encapsulates the effect of outliers, that is, any tracers for which
+the advection error becomes relatively large. These are expected to have the
+most severe impact on the ensuing LCS identification procedure. As shown in
 \cref{fig:flowmap_err_fixed,fig:flowmap_err_both}, the errors in the flow map
 resulting of the Euler method and all of the adaptive stepsize methods, for the
 largest numerical step length and tolerance level, respectively, are of order 1,
 similar to the dimensions of the computational domain, that is,
-$[0\hspace{1ex}2]\times[0\hspace{1ex}1]$. However, because there is no general
+$[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. However, because there is no general
 a priori way of knowing the regions of the domain in which the flow maps will be
 resolved the most poorly, the maximum error is not of particular interest
 in this kind of analysis.
@@ -43,23 +42,24 @@ can be viewed as a first approximation of the standard deviation.
 %
 Regarding the errors in the strain eigenvalues, one could argue that using
 \emph{relative} errors would be sensible. However, the property
-given in~\cref{eq:cauchygreenincomprlambda}, that is, $\lambda_{1}\lambda_{2}=1$,
-does not hold for general, compressible flows --- nor was it preserved for
-more than a few units of time for the flow system considered here, as mentioned
-in~\cref{sec:on_the_incompressibility_of_the_velocity_field} ---, for which very
-small eigenvalues would result in deceptively large relative errors.
-This would, again, be undesirable, because one would expect the eigenvalue
-errors to scale similarly to that of the flow map, due to the computation of
-the Cauchy-Green strain tensor field being based on finite differencing applied
-to the flow map, as described in
-\cref{sec:calculating_the_cauchy_green_strain_tensor}. So, in order to adhere
-to the case of a general flow, the $\rmsd$ became the method of choice in
-computing the error of the strain eigenvalues. Moreover, seeing as the
-azimuthal angles of the strain eigenvectors are calculated relative to what is
-really an arbitrary axis, as far as the overall flow patterns are concerned, the
-\emph{absolute} errors in the strain eigendirections is the only sensible
-measure. Thus, the $\rmsd$ was chosen as the measure of error for the
-directions of all strain eigenvectors, too.
+given in~\cref{eq:cauchygreenincomprlambda}, that is,
+$\lambda_{1}\lambda_{2}=1$, was not preserved for more than a few units of
+time for the flow system considered here, as mentioned in
+\cref{sec:on_the_incompressibility_of_the_velocity_field}. The same property
+does not hold for general, compressible flows. This could result in
+some very small eigenvalues, which would yield deceptively large relative
+errors. This would, again, be undesirable, because one would expect the
+eigenvalue errors to scale similarly to that of the flow map, due to the
+computation of the Cauchy-Green strain tensor field being based on finite
+differencing applied to the flow map, as described in
+\cref{sec:calculating_the_cauchy_green_strain_tensor}. Thus, the $\rmsd$
+became the method of choice in computing the error of the strain eigenvalues.
+Moreover, seeing as the azimuthal angles of the strain eigenvectors are
+calculated relative to what is really an arbitrary axis, as far as the overall
+flow patterns are concerned, the \emph{absolute} errors in the strain
+eigendirections is the only sensible measure. Accordingly, the $\rmsd$ was
+chosen as  the measure of error for the directions of all strain eigenvectors,
+too.
 %
 %While one could argue that using \emph{relative} errors with regards to
 %the strain eigenvalues would be more applicable, the fact that several

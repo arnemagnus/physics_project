@@ -1,11 +1,12 @@
 \section{Identifying LCS candidates numerically}
 \label{sec:identifying_lcs_candidates_numerically}
 
-\textcite{farazmand2012computing} found the identification of the
-zeros of the inner product in~\cref{eq:lcsexistence4} of
-\cref{thm:lcsexistence} to be numerically sensitive. Therefore, they
-suggest a reformulated set of conditions which make for a more robust numerical
-implementation, as follows:
+\textcite{farazmand2012computing} found
+%the identification of the
+%zeros of the inner product in~\cref{eq:lcsexistence4}
+some of the conditions of \cref{thm:lcsexistence} to be numerically sensitive.
+Therefore, they suggest a reformulated set of conditions which make for a more
+robust numerical implementation, quoted in the following:
 \begin{subequations}
     \label{eq:numericalexistence}
     \begin{align}
@@ -28,15 +29,17 @@ implementation, as follows:
     \end{align}
 \end{subequations}
 The relaxation of condition~\eqref{eq:lcsexistence2} in~\cref{thm:lcsexistence}
-from strict inequality to condition~\eqref{eq:numericalexistence2}, which
-also allows equality, means that LCSs are allowed to have finite thickness.
+from strict inequality to condition~\eqref{eq:numericalexistence2}, also
+allowing equality, means that LCSs may have finite thickness.
 However, the set of criteria given in equation ~\eqref{eq:numericalexistence}
 enforce that all LCSs have uniquely defined local orientations. Conditions
 \eqref{eq:lcsexistence3} and~\eqref{eq:numericalexistence3} are equivalent,
 due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
 $\vct{\xi}_{2}(\vct{x}_{0})$, although the form~\eqref{eq:numericalexistence3}
-turns out to be more advantageous for use in computations; see
-\cref{sub:a_framework_for_computing_smooth_strainlines} for details.
+turns out to be more advantageous for use in computations. For details
+regarding the numerical implementation of conditions
+\eqref{eq:numericalexistence3} and~\eqref{eq:numericalexistence3}, see
+\cref{sub:a_framework_for_computing_smooth_strainlines}.% for details.
 
 Because of the artificial extension of the main computational grid, as outlined
 in \cref{sub:generating_a_set_of_initial_conditions}, the Cauchy-Green strain
@@ -47,7 +50,7 @@ centered differencing approach was used in order to approximate the Hessian
 matrices of the set of eigenvalues $\lambda_{2}(\vct{x}_{0})$ for the main
 tracers in the principal grid, that is, the main tracers which originate from
 within (or on the borders of) the computational domain
-$\mathcal{U}=[0\hspace{1ex}2]\times[0\hspace{1ex}1]$.
+$\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$.
 
 \subsection{A framework for computing smooth strainlines}
 \label{sub:a_framework_for_computing_smooth_strainlines}
@@ -88,16 +91,15 @@ First, the four nearest neighboring grid points to $\vct{r}$ are identified.
 Then, orientational discontinuities inbetween the grid elements are found
 by inspecting the inner product of the $\vct{\xi}_{1}$ vectors of adjacent grid
 points. Rotations exceeding $90\si{\degree}$ between pairs of neighboring
-vectors are labelled as orientational discontinuities, which are corrected
+vectors are labelled as orientational discontinuities. These are corrected
 prior to linear interpolation by flipping the corresponding vectors by
 $180\si{\degree}$. In the end, linear interpolation is used within the grid
 element whose corners are defined by the four nearest neighbors to $\vct{r}$.
 
 Furthermore, should the $\vct{\xi}_{1}$-vector obtained from the local
 special-purpose linear interpolation outlined above prove to be rotated by more
-than $90\si{\degree}$ relative to the $\vct{\xi}_{1}$-vector from the previous
-level of pseudotime used in the numerical integration of system
-\eqref{eq:strainlinebasicode}, it would be flipped $180\si{\degree}$,
+than $90\si{\degree}$ relative to the interpolated $\vct{\xi}_{1}$-vector
+at the previous point of the strainline, it would be flipped $180\si{\degree}$,
 to facilitate smooth trajectories through oriental discontinuities.
 The entire process of this special-purpose local linear interpolation method is
 outlined in figure~\ref{fig:locallinearinterp}.
@@ -112,8 +114,9 @@ So, in order to compute globally smooth strainlines,
 \end{equation}
 where $\vct{f}$ denotes the special-purpose local linear interpolation of
 the $\vct{\xi}_{1}$ field, as outlined above and in figure
-\ref{fig:locallinearinterp}, and $\Delta$ is the numerical pseudotime step
-length used in the numerical integration.
+\ref{fig:locallinearinterp}.
+%, and $\Delta$ is the numerical pseudotime step
+% length used in the numerical integration.
 %while the signum function is defined as
 %\begin{equation}
 %    \label{eq:signumfunction}
@@ -139,8 +142,8 @@ $\mathcal{U}_{0}\subset\mathcal{U}$ on which the conditions
 and then integrate the system given by equation~\eqref{eq:strainlineode} from
 initial conditions within $\mathcal{U}_{0}$ to construct strainlines.
 Generally, the integration proceeds until each strainline reaches the domain
-boundaries of $\mathcal{U}$, or reaches a degenerate point of the original
-$\vct{\xi}_{1}$ vector field.
+boundaries of $\mathcal{U}$, or reaches a degenerate point (see below) of the
+original $\vct{\xi}_{1}$ vector field.
 
 Using all of the points in the $\mathcal{U}_{0}$ domain would inevitably
 involve computing a lot of strainlines several times over. In order to
@@ -167,12 +170,12 @@ measure of this degeneracy, the scalar field defined as
                         \lambda_{2}(\vct{x}_{0})-\lambda_{1}(\vct{x}_{0})}%
                     {\lambda_{2}(\vct{x}_{0})+\lambda_{1}(\vct{x}_{0})}\bigg)^{2}
 \end{equation}
-was used. For points $\vct{x}$ which did not coincide with the grid points
-$\vct{x}_{i,j}$, the values $\lambda_{1}(\vct{x})$ and $\lambda_{2}(\vct{x})$
-were found by means of regular linear interpolation. Wherever the value of
-$\alpha(\vct{x})$ decreased below a predefined threshold of $10^{-6}$, the
-point $\vct{x}$ was flagged as degenerate, thus stopping the strainline
-integration.
+was used, inspired by~\textcite{farazmand2012computing}. For points $\vct{x}$
+which did not coincide with the grid points $\vct{x}_{i,j}$, the values
+$\lambda_{1}(\vct{x})$ and $\lambda_{2}(\vct{x})$ were found by means of
+regular linear interpolation. Wherever the value of $\alpha(\vct{x})$ decreased
+below a predefined threshold of $10^{-6}$, the point $\vct{x}$ was flagged as
+degenerate, thus stopping the strainline integration.
 
 Generally, one expects the selected strain initial conditions, shown in figure
 \ref{fig:u0_domain}, to be located somewhere in the middle of a strainline.
@@ -185,18 +188,23 @@ the reduced number of strain initial conditions. Furthermore, the classical
 Runge-Kutta method with a pseudotime step length $\Delta=10^{-3}$ was used in
 order to compute all of the strainlines, regardless of the integration method
 used in the advection of the tracers, described in
-\cref{sec:advecting_a_set_of_initial_conditions}. This choice was made because
-this project is centered around the dependence of the choice of integration
-method in the tracer advection. The step length was chosen by similar logic as
-presented in
-\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
-however, there is no way of knowing in advance, how long (in terms of numerical
-integration steps) any given strainline will be. For this reason, it is
-impossible to estimate the accumulated floating-point arithmetic errors in
-advance. Regardless, we expect diminishing returns in terms of numerical
-accuracy by lowering the step length even further, because the accuracy is
-always bounded from below by the inherent accuracy of the double-precision
-floating-point numbers.
+\cref{sec:advecting_a_set_of_initial_conditions}. The classical Runge-Kutta
+method was applied universally for consistency, and chosen for its simplicity
+and relative accuracy. Moreover, this project is centered around the dependence
+of the choice of integration method in the tracer advection. The step length was
+chosen to be an order of magnitude smaller than the main grid spacing, in
+order to ensure that the micro-scale strain behaviour would be accurately
+represented in the resulting strainlines, while maintaining reasonable
+computation times.
+%presented in
+%\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
+%however, there is no way of knowing in advance, how long (in terms of numerical
+%integration steps) any given strainline will be. For this reason, it is
+%impossible to estimate the accumulated floating-point arithmetic errors in
+%advance. Regardless, we expect diminishing returns in terms of numerical
+%accuracy by lowering the step length even further, because the accuracy is
+%always bounded from below by the inherent accuracy of the double-precision
+%floating-point numbers.
 
 Frequently, only a segment of any given strainline will qualify as a hyperbolic
 LCS\@. Hence, the integration of any strainline can be stopped when it reaches
@@ -204,9 +212,9 @@ a point at which one of the conditions~\eqref{eq:numericalexistence1} or
 \eqref{eq:numericalexistence2} fails. Doing so uncritically, however, opens up
 the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
 domain due to numerical noise. In order to avoid such unwanted failures,
-the approach of \textcite{farazmand2012computing} was followed, where
-strainline integration is only stopped if one of the aforementioned LCS
-conditions fail repeatedly over a pre-set length $l_{\textnormal{f}}=0.2$ of
+the approach of \textcite{farazmand2012computing} was followed.
+Therefore, strainline integration was only stopped if one of the aforementioned
+LCS conditions fail repeatedly over a pre-set length $l_{\textnormal{f}}=0.2$ of
 the strainline. Furthermore, the strainlines which were stopped because
 of continuous failure of LCS conditions were cut such that their \emph{new}
 endpoints in either direction, as seen from the strain initial condition, were
@@ -224,22 +232,23 @@ Now, having located the strainline pieces which satisfy conditions
 \eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2}, the next
 step is imposing condition~\eqref{eq:numericalexistence4}, i.e., identifying the
 strainline segments that are local maxima of the averaged maximum strain. In
-the following, we let $\{\gamma_{j}\}$ denote the set of parametized strainline
+the following, we let $\{\gamma_{j}\}$ denote the set of parametrized strainline
 curves, computed as solutions of the strain ODE system given in
 \cref{eq:strainlineode}. The suggested approach of
 \textcite{farazmand2012computing} is to define a set $\mathcal{L}$ of uniformly
-spaced horizontal and vertical lines within the domain $\mathcal{U}_{0}$, then
-comparing the values of $\overline{\lambda}_{2}(\gamma_{0})$, the average of
-$\lambda_{2}$ on the curve $\gamma_{0}$, at the neighboring intersections of all
-sufficiently close strainline segments along each of the lines in
-$\mathcal{L}$. The process is illustrated in figure~\ref{fig:neighborlcs}.
+spaced horizontal and vertical lines within the domain $\mathcal{U}_{0}$. Then,
+the values of $\overline{\lambda}_{2}(\gamma_{0})$ --- the average of
+$\lambda_{2}$ on the curve $\gamma_{0}$ --- are compared at the neighboring
+intersections of all sufficiently close strainline segments along each of the
+lines modeline $\mathcal{L}$. The process is illustrated in
+\cref{fig:neighborlcs}.
 
 \input{mainmatter/method/figures/neighborlcs}
 
 Intersections between strainlines and the lines in $\mathcal{L}$ are found
 by means of linear interpolation. Should a strainline segment prove to be a
 local maximizer along at least one of the lines in $\mathcal{L}$, the strainline
-segment is labelled as an LCS\@. Adjacent intersections who are separated by a
+segment is labelled as an LCS\@. Adjacent intersections that are separated by a
 distance larger than a preselected threshold $l_{\textnormal{nb}}=0.2$ were
 excluded from the local maximization process, as indicated by the dashed
 ellipses in figure~\ref{fig:neighborlcs}. Furthermore, short LCSs are expected
@@ -273,15 +282,18 @@ which lie on, or near, the recognizable ridges. The same logic is practically
 applicable on the entirety of the computational domain.
 
 In order to eliminate the weakest among the LCSs, it is thus clear that the
-lines in $\mathcal{L}$ must be selected carefully. Here, we used the approach
-of generating the set $\mathcal{L}$ in order to maximize the number of
-intersections with the computed strainlines, using as few lines as possible.
+lines in $\mathcal{L}$ must be selected carefully. Here, these lines were
+chosen in order to maximize the number of intersections with the computed
+strainlines in the regions within $\mathcal{U}$ where the local strain is
+expected to be largest, using as few lines as possible. As previously mentioned,
+this was done by studying \cref{fig:u0_domain,fig:ftle_l2}.
 Using two vertical and two horizontal lines, given by $x=0.15$, $x=1.05$,
-$y=0.05$ and $y=0.95$, respectively, proved sufficient in order to accurately
-reproduce the same LCS as found by \textcite{farazmand2012computing}. We can
-only assume that \textcite{farazmand2012computing} must have done something
-similar, as they did not specify what set $\mathcal{L}$ they used, and have
-been unavailable for communication.
+$y=0.05$ and $y=0.95$, respectively, proved sufficient in order to
+accurately reproduce the same LCS as found by \textcite{farazmand2012computing}.
+%We can
+%only assume that \textcite{farazmand2012computing} must have done something
+%similar, as they did not specify what set $\mathcal{L}$ they used, and have
+%been unavailable for communication.
 
 
 \input{mainmatter/method/figures/ftle_l2.tex}
