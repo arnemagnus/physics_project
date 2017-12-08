@@ -31,5 +31,7 @@ _minted*/
 hovedlogo_eng.pdf
 pres_phys_nov/
 
+*.sty
+
 # Archive files:
 *.tar.gz
