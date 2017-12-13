@@ -11,9 +11,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="83.76548mm"
-   height="23.744246mm"
-   viewBox="0 0 296.80682 84.133153"
+   width="83.198219mm"
+   height="23.643936mm"
+   viewBox="0 0 294.79684 83.777726"
    id="svg4262"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -304,9 +304,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="93.922305"
-     inkscape:cy="41.225753"
+     inkscape:zoom="11.2"
+     inkscape:cx="16.935227"
+     inkscape:cy="20.971017"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -336,18 +336,18 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="btm"
-     transform="translate(-244.593,-230.30343)">
+     transform="translate(-246.603,-230.30343)">
     <path
        id="path9652"
        style="fill:#cccccc;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 522.99382,264.07939 c 0,0 -34.05402,-8.2354 -51.42857,-10 -34.23053,-3.4765 -68.86127,-2.9912 -103.21429,-1.0714 -25.38758,1.4188 -51.49199,1.5512 -75.71428,9.2857 -14.05599,4.4883 -38.92857,21.0714 -38.92857,21.0714 l 11.42857,31.0715 m 0,0 c 0,0 14.77411,-14.6179 24.28571,-17.8572 10.03209,-3.4166 21.34438,1.1007 31.78572,-0.7143 6.67619,-1.1605 12.79697,-4.4754 19.28571,-6.4285 9.20828,-2.7717 18.24249,-7.3187 27.85715,-7.5 5.86137,-0.1106 11.52565,2.2507 17.14285,3.9285 15.08633,4.5062 28.56393,17.2817 44.28572,16.4286 7.70842,-0.4183 13.40788,-7.8649 20.71428,-10.3571 12.28604,-4.1908 25.33675,-9.1365 38.21429,-7.5 9.29678,1.1814 25.35714,12.1428 25.35714,12.1428 l 8.92857,-32.5"
+       d="m 522.99382,263.57939 c 0,0 -34.05402,-8.2354 -51.42857,-10 -34.23053,-3.4765 -68.86127,-2.9912 -103.21429,-1.0714 -25.38758,1.4188 -51.49199,1.5512 -75.71428,9.2857 -14.05599,4.4883 -38.92857,21.0714 -38.92857,21.0714 l 11.42857,31.0715 m 0,0 c 0,0 14.77411,-14.6179 24.28571,-17.8572 10.03209,-3.4166 21.34438,1.1007 31.78572,-0.7143 6.67619,-1.1605 12.79697,-4.4754 19.28571,-6.4285 9.20828,-2.7717 18.24249,-7.3187 27.85715,-7.5 5.86137,-0.1106 11.52565,2.2507 17.14285,3.9285 15.08633,4.5062 28.56393,17.2817 44.28572,16.4286 7.70842,-0.4183 13.40788,-7.8649 20.71428,-10.3571 12.28604,-4.1908 25.33675,-9.1365 38.21429,-7.5 9.29678,1.1814 25.35714,12.1428 25.35714,12.1428 l 8.92857,-32.5"
        inkscape:connector-curvature="0" />
   </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-244.593,-230.30343)">
+     transform="translate(-246.603,-230.30343)">
     <path
        style="fill:none;fill-rule:evenodd;stroke:#333333;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 253.70811,282.6543 c 0,0 24.87258,-16.58317 38.92857,-21.07143 24.22229,-7.73449 50.3267,-7.86695 75.71428,-9.28571 34.35302,-1.91978 68.98376,-2.40506 103.21429,1.07143 17.37455,1.76458 51.42857,10 51.42857,10"
@@ -446,13 +446,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="244.35805"
-       y="288.59448"
+       x="245.35788"
+       y="286.09402"
        id="text9668"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan9670"
-         x="244.35805"
-         y="288.59448">$\gamma$</tspan></text>
+         x="245.35788"
+         y="286.09402">$\gamma$</tspan></text>
   </g>
 </svg>
