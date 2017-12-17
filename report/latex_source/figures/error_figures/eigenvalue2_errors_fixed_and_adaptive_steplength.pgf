@@ -1674,7 +1674,7 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{1.244529in}{2.700931in}}%
@@ -1694,10 +1694,10 @@
 \pgfusepath{clip}%
 \pgfsetbuttcap%
 \pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentfill}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetfillcolor{currentfill}%
 \pgfsetlinewidth{1.003750pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfsys@defobject{currentmarker}{\pgfqpoint{-0.020833in}{-0.020833in}}{\pgfqpoint{0.020833in}{0.020833in}}{%
@@ -2092,7 +2092,7 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{3.968334in}{2.143056in}}%
@@ -2102,10 +2102,10 @@
 \begin{pgfscope}%
 \pgfsetbuttcap%
 \pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentfill}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetfillcolor{currentfill}%
 \pgfsetlinewidth{1.003750pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfsys@defobject{currentmarker}{\pgfqpoint{-0.020833in}{-0.020833in}}{\pgfqpoint{0.020833in}{0.020833in}}{%

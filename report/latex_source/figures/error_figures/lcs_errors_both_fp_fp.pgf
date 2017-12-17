@@ -2128,8 +2128,7 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{1.175075in}{2.810384in}}%
-\pgfpathlineto{\pgfqpoint{1.450616in}{1.833167in}}%
-\pgfpathlineto{\pgfqpoint{1.450616in}{1.833167in}}%
+\pgfpathmoveto{\pgfqpoint{1.450616in}{1.833167in}}%
 \pgfpathlineto{\pgfqpoint{1.582473in}{0.931538in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
@@ -2161,10 +2160,6 @@
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgfsys@transformshift{1.450616in}{1.833167in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\begin{pgfscope}%
 \pgfsys@transformshift{1.582473in}{0.931538in}%
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
@@ -2175,7 +2170,7 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{1.282832in}{1.682165in}}%
@@ -2187,10 +2182,10 @@
 \pgfusepath{clip}%
 \pgfsetbuttcap%
 \pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentfill}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetfillcolor{currentfill}%
 \pgfsetlinewidth{1.003750pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfsys@defobject{currentmarker}{\pgfqpoint{-0.020833in}{-0.020833in}}{\pgfqpoint{0.020833in}{0.020833in}}{%
@@ -2553,7 +2548,7 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{3.968334in}{2.143056in}}%
@@ -2563,10 +2558,10 @@
 \begin{pgfscope}%
 \pgfsetbuttcap%
 \pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentfill}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetfillcolor{currentfill}%
 \pgfsetlinewidth{1.003750pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
+\definecolor{currentstroke}{rgb}{0.000000,0.750000,0.750000}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfsys@defobject{currentmarker}{\pgfqpoint{-0.020833in}{-0.020833in}}{\pgfqpoint{0.020833in}{0.020833in}}{%
