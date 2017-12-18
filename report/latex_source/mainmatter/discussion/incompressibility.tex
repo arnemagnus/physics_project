@@ -12,7 +12,7 @@ tracers will remain nearby under the flow map, the finite difference
 approximation to the local stretch and strain could practically be rendered
 invalid. This issue is expected to be most prominent in regions of high local
 repulsion, which are precisely where accuracy is most imperative.
-
+\clearpage
 Thus, one should not really expect the property $\lambda_{1}\lambda_{2}=1$ to
 hold numerically, especially for an indefinite time. However, sample tests
 indicate that the incompressibility property was preserved for longer when
@@ -23,7 +23,7 @@ machine epsilon of double-precision floating point numbers being of order
 $10^{-16}$, this would leave very few significant digits with which one could
 perform finite differencing, as mentioned in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
-In the end, the grid spacings $\Delta{x}\simeq\Delta{y}\simeq0.02$
+In the end, the grid spacings $\Delta{x}\simeq\Delta{y}\simeq0.002$
 and $\delta{x}=\delta{y}=10^{-5}$ were chosen, because these were the
 resolutions at which repelling LCS curves for the double
 gyre system have previously been described in the literature, cf.
@@ -35,18 +35,18 @@ longer, while also leaving up to 7 or 8 significant digits for the finite
 difference approximation of the flow map, which is outlined in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}.
 
-An entirely different approach, suggested by \textcite{onu2015lcstool}, is to simply
-\emph{define} the smaller strain eigenvalue as the reciprocal of the larger
-one, that is, $\lambda_{1}\equiv\lambda_{2}^{-1}$. Computing the smaller
+An entirely different approach, suggested by \textcite{onu2015lcstool}, is to
+simply \emph{define} the smaller strain eigenvalue as the reciprocal of the
+larger one, that is, $\lambda_{1}\equiv\lambda_{2}^{-1}$. Computing the smaller
 eigenvalue in this way would influence the computation of LCSs through
 the condition~\eqref{eq:numericalexistence1}. This was not done here,
 primarily because \citeauthor{onu2015lcstool} did not provide an illustration
 of their computed $\mathcal{U}_{0}$ domain, that is, a figure similar
 to~\cref{fig:u0_domain}; unlike \textcite{farazmand2012computing}, who
-did not follow the same approach as \citeauthor{onu2015lcstool}. Thus,
-to our knowledge, following the convention $\lambda_{1}=\lambda_{2}^{-1}$
-would result in principally unverifiable LCSs. Moreover, as
-is evident from inspection of the numerical LCS existence conditions, given in
+did not follow the same approach as \citeauthor{onu2015lcstool}. Thus, to our
+knowledge, following the convention $\lambda_{1}=\lambda_{2}^{-1}$ would result
+in LCSs without an established reference in the literature. Moreover, as is
+evident from inspection of the numerical LCS existence conditions, given in
 \cref{eq:numericalexistence}, the computations are considerably more sensitive
 to $\lambda_{2}$ than $\lambda_{1}$, which suggests that accurate computations
 of LCSs for the system under consideration is not particularly susceptible to

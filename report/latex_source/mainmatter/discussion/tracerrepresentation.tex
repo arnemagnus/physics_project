@@ -24,15 +24,16 @@ Rather than generating and advecting a fixed, large amount of tracer particles,
 another possible approach would be to use a set of fewer `base' tracers, and
 making use of an \emph{adaptive multigrid method}. A practical implementation
 could, for instance, involve the dynamic introduction of increasingly finer
-grids in regions where the local velocities would have the largest Euclidean
-norm. Such grids, however, would have to move \emph{with} the flow, as the
-benefit over simply increasing the initial tracer density would diminish
-otherwise. The main reason why this was not implemented for this project,
-aside from it not being used in the literature, is that it in all likelyhood
-leads to inconsistencies when applying finite differences. That is, unless some
-sort of interpolation scheme was applied to the flow map. Seeing as this
-project is centered around integration methods, this idea was discarded.
-Regardless, this technique seems promising --- at least on paper --- which
-warrants further investigation.
+grids in regions where the local velocities are large compared to the scale at
+which the local velocity is changing. Thus, the local grid refinement reduces
+the risk of neglecting details in the underlying velocity field. Such grids,
+however, would have to move \emph{with} the flow, as the benefit over simply
+increasing the initial tracer density would diminish otherwise. The main reason
+why this was not implemented for this project, aside from it not being used in
+the literature, is that it in all likelyhood leads to inconsistencies when
+applying finite differences. That is, unless some sort of interpolation scheme
+was applied to the resulting flow map. Seeing as this project is centered around
+integration methods, this idea was discarded. Regardless, this technique seems
+promising --- at least on paper --- and warrants further investigation.
 %
 %\vspace{\fill}

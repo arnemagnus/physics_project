@@ -1,19 +1,6 @@
 \section{General remarks}
 \label{sec:general_remarks}
 
-First off, the computed reference LCS, shown in figure
-\ref{fig:referencelcs}, is made up of \emph{seven} different strainline segments.
-The LCS presented in the article by \textcite{farazmand2012computing} is claimed
-to consist of a \emph{single} strainline segment. Comparing the two curves
-visually, however, indicates that the resulting LCSs are similar. Likewise, the
-domain $\mathcal{U}_{0}$, shown in figure~\ref{fig:u0_domain}, strongly
-resembles the one found by \citeauthor{farazmand2012computing}. Nevertheless,
-the total number of points in the domain computed here is approximately two
-percent larger than what \citeauthor{farazmand2012computing} found. These
-discrepancies could originate from different conventions in terms of generating
-the grid of tracers. Notably, \citeauthor{farazmand2012computing} fail to
-provide a description of their approach.
-
 Overall, the use of a variational framework for computing LCSs appears to
 produce robust and consistent LCS curves for all of the numerical integration
 schemes considered here, subject to usage of a sufficiently small numerical
@@ -64,7 +51,7 @@ and eigenvectors is not apparent in
 \cref{fig:lmbd2_err_fixed,fig:lmbd2_err_both,fig:xi2_err_fixed,fig:xi2_err_both},
 one may infer that this threshold is likely only valid for the LCS curves
 of this particular velocity field --- that is, the system given by
-\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}%
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams} %
 %, for which LCSs are
 %found by means of the procedure described in
 %\cref{sec:advecting_a_set_of_initial_conditions,%
@@ -76,7 +63,7 @@ suffice for other, more volatile flow systems. Investigating
 this further for a wider range of systems could result in valuable insight.
 Should such a threshold be valid in general, it would naturally be of great
 significance when investigating generic transport systems by means of a
-similar variational LCS approach. Admittedly, there is no apparent reason why
+variational LCS approach. Admittedly, there is no apparent reason why
 this should be the case.
 
 The double gyre model considered in this project is obviously not representative
@@ -94,11 +81,24 @@ enough so that a tracer moving with the characteristic velocity never traverses
 a distance greater than the grid spacing, when moving from one time level to
 the next.
 
+The computed reference LCS for the double gyre system considered here, shown in
+\cref{fig:referencelcs}, is made up of \emph{seven} different strainline
+segments. The LCS presented in the article by \textcite{farazmand2012computing}
+is claimed to consist of a \emph{single} strainline segment. Comparing the two
+curves visually, however, indicates that the resulting LCSs are similar.
+Likewise, the domain $\mathcal{U}_{0}$, shown in figure~\ref{fig:u0_domain},
+strongly resembles the one found by \citeauthor{farazmand2012computing}.
+Nevertheless, the total number of points in the domain computed here is
+approximately two percent larger than what \citeauthor{farazmand2012computing}
+found. These discrepancies could originate from different conventions in terms
+of generating the grid of tracers. Notably, \citeauthor{farazmand2012computing}
+fail to provide a description of their approach.
+
 When computing transport based on discrete data sets, such as snapshots of the
 instantaneous velocity fields in oceanic currents, spatial and temporal
 interpolation becomes necessary. Together with the inherent precision of the
-model data, the choice of interpolation scheme(s) sets a lower bound
-in terms of the accucacy with which tracers can be advected. For such cases,
+model data, the choice of interpolation scheme(s) sets an upper bound
+in terms of the accuracy with which tracers can be advected. For such cases,
 the interaction between the integration and interpolation schemes could
 be critical --- both in terms of computation time and memory requirements,
 aside from the numerical precision. Independently of the scales at which

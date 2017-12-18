@@ -9,9 +9,9 @@ from below by the counteracting accumulated floating-point
 arithmetic error, as hypothesized in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}.
 This effect is most prominent in the error curves of the Kutta and
-classical Runge-Kutta schemes, which in fact \emph{decrease} as a function
-of the step length until $h=10^{-4}$ and $h=10^{-3}$, respectively. Based on
-this evidence, the chosen step lengths appear to be appropriate.
+classical Runge-Kutta schemes, which in fact \emph{increase} for decreasing
+$h$ for step lengths smaller than $h=10^{-4}$ and $h=10^{-3}$, respectively.
+Based on this evidence, the chosen step lengths appear to be appropriate.
 %Although neither the $\rmsd$ of the Euler scheme nor that of the Heun scheme ever
 %decreases as the step length increases, the trends nevertheless indicate that
 %there would not be much to gain in terms of accuracy before the accumulated

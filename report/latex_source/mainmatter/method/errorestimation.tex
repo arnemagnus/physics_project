@@ -5,7 +5,7 @@
 Aside from the qualitiative visual comparison between the obtained LCSs and
 the reference LCS, a set of numerical errors was also computed, with a view to
 use them in order to explain any visual discrepancies. To this end, the error
-in the flow map, given by~\cref{eq:flowmap}, was computed as the
+in the flow map (see~\cref{eq:flowmap}), was computed as the
 root mean square deviation (hereafter abbreviated to RMSD) with regards to the
 reference, as follows:
 \begin{equation}
@@ -18,11 +18,12 @@ where the summation is over all of the tracers in the extended computational dom
 $\widetilde{\mathcal{U}}$, that is, both the main and auxiliary tracers which
 originate from points in the extended grid, as outlined in
 \cref{sub:generating_a_set_of_initial_conditions}. $\widetilde{N}$ is the
-total number of advected tracers, and
+total number of advected tracers,
 $\widehat{\vct{F}}{}_{t_{0}}^{t}(\vct{x}_{0})$ is the flow map approximated by
-the numerical integrator in question.
+the numerical integrator in question, and $\vct{F}_{t_{0}}^{t}$ is the
+reference flow map.
 
-The RMSD in both sets of eigen\emph{values}, $\lambda_{1}(\vct{x}_{0})$ and
+The RMSD in both sets of eigenvalues, $\lambda_{1}(\vct{x}_{0})$ and
 $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field, as given
 by~\cref{eq:cauchygreencharacteristics} was also computed analogously:
 \begin{equation}
@@ -34,14 +35,15 @@ by~\cref{eq:cauchygreencharacteristics} was also computed analogously:
 where the summation is over all main tracers located in (or at the boundary
 of) the domain $\mathcal{U}^{\prime}$, the borders of which are governed by the
 first set of rows and columns in the extended grid. $N$ is the
-corresponding total number of main tracers in $\mathcal{U}^{\prime}$, while
+corresponding total number of main tracers in $\mathcal{U}^{\prime}$,
 $\widehat{\lambda}(\vct{x}_{0})$ is the approximation of
-the true eigenvalues $\lambda(\vct{x}_{0})$ located at $\vct{x}_{0}$, obtained
-by means of the numerical integrator in question.
+the eigenvalue located at $\vct{x}_{0}$, obtained
+by means of the numerical integrator in question, and $\lambda(\vct{x}_{0})$
+is the reference eigenvalue located at $\vct{x}_{0}$.
 
 Because the eigenvectors of the Cauchy-Green strain tensor field are normalized
 to unit length, a reasonable way of estimating the error in the computed
-eigen\emph{vectors} is by considering their orientation. Thus, the eigenvector
+eigenvectors is by considering their orientation. Thus, the eigenvector
 directions were computed as azimuthal angles. The RMSD for the direction of
 the eigenvector fields was then calculated as follows:
 \begin{equation}
@@ -59,14 +61,15 @@ where the conventions for $\mathcal{U}$ and $N$ are the same as for the
 RMSD of the eigenvalues, given in~\cref{eq:rmsdlmbd}.
 $\widehat{\phi}(\vct{x}_{0})$ denotes the azimuthal angle of the eigenvector
 located at $\vct{x}_{0}$, found by means of
-the numerical integrator in question.
+the numerical integrator in question, and $\phi(\vct{x}_{0})$ denotes the
+angle of the reference eigenvector located at $\vct{x}_{0}$.
 %\clearpage
 
 Regarding the error in the computed LCS curves, false positives, that is,
-any parts which of the computed LCS curves which are not present in
+any parts of the computed LCS curves which are not present in
 the reference curve, and false negatives, i.e., any parts of the reference curve
 which is not present in the computed LCS curves, should be treated separately.
-This is because as they would influence the predictions of overall flow patterns
+This is because they would influence the predictions of overall flow patterns
 in the system in different ways. Numerical noise could result in LCS curve
 segments being erroneously identified as either a false positive or a false
 negative. In order to reduce this sort of error, a lower numerical threshold
