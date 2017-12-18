@@ -1,23 +1,32 @@
 A generic flow system can be described as a structure whose state depends on
 flowing streams of energy, material or information. Traditional examples of
-such systems are the steady transport of properties such as pressure,
-temperature or matter in fluids, and the transport of charge in electrical
-currents. However, valuable insight into various phenomena, including, but not
-limited to, the development of algae in the ocean and crowd patterns formed
-by humans, can be obtained by regarding them as flow systems.
+such systems are the transport of properties such as pressure, temperature or
+matter in fluids, and the transport of charge in electrical currents. However,
+valuable insight into various phenomena, including, but not limited to, the
+development of algae in the ocean and crowd patterns formed by humans, can
+be obtained by regarding them as flow systems.
 
 Lagrangian coherent structures (henceforth abbreviated to LCSs) can be described
 as `landscapes' within a multidimensional space, which exert a major influence
-upon the flow patterns in dynamical systems. Such structures provide a
-simplified means of predicting the future states of complex systems, which
-exhibit sensitive dependence to initial conditions, over a time interval of
-interest, compared to the conventional approach of increasing the spatial and
-temporal resolution of the model(s) involved in numerical simulations. From
-their variational theory, hyperbolic LCSs are identified as locally most
+upon the flow patterns in dynamical systems.
+Compared to the conventional approach of increasing the spatial and temporal
+resolution of the model(s) involved in numerical simulations, LCSs provide a
+simplified means of predicting the future states of complex systems. In this
+context, a complex system is a system which exhibits sensitive dependence
+to initial conditions.
+%Such structures provide a
+%simplified means of predicting the future states of complex systems, which
+%exhibit sensitive dependence to initial conditions, over a time interval of
+%interest, compared to the conventional approach of increasing the spatial and
+%temporal resolution of the model(s) involved in numerical simulations.
+From their variational theory, hyperbolic LCSs are identified as locally most
 repelling or attractive material surfaces. Somewhat simplified, such surfaces
 can be considered as generalized trajectories, created by the underlying
-transport phenomenon. Hyperbolic LCSs form the skeleton of observable flow
-patterns.
+transport phenomenon. When investigating transport systems, hyperbolic LCSs are
+of particular interest, as they form the skeleton of observable flow patterns.
+%Hyperbolic LCSs are of particular interest when
+%investigating transport systems, as they form the skeleton of observable flow
+%patterns.
 
 This project is centered around the dependence of the numerical identification
 of such LCSs upon which numerical integration scheme was used in order to
@@ -29,29 +38,28 @@ four traditional singlestep and four embedded, adaptive stepsize Runge-Kutta
 methods were investigated. A numerical solution obtained by means of a high
 order embedded method with a very small numerical tolerance --- two orders of
 magnitude smaller than the smallest tolerance level utilized otherwise ---
-and thus a very small expected numerical error, was utilized as the basis
-for comparing the performance of the different methods.
+and thus a very small expected numerical error, was utilized as a reference
+solution for comparing the performance of the different methods.
 %LCSs were computed and
 %compared for an analytical velocity field, for which reference LCSs are
 %documented in the literature.
 
 It turns out that the LCSs for the system under consideration are quite robust
-numerically, at least for the chosen parameter values. Thus, none of the
-numerical integration schemes stand out as the absolutely best-suited. However,
-based upon the errors of the computed flow maps, high order integration
-methods are generally advisable for generic flow systems, as they invariably
-yield more efficient calculations, which are less susceptible to numerical
-round-off error. Moreover, there is no apparent reason to expect the LCSs of
-a generic flow system to be as robust as they were for the system considered
-for this project work.
+numerically. Thus, none of the numerical integration schemes stand out as the
+absolutely best-suited. However, based upon the errors of the computed flow
+maps, high order integration methods are generally advisable for generic flow
+systems, as they invariably yield more efficient calculations, which are less
+susceptible to numerical round-off error. Moreover, there is no apparent reason
+to expect the LCSs of a generic flow system to be as robust as they were for the
+system considered for this project work.
 
 Note that the numerical implementation of one of the LCS existence conditions
 which arise from their variational theory has not yet (to the author's
-knowledge) received a complete description in the literature.
+knowledge) been described completely in the literature.
 %This is a
 %consequence of the study of LCSs being in it relative infancy, as a branch of
 %physics.
 The approach considered in this project is based on careful inspection
-of properties of the underlying system, which may or may not be applicable to
-generic systems, depending on their scale. In other words, there is currently a
+of properties of the underlying system, which might not be applicable to
+generic systems, depending on their scale. In short, there is currently a
 lot of room for research within the field.

@@ -42,7 +42,7 @@ The \emph{order} of a Runge-Kutta method can be defined as follows:\\
         e_{n}=\norm{x_{n}-u_{n-1}(t_{n})} \leq Kh^{p+1},
     \end{equation}
     where $u_{n-1}(t)$ is the exact solution of the ODE in system
-    \eqref{eq:ivpsystem}, subject to the initial condition
+    \eqref{eq:ivpsystem} at time $t$, subject to the initial condition
     $u_{n-1}(t_{n-1})=x_{n-1}$, and $K$ is a numerical constant. This is true,
     if the Taylor series for the exact solution $u_{n-1}(t_{n})$ and the
     numerical solution $x_{n}$ coincide up to (and including) the term $h^p$.
@@ -53,8 +53,9 @@ The \emph{global} error
     \label{eq:rungekuttaglobalorderdef}
     E_{n} = x_{n}-x(t_{n}),
 \end{equation}
-where $x(t)$ is the exact solution of system~\eqref{eq:ivpsystem}, accumulated
-by $n$ repeated applications of the numerical method, can be estimated by
+where $x(t)$ is the exact solution of system~\eqref{eq:ivpsystem} at time $t$,
+accumulated by $n$ repeated applications of the numerical method, can be
+estimated by
 \begin{equation}
     \label{eq:rungekuttaglobalorderapprox}
     \abs{E_{n}} \leq C\sum\limits_{l=1}^{n}\abs{e_{l}},
@@ -70,7 +71,7 @@ by
         \leq C\sum\limits_{l=1}^{n}\abs{K_{l}}\hspace{0.5ex}h^{p+1} \\
         &\leq C\hspace{0.5ex}\max\limits_{l}\big\{\abs{K_{l}}\big\}\hspace{0.5ex}n\hspace{0.5ex}h^{p+1}%
         \leq C\hspace{0.5ex}\max\limits_{l}\big\{\abs{K_{l}}\big\}\hspace{0.5ex}\frac{t_{n}-t_{0}}{h}\hspace{0.5ex}h^{p+1}\\
-        &\leq \widetilde{K}h^{p}
+        &\leq \widetilde{K}h^{p},
     \end{aligned}
 \end{gather}
 where $\widetilde{K}$ is a numerical constant.
@@ -215,8 +216,8 @@ The singlestep methods under consideration are the classical, explicit
 Runge-Kutta methods of orders one through to four, i.e., the \emph{Euler},
 \emph{Heun}, \emph{Kutta} and \emph{classical Runge-Kutta} methods. The
 Euler method is \nth{1}-order accurate, and requires a single function
-evaluation of the right hand side of the ordinary differential
-\cref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
+evaluation of the right hand side of the ODE of system
+\eqref{eq:ivpsystem} or~\eqref{eq:ivpsystemhigherdimensions} at each time step.
 Its Butcher tableau representation can be found in~\cref{tab:butchereuler}.
 It is the simplest explicit method for numerical integration of ordinary
 differential equations. The Euler method is often used as a basis to construct
@@ -266,7 +267,7 @@ does not translate directly from singlestep methods, as a direct consequence
 of the adaptive time step. Although the \emph{local} errors of each integration
 step scale as per~\cref{eq:rungekuttaorder}, the bound on the \emph{global}
 (i.e., observable) error suggested in~\cref{eq:rungekuttaglobalorderestimate}
-is invalid, as the time step in, in principle, different for each integration
+is invalid, as the time step is, in principle, different for each integration
 step. Generally, lower order methods are more suitable than higher order methods
 for cases where crude approximations of the solution are sufficient.
 \citeauthor{bogacki1989pair} argue that their methods
@@ -283,12 +284,15 @@ convenience. Three of the methods, namely the Bogacki-Shampine 3(2) and 5(4)
 methods, in addition to the Dormand-Prince 5(4) method, possess the so-called
 \emph{First Same As Last} property. This means that the last function evaluation
 of an accepted step is exactly the same as the first function evaluation of the
-next step. This is readily apparent from their Butcher tableaus, where the
-$b$ coefficients correspond exactly with the last row of the Runge-Kutta matrix.
-The \emph{First Same As Last} property reduces the computational
-cost of a successive step. Moreover, the Bogacki-Shampine 5(4) yields \emph{two}
-interpolant solutions. The details on how these were used, will be presented
-in~\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}.
+next step. The notions of accepted and rejected integration steps will be
+elaborated upon in
+\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}. The
+\emph{First Same As Last} property is readily apparent from their Butcher
+tableaus, where the $b$ coefficients correspond exactly with the last row of the
+Runge-Kutta matrix. This property reduces the computational cost of a successive
+step. Moreover, the Bogacki-Shampine 5(4) method yields \emph{two} interpolant
+solutions. The details on how these were used, will be presented in
+\cref{sub:on_the_implementation_of_embedded_runge_kutta_methods}.
 %\clearpage
 \input{mainmatter/theory/butchertableaus/bs32.tex}
 

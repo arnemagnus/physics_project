@@ -4,14 +4,15 @@ atmospheric winds, the conventional approach to predicting future states
 by means of simulating the trajectories of phase points is frequently
 insufficient. This is due to the resulting predictions being very sensitive to
 small changes in time and initial positions. One way of addressing the delicate
-dependence on initial conditions is to run several different models for the same
-underlying physical systems. This sort of approach is made possible because
-the fundamental dynamics are known --- yet, for complex transport systems,
-the computational cost quickly grows beyond the available resources, in terms
-of time, memory or otherwise. For many practical purposes, however, microscopic
-details matter little in comparison to the overarching trends in the system,
-which means that a less ambitious approach, merely aiming to understand the
-macroscopics of the transport phenomenon, is often justifiable.
+dependence on initial conditions is to run different models for the same
+underlying physical systems, of increasing spatial and temporal resolution. This
+sort of approach is made possible because the fundamental dynamics are known ---
+yet, for complex transport systems, the computational cost quickly grows beyond
+the available resources, in terms of computation time or memory. For many
+practical purposes, however, microscopic details matter little in comparison to
+the overarching trends in the system, which means that a less ambitious
+approach, merely aiming to understand the macroscopics of the transport
+phenomenon, is often justifiable.
 
 At the turn of the millennium, the concept of Lagrangian coherent structures
 saw the light of day, emerging from the intersection between nonlinear dynamics,
@@ -34,12 +35,12 @@ which produce the local and instantaneous velocities at all points within their
 domains. The Lagrangian point of view, on the other hand, concerns the
 developing velocity of each fluid element along their paths, as they are
 transported by the flow. Unlike the Eulerian perspective, the Lagrangian
-mindset is objective, as i frame-invariant. That is, properties of Lagrangian
+mindset is objective, as in frame-invariant. That is, properties of Lagrangian
 fields are unchanged by time-dependent translations and rotations of the
 reference frame. For unsteady flow systems, which are more common than steady
 flow systems in nature, there exists no self-evident preferred frame of
-reference. This means that any transport-dictating dynamic structures should
-hold for \emph{any} choice of reference frame. Furthermore, this is the main
+reference. Thus, any transport-dictating dynamic structures should
+hold for \emph{any} choice of reference frame. This is the main
 rationale for which \emph{Lagrangian}, rather than \emph{Eulerian}, coherent
 structures have been pursued.
 
@@ -66,7 +67,7 @@ Although the framework for detecting Lagrangian coherent structures is
 mathematically valid for any number of dimensions, the focus of this project
 work has been two-dimensional flow systems. Many natural processes can
 reasonably be described as two-dimensional, perhaps most notably the transport
-of debris and contaminations, such as radioactive particles or the remnants of
+of debris and contaminations, such as garbage patches or the remnants of
 an oil spill, by means of oceanic surface currents. Being able to successfully
 predict where such particles will be taken by the flow could enable us to
 isolate them and accelerate the cleanup process before the particles are able
@@ -77,7 +78,7 @@ calamities.
 %
 At the heart of detecting Lagrangian coherent structures lies the advection
 of (generalized) fluid elements by means of a velocity field, which describes
-the system under consideration. This rings true both for test cases, where the
+the system under consideration. This is true both for test cases, where the
 velocity profile is known analytically, and for real-life systems, typically
 described by means of some model for the instantaneous velocity field. For this
 project work, the topic of interest is how the detection of Lagrangian coherent

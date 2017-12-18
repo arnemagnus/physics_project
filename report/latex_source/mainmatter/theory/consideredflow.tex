@@ -84,7 +84,7 @@ incompressible flow, the eigenvalues satisfy
     \lambda_{1}(\vct{x}_{0})\lambda_{2}(\vct{x}_{0})=1%
         \quad\forall\hskip0.5em\vct{x}_{0}\in\mathcal{U}
 \end{equation}
-where, for the case of advection of tracers, incompressibility is equivalent to
+where, in the context of tracer advection, incompressibility is equivalent to
 the velocity field $\vct{v}$ being divergence-free
 (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
 %This is due to the tracer particles being massless, per definiton.
@@ -162,13 +162,13 @@ driven away from the material line, rather than being stretched
 Note that the above definitions associate LCSs with the time interval $I$ over
 which the dynamical system under consideration is known, or, at the very least,
 where information regarding the behaviour of tracers, is sought. Generally,
-LCSs obtained over a time interval $I$ do not exist over different time
-intervals \parencite{farazmand2012computing}.
+LCSs obtained over a time interval $I$ do not necessarily exist over different
+time intervals \parencite{farazmand2012computing}.
 
 For two-dimensional flow, the above definitions can be summarized as a set of
 mathematical existence criteria, based on the Cauchy-Green strain tensor,
 \parencite{haller2010variational,farazmand2011erratum}. These are given in
-\cref{thm:lcsexistence}:
+\cref{thm:lcsexistence} \parencite{farazmand2012computing}:
 
 \clearpage
 
@@ -176,22 +176,22 @@ mathematical existence criteria, based on the Cauchy-Green strain tensor,
     flows]
     \label{thm:lcsexistence}
     Consider a compact material line $\mathcal{M}(t)\subset\mathcal{U}$ evolving
-    over the time interval $[t_{0},t_{0}+T]$. $\mathcal{M}(t)$ is a repelling
-    LCS over $[t_{0},t_{0}+T]$ if and only if all the following hold for all
-    initial conditions $\vct{x}_{0}\in\mathcal{M}(t_{0})$:
+    over the time interval $[t_{0},t_{0}+T]$. Then $\mathcal{M}(t)$ is a
+    repelling LCS over $[t_{0},t_{0}+T]$ if and only if all the following hold
+    for all initial conditions $\vct{x}_{0}\in\mathcal{M}(t_{0})$:
     \begin{subequations}
         \label{eq:lcsexistence}
         \begin{align}
             \label{eq:lcsexistence1}
-            &\lambda_{1}(\vct{x}_{0})\neq\lambda_{2}(\vct{x}_{0})>1\\
+            &\lambda_{1}(\vct{x}_{0})\neq\lambda_{2}(\vct{x}_{0})>1,\\
             \label{eq:lcsexistence2}
             &\big\langle\vct{\xi}_{2}(\vct{x}_{0}),%
-            \mtrx{H}_{\lambda_{2}}(\vct{x}_{0})\vct{\xi}_{2}(\vct{x}_{0})\big\rangle<0\\
+            \mtrx{H}_{\lambda_{2}}(\vct{x}_{0})\vct{\xi}_{2}(\vct{x}_{0})\big\rangle<0,\\
             \label{eq:lcsexistence3}
-            &\vct{\xi}_{2}(\vct{x}_{0})\perp\mathcal{M}(t_{0})\\
+            &\vct{\xi}_{2}(\vct{x}_{0})\perp\mathcal{M}(t_{0}),\\
             \label{eq:lcsexistence4}
             &\big\langle\vct{\nabla}\lambda_{2}(\vct{x}_{0}),%
-                \vct{\xi}_{2}(\vct{x}_{0})\big\rangle=0
+                \vct{\xi}_{2}(\vct{x}_{0})\big\rangle=0.
         \end{align}
     \end{subequations}
 \end{thm}
@@ -213,7 +213,7 @@ which, for our two-dimensional flow, reduces to
                 \dfrac{\partial{}^{2}f}{\partial{x}\partial{y}} \\
                 \dfrac{\partial{}^{2}f}{\partial{y}\partial{x}} & %
                 \dfrac{\partial{}^{2}f}{\partial{y}^{2}} \\
-            \end{pmatrix}
+            \end{pmatrix}.
 \end{equation}
 Condition~\eqref{eq:lcsexistence1} ensures that the normal repulsion rate is
 larger than the tangential stretch due to shear strain along the LCS, as per
@@ -227,7 +227,7 @@ local apex.
 \label{sec:ftle_fields_as_predictors_for_lcss}
 
 Finite-time Lyapunov exponent (hereafter abbreviated to FTLE) fields provide
-a measure of the extent to which particles which start out close to eachother,
+a measure of the extent to which particles which start out close to each other,
 are separated in a given time interval. Mathematically, Lyapunov exponents
 quantify the asymptotic divergence or convergence of trajectories of
 tracers which start out infinitesimally close to each other

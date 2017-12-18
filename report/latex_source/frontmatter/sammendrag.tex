@@ -1,22 +1,32 @@
 Et generisk strømningssystem kan beskrives som en struktur hvis tilstand
 avhenger av flyt av energi-, material- eller informasjonsstrømmer. Tradisjonelle
 eksempler på slike systemer er transport av trykk, temperatur og masse i
-stasjonære fluidstrømninger, og ladningstransport som forårsakes av elektriske
-strømmer. Interessante sider ved andre fenomen, som algeoppblomstring og
-folkesamlinger, kan avdekkes ved å betrakte dem som strømningssystemer.
+fluidstrømninger, og ladningstransport som forårsakes av elektriske strømmer.
+Interessante sider ved andre fenomen, som algeoppblomstring og folkesamlinger,
+kan avdekkes ved å betrakte dem som strømningssystemer.
 
 Lagrange-koherente strukturer (heretter forkortet til LKSer) kan beskrives som
 <<landskap>> i flerdimensjonale rom, som utøver stor innflytelse på
-strømningsmønstre i dynamiske system. Denne typen strukturer kan benyttes til
-å på forenklet vis kunne forutsi fremtidige tilstander i komplekse system, som
-for eksempel ikkelineære mangepartikkelsystem, over et gitt tidsintervall,
-sammenlignet med å utføre simuleringer på modeller med økende grad av
-oppløsning både i rom og tid -- hvilket er den tradisjonelle tilnærmingen. Fra
-deres underliggende variasjonsteori, kjennetegnes hyperbolske LKSer som de
+strømningsmønstre i dynamiske system.
+Sammenlignet med å utføre simuleringer på modeller med økende grad av oppløsning
+i rom og tid -- hvilket er den tradisjonelle tilnærmingen -- kan LKSer benyttes
+til å på forenklet vis kunne forutsi fremtidige tilstander i komplekse system.
+I denne konteksten betegner et komplekst system et system som er svært sensitivt
+til dets initialbetingelser.
+%Denne typen strukturer kan benyttes til
+%å på forenklet vis kunne forutsi fremtidige tilstander i komplekse system, som
+%for eksempel ikkelineære mangepartikkelsystem, over et gitt tidsintervall,
+%sammenlignet med å utføre simuleringer på modeller med økende grad av
+%oppløsning både i rom og tid -- hvilket er den tradisjonelle tilnærmingen.
+Fra deres underliggende variasjonsteori, kjennetegnes hyperbolske LKSer som de
 lokalt sterkest frastøtende eller tiltrekkende materialoverflatene i systemet.
 Noe forenklet kan denne typen overflater betraktes som en generalisering av
-banene det underliggende transportfenomenet skaper. Hyperbolske LKSer utgjør
-skjelettet av observable strømningsmønstre.
+banene det underliggende transportfenomenet skaper.
+Ved analyse av transportsystemer er hyperbolske LKSer spesielt interessante,
+ettersom disse utgjør skjelettet av observable strømningsmønstre.
+%Hyperbolske LKSer er
+%spesielt interessante for analyse av transportsystemer, ettersom disse utgjør
+%skjelettet av observable strømningsmønstre.
 
 Dette prosjektet omhandler hvordan den numeriske identifikasjonen av LKSer
 avhenger av den numeriske integrasjonsmetoden som ble benyttet til å simulere
@@ -30,12 +40,11 @@ løsning funnet via en høyere ordens sammensatt metode med svært liten
 numerisk toleranse -- to størrelsesordener mindre enn det minste toleransenivået
 som ble benyttet for
 øvrig -- og dermed veldig liten forventet numerisk feil, ble brukt som
-sammenligningsgrunnlag for de ulike metodenes ytelse.
+referanseløsning.%sammenligningsgrunnlag for de ulike metodenes ytelse.
 
-Det viser seg at LKSene i eksempelsystemet er nokså robuste, numerisk sett,
-i alle fall for de benyttede parameterverdiene. Av den grunn sto ingen av de
-numeriske integrasjonsmetodene frem som den absolutt mest
-velegnede. Likevel, basert på de de beregnede feilene i flytdiagrammene,
+Det viser seg at LKSene i eksempelsystemet er nokså robuste, numerisk sett. Av
+den grunn sto ingen av de numeriske integrasjonsmetodene frem som den absolutt
+mest velegnede. Likevel, basert på de de beregnede feilene i flytdiagrammene,
 tilrådes bruk av høyere ordens numeriske integratorer generelt, fordi de uten
 unntak resulterer i mer effektive beregninger,
 som er mindre utsatt for numeriske avrundingsfeil. Videre foreligger ingen

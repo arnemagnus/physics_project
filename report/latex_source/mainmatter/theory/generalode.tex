@@ -11,9 +11,9 @@ of an ordinary differential equation (hereafter abbreviated to ODE) of the form
 \end{equation}
 where $x$ is an unknown function (scalar or vector) of time $t$. The function
 $f$ is defined on an open subset $\Omega$ of $\mathbb{R}\times\mathbb{R}^{n}$,
-where $n$ is the number of dimensions, that is, the number of components
-of $x$. The initial condition $(t_{0},x_{0})$ is a point in the domain of $f$, i.e.,
-$(t_{0},x_{0})\in\Omega$. In higher dimensions (that is, $n>1$) the
+where $n$ is the number of spatial dimensions, that is, the number of components
+of $x$. The initial condition $(t_{0},x_{0})$ is a point in the domain of $f$,
+i.e., $(t_{0},x_{0})\in\Omega$. In higher dimensions (that is, $n>1$) the
 differential \cref{eq:ivpsystem} generally extends to a coupled
 family of ODEs
 \begin{equation}
@@ -86,8 +86,9 @@ an approximation of the true solution of the system~\eqref{eq:ivpsystem}
     \label{eq:numericalintegratorapproximatesolution}
     x_{j} \approx x(t_{j}),
 \end{equation}
-where $x(t)$ is the exact solution. The accuracy of the approximation, however,
-depends on both the numerical integration method and the time step length $h$
-used for the temporal discretization, given in~\cref{eq:discretetime}.
-For nonlinear systems, analytical solution frequently do not exist. Thus,
-such systems are often analyzed by means of numerical methods.
+where $x(t)$ is the exact solution at time $t$. The accuracy of the
+approximation, however, depends on both the numerical integration method and the
+time step length $h$ used for the temporal discretization, given in
+\cref{eq:discretetime}. For nonlinear systems, analytical solutions usually
+do not exist. Thus, such systems are often analyzed by means of numerical
+methods.

@@ -6,25 +6,25 @@
 %zeros of the inner product in~\cref{eq:lcsexistence4}
 some of the conditions of \cref{thm:lcsexistence} to be numerically sensitive.
 Therefore, they suggest a reformulated set of conditions which make for a more
-robust numerical implementation, quoted in the following:
+robust numerical implementation:
 \begin{subequations}
     \label{eq:numericalexistence}
     \begin{align}
         \label{eq:numericalexistence1}
-        &\lambda_{1}(\vct{x}_{0})\neq\lambda_{2}(\vct{x}_{0})>1\\
+        &\lambda_{1}(\vct{x}_{0})\neq\lambda_{2}(\vct{x}_{0})>1,\\
         \label{eq:numericalexistence2}
         &\big\langle\vct{\xi}_{2}(\vct{x}_{0}),%
             \mtrx{H}_{\lambda_{2}}(\vct{x}_{0})%
-            \vct{\xi}_{2}(\vct{x}_{0})\big\rangle \leq 0\\
+            \vct{\xi}_{2}(\vct{x}_{0})\big\rangle \leq 0,\\
         \label{eq:numericalexistence3}
-        &\vct{\xi}_{1}(\vct{x}_{0})\parallel\mathcal{M}(t_{0})\\
+        &\vct{\xi}_{1}(\vct{x}_{0})\parallel\mathcal{M}(t_{0}),\\
         \label{eq:numericalexistence4}
         &\begin{gathered}
             \overline{\lambda}_{2},\ \textnormal{the average of}%
             \ \lambda_{2}\ \textnormal{over a curve}\ \gamma,\ %
             \textnormal{is maximal on}\ \mathcal{M}(t_{0})\\ %
             \hspace{-1.3em}\textnormal{among all}\ \textnormal{nearby curves}\ %
-            \gamma\ \textnormal{satisfying}\ \gamma\parallel\vct{\xi}_{1}(\vct{x}_{0})
+            \gamma\ \textnormal{satisfying}\ \gamma\parallel\vct{\xi}_{1}(\vct{x}_{0}).
         \end{gathered}
     \end{align}
 \end{subequations}
@@ -38,10 +38,10 @@ due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
 $\vct{\xi}_{2}(\vct{x}_{0})$, although the form~\eqref{eq:numericalexistence3}
 turns out to be more advantageous for use in computations. For details
 regarding the numerical implementation of conditions
-\eqref{eq:numericalexistence3} and~\eqref{eq:numericalexistence3}, see
+\eqref{eq:numericalexistence3} and~\eqref{eq:numericalexistence4}, see
 \cref{sub:a_framework_for_computing_smooth_strainlines}.% for details.
 
-Because of the artificial extension of the main computational grid, as outlined
+Because of the extension of the main computational grid, as outlined
 in \cref{sub:generating_a_set_of_initial_conditions}, the Cauchy-Green strain
 tensor could be calculated for the innermost of the padded rows and columns
 by means of the same centered difference methods as described in
@@ -192,10 +192,9 @@ used in the advection of the tracers, described in
 method was applied universally for consistency, and chosen for its simplicity
 and relative accuracy. Moreover, this project is centered around the dependence
 of the choice of integration method in the tracer advection. The step length was
-made an order of magnitude smaller than the main grid spacing, to ensure that
-the micro-scale strain behaviour would be encapsulated
-in the resulting strainlines, while maintaining reasonable
-computation times.
+made to be half of the main grid spacing, to ensure that the micro-scale strain
+behaviour would be encapsulated in the resulting strainlines, while maintaining
+reasonable computation times.
 %presented in
 %\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
 %however, there is no way of knowing in advance, how long (in terms of numerical
