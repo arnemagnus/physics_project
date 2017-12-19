@@ -207,18 +207,18 @@ reasonable computation times.
 
 Frequently, only a segment of any given strainline will qualify as a hyperbolic
 LCS\@. Hence, the integration of any strainline can be stopped when it reaches
-a point at which one of the conditions~\eqref{eq:numericalexistence1} or
-\eqref{eq:numericalexistence2} fails. Doing so uncritically, however, opens up
-the possibility of stopping a strainline which only exited the $\mathcal{U}_{0}$
-domain due to numerical noise. In order to avoid such unwanted failures,
-the approach of \textcite{farazmand2012computing} was followed.
-Therefore, strainline integration was only stopped if one of the aforementioned
-LCS conditions fail repeatedly over a pre-set length $l_{\textnormal{f}}=0.2$ of
-the strainline. Furthermore, the strainlines which were stopped because
-of continuous failure of LCS conditions were cut such that their \emph{new}
-endpoints in either direction, as seen from the strain initial condition, were
-the last point on which the \emph{original} strainline satisfied the
-aforementioned conditions. This concept is illustrated in
+a point at which one of the conditions given in equations
+\eqref{eq:numericalexistence1} or \eqref{eq:numericalexistence2} fails. Doing so
+uncritically, however, opens up the possibility of stopping a strainline which
+only exited the $\mathcal{U}_{0}$ domain due to numerical noise. In order to
+avoid such unwanted failures, the approach of \textcite{farazmand2012computing}
+was followed. Therefore, strainline integration was only stopped if one of the
+aforementioned LCS conditions fail repeatedly over a pre-set length
+$l_{\textnormal{f}}=0.2$ of the strainline. Furthermore, the strainlines which
+were stopped because of continuous failure of LCS conditions were cut such that
+their \emph{new} endpoints in either direction, as seen from the strain initial
+condition, were the last point on which the \emph{original} strainline
+satisfied the aforementioned conditions. This concept is illustrated in
 \cref{fig:tailcutting}.
 
 \input{mainmatter/method/figures/tailcutting.tex}

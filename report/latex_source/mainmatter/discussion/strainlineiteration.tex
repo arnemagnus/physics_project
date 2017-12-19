@@ -45,7 +45,11 @@ mentioned above, was implemented in tandem. This is because the effective
 accuracy of the strainline integration method depends strongly on the
 interpolation method, as evidenced by the reformulation of the basic
 strainline ODE given in~\cref{eq:strainlinebasicode} to the ODE which
-was used here, given in~\cref{eq:strainlineode}. As for the transport of tracers
+was used here, given in~\cref{eq:strainlineode}. Furthermore, per
+\cref{def:rungekuttaorder} (see
+\cref{sub:the_runge_kutta_family_of_numerical_methods}), the accuracy of
+higher order Runge-Kutta methods depends on higher order derivatives of the
+underlying velocity field being continuous. As for the transport of tracers
 based on discrete velocity data, mentioned in~\cref{sec:general_remarks}, the
 interaction between strain eigenvector interpolation method, and strainline
 integration method, seems like an interesting research topic for potential

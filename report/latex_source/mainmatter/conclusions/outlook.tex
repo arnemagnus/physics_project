@@ -1,17 +1,23 @@
 \subsubsection{Suggestions for further work}
 
-A plethora of numerical integation methods were not tested as a part of this
+A plethora of numerical integration methods were not tested as a part of this
 project. An entirely different class of ODE solvers to the ones considered here,
 namely linear multistep methods, could have various desirable properties. In
-particular, this type of methods have memory, thus, they function quite
-differently to the memoryless solvers considered here. Interestingly, both
-fixed and adaptive stepsize linear multistep methods exist, and, by means of
-known recurrence relations, one may in principle design multistep methods of
-arbitrary order \parencite[chapter III]{hairer1993solving}. Research with
-regards to the usefulness of such methods in the context of LCS detection ---
-in addition to investigations on robust, numerical implementation of the as
-yet somewhat ambiguous LCS existence condition --- could reasonably be conducted
-based upon the double gyre system examined in this project.
+particular, methods of this kind have memory. They take the velocities at
+previous steps into account, which results in fewer velocity field evaluations
+being necessary. If the velocity field is computationally expensive to evaluate,
+the use of multistep methods opens up the possibility of using smaller numerical
+step lengths than for singlestep methods without sacrificing computation time.
+In short, multistep methods function quite differently to the memoryless
+solvers considered here. Interestingly, both fixed and adaptive stepsize linear
+multistep methods exist, and, by means of known recurrence relations, one may in
+principle design multistep methods of arbitrary order
+\parencite[chapter III]{hairer1993solving}. Research with regards to the
+usefulness of such methods in the context of LCS detection --- in addition to
+investigations on robust, numerical implementation of the as yet somewhat
+ambiguous LCS existence condition regarding the identification of the locally
+most repelling strainlines --- could reasonably be conducted based upon
+the double gyre system examined in this project.
 %Investigations regarding a robust, numerical implementation of one of the
 %LCS existence conditions could also be conducted based upon the double gyre
 %system considered here.

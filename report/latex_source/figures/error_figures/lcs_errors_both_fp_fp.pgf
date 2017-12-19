@@ -2128,7 +2128,8 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{1.175075in}{2.810384in}}%
-\pgfpathmoveto{\pgfqpoint{1.450616in}{1.833167in}}%
+\pgfpathlineto{\pgfqpoint{1.450616in}{1.833167in}}%
+\pgfpathlineto{\pgfqpoint{1.450616in}{1.833167in}}%
 \pgfpathlineto{\pgfqpoint{1.582473in}{0.931538in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
@@ -2153,6 +2154,10 @@
 }%
 \begin{pgfscope}%
 \pgfsys@transformshift{1.175075in}{2.810384in}%
+\pgfsys@useobject{currentmarker}{}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\pgfsys@transformshift{1.450616in}{1.833167in}%
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
 \begin{pgfscope}%

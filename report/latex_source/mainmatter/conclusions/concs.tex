@@ -1,46 +1,47 @@
 For the double gyre system considered here, the calculation of its LCSs
 does not exhibit particularly sensitive dependence to
-the choice of numerical integration method. However, this could be a
-consequence of the LCSs present within the system being robust under the chosen
-parameter values. This view is supported by the fact that the errors in the
-computed LCS curves quickly flattened for sufficiently small integration time
-steps or tolerance levels, while a similar effect did not manifest itself for
-the computed flow maps or strain eigenvalues. Based upon the errors in the
-computed flow maps, however, high order integration methods are generally
-advisable for more generic flow systems --- they result in more efficient
-calculations, which are less susceptible to numerical round-off error.
-Moreover, the fact that the same strainline segments were identified as LCSs
-even for quite large errors in the strain eigenvalues, suggests that the
+the choice of numerical integration method used for the initial tracer
+advection. However, this could be a consequence of the LCSs present within the
+system being robust under the chosen parameter values. This view is supported by
+the fact that the errors in the computed LCS curves quickly flattened for
+sufficiently small integration time steps or tolerance levels, while a similar
+effect did not manifest itself for the computed flow maps or strain eigenvalues.
+Based upon the errors in the computed flow maps, however, high order integration
+methods are generally advisable for more generic flow systems --- they result in
+more efficient calculations, which are less susceptible to numerical round-off
+error. Moreover, the fact that the same strainline segments were identified as
+LCSs even for quite large errors in the strain eigenvalues, suggests that the
 numerical implementation of the variational principles in order to find LCSs is,
 in itself, robust.
 
 There is, however, room for further research with regards to the numerical
-implementation of one of the LCS existence conditions, derived from their
-variational theory. In particular, to our knowledge, a general, robust numerical
-implementation is yet to be described in the literature. The approach used
-in this project involves a set of parameters independent of the overall flow.
-These parameter values were chosen based upon careful inspection of the
-system under consideration, in order for the LCS curves obtained here to
-conform with those found in the literature. A suggested alternative approach,
-which was not investigated as part of this project, would be to utilize a sort
-of numerical clustering algorithm rather than resorting to similar
-(to some extent) subjective considerations to the ones which were employed here.
+implementation of one of the LCS existence conditions (i.e., that of identifying
+the locally most repelling strainlines), derived from their variational theory.
+In particular, to our knowledge, a general, robust numerical implementation is
+yet to be described in the literature. The approach used in this project
+involves a set of parameters independent of the overall flow. The parameter
+values were chosen based upon careful inspection of the system under
+consideration, in order for the LCS curves obtained here to conform with those
+found in the literature. A suggested alternative approach, which was not
+investigated as part of this project, would be to utilize a sort of numerical
+clustering algorithm rather than resorting to similar (to some extent)
+subjective considerations to the ones which were employed here.
 
-Although no numerical integration scheme stood out as superior in general,
-using higher order methods invariably resulted in more efficient calculations,
-which are less prone to numerical round-off errors. Accordingly, the use of
-higher order methods is generaly advisable. Equally important as the choice of
-integration scheme, however, is the choice of numerical step length or tolerance
-level. Ideally, this should be selected based upon physical considerations of
-the system at hand. For instance, one could identify a characteristic velocity,
-then tune the step length or tolerance level such that no tracers moving with
-said velocity ever moves further than a characteristic grid spacing, when
-moving from one time step to the next. This, in order to ensure that the local
-instantaneous dynamics are resolved properly. To what scale the microscopic
-behaviour should be resolved depends on what scale to which detailed information
-regarding the flow is sought. Regarding most real-life applications, this is
-also dictated by the the sampling frequency --- or, more likely, model output
---- of the discrete data samples (spatial and temporal alike).
+While no numerical integration scheme stood out as superior in general,
+using higher order methods invariably resulted in more efficient calculations.
+Accordingly, the use of higher order methods is generaly advisable. Equally
+important as the choice of integration scheme, however, is the choice of
+numerical step length or tolerance level. Ideally, this should be selected based
+upon physical considerations of the system at hand. For instance, one could
+identify a characteristic velocity, then tune the step length or tolerance level
+such that no tracers moving with said velocity ever moves further than a
+characteristic grid spacing, when moving from one time step to the next. This,
+in order to ensure that the local instantaneous dynamics are resolved properly.
+To what scale the microscopic behaviour should be resolved depends on the scale
+to which detailed information regarding the flow is sought. Regarding most
+real-life applications, this is also dictated by the the sampling frequency ---
+or, more likely, model output --- of the discrete data samples (spatial and
+temporal alike).
 
 On that note, when investigating transport systems for which the available
 data sets are discrete, the choice of numerical \emph{interpolation} scheme
@@ -49,7 +50,7 @@ been investigated as part of this project. However, similar reservations
 as for the integration time step or tolerance levels are also applicable to
 the spatial and temporal sampling frequencies involved in the interpolation.
 Furthermore, the choice of integration scheme should be made in relation
-to the interpolation method. For instance, it makes little sense to use a
+to the interpolation method. For instance, it likely makes little sense to use a
 \nth{5}-order accurate integration scheme in tandem with a \nth{3}-order
 accurate interpolator. Put simply, the interaction between interpolation
 and integration schemes in the analysis of discrete data sets is of great

@@ -8,12 +8,12 @@ step length or tolerance level. This indicates that calculations of this kind
 are not particularly sensitive to integration method. Note that the
 $\mathcal{U}_{0}$ domains obtained by means of the adaptive stepsize methods
 for $\textnormal{tol}=10^{-1}$, shown in figure~\ref{fig:u0_dom_errs}, differ
-greatly from the \emph{correct} domain, which correlates well with the computed
-$\rmsd$ of the flow maps, shown in figure~\ref{fig:flowmap_err_both}. In
-particular, the error in the flow map for the aforementioned tolerance level is
-of order $1$ for all of the embedded methods. This error is comparable to the
-extent of the numerical domain, that is,
-$[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. Naturally, this leads to a
+greatly from the reference domain (see~\cref{fig:u0_domain}), which correlates
+well with the computed $\rmsd$ of the flow maps, shown in
+figure~\ref{fig:flowmap_err_both}. In particular, the error in the flow map for
+the aforementioned tolerance level is of order $1$ for all of the embedded
+methods. This error is comparable to the extent of the numerical domain, that
+is, $[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. Naturally, this leads to a
 drastically different system.
 
 The above observation implies that the most crucial part of the computation is
@@ -82,7 +82,7 @@ a distance greater than the grid spacing, when moving from one time level to
 the next.
 
 The computed reference LCS for the double gyre system considered here, shown in
-\cref{fig:referencelcs}, is made up of \emph{seven} different strainline
+\cref{fig:referencelcs}, is made up of \emph{eight} different strainline
 segments. The LCS presented in the article by \textcite{farazmand2012computing}
 is claimed to consist of a \emph{single} strainline segment. Comparing the two
 curves visually, however, indicates that the resulting LCSs are similar.

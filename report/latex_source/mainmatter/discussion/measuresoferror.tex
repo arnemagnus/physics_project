@@ -19,14 +19,14 @@ in this kind of analysis.
 Because the normal component of the velocity field is zero at the domain
 boundaries, one expects the flow map error to, in some sense, be limited from
 above by the domain extent. Thus, one could argue that using the median error
-as the measure in such cases would be more appropriate. This is, however,
-clearly an artifact of the particular velocity field studied here. For a
-generic, compressible flow system, this need not be the case. In order to
-conform to the general case, and include the effect of outlier errors, the
-$\rmsd$ was chosen as the measure of error for all flow maps. Moreover, given
-that the error in the flow maps follows some statistical distribution ---
-the details of which was not investigated in this project --- the $\rmsd$
-can be viewed as a first approximation of the standard deviation.
+as the measure in such cases would be more appropriate. That the flow map
+error is limited from above is, however, clearly an artifact of the particular
+velocity field studied here. For a generic, compressible flow system, this need
+not be the case. In order to conform to the general case, and include the effect
+of outlier errors, the $\rmsd$ was chosen as the measure of error for all flow
+maps. Moreover, given that the error in the flow maps follows some statistical
+distribution --- the details of which was not investigated in this project ---
+the $\rmsd$ can be viewed as a first approximation of the standard deviation.
 
 %For reasons of consistency, in addition to
 %the inclusion of the error of outliers, the $\rmsd$ was used as the measure of
@@ -55,11 +55,10 @@ differencing applied to the flow map, as described in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}. Thus, the $\rmsd$
 became the method of choice in computing the error of the strain eigenvalues.
 Moreover, seeing as the azimuthal angles of the strain eigenvectors are
-calculated relative to what is really an arbitrary axis, as far as the overall
-flow patterns are concerned, the \emph{absolute} errors in the strain
-eigendirections is the only sensible measure. Accordingly, the $\rmsd$ was
-chosen as  the measure of error for the directions of all strain eigenvectors,
-too.
+calculated relative to what is really an arbitrary axis, the \emph{absolute}
+errors in the strain eigendirections is the only sensible measure. Accordingly,
+the $\rmsd$ was chosen as the measure of error for the directions of all strain
+eigenvectors, too.
 %
 %While one could argue that using \emph{relative} errors with regards to
 %the strain eigenvalues would be more applicable, the fact that several
@@ -84,11 +83,11 @@ in the strain eigenvalue and eigenvector fields. As such, an interesting
 approach could be to consider the entire set of computed strainlines, employing
 some means of identifying the curve segments which resemble the reference
 LCS curves the most, and examining the reason for which any false negatives
-are eliminated, or why any false positives are included, in the final picture.
+are left out, or why any false positives are included, in the final picture.
 This sort of approach could provide useful insight into the nature of LCSs, but
-was ultimately not pursued in this project, as it simply fell outside the
+was ultimately not pursued here, as it simply fell outside the
 overall scope of this project, that is, the dependence of LCSs on the
-underlying numerical integration scheme.
+underlying numerical integration scheme for tracer advection.
 
 %\begin{framed}
 %    Handwaving wrt selecting the curve segments which `most closely resemble'
