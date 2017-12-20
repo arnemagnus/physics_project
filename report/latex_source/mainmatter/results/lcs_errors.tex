@@ -40,39 +40,40 @@ figure~\ref{fig:u0_domain}.
 \clearpage
 
 
-Figures~\ref{fig:lcs_rmsd_fp_nn_fixed} and~\ref{fig:lcs_rmsd_fn_nn_fixed} indicate
-that the $\rmsd$ of the LCS curves, as defined in~\cref{eq:rmsdlcs},
-does not follow the expected scalings of the numerical errors with the
-stepsize for the various singlestep integrators. Moreover, the two measures of
-the $\rmsd$ show the same quantitative behaviour, which is to be expected. The
-error quickly flattens for all integrators except the Euler scheme, which agrees
-well with the LCS curves presented in
-\cref{fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4}, where there are no visible
-discrepancies with regards to the reference LCS curve for step lengths smaller
-than $10^{-2}$. The fact that the $\rmsd$ of the curves obtained
-by means of the Euler method appears to have flattened at a higher level than
+\Cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed} indicate that the
+$\rmsd$ of the LCS curves, as defined in~\cref{eq:rmsdlcs}, does not follow the
+expected scalings of the numerical errors with the stepsize for the various
+singlestep integrators. Moreover, the two measures of the $\rmsd$ show the same
+quantitative behaviour, which is to be expected. The error quickly flattens as
+the step size is decreased for all integrators except the Euler scheme. In the
+latter case, the error flattens for smaller step sizes, and at a higher level,
+than the higher order methods. The fact that the $\rmsd$  of the curves obtained
+by means of the Euler method appears to have flattened  at a higher level than
 the rest of the integrators implies that the Euler method will never result in
 LCS curves with similar degrees of accuracy as for the other schemes. Lastly,
 the sudden drop in $\rmsd$ for the other methods for the transition
-$h=10^{-4}\rightarrow{h=10^{-5}}$ is unexpected. There is no clear reason for
-why it occurs. A similar effect is not present in the $\rmsd$s of the
-flow map, eigenvalues nor eigenvectors, shown in
+$h=10^{-4}\rightarrow{h=10^{-5}}$ is unexpected. A similar effect is not present
+in the $\rmsd$s of the flow map, eigenvalues nor eigenvectors, shown in
 \cref{fig:flowmap_err_fixed,fig:lmbd2_err_fixed,fig:xi2_err_fixed}.
 
 \input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_fixed_steplength.tex}
 
-Figures~\ref{fig:lcs_rmsd_fp_nn_both} and~\ref{fig:lcs_rmsd_fn_nn_both}
-show the $\rmsd$ of the LCS curves for all numerical integration methods as a
-function of the required number of function evaluations per advected tracer.
-For the adaptive stepsize methods, the error decreases steadily
-with the number of function evaluations until a certain point, after which
-the error suddenly jumps to the same steady level as the (high order)
-singlestep methods. Like the sudden drop in the error for the singlestep
-methods with a large number of function evaluations (i.e., for very
-small time steps), there is no obvious reason why this jump occurs. Neither
-does a similar trend manifest itself in the $\rmsd$s of the flow map,
-eigenvalues or -vectors, as shown in
-\cref{fig:flowmap_err_both,fig:lmbd2_err_both,fig:xi2_err_both}. Finally,
+\Cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} show the $\rmsd$ of the
+LCS curves for all numerical integration methods as a function of the required
+number of function evaluations per advected tracer. For the adaptive stepsize
+methods, the error decreases steadily with the number of function evaluations
+until a certain point, after which the error suddenly jumps to the same steady
+level as the (high order) singlestep methods. The behaviour of the $\rmsd$ of
+the LCS curves obtained by means of the Dormand-Prince 8(7) method deviates
+somewhat from this pattern; in particular, oscillations are visible for the
+tolerance range $\textnormal{tol}=10^{-5}$ through to
+$\textnormal{tol}=10^{-8}$. A similar trend is not apparent in the $\rmsd$s of
+of the flow map, eigenvalues or -vectors, as shown in
+\cref{fig:flowmap_err_both,fig:lmbd2_err_both,fig:xi2_err_both}. A possible
+explanation for the aforementioned oscillatory behaviour, as well as the
+overall flattening of the $\rmsd$ of the LCS curves observed for all (high
+order) integration methods, will be elaborated upon in
+\cref{sec:general_remarks}. Finally,
 \cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} suggest that the
 Bogacki-Shampine 5(4) and Dormand-Prince 8(7) schemes provide the overall most
 efficient means of obtaining accurate LCS curves for the considered double gyre

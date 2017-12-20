@@ -1,0 +1,29 @@
+\begin{figure}[htpb]
+    \centering
+    \input{figures/error_figures/lcs_error_oscillations.pgf}
+    \caption[A possible explanation for the behaviour of the $\rmsd$ of the
+    computed LCS curves]
+    {A possible explanation for the behaviour of the
+        $\rmsd$ of the computed LCS curves. The computed LCS curves obtained by
+        means of the Dormand-Prince 8(7) method, for tolerance levels
+        $\textnormal{tol}=10^{-5}$ through to $\textnormal{tol}=10^{-8}$, are shown
+        (solid) together with the reference LCS (dashed) for a subset of the
+        computational domain $\mathcal{U}$. Notice how the second reference LCS
+        curve segment (counting from the top and downwards) is present in the LCS
+        approximations obtained for $\textnormal{tol}=10^{-5}$ and
+        $\textnormal{tol}=10^{-7}$, but \emph{not} for $\textnormal{tol}=10^{-6}$
+    and $\textnormal{tol}=10^{-8}$. The offset between the between the two
+topmost reference LCS curve segments shown in the figure is too small for the
+absence of the second topmost reference LCS curve segment to be flagged as a
+false negative. For all numerical step lengths and tolerance levels which
+correspond to the same level of $\rmsd$ in the computed LCS curves
+(see~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fp_nn_both,%
+fig:lcs_rmsd_fn_nn_fixed,fig:lcs_rmsd_fn_nn_both}), the second topmost reference
+LCS curve segment is not present in the LCS approximation. For those cases,
+the offset between the analogue to the topmost one shown in this figure, and
+the second topmost reference LCS curve segment is approximately constant, and
+likely dominates any other errors --- which leads to the flattening of the
+$\rmsd$, visible in~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fp_nn_both,%
+fig:lcs_rmsd_fn_nn_fixed,fig:lcs_rmsd_fn_nn_both}.}
+    \label{fig:lcserroroscillations}
+\end{figure}
