@@ -22,6 +22,29 @@ the double gyre system examined in this project.
 %LCS existence conditions could also be conducted based upon the double gyre
 %system considered here.
 
+Curiously, in several quite recent research articles regarding the detection
+of LCSs for real-world transport systems, high order adaptive step size
+integration methods are used in conjunction with interpolated velocity fields,
+seemingly with little awareness as to whether or not the use of high order
+integration methods are warranted. For instance, the article by
+\textcite{vansebille2018lagrangian} provides a quite thorough discussion of the
+currently available computational tools for the advection of tracers, but lacks
+a detailed treatment of numerical integration methods. Another example is
+the article by \textcite{gough2017persistent}, where the authors state that they
+used a high order adaptive step size Runge-Kutta method in combination with
+a cubic interpolation routine in order to investigate oceanic transport
+patterns in the northwestern gulf of Mexico; but fail to motivate their choices
+of integration and interpolation methods. The results of this project indicate
+that adaptive integration schemes of lower order (such as the Bogacki-Shampine
+3(2) method) can be more efficient than higher order adaptive schemes when
+somewhat crude approximations are sought (that is, using a relatively high
+numerical tolerance level). In particular, velocity fields which are
+interpolated by means of cubic splines are sufficiently smooth for integration
+methods up to third order to work optimally.
+
+Based on the above, investigations with regards to the interaction between
+numerical integration and interpolation schemes in the context of LCS detection
+are appealing, due to their innate relation to real-world applications.
 For my own future work, I think that it would be natural to continue
 the study of LCSs. In particular, I find the prospect of analyzing LCSs in
 three-dimensional flow systems alluring. To my knowledge, the three-dimensional
@@ -30,10 +53,6 @@ literature. Thus, this could potentially accelerate the recommendability of
 the use of LCS theory to describe systems which can not reasonably be regarded
 as two-dimensional. Moreover, examining a broader range of systems seems like
 a logical extension of the work I have conducted as part of this project.
-Lastly, as suggested previously, investigations with regards to the interaction
-between numerical integration and interpolation schemes in the context of LCS
-detection are appealing, due to their innate relation to real-world
-applications.
 
 %Furthermore, under the assumption that I am able to
 %find a three-dimensional velocity field for which there exists a plane with a

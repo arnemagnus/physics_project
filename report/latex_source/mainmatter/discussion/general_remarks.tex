@@ -1,4 +1,4 @@
-\section{General remarks}
+\section{Remarks on the computed LCSs}
 \label{sec:general_remarks}
 
 Overall, the use of a variational framework for computing LCSs appears to
@@ -37,12 +37,19 @@ finite differences.
 
 From inspection of~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
 fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}, it becomes clear that the
-error of the strainline components identified as LCS constituents flattens
-abruptly for sufficiently small integration step lengths or tolerance levels.
-Notably, this occurs for larger step lengths or tolerance levels, respectively,
-than the corresponding turning points for the error in the flow maps (i.e.,
-the points at which the error in the flow maps increases with decreasing step
-length or tolerance level). However, close inspection of
+error of the strainline components identified as LCS constituents, for some
+configurations with small step lengths or tolerance levels, is dominated by
+a seemingly constant contribution of the order $10^{-4}$. For instance,
+for the Dormand-Prince 8(7) method,
+\cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} show that for the three
+lowest tolerance levels $\textnormal{tol}=10^{-8}$, $10^{-9}$ and
+$10^{-10}$, respectively, the $\rmsd$ is of order $10^{-4}$, whereas it is
+considerably smaller --- of order $10^{-7}$ --- for $\textnormal{tol}=10^{-7}$.
+This is unexpected, as we expect the error to decrease when the tolerance level
+is lowered.  Notably, this occurs for larger step lengths or tolerance levels,
+respectively, than the corresponding turning points for the error in the flow
+maps (i.e., the points at which the error in the flow maps increases with
+decreasing step length or tolerance level). However, close inspection of
 \cref{fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4,fig:lcs_rkbs32,fig:lcs_rkbs54,%
 fig:lcs_rkdp54,fig:lcs_rkdp87} reveals that, for the numerical step lengths
 and tolerance levels which correspond to the same level of error in the LCS
@@ -51,7 +58,7 @@ fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}), the computed LCS
 approximations are made up of seven different strainline segments each. This
 is unlike the reference LCS, which, as previously mentioned, consists
 of \emph{eight} strainline segments.
-
+\clearpage
 \Cref{fig:lcserroroscillations} shows the computed LCS approximations together
 with the reference LCS, for the Dormand-Prince 8(7) method with tolerance
 levels $\textnormal{tol}=10^{-5}$ through to $\textnormal{tol}=10^{-8}$ ---
@@ -66,9 +73,11 @@ are sufficiently close for this error not to be identified as a false negative.
 Thus, when computing the LCS $\rmsd$, the offset between the LCS curve segment
 corresponding to the topmost one shown in the figure, and the second topmost
 reference LCS curve likely dominates the other contributions. Furthermore, the
-fact that this offset is nearly constant explains the flattening of the LCS
-$\rmsd$, as shown in~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
-fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}. For all of the numerical step
+fact that this offset is nearly constant explains the apparently identical LCS
+$\rmsd$ in the cases where the computed LCS approximation consists of seven
+strainline segments (as shown in
+\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
+fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}). For all of the numerical step
 lengths and tolerance levels which result in the same level of LCS $\rmsd$, the
 situation is the same as for the  tolerance levels $\textnormal{tol}=10^{-6}$
 and $\textnormal{tol}=10^{-8}$, shown in~\cref{fig:lcserroroscillations}. Figures
@@ -146,7 +155,7 @@ find a characteristic velocity for the system, and choose the time step small
 enough so that a tracer moving with the characteristic velocity never traverses
 a distance greater than the grid spacing, when moving from one time level to
 the next.
-
+\clearpage
 The computed reference LCS for the double gyre system considered here, shown in
 \cref{fig:referencelcs}, is made up of \emph{eight} different strainline
 segments. The LCS presented in the article by \textcite{farazmand2012computing}

@@ -17,19 +17,28 @@ The classical Runge-Kutta method, with a numerical step length
 $\Delta=10^{-3}$, was used for all computations of strainlines, regardless
 of advection integration scheme. This was a conscious choice, based on the idea
 of using the available information in the flow maps with the same degree of
-precision for all integrator configurations. If, however, the entire process of
-numerical integration, including both the advection of tracers and the
-calculation of strainlines, were to be performed with the same integrator
-configuration, comparisons between the resulting LCSs could have been
-misleading. That in, the strain information present in the flow maps would
-necessarily not have been utilized to the full extent, if the strainline
-integration was performed by means of an imprecise integration scheme, i.e.,
-for large time steps or tolerance levels. For instance, the LCSs curves obtained
-by means of the Euler method, shown in figure~\ref{fig:lcs_euler}, could have
-exhibited even more false positives and negatives if the same method was used
-in order to obtain strainlines as well, due to it only being \nth{1}-order
-accurate.
+precision for all integrator configurations. In addition, this project work
+is centered around the dependence of the calculation of LCSs on the
+integration scheme which was used for the first step in the process;
+the advection of tracer particles. Using a single integration routine to
+compute all strainlines ensured that any errors in the tracer advection
+would be propagated in a similar fashion, all the way from the flow maps to the
+computed LCSs. Furthermore, it also meant that comparing the errors of the
+flow maps to the errors of the LCSs would be meaningful.
 
+%If, however, the entire process of
+%numerical integration, including both the advection of tracers and the
+%calculation of strainlines, were to be performed with the same integrator
+%configuration, comparisons between the resulting LCSs could have been
+%misleading. That in, the strain information present in the flow maps would
+%necessarily not have been utilized to the full extent, if the strainline
+%integration was performed by means of an imprecise integration scheme, i.e.,
+%for large time steps or tolerance levels. For instance, the LCSs curves obtained
+%by means of the Euler method, shown in figure~\ref{fig:lcs_euler}, could have
+%exhibited even more false positives and negatives if the same method was used
+%in order to obtain strainlines as well, due to it only being \nth{1}-order
+%accurate.
+%
 An alternative approach to the numerical integration of strainlines, would be
 to make use of a high order adaptive step length method. This could, in
 principle, reduce the required computational time, in addition to reducing
