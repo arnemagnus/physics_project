@@ -1,20 +1,21 @@
 \section{About the measures of error}
 \label{sec:about_the_measures_of_error}
 
-RMS averaging was utilized for all the measures of error introduced in~\cref{sec:estimation_of_errors},
-except the one concerning false positives and negatives with regards to
-LCS identification. Regarding the flow maps, this choice was made based on the
-fact that it encapsulates the effect of outliers, that is, any tracers for which
-the advection error becomes relatively large. These are expected to have the
-most severe impact on the ensuing LCS identification procedure. As shown in
+RMS averaging was utilized for all the measures of error introduced in
+\cref{sec:estimation_of_errors}, except the one concerning false positives and
+negatives with regards to LCS identification. Regarding the flow maps, this
+choice was made based on the fact that it encapsulates the effect of outliers,
+that is, any tracers for which the advection error becomes relatively large.
+These are expected to have the most severe impact on the ensuing LCS
+identification procedure. As shown in
 \cref{fig:flowmap_err_fixed,fig:flowmap_err_both}, the errors in the flow map
 resulting of the Euler method and all of the adaptive stepsize methods, for the
 largest numerical step length and tolerance level, respectively, are of order 1,
 similar to the dimensions of the computational domain, that is,
-$[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. However, because there is no general
-a priori way of knowing the regions of the domain in which the flow maps will be
-resolved the most poorly, the maximum error is not of particular interest
-in this kind of analysis.
+$\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. However, because
+there is no general a priori way of knowing the regions of the domain in which
+the flow maps will be resolved the most poorly, the maximum error is not of
+particular interest in this kind of analysis.
 
 Because the normal component of the velocity field is zero at the domain
 boundaries, one expects the flow map error to, in some sense, be limited from
@@ -49,7 +50,7 @@ time for the flow system considered here, as mentioned in
 does not hold for general, compressible flows. This could result in
 some very small eigenvalues, which would yield deceptively large relative
 errors. This would, again, be undesirable, because one would expect the
-eigenvalue errors to scale similarly to that of the flow map, due to the
+eigenvalue errors to scale similarly to that of the flow map --- due to the
 computation of the Cauchy-Green strain tensor field being based on finite
 differencing applied to the flow map, as described in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}. Thus, the $\rmsd$
@@ -86,7 +87,7 @@ LCS curves the most, and examining the reason for which any false negatives
 are left out, or why any false positives are included, in the final picture.
 This sort of approach could provide useful insight into the nature of LCSs, but
 was ultimately not pursued here, as it simply fell outside the
-overall scope of this project, that is, the dependence of LCSs on the
+overall scope of this project; that is, the dependence of LCSs on the
 underlying numerical integration scheme for tracer advection.
 
 %\begin{framed}

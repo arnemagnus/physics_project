@@ -17,9 +17,9 @@ greatly from the reference domain (see~\cref{fig:u0_domain}), which correlates
 well with the computed $\rmsd$ of the flow maps, shown in
 figure~\ref{fig:flowmap_err_both}. In particular, the error in the flow map for
 the aforementioned tolerance level is of order $1$ for all of the embedded
-methods. This error is comparable to the extent of the numerical domain, that
-is, $[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. Naturally, this leads to a
-drastically different system.
+methods. This error is comparable to the extent of the computational domain,
+that is, $\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$. Naturally,
+this leads to a drastically different system.
 
 The above observation implies that the most crucial part of the computation is
 advecting the tracers accurately. As mentioned in
@@ -27,13 +27,13 @@ advecting the tracers accurately. As mentioned in
 in the computed strain eigenvalues and -vectors scale like the error in the
 computed flow map. This is to be expected, as the eigenvalues and -vectors are
 essentially found by applying finite differences to the flow map. The
-eigenvalues are crucial in terms of identifying LCSs, as can be seen in the
-numerical reformulation of the LCS existence theorem, which is given in
-\cref{eq:numericalexistence}. The error in the computed strain eigenvectors, is
-consistently two to three orders of magnitude smaller than the error in the
-eigenvalues. This is most likely due to them being computed based on the %denser
-\emph{auxiliary} set of tracers, which per construction results in more accurate
-finite differences.
+eigenvalues and -vectors play a crucial in the LCSs identification process, as
+is evident from the numerical reformulation of the LCS existence theorem, which
+is given in~\cref{eq:numericalexistence}. The error in the computed strain
+eigenvectors, is consistently two to three orders of magnitude smaller than the
+error in the eigenvalues. This is most likely due to them being computed based
+on the set of \emph{auxiliary} tracers, which per construction results in more
+accurate finite differences.
 
 From inspection of~\cref{fig:lcs_rmsd_fp_nn_fixed,fig:lcs_rmsd_fn_nn_fixed,%
 fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both}, it becomes clear that the
@@ -45,7 +45,7 @@ for the Dormand-Prince 8(7) method,
 lowest tolerance levels --- $\textnormal{tol}=10^{-8}$, $10^{-9}$ and
 $10^{-10}$, respectively --- the $\rmsd$ is of order $10^{-4}$, whereas it is
 considerably smaller --- of order $10^{-7}$ --- for $\textnormal{tol}=10^{-7}$.
-This is unexpected, as we expect the error to decrease when the tolerance level
+This is surprising, as we expect the error to decrease when the tolerance level
 is lowered.  Notably, this occurs for larger step lengths or tolerance levels,
 respectively, than the corresponding turning points for the error in the flow
 maps (i.e., the points at which the error in the flow maps increases with
@@ -95,14 +95,14 @@ the existence of a lower sufficiency threshold in terms of the required
 advection accuracy, beneath which the computed LCS curves do not become more
 precise. Any such threshold would, however, likely only be valid for the LCS
 curves of this particular velocity field --- that is, the system given by
-\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams} --- which
-appear quite robust overall. Other, more volatile systems, would probably
-require more accurate advection. However, investigating this further for a
-wider range of systems could result in valuable insight. Should such an
-advection threshold exist, and be linked to the scales of the given system,
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams} --- which,
+admittedly, appear quite robust overall. Other, more volatile systems, would
+probably require more accurate advection. Further investigations
+for a wider range of systems could result in valuable insight. Should such an
+advection threshold exist, and be linked to the scales of the underlying system,
 it would naturally be of great significance when investigating generic transport
-systems by means of a similar variational LCS approach. Admittedly, there is no
-apparent reason why this should be the case.
+systems by means of a similar variational LCS approach. However, there is
+no apparent reason why such a threshold should exist.
 
 %For the considered double gyre system, there appears to be a lower threshold
 %in terms of the required advection accuracy, beneath which the computed LCS
