@@ -39,19 +39,19 @@ as defined in~\cref{eq:rmsddirection}, follows the anticipated scalings with
 the step lengths for the various singlestep integrators to some degree. The
 $\rmsd$ dependence on the numerical step length is not entirely analogous to
 that of the $\rmsd$ of $\lambda_{2}$. Notably, the error in the eigenvector
-directions are two to three orders of magnitude smaller than the errors
-in the eigenvalues, for any given step size. This can be understood as a
+directions is two to three orders of magnitude smaller than the error
+in $\lambda_{2}$, for any given step size. This can be understood as a
 consequence of using the auxiliary tracers in order to compute the strain
 eigenvectors, as described in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}, which, by construction,
-is more accurate than using the main tracers --- which are used to computed
-the strain eigenvalues. \Cref{fig:xi2_err_both} shows that the $\rmsd$ of
+is more accurate than using the main tracers (which are used to
+compute the strain eigenvalues). \Cref{fig:xi2_err_both} shows that the $\rmsd$ of
 the eigenvector direction behaves qualitatively like that of the
-$\rmsd$ of the $\lambda_{2}$ (see~\cref{fig:lmbd2_err_both}) as a function
+$\rmsd$ of $\lambda_{2}$ (see~\cref{fig:lmbd2_err_both}) as a function
 of the required number of function evaluations for each integration scheme.
 Like for the singlestep methods, the $\rmsd$ of the eigenvector direction for
 the embedded methods is generally between two and three orders of magnitude
-smaller than the $\rmsd$ of $\lambda_{2}$ for a given number of function
+smaller than the $\rmsd$ of $\lambda_{2}$ for any given number of function
 evaluations.
 
 %Figure~\ref{fig:xi2_err_fixed} reveals that the $\rmsd$ of the eigenvector

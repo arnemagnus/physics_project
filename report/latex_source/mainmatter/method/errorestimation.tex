@@ -25,7 +25,7 @@ reference flow map.
 
 The RMSD in both sets of eigenvalues, $\lambda_{1}(\vct{x}_{0})$ and
 $\lambda_{2}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field, as given
-by~\cref{eq:cauchygreencharacteristics} was also computed analogously:
+by~\cref{eq:cauchygreencharacteristics}, was also computed analogously:
 \begin{equation}
     \label{eq:rmsdlmbd}
     \rmsd_{\textnormal{eigenvalue}} = \sqrt{\frac{1}{N}%
@@ -75,7 +75,7 @@ segments being erroneously identified as either a false positive or a false
 negative. In order to reduce this sort of error, a lower numerical threshold
 $l_{\textnormal{noise}}=0.01$, that is, ten times the numerical integration
 step $\Delta=10^{-3}$ used in order to compute the constituent strainlines, was
-used in identifying false positives and negatives; any point on an LCS curve
+used in identifying false positives and negatives. Any point on an LCS curve
 which was farther away from all points on the reference LCS than
 $l_{\textnormal{noise}}$ was identified as a false positive.
 Similarly, any point on the reference LCS curve which was farther away from all
@@ -96,17 +96,19 @@ midpoint rule for numerical integration;
 \end{equation}
 where the sum is over all points with a greater offset than the aforementioned
 $l_{\textnormal{noise}}$. Regarding false negatives, the roles of
-$\gamma$ and $\widehat{\gamma}$ are reversed. Per~\cref{eq:strainlineode},
+$\gamma$ and $\widehat{\gamma}$ are reversed. Per the definition of the
+fictitious time-like coordinate $s$ in~\cref{eq:strainlineode},
 $\Delta$, the previously mentioned numerical integration step length used in
 order to compute strainlines, equals the distance separating consecutive
 points in the parametrization of the LCS curves. This is due to the eigenvectors
-$\vct{\xi}_{1}$ being normalized to unit length. The calculation of this offset
-is illustrated in figure~\ref{fig:fp_fn_principle}.
+$\vct{\xi}_{1}$ being normalized to unit length. The calculation of the offset
+defined in~\cref{eq:midpointfalselcs} is illustrated in
+\cref{fig:fp_fn_principle}.
 
 \input{mainmatter/method/figures/fp_fn_offset.tex}
 %\clearpage
 Lastly, in order to obtain a quantitative measure of the offset in the
-LCS curve segments which comply with the reference LCS (that is, to the
+LCS curve segments which comply with the reference LCS (that is, within the
 numerical threshold $l_{\textnormal{noise}}$), the RMS distance separating each
 point on the LCS curve with the nearest point on the reference, was calculated:
 \begin{equation}

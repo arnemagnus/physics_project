@@ -1,29 +1,31 @@
 \section{Advecting a set of initial conditions}
 \label{sec:advecting_a_set_of_initial_conditions}
 
-The variational model is based upon the advection of non-interacting tracers,
-which is described in \cref{sec:typeofflow}, by the velocity field defined in
-\cref{eq:doublegyre}. To our knowledge, the system has no analytical
-solution for the tracer trajectories. Thus, it must be solved numerically, by
-means of some numerical integration method, e.g.\ a Runge-Kutta method, a
-family of numerical ODE methods which is outlined in
+The variational model for computing LCSs is based upon the advection of
+non-interacting tracers, as described in \cref{sec:typeofflow}, by the
+velocity field defined by
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}. To our knowledge,
+the system has no analytical solution for the tracer trajectories. Thus, it must
+be solved numerically, by means of some numerical integration method, e.g.\ a
+Runge-Kutta method, a family of numerical ODE methods which is outlined in
 \cref{sub:the_runge_kutta_family_of_numerical_methods}. With the main focus of
-this project being the dependence on LCSs on the chosen integration method, the
-advection was performed using all of the numerical integrators introduced in
-\cref{sub:the_runge_kutta_methods_under_consideration}.
+this project being the dependence on LCSs detection upon the chosen integration
+method, the advection was performed using all of the numerical integrators
+introduced in \cref{sub:the_runge_kutta_methods_under_consideration}.
 
 \subsection{Generating a set of initial conditions}
 \label{sub:generating_a_set_of_initial_conditions}
 The computational domain $\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$
 was discretized by a set of equidistant \emph{principal} tracers, with
-$1000\times500$  grid points, effectively creating a nearly uniform grid of
-approximate spacing $\Delta{x}\simeq\Delta{y}\simeq0.002$. Tracers were placed
-on and within the domain boundaries of $\mathcal{U}$. The grid was extended
-outside of $\mathcal{U}$, with an additional two rows or columns appended to all
-of the domain edges, with the same grid spacing as the \emph{principal} grid.
-This was done in order to ensure that the dynamics at the domain boundaries
-were included in the analysis to follow. The velocity field outside of
-$\mathcal{U}$ was also defined by~\cref{eq:doublegyre}. The
+$1000\times500$ grid points, effectively creating a nearly uniform grid of
+approximate spacing $\Delta{x}\simeq\Delta{y}\simeq0.002$, as tracers were
+placed on and within the domain boundaries of $\mathcal{U}$. The grid was
+extended outside of $\mathcal{U}$, with an additional two rows or columns
+appended to all of the domain edges, with the same grid spacing as the
+\emph{principal} grid. This was done in order to ensure that the dynamics at the
+domain boundaries were included in the analysis to follow. The velocity field
+outside of $\mathcal{U}$ was also defined by
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}. The
 \emph{extended} grid thus had a total of $1004\times504$ grid points.
 The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
 \clearpage
@@ -31,8 +33,8 @@ The construction of the grid is illustrated in figure~\ref{fig:initialgrid}.
 
 In order to increase the precision of the Cauchy-Green strain tensor,
 it is necessary to increase the accuracy with which one computes the
-Jacobian of the flow map, as their accuracies are intrinsically linked;
-which follows from~\cref{eq:cauchygreen}.
+Jacobian of the flow map, as their accuracies are intrinsically linked; which
+follows from~\cref{eq:cauchygreen}.
 This was done by advecting a set of four auxiliary tracers surrounding each
 \emph{main} tracer, that is, tracers originating at the principal or extended
 grid points. To each tracer point $\vct{x}_{i,j}=(x_{i},y_{j})$, neighboring
@@ -80,7 +82,8 @@ which will be described in greater detail in
 \cref{sec:calculating_the_cauchy_green_strain_tensor}. Note, however, that
 taking the finite difference between the endpoint coordinates of neighboring
 tracers is generally expected to yield small decimal numbers, because the
-velocity field, given in~\cref{eq:doublegyre}, is reasonably
+velocity field, given by
+\cref{eq:doublegyre,eq:doublegyrefuns,eq:doublegyreparams}, is reasonably
 well-behaved. Say, for instance, that the difference is of order $10^{-10}$.
 Because, as previously mentioned, we can only really expect to accurately
 resolve the flow map to the \nth{15} decimal digit, this leaves only 5
@@ -92,7 +95,7 @@ the auxiliary grid spacing $\delta{x}=\delta{y}=10^{-5}$ was chosen --- two
 orders of magnitude less than the original spacing --- ensuring that the
 derivatives in the Jacobian are far more well-resolved than for the main
 tracers alone, while also leaving up to 10 significant decimal digits for
-which the difference in the final positions of the auxiliary tracers can be
+which the difference in the final positions of the auxiliary tracers could be
 resolved.
 \clearpage
 %In particular, the smallest number which can be resolved as a double-precision
@@ -151,6 +154,7 @@ due to these methods being of lower order accuracy.
 %Euler method. For the other fixed stepsize integrators, which are of higher
 %order, we expect this breaking point to occur for a somewhat larger time step.
 %
+
 As previously mentioned, the concept of \emph{order} does not translate
 directly from the singlestep integrators to the adaptive stepsize methods, by
 virtue of the dynamical step length. The step length adjustment procedure
@@ -169,20 +173,20 @@ solution is needed as the reference. Following the discussion above, the
 solution obtained via the Dormand-Prince 8(7) integrator with a numerical
 tolerance level of $10^{-12}$ was used for this purpose.
 
-With the addition of the aforementioned auxiliary tracers, the total number
-of tracers which were advected became of order $2.5$ million. In order to
-accelerate the computational process, the advection was parallellized by means
-of MPI and run on NTNU's supercomputer, Vilje. The choice of MPI over
-alternative multiprocessing tools was mainly motivated by MPI facilitating
-access to multiple nodes within the Vilje cluster. Because the tracers are
-independent, the parallelization consisted of distributing an approximately
-even amount of tracers across all ranks, whereupon each rank advected its
-allocated tracers. In the end, all of the tracer end positions was collected
-by the designated main process (that is, $\textnormal{rank}=0$). The
-associated speedup was crucial for this project --- for example, advection using
-the Euler method and a time step of $10^{-5}$ required in excess of $1000$
-CPU hours; an insurmountable feat for most computers, including the author's own
-personal laptop.
+With the addition of the aforementioned auxiliary tracers (see
+\cref{eq:auxgrid,fig:auxiliarygrid}), the total number of tracers which were
+advected became of order $2.5$ million. In order to accelerate the computational
+process, the advection was parallellized by means of MPI and run on NTNU's
+supercomputer, Vilje. The choice of MPI over alternative multiprocessing tools
+was mainly motivated by MPI facilitating access to multiple nodes within the
+Vilje cluster. Because the tracers are independent, the parallelization
+consisted of distributing an approximately even amount of tracers across all
+ranks, whereupon each rank advected its allocated tracers. In the end, all of
+the tracer end positions was collected by the designated main process
+(that is, $\textnormal{rank}=0$). The associated speedup was crucial for this
+project --- for example, advection using the Euler method and a time step of
+$10^{-5}$ required in excess of $1000$ CPU hours; an insurmountable feat for
+most computers, including the author's own personal laptop.
 \clearpage
 \subsection{On the implementation of embedded Runge-Kutta methods}
 \label{sub:on_the_implementation_of_embedded_runge_kutta_methods}
@@ -191,7 +195,7 @@ In order to implement automatic step size control, the procedure suggested
 by \textcite[pp.167--168]{hairer1993solving} was followed
 closely. A starting step size of $h=0.1$ was used throughout. For the first
 solution step, the embedded integration method, as described in
-\cref{sub:the_runge_kutta_family_of_numerical_methods} yields the two
+\cref{sub:the_runge_kutta_family_of_numerical_methods}, yields the two
 approximations $x_{1}$ and $\widehat{x}_{1}$, from which the difference
 $x_{1}-\widehat{x}_{1}$ can be used as an estimate of the error of the less
 precise result. The idea is to enforce the error of the numerical solution to
@@ -199,7 +203,7 @@ satisfy componentwise:
 \begin{equation}
     \label{eq:embeddederror}
     \abs{x_{1,i}-\widehat{x}_{1,i}} \leq \scem_{i},\quad{}%
-    \scem_{i}=\atol_{i}+\max\big(\abs{x_{0,i}},\abs{x_{1,i}}\big)\cdot{}\rtol_{i}
+    \scem_{i}=\atol_{i}+\max\big(\abs{x_{0,i}},\abs{x_{1,i}}\big)\cdot{}\rtol_{i},
 \end{equation}
 where $\atol_{i}$ and $\rtol_{i}$ are the desired absolute and relative
 numerical tolerances, prescribed by the user. For this project, $\atol_{i}$ was
@@ -257,4 +261,4 @@ relative to the interpolant corresponding to the second row of
 $\widehat{b}$-coefficients in \cref{tab:butcherbs54}. If this was larger than
 unity, the attempted step was rejected, whereas the step was accepted if the
 error was smaller than or equal to unity. In either case, this \emph{second}
-error estimate was used in order to update the time step.
+error estimate was then used in order to update the time step.

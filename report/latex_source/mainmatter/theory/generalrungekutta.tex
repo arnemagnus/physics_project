@@ -7,7 +7,7 @@ discretization in order to obtain numerical approximations of the \emph{true}
 solutions of systems like \eqref{eq:ivpsystem}. The German mathematicians C.
 Runge and M. W. Kutta developed the first of the family's methods at the turn
 of the twentieth century \parencite[p.134]{hairer1993solving}. The general
-scheme of what is now known as a Runge-Kutta method is as follows: \\
+outline of what is now known as a Runge-Kutta method is as follows: \\
 
 \begin{defn}
     \label{def:generalrungekutta}
@@ -20,8 +20,8 @@ scheme of what is now known as a Runge-Kutta method is as follows: \\
     \label{eq:generalrungekutta}
     \begin{aligned}
         k_{i} &= f\bigg(t_{n}+c_{i}h,x_{n}+
-                h\sum\limits_{j=1}^{s}a_{i,j}k_{j}\bigg),\quad{}i=1,\ldots,s\\
-        x_{n+1} &= x_{n} + h\sum\limits_{i=1}^{s}b_{i}k_{i}
+                h\sum\limits_{j=1}^{s}a_{i,j}k_{j}\bigg),\quad{}i=1,\ldots,s,\\
+        x_{n+1} &= x_{n} + h\sum\limits_{i=1}^{s}b_{i}k_{i},
     \end{aligned}
 \end{equation}
 is called an \emph{s-stage Runge-Kutta method} for the system
@@ -35,8 +35,8 @@ The \emph{order} of a Runge-Kutta method can be defined as follows:\\
 \begin{defn}
     \label{def:rungekuttaorder}
     A Runge-Kutta method, given by~\cref{eq:generalrungekutta}, is
-    said to be of \emph{order} $p$ if, for sufficiently smooth systems
-    \eqref{eq:ivpsystem}, the local error $e_{n}$ scales as $h^{p+1}$, that is:
+    of \emph{order} $p$ if, for sufficiently smooth systems
+    \eqref{eq:ivpsystem}, the local error $e_{n}$ scales as $h^{p+1}$. That is:
     \begin{equation}
         \label{eq:rungekuttaorder}
         e_{n}=\norm{x_{n}-u_{n-1}(t_{n})} \leq Kh^{p+1},
@@ -90,7 +90,7 @@ the \emph{weights} and \emph{nodes}, respectively.  Since the 1960s, it has
 been customary to represent Runge-Kutta methods, given by
 \cref{eq:generalrungekutta}, symbolically, by means of mnemonic devices known
 as Butcher tableaus \parencite[p.134]{hairer1993solving}. The Butcher tableau
-for a general \emph{s}-stage Runge-Kutta method, introduced in definition
+for a general \emph{s}-stage Runge-Kutta method, as introduced in definition
 \ref{def:generalrungekutta}, is presented in table~\ref{tab:generalbutcher}.
 
 \clearpage
@@ -247,8 +247,10 @@ the required number of function evaluations grows at a disproportional rate with
 the required accuracy order. For systems with right hand sides which are
 computationally costly to evaluate, this means that one frequently is able to
 obtain the desired numerical accuracy more effectively by using, for instance,
-the classical Runge-Kutta method with a finer step length. The Butcher tableau
-representation of the classical Runge-Kutta method can be found in
+the classical Runge-Kutta method with a finer step length more cheaply in terms
+of computational costs than using methods of higher order with a somewhat larger
+step length. The Butcher tableau representation of the classical Runge-Kutta
+method can be found in
 \cref{tab:butcherrk4}.
 
 \input{mainmatter/theory/butchertableaus/rk3.tex}

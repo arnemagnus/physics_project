@@ -20,8 +20,8 @@ system defined by~\cref{eq:odeflowsystem}, the flow map is defined as
     \label{eq:flowmap}
     \vct{F}_{t_{0}}^{t}(\vct{x}_{0}) = \vct{x}(t;t_{0},\vct{x}_{0}),
 \end{equation}
-i.e., the flow map describes the mathematical movement of the tracers from
-one point in time to another. Generally, the flow map is as smooth as the
+i.e., the flow map describes the movement of the tracers from one point in time
+to another mathematically. Generally, the flow map is as smooth as the
 velocity field $\vct{v}$ in system \eqref{eq:odeflowsystem}
 \parencite{farazmand2012computing}. For sufficiently
 smooth velocity fields, the right Cauchy-Green strain tensor field is defined as
@@ -67,6 +67,8 @@ corresponding unit eigenvectors $\vct{\xi}_{i}$ are defined by
         0<\lambda_{1}(\vct{x}_{0})\leq\lambda_{2}(\vct{x}_{0}),
     \end{gathered}
 \end{equation}
+\clearpage
+\input{mainmatter/theory/figures/stretch_and_strain.tex}
 where, for the sake of notational transparency, the dependence of $\lambda_{i}$
 and $\vct{\xi}_{i}$ on $t_{0}$ and $t$ has been suppressed. The geometric
 interpretation of~\cref{eq:cauchygreencharacteristics} is that
@@ -74,8 +76,8 @@ a fluid element undergoes the most stretching along the $\vct{\xi}_{2}$ axis,
 and the least along the $\vct{\xi}_{1}$ axis. This concept is shown in figure
 \ref{fig:stretch_and_strain}.
 
-\input{mainmatter/theory/figures/stretch_and_strain.tex}
-
+%\input{mainmatter/theory/figures/stretch_and_strain.tex}
+%
 Because the stretch factors along the $\vct{\xi}_{1}$ and $\vct{\xi}_{2}$ axes
 are given by the square root of the corresponding eigenvalues, for
 incompressible flow, the eigenvalues satisfy
@@ -89,16 +91,16 @@ the velocity field $\vct{v}$ being divergence-free
 (i.e., $\vct{\nabla}\vdot\vct{v}\equiv0$).
 %This is due to the tracer particles being massless, per definiton.
 
-\section[Definition of Lagrangian Coherent Structures for two-dimensional flows ]
+\section[Definition of Lagrangian coherent structures for two-dimensional flows ]
 {Definition of Lagrangian coherent structures for\\\phantom{2.3 }two-dimensional flows}
 \label{sec:definition_of_lcss_for_two-dimensional_flow}
 Lagrangian coherent structures (henceforth abbreviated to LCSs) can be described
 as time-evolving surfaces which shape coherent trajectory patterns in dynamical
 systems, defined over a finite time interval \parencite{haller2010variational}.
 There are three main types of LCSs, namely \emph{elliptic},
-\emph{hyperbolic} and \emph{parabolic}. Roughly speaking, parabolic structures
-outline cores of jet-like trajectories, elliptic structures describe vortex
-boundaries, whereas hyperbolic structures illustrate overall attractive or
+\emph{hyperbolic} and \emph{parabolic}. Roughly speaking, parabolic LCSs
+outline cores of jet-like trajectories, elliptic LCSs describe vortex
+boundaries, whereas hyperbolic LCSs illustrate overall attractive or
 repelling manifolds. As such, hyperbolic LCSs practically act as organizing
 centers of observable tracer patterns \parencite{onu2015lcstool}. Because
 hyperbolic LCSs provide the most readily applicable insight in terms of
@@ -110,12 +112,12 @@ of this project.
 \subsection{Hyperbolic LCSs}
 \label{sub:hyperbolic_lcss}
 
-The identifacion of LCSs for reliable forecasting requires sufficiency and necessity
-conditions, supported by mathematical theorems. \textcite{haller2010variational}
-derived a variational LCS theory based on the Cauchy-Green strain tensor,
-defined by~\cref{eq:cauchygreen}, from which the aforementioned
-conditions follow. The immediately relevant parts of Haller's theory
-are quoted in
+The identification of LCSs for reliable forecasting requires sufficiency and
+necessity conditions, supported by mathematical theorems.
+\textcite{haller2010variational} derived a variational LCS theory based on the
+Cauchy-Green strain tensor, defined by~\cref{eq:cauchygreen}, from which the
+aforementioned conditions follow. The immediately relevant parts of Haller's
+theory are quoted in
 \cref{def:normalrepellence,def:repellinglcs,def:attractinglcs,def:hyperboliclcs}
 \parencite{haller2010variational}.\\
 
@@ -134,11 +136,10 @@ $\mathcal{M}(t)=\vct{F}_{t_{0}}^{t}\mathcal{M}(t_{0})$. The required
 \emph{compactness} of the material line segment signifies that, in some sense,
 it must be topologically well-behaved. That the material line is
 \emph{overall repelling} means that nearby trajectories are repelled from,
-rather than attracted to, the material line. Lastly, requiring that the
-\emph{normal repulsion rate} is greater than the
-\emph{tangential repulsion rate} means that nearby trajectories are in fact
-driven away from the material line, rather than being stretched
-\emph{along with} it due to shear stress.
+rather than attracted towards, the material line. Lastly, requiring that the
+\emph{normal} repulsion rate is greater than the \emph{tangential} repulsion
+rate means that nearby trajectories are in fact driven away from the material
+line, rather than being stretched along with it due to shear stress.
 \\
 \begin{defn}
     \label{def:repellinglcs}
@@ -197,9 +198,9 @@ mathematical existence criteria, based on the Cauchy-Green strain tensor,
 \end{thm}
 In \cref{thm:lcsexistence}, $\langle\cdot,\cdot\rangle$ denotes the Euclidean
 inner product, and $\mtrx{H}_{\lambda_{2}}$ denotes the Hessian matrix of the
-set of largest eigenvalues of the Cauchy-Green strain tensor. Component-wise,
-the Hessian matrix of a general, smooth, scalar-valued function $f$ is defined
-as
+set of largest eigenvalues of the Cauchy-Green strain tensor field.
+Component-wise, the Hessian matrix of a general, smooth, scalar-valued function
+$f$ is defined as
 \begin{equation}
     \label{eq:hessiancomponent}
     {(\mtrx{H}_{f})}_{i,j} = \pdv[2]{f}{x_{i}}{x_{j}},
@@ -216,18 +217,19 @@ which, for our two-dimensional flow, reduces to
             \end{pmatrix}.
 \end{equation}
 Condition~\eqref{eq:lcsexistence1} ensures that the normal repulsion rate is
-larger than the tangential stretch due to shear strain along the LCS, as per
-\cref{def:normalrepellence}. Conditions~\eqref{eq:lcsexistence3} and
-\eqref{eq:lcsexistence4} suffice to ensure that the normal repulsion rate
-attains a local extremum along the LCS, relative to all nearby material lines.
-Lastly, condition~\eqref{eq:lcsexistence2} forces this to be a strict
-local apex.
+larger than the tangential stretch due to shear strain along the LCS, in
+accordance with with \cref{def:normalrepellence}.
+Conditions~\eqref{eq:lcsexistence3} and \eqref{eq:lcsexistence4} suffice to
+enforce that the normal repulsion rate attains a local extremum along the LCS,
+relative to all nearby material lines. Lastly, condition
+\eqref{eq:lcsexistence2} ensures that this is a strict local maximum.
 
-\section{FTLE fields as predictors for LCSs}
+\section[Finite-time Lyapunov exponent fields as predictors for LCSs]
+{Finite-time Lyapunov exponent fields as predictors for\\\phantom{2.4 }LCSs}
 \label{sec:ftle_fields_as_predictors_for_lcss}
 
 Finite-time Lyapunov exponent (hereafter abbreviated to FTLE) fields provide
-a measure of the extent to which particles which start out close to each other,
+a measure of the extent to which particles that start out close to each other,
 are separated in a given time interval. Mathematically, Lyapunov exponents
 quantify the asymptotic divergence or convergence of trajectories of
 tracers which start out infinitesimally close to each other
@@ -241,11 +243,11 @@ is defined as
 \end{equation}
 \clearpage
 where $\lambda_{2}(\vct{x}_{0})$ is the largest eigenvalue of the Cauchy-Green
-strain tensor. The absolute value of the integration time $T$ is taken because
-one generally can consider the evolution of a system in either temporal
-direction. Analogously to \cref{def:attractinglcs}, the attraction of nearby
-trajectories can be estimated by FTLEs found by means of integration backwards
-in time.
+strain tensor field, evaluated at $\vct{x}_{0}$. The absolute value of the
+integration time $T$ is taken because one generally can consider the evolution
+of a system in either temporal direction. Analogously to
+\cref{def:attractinglcs}, the attraction of nearby trajectories can be estimated
+by FTLEs found by means of integration backwards in time.
 
 \textcite{shadden2005definition} in fact \emph{define} hyperbolic LCSs as ridges
 of the FTLE field. By \emph{ridges}, they mean gradient lines which are
@@ -256,5 +258,5 @@ and false negatives, even for conceptually simple flows. Furthermore, the
 ridges of the FTLE field are generally less well-resolved than the LCSs obtained
 from Haller's variational formalism. For these reasons, the FTLE field can
 generally be used as a first approximation in terms of where one can reasonably
-expect LCSs to be found, but it does not represent the blueprint for the actual
-LCSs of a system in general.
+expect hyperbolic LCSs to be found, but it does not represent the blueprint for
+the actual LCSs of a system in general.

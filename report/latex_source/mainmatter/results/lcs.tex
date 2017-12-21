@@ -1,14 +1,15 @@
-\section{The LCS curves obtained using the different schemes}
+\section[The LCS curves obtained using the different integration schemes]
+{The LCS curves obtained using the different\\\phantom{4.1 }integration schemes}
 \label{sec:the_lcs_curves_obtained_using_the_different_schemes}
 
 Here, the repelling LCS curves found by means of the variety of
 numerical integration schemes under consideration, are presented. All of the
 LCS curves obtained for a given integrator, for all numerical time step lengths
-or tolerance levels are included in one figure, where the reference LCS, shown
-in figure~\ref{fig:referencelcs}, is also included in order to facilitate
-visual comparison. The idea is that any LCS curve that deviates from the
-reference, will reveal itself by not conforming perfectly. The LCS curves
-resulting from the singlestep methods are presented in
+or tolerance levels are included in one figure, where the reference LCS (shown
+in figure~\ref{fig:referencelcs}) is also included in order to
+facilitate visual comparison. The idea is that any LCS curve that deviates
+from the reference, will reveal itself by not conforming with it perfectly. The
+LCS curves resulting from the singlestep methods are presented in
 \cref{fig:lcs_euler,fig:lcs_rk2,fig:lcs_rk3,fig:lcs_rk4}, whereas the ones
 found by virtue of the embedded, that is, adaptive stepsize, methods, are
 shown in~\cref{fig:lcs_rkbs32,fig:lcs_rkbs54,fig:lcs_rkdp54,fig:lcs_rkdp87}.
@@ -27,7 +28,8 @@ The LCS curves obtained from the Euler scheme using relatively large step
 lengths are the most obviously incorrect ones, in comparison to the reference.
 There appears to be very little separating the performance of the other
 singlestep methods. Interestingly, the Heun scheme appears to yield more
-accurate results than the Kutta scheme for all the considered step lengths.
+accurate LCS curves (that is, the LCS curved obtained from the Heun scheme
+appear to conform better with the reference) than the Kutta scheme.
 This is somewhat unexpected, because, as mentioned in
 \cref{sub:the_runge_kutta_methods_under_consideration}, the Heun scheme is
 \nth{2}-order accurate in the time step, whereas the Kutta scheme is

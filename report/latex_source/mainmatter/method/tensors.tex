@@ -1,7 +1,7 @@
-\section{Calculating the Cauchy-Green strain tensor}
+\section{Calculating the Cauchy-Green strain tensor field}
 \label{sec:calculating_the_cauchy_green_strain_tensor}
 
-Making use of the auxiliary tracer points, as outlined in
+Making use of the auxiliary tracers, as outlined in
 \cref{sub:generating_a_set_of_initial_conditions}, the Jacobian of the flow
 map was approximated by means of centered differences as
 \begin{equation}
@@ -13,14 +13,14 @@ map was approximated by means of centered differences as
         -\vct{F}_{t_{0}}^{t}(\vct{x}_{i,j}^{d})}{2\delta{}y}
     \end{pmatrix}.
 \end{equation}
-The Cauchy-Green strain tensor was then calculated as per
+The Cauchy-Green strain tensor field was then calculated as per
 \cref{eq:cauchygreen}. \textcite{farazmand2012computing} bring up a point
 originally raised by \textcite{lekien2010computation}, that using only the
 auxiliary tracers in the calculation of the eigenvalues and -vectors of the
-Cauchy-Green strain tensor is not sufficient for measuring the amount of local
-repulsion or attraction of the material lines. Their justification is that the
-set of auxiliary tracers around a main tracer $\vct{x}_{i,j}$ tends to stay on
-the same side of an LCS. This is due to the small initial separations
+Cauchy-Green strain tensor is not sufficient for measuring the amount of
+local repulsion or attraction of the material lines. Their justification is
+that the set of auxiliary tracers around a main tracer $\vct{x}_{i,j}$ tends to
+stay on the same side of an LCS. This is due to the small initial separations
 $\delta{}x$ and $\delta{}y$, resulting in the auxiliary tracers undergoing less
 stretching than the main tracers which lay on opposite sides of repelling LCSs.
 Thus, the magnitudes of eigen\emph{values} stemming from finite differencing
@@ -45,9 +45,9 @@ The extended grid, as outlined in
 centered differencing approximation for all the main tracers. This also
 includes the first set of extended rows and columns, where the latter play an
 important role in the analysis to follow --- more on that in
-\cref{sec:identifying_lcs_candidates_numerically}. The numerical approximation
+\cref{sec:identifying_lcs_candidates_numerically}. The numerical approximations
 of the eigen\emph{values} of the Cauchy-Green strain tensor were thus calculated
 by means of the main tracers, using~\cref{eq:mainjacobian}, while
-the approximation of the corresponding eigen\emph{vectors} were calculated by
+the approximations of the corresponding eigen\emph{vectors} were calculated by
 means of the auxiliary tracers, that is, using~\cref{eq:auxjacobian}.
 \clearpage

@@ -2,8 +2,8 @@
 \label{sub:computed_deviations_in_the_lcs_curves}
 
 Figures~\ref{fig:lcs_err_fp_fp} and~\ref{fig:lcs_err_fn_fn} indicate that
-the integrated offset of false positives and negatives, as defined in
-\cref{eq:midpointfalselcs}, is a decreasing function of the number of
+the integrated offset of false positive and negative LCS curve segments, as
+defined in~\cref{eq:midpointfalselcs}, is a decreasing function of the number of
 function evaluations for all integration schemes. Moreover, the issue of false
 positives and negatives vanishes entirely for sufficiently many function
 evaluations, that is, sufficiently small numerical step lengths or tolerance
@@ -17,10 +17,11 @@ approximations of the LCS curve, as shown in
 
 Note that the offset of false positives and negatives has not been plotted as a
 function of numerical time step for the singlestep methods. As can be seen from
-\cref{fig:lcs_err_fp_fp,fig:lcs_err_fn_fn}, only the Euler method results in
-false positives or negatives for more than one of the considered integration
-step lengths, meaning that there are simply too few data points to identify
-correlations between these numerical errors and the time step, cf.\
+\cref{fig:lcs_err_fp_fp,fig:lcs_err_fn_fn}, of the singlestep methods, only the
+Euler scheme results in false positives or negatives for more than one of the
+considered integration step lengths, meaning that there are simply too few data
+points to identify correlations between these numerical errors and the time
+step, cf.\
 \cref{def:rungekuttaorder}. Moreover, there is no clear reason why these offsets
 should scale similarly as, for instance, the errors in the computed flow maps
 (see~\cref{sub:computed_deviations_in_the_flow_maps}).
@@ -28,11 +29,10 @@ Furthermore, offsets for the adaptive stepsize methods are not included for the
 tolerance levels $10^{-1}$, because the LCS identification proved to be
 exceedingly demanding in terms of computations for those cases, as described in
 \cref{sub:lcs_curves_stemming_from_adaptive_stepsize_methods}. However,
-based on the associated $\mathcal{U}_{0}$ domains, shown in figure
-\ref{fig:u0_dom_errs}, one may infer an overwhelming probability of a large
-number of false positives and negatives to be present, seeing as the underlying
-strain systems are quite clearly different to the reference, shown in
-figure~\ref{fig:u0_domain}.
+based on the associated $\mathcal{U}_{0}$ domains, one may infer an overwhelming
+probability of a large number of false positives and negatives to be present,
+seeing as the underlying strain systems are quite clearly different to the
+reference (compare~\cref{fig:u0_domain} to~\cref{fig:u0_dom_errs}).
 
 
 \input{mainmatter/results/figures/error_figures/lcs_false_positives.tex}
@@ -56,8 +56,8 @@ $h=10^{-4}\rightarrow{h=10^{-5}}$ is unexpected. A similar effect is not present
 in the $\rmsd$s of the flow map, eigenvalues nor eigenvectors, shown in
 \cref{fig:flowmap_err_fixed,fig:lmbd2_err_fixed,fig:xi2_err_fixed}.
 
-\input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_fixed_steplength.tex}
-
+%\input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_fixed_steplength.tex}
+%
 \Cref{fig:lcs_rmsd_fp_nn_both,fig:lcs_rmsd_fn_nn_both} show the $\rmsd$ of the
 LCS curves for all numerical integration methods as a function of the required
 number of function evaluations per advected tracer. For the adaptive stepsize
@@ -68,7 +68,7 @@ the LCS curves obtained by means of the Dormand-Prince 8(7) method deviates
 somewhat from this pattern; in particular, oscillations are visible for the
 tolerance range $\textnormal{tol}=10^{-5}$ through to
 $\textnormal{tol}=10^{-8}$. A similar trend is not apparent in the $\rmsd$s of
-of the flow map, eigenvalues or -vectors, as shown in
+the flow map, eigenvalues nor -vectors, as shown in
 \cref{fig:flowmap_err_both,fig:lmbd2_err_both,fig:xi2_err_both}. A possible
 explanation for the aforementioned oscillatory behaviour, as well as the
 overall behavior of the $\rmsd$ of the LCS curves observed for all (high
@@ -80,9 +80,9 @@ efficient means of obtaining accurate LCS curves for the considered double gyre
 system, in terms of the number of function evaluations needed to reach a given
 level of precision.
 
-\input{mainmatter/results/figures/error_figures/lcs_fn_nn_error_fixed_steplength.tex}
+\input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_fixed_steplength.tex}
 
-%\clearpage%
+\input{mainmatter/results/figures/error_figures/lcs_fn_nn_error_fixed_steplength.tex}
 
 \input{mainmatter/results/figures/error_figures/lcs_fp_nn_error_both.tex}
 

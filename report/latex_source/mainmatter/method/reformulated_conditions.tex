@@ -31,7 +31,7 @@ robust numerical implementation:
 The relaxation of condition~\eqref{eq:lcsexistence2} in~\cref{thm:lcsexistence}
 from strict inequality to condition~\eqref{eq:numericalexistence2}, also
 allowing equality, means that LCSs may have finite thickness.
-However, the set of criteria given in equation ~\eqref{eq:numericalexistence}
+However, the set of criteria given in~\cref{eq:numericalexistence}
 enforce that all LCSs have uniquely defined local orientations. Conditions
 \eqref{eq:lcsexistence3} and~\eqref{eq:numericalexistence3} are equivalent,
 due to the orthogonality of the eigenvectors $\vct{\xi}_{1}(\vct{x}_{0})$ and
@@ -57,9 +57,9 @@ $\mathcal{U}=[0,\hspace{0.5ex}2]\times[0,\hspace{0.5ex}1]$.
 
 Per condition~\eqref{eq:numericalexistence3}, hyperbolic LCSs are composed
 of material curves tangent to the $\vct{\xi}_{1}(\vct{x}_{0})$ vector field,
-i.e., the eigenvector field associated with the smaller eigenvalue field
+i.e., the eigenvector field associated with the smaller eigenvalues
 $\lambda_{1}(\vct{x}_{0})$ of the Cauchy-Green strain tensor field
-$\mtrx{C}_{t_{0}}^{t}(\vct{x}_{0})$. Traditionally, curves which are
+(see~\cref{eq:cauchygreencharacteristics}). Traditionally, curves which are
 everywhere tangent to the eigenvector field corresponding to the largest
 eigenvalues of a two-dimensional tensor field have been called tensor lines
 \parencite{farazmand2012computing}. Thus, in order to distinguish between
@@ -78,7 +78,7 @@ ordinary differential equation
 where, because the eigenvectors $\vct{\xi}_{1}$ are stationary,
 the numerical integration is spatial, in principle. However, in order to conform
 with the established conventions with regards to the numerical integration of
-ODEs, we consider pseudotime --- that is, a ficticious time-like coordinate $s$
+ODEs, we consider pseudotime --- that is, a fictitious time-like coordinate $s$
 is introduced, where advancing $s$ by a numerical integration step $\Delta$
 corresponds to a spatial translation by the same length, because the
 eigenvectors $\vct{\xi}_{1}$ are normalized to unit length.
@@ -113,8 +113,9 @@ So, in order to compute globally smooth strainlines,
     \vct{r}'(s)= \vct{f}\big(\vct{r}(s)\big),
 \end{equation}
 where $\vct{f}$ denotes the special-purpose local linear interpolation of
-the $\vct{\xi}_{1}$ field, as outlined above and in figure
-\ref{fig:locallinearinterp}.
+the $\vct{\xi}_{1}$ field, as outlined above and in
+\cref{fig:locallinearinterp}, and $s$ is the aforementioned fictitious time-like
+coordinate.
 %, and $\Delta$ is the numerical pseudotime step
 % length used in the numerical integration.
 %while the signum function is defined as
@@ -134,8 +135,8 @@ as a trajectory of the $\vct{\xi}_{1}$-field is, per definition, always
 parallel to it. The segments of the strainlines on which the remaining
 conditions~\eqref{eq:numericalexistence1},~\eqref{eq:numericalexistence2} and
 \eqref{eq:numericalexistence4} are satisfied comprises the set of hyperbolic
-LCSs in the flow over time interval $[t_{0},t_{0}+T]$.
-\textcite{farazmand2012computing} suggest that in order to identify this
+LCSs in the flow over the time interval $[t_{0},t_{0}+T]$.
+\textcite{farazmand2012computing} suggest that, in order to identify this
 set of LCSs, one should start by identifying the subdomain
 $\mathcal{U}_{0}\subset\mathcal{U}$ on which the conditions
 \eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2} are satisfied,
@@ -143,19 +144,19 @@ and then integrate the system given by equation~\eqref{eq:strainlineode} from
 initial conditions within $\mathcal{U}_{0}$ to construct strainlines.
 Generally, the integration proceeds until each strainline reaches the domain
 boundaries of $\mathcal{U}$, or reaches a degenerate point (see below) of the
-original $\vct{\xi}_{1}$ vector field.
+$\vct{\xi}_{1}$ vector field.
 
 Using all of the points in the $\mathcal{U}_{0}$ domain would inevitably
 involve computing a lot of strainlines several times over. In order to
 reduce the number of redundant calculations, the set of considered strain
-initial conditions were reduced, with the approach suggested by
-\textcite{farazmand2012computing}. In particular, the set $\mathcal{U}_{0}$
-was reduced to its intersections with four horizontal and four vertical lines.
-The set $\mathcal{U}_{0}$ for the double gyre system, as well as the
-aforementioned intersections, are illustrated in figure~\ref{fig:u0_domain}.
-The reduced set of strain initial conditions consists of 1470 grid points, which
-is two orders of magnitude less than the total number of points in
-$\mathcal{U}_{0}$.
+initial conditions was reduced, by an approach similar to that of
+\textcite{farazmand2012computing}. In particular, the set of initial
+conditions was reduced from $\mathcal{U}_{0}$ to its intersections with four
+horizontal and four vertical lines. The set $\mathcal{U}_{0}$ for the double
+gyre system, as well as the aforementioned intersections, are illustrated in
+figure~\ref{fig:u0_domain}. The reduced set of strain initial conditions
+consists of 1470 grid points, which is two orders of magnitude less than the
+total number of points in $\mathcal{U}_{0}$.
 
 \input{mainmatter/method/figures/u0_domain.tex}
 %\clearpage
@@ -191,10 +192,10 @@ used in the advection of the tracers, described in
 \cref{sec:advecting_a_set_of_initial_conditions}. The classical Runge-Kutta
 method was applied universally for consistency, and chosen for its simplicity
 and relative accuracy. Moreover, this project is centered around the dependence
-of the choice of integration method in the tracer advection. The step length was
-made to be half of the main grid spacing, to ensure that the micro-scale strain
-behaviour would be encapsulated in the resulting strainlines, while maintaining
-reasonable computation times.
+of LCS detection on the choice of integration method for the \emph{tracer}
+advection. The step length was made to be half of the main grid spacing, to
+ensure that the micro-scale strain behaviour would be encapsulated in the
+resulting strainlines, while maintaining reasonable computation times.
 %presented in
 %\cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels};
 %however, there is no way of knowing in advance, how long (in terms of numerical
@@ -206,14 +207,14 @@ reasonable computation times.
 %floating-point numbers.
 
 Frequently, only a segment of any given strainline will qualify as a hyperbolic
-LCS\@. Hence, the integration of any strainline can be stopped when it reaches
-a point at which one of the conditions given in equations
-\eqref{eq:numericalexistence1} or \eqref{eq:numericalexistence2} fails. Doing so
+LCS\@. Hence, the integration of any strainline can in principle be stopped
+when it reaches a point at which one of the conditions given in equations
+\eqref{eq:numericalexistence1} or~\eqref{eq:numericalexistence2} fails. Doing so
 uncritically, however, opens up the possibility of stopping a strainline which
 only exited the $\mathcal{U}_{0}$ domain due to numerical noise. In order to
 avoid such unwanted failures, the approach of \textcite{farazmand2012computing}
 was followed. Therefore, strainline integration was only stopped if one of the
-aforementioned LCS conditions fail repeatedly over a pre-set length
+aforementioned LCS conditions failed repeatedly over a pre-set length
 $l_{\textnormal{f}}=0.2$ of the strainline. Furthermore, the strainlines which
 were stopped because of continuous failure of LCS conditions were cut such that
 their \emph{new} endpoints in either direction, as seen from the strain initial
@@ -227,19 +228,19 @@ satisfied the aforementioned conditions. This concept is illustrated in
 \subsubsection{Identifying strainlines which are local strain maximizers}
 \label{ssub:identifying_strainlines_which_are_local_strain_maximizers}
 
-Now, having located the strainline pieces which satisfy conditions
+Now, having located the strainlines as curves which satisfy conditions
 \eqref{eq:numericalexistence1} and~\eqref{eq:numericalexistence2}, the next
 step is imposing condition~\eqref{eq:numericalexistence4}, i.e., identifying the
-strainline segments that are local maxima of the averaged maximum strain. In
-the following, we let $\{\gamma_{j}\}$ denote the set of parametrized strainline
-curves, computed as solutions of the strain ODE system given in
+strainline segments that are local maxima of the curve averaged maximum strain.
+In the following, we let $\{\gamma_{j}\}$ denote the set of parametrized
+strainline curves, computed as solutions of the strain ODE system given in
 \cref{eq:strainlineode}. The suggested approach of
 \textcite{farazmand2012computing} is to define a set $\mathcal{L}$ of uniformly
 spaced horizontal and vertical lines within the domain $\mathcal{U}_{0}$. Then,
 the values of $\overline{\lambda}_{2}(\gamma_{0})$ --- the average of
 $\lambda_{2}$ on the curve $\gamma_{0}$ --- are compared at the neighboring
 intersections of all sufficiently close strainline segments along each of the
-lines modeline $\mathcal{L}$. The process is illustrated in
+lines in $\mathcal{L}$. The process is illustrated in
 \cref{fig:neighborlcs}.
 
 \input{mainmatter/method/figures/neighborlcs}
@@ -254,7 +255,7 @@ ellipses in figure~\ref{fig:neighborlcs}. Furthermore, short LCSs are expected
 to have negligible impact on the overall flow pattern. In order to filter out
 such miniscule structures, any strainline segment which was shorter than a
 pre-set small length $l_{\mathrm{min}}=1$ were discarded as LCS candidates,
-as suggested in \textcite{farazmand2012computing}.
+as suggested by \textcite{farazmand2012computing}.
 
 One shortcoming in the work of \textcite{farazmand2012computing}, is that
 they do not provide a way of selecting the lines in
@@ -274,13 +275,13 @@ must expect to find one or more strainline segments which are labelled as
 LCSs. From figure~\ref{fig:ftle_l2}, one may infer that the local strain in the
 region is relatively small, seeing as there is practically no discernible
 structure there at all in the $\lambda_{2}(\vct{x}_{0})$ distribution, whereas
-the FTLE values there are also very small. From this, it follows that any
-hypothetical LCSs located in this region will have a relatively small impact on
+the FTLE values there are also very small. Accordingly, that any
+hypothetical LCSs located in this region would have a relatively small impact on
 the overall flow in the system, at least compared with other hypothetical LCSs
-which lie on, or near, the recognizable ridges. The same logic is practically
-applicable on the entirety of the computational domain. It is thus clear that,
-in order to eliminate the weakest among the LCSs, the lines in $\mathcal{L}$
-must be selected carefully.
+which would lie on, or near, the recognizable ridges. The same logic is
+practically applicable on the entirety of the computational domain. It is thus
+clear that, in order to eliminate the weakest --- and least significant --- LCSs,
+the lines in $\mathcal{L}$ must be selected carefully.
 
 %In order to eliminate the weakest among the LCSs, it is thus clear that the
 %lines in $\mathcal{L}$ must be selected carefully.
@@ -304,17 +305,17 @@ sufficient in order to accurately reproduce the same LCS as found by
 The reference LCS, that is, the LCS obtained with the reference numerical
 integrator, as mentioned in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels}, is
-presented in figure~\ref{fig:referencelcs}. It consists of seven segments,
+presented in figure~\ref{fig:referencelcs}. It consists of eight segments,
 and agrees visually with the LCS found in the literature, for example by
 \textcite{farazmand2012computing}. Note, however, that
 \citeauthor{farazmand2012computing} claim that their LCS consists of a single
-strainline segment. This will be elaborated upon in
+strainline segment. This discrepancy will be elaborated upon in
 \cref{cha:discussion}. The curve shown in figure~\ref{fig:referencelcs} was used to
 benchmark how the different numerical integrators, mentioned in
 \cref{sub:the_runge_kutta_methods_under_consideration}, for the parameters
 mentioned in
 \cref{sub:on_the_choice_of_numerical_step_lengths_and_tolerance_levels},
-performed.
+performed, in terms of identifying hyperbolic LCSs in the double gyre system.
 
 \input{mainmatter/method/figures/referencelcs.tex}
 

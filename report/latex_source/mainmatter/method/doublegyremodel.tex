@@ -65,14 +65,14 @@ be expressed in terms of a scalar stream function:
     \label{eq:doublegyrestreamfun}
     \renewcommand{\arraystretch}{2.5}
     \begin{gathered}
-        \psi(t,\vct{x}) = A\sin\big(\pi{}f(t,x)\big)\sin(\pi{}y) \\
+        \psi(t,\vct{x}) = A\sin\big(\pi{}f(t,x)\big)\sin(\pi{}y),\\
         \vct{v}(t,\vct{x}) = \begin{pmatrix}%
             -\dfrac{\partial{}\psi}{\partial{}y} \\
             \dfrac{\partial{}\psi}{\partial{}x}
-        \end{pmatrix}
+        \end{pmatrix}.
     \end{gathered}
 \end{equation}
-which means that the velocity field is divergence-free by construction:
+This means that the velocity field is divergence-free by construction:
 \begin{equation}
     \label{eq:doublegyreincompr}
     \vct{\nabla}\vdot\vct{v}(t,\vct{x}) = -\pdv[2]{\psi}{x}{y} %
